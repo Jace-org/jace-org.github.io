@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <title>Home</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="home.css">
+    <script src="scripts.js"></script>
+    <!--here the left side bar starts-->
+</head>
+<body style="background-color: #1c1c1c;" id="bg-clr"></body>
+<!--<body onload="alert('Logged in sucessfully!')">...</body>-->
+<body>
+    <div class="mbl-menu">
+    <!-- top left logo -->
+    <a href="index.html">
+    <img src="logo.png" id="rtlog-mbl"></a>
+    <!-- hamburger menue -->
+    <div class="container-hmbr" onclick="toggleMenu(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+      <div class="hmbr-menue-list" id="dropdownMenu">
+        <p class="btn-hmbr-active"><a href="index.html">Home</a></p>
+        <p class="btn-hmbr"><a href="About.html">About us</a></p>
+        <p class="btn-hmbr"><a href="projects.html">Projects</a></p>
+        <p class="btn-hmbr"><a href="contact.html">Contact us</a></p>
+      </div>
+    </div>
+
+<!-- menu for large screen top bar -->
+    <div class="container">
+        <div class="sidebar" id="sidebar-home">
+            <span>
+                <a href="#">
+                <img src="logo.gif" id="rtlog"></a>
+                <p id="hm" class="active"><a href="index.html">
+                    Home
+                </a> </p>
+                <p id="about"><a href="About.html">
+                    About
+                </a></p>
+                <p id="projects"><a href="projects.html">
+                    Projects
+                </a></p>
+                <p id="contact"><a href="contact.html">
+                    Contact Us
+                </a></p>
+            </span>
+        </div>
+         <!-- main content of webpage starts here -->
+         <div class="content">
+            <video class="bg-video" src="video.mp4" loop muted autoplay></video> 
+            <h1 id="home">Hello! Welcome to Jase(j's).</h1>
+            <h5 id="home2">Meet the future with our cutting-edge technology</h5>
+            <br><br><br>
+            <p style="color: aliceblue; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-weight: bolder;">Next update (v1.0.10) comming soon on 22 JAN 2024.</p>
+        </div>
+        </div>
+         </html>
+          

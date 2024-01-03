@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.55">
+    <title>Developer-Profile</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="script.js"></script>
+</head>
+<script src="https://kit.fontawesome.com/8ad2fdf1ca.js" crossorigin="anonymous"></script>
+<div class="content">
+<body>
+    <div class="outline">
+        <div>
+            <button onclick="toggleTheme()" id="button"><p id="btn">Dark-Theme</p></button>
+        </div>
+    <img src="myorgimg.jpeg" class="photo">
+    <h1 class="name">Jhapendra kandel (uki)</h1>
+
+    <i class="fa-solid fa-code" id="coding"></i>
+    <p id="wb-developing">Website Developer</p>
+
+    <i class="fa-solid fa-location-dot" id="location"></i>
+    <p id="lctn">Kathmandu, Nepal</p>
+<!--
+    <marquee id="marquee"> A high school student at Uniglobe College with an insatiable curiosity about computers and programming, 
+        I am dedicated to learning and exploring the boundless possibilities of technology. 
+        My knowledge spans a wide spectrum, and I am eager to shape the future through my understanding of
+         this powerful tool. Together with others, I embark on journeys of creativity, transforming ideas into 
+         tangible realities through the power of programming. I am the future of technology,
+          a force to be reckoned with in the ever-changing digital landscape.
+     </marquee>
+    -->
+    <!-- typing text about me-->
+    <span class="prm-txt">I'm a</span>
+    <div class="Aboutme">
+        <span class="first-text"></span>
+    </div>
+    <script>
+        const text = document.querySelector(".first-text");
+    
+        const textLoad=()=>{
+            setTimeout(()=>{
+                text.textContent="Freelancer";
+            },0);
+            setTimeout(()=>{
+                text.textContent="Blogger";
+            },5000);
+            setTimeout(()=>{
+                text.textContent="Student";
+            },10000);
+            setTimeout(()=>{
+                text.textContent="Programmer";
+            },15000);
+    
+        }
+        textLoad();
+        setInterval(textLoad,20000);
+    </script>
+    <!--here starts the roles and experence-->
+    <h1 class="exp"> Roles and experence:</h1>
+
+    <p id="html">HTML</p>
+    <div id="skills">
+        <div id="h-skills">95%</div>
+    </div>
+
+    <br>
+
+    <p id="html">CSS</p>
+    <div id="skills">
+        <div id="css-skills">85%</div>
+    </div>
+
+    <br>
+
+    <p id="html">JAVA-SCRIPT</p>
+    <div id="skills">
+        <div id="js-skills">45%</div>
+    </div>
+    </div>
+    <hr>
+    <!--bottom of page-->
+    <div id="bottom">
+        <a href="https://jhapendrakandel.github.io/Jase.github.io" style="color: black;">
+        <img id="btm-logo" src="logo.png">
+        </a>
+        <i class="fa-solid fa-location-dot" id="btm-lctn"></i>
+        <p id="sd-cnt">Japan, tokoyo</p>
+        <p id="main-cnt-btm">
+            Powered by <a href="https://jhapendrakandel.github.io/Jase.github.io">Jase.</a>
+        </p>
+    </div>
+    <!--bottom of page (right side)-->
+    <div id="rht-btm">
+        <p><a href="https://jhapendrakandel.github.io/Jase.github.io">
+            Home
+        </a></p>
+        <p><a href="https://jhapendrakandel.github.io/Jase.github.io/About" >
+            About us
+        </a></p>
+        <p><a href="https://jhapendrakandel.github.io/Jase.github.io/projects">
+            Our Projects
+        </a></p>
+        <p><a href="https://jhapendrakandel.github.io/Jase.github.io/contact">
+            Contact us
+        </a></p>
+    </div>
+</div>
+</div>
+</body>
+</html>
