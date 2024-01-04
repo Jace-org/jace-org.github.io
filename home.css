@@ -324,6 +324,24 @@ img{
     margin-left: 0;
     margin-right: 0;
 }
+#hompage-content{
+  margin-top: 70px;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+}
+.elemnt-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#download-box{
+  margin-top: 20px;
+  background-color: #e2e2e2;
+  width: 160px;
+  line-height: 40px;
+  padding-left: 20px;
+  border-radius: 15px;
+}
 /* ------------------------------------- here starts the slide devloper prolie--------------- */
 *{
   padding: 0;
