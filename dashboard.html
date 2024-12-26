@@ -308,8 +308,8 @@
                 <div class="footer">
                     <p>CONNECT WITH ME</p>
                     <div class="social-links">
-                        <span><a href="https://www.linkedin.com/in/jhapendra-kandel" target="_blank"><i
-                                    class="fa fa-linkedin fa-2x"></i></a></span>
+                        <span><a href="https://www.youtube.com/@Kandeljhapendra" target="_blank"><i
+                                    class="fa fa-youtube fa-2x"></i></a></span>
                         <span><a target="_blank" href="https://facebook.com/uki.kandel" target="_blank"><i
                                     class="fa fa-facebook fa-2x"></i></a></span>
                         <span><a href="https://github.com/jhapendrakandel" target="_blank"><i
@@ -345,7 +345,9 @@
 
             // input text for typing animation
             $("#head-holder").writeText("FULL-STACK DEVELOPER");
- $("#holder").writeText("WEB DESIGNER + FRONT-END DEVELOPER + BACKEND DEVELOPER [FULL-STACK DEVELOPER]"); 
+            setTimeout(function () {
+        $("#holder").writeText("WEB DESIGNER + FRONT-END DEVELOPER + BACKEND DEVELOPER", 100);
+    }, 3000);
 
             // initialize wow.js
             new WOW().init();
