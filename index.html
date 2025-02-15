@@ -1,48 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Content</title>
+    <title>Loading..</title>
+    <link rel="icon" type="image/x-icon"
+        href="https://github.com/jhapendrakandel/Jace.github.io/blob/main/logo.png?raw=true">
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:300,400');
+
+        /*font-family: 'Poppins', sans-serif;*/
         body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-            padding: 50px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: #000;
         }
+
         .loading {
-            font-size: 20px;
-            margin-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #FFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 15;
+            animation: fadeout 3s linear forwards;
         }
-        .spinner {
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-top: 5px solid white;
-            border-radius: 50%;
-            width: 40px;
+
+        .loading h2 {
+            color: #000;
+        }
+
+        .loading .bar {
+            position: relative;
+            width: 400px;
             height: 40px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-top: 20px;
+            background: transparent;
+            margin: 0 20px;
+            border: 2px solid #000;
+            box-sizing: border-box;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .loading .bar:after {
+            content: 'Loading...';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            text-align: center;
+            line-height: 36px;
+            color: #FFF;
+            font-size: 20px;
+            mix-blend-mode: difference;
+        }
+
+        .loading .bar:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            transform-origin: left;
+            animation: animate 3s linear forwards;
+        }
+
+        .center {
+            position: relative;
+            width: 400px;
+        }
+
+        .center div {
+            position: relative;
+            margin: -30px 0;
+            height: 100px;
+            z-index: 2;
+            transform: skewY(-5deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center div:nth-child(2),
+        .center div:nth-child(4) {
+            transform: skewY(14.5deg);
+            z-index: 1;
+        }
+
+        .center div:nth-child(4) {
+            transform: skewY(25deg);
+            transform-origin: left;
+            top: -52px;
+        }
+
+        .center div:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .center div:nth-child(1):before,
+        .center div:nth-child(3):before {
+            background: linear-gradient(-160deg, #00ff3c, #673AB7);
+            transform: scaleX(0)
+        }
+
+        .center div:nth-child(2):before,
+        .center div:nth-child(4):before {
+            background: linear-gradient(-20deg, #FF0058, #44b73a);
+            transform: scaleX(0);
+        }
+
+        .center div:nth-child(1):before {
+            backface-visibility: hidden;
+            animation: animate 0.5s linear forwards;
+            transform-origin: right;
+            animation-delay: 2.8s;
+        }
+
+        .center div:nth-child(2):before {
+            backface-visibility: hidden;
+            animation: animate 0.5s linear forwards;
+            transform-origin: left;
+            animation-delay: 3.5s;
+        }
+
+        .center div:nth-child(3):before {
+            backface-visibility: hidden;
+            animation: animate 0.5s linear forwards;
+            transform-origin: right;
+            animation-delay: 4.2s;
+        }
+
+        .center div:nth-child(4):before {
+            backface-visibility: hidden;
+            animation: animate 0.5s linear forwards;
+            transform-origin: left;
+            animation-delay: 4.9s;
+            width: 60%;
+            left: 0;
+        }
+
+        .center div:nth-child(1):after,
+        .center div:nth-child(3):after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: rgba(255, 255, 255, .2);
+        }
+
+        .center div h2 {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            z-index: 10;
+            opacity: 0;
+            color: #FFF;
+        }
+
+        .center div:nth-child(1) h2 {
+            animation: fadeText 0.5s linear forwards;
+            animation-delay: 3s;
+            font-size: 40px;
+        }
+
+        .center div:nth-child(3) h2 {
+            animation: fadeText 0.5s linear forwards;
+            animation-delay: 3.5s;
+            font-size: 90px;
+            font-weight: bold;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: scaleX(0);
+            }
+
+            100% {
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes fadeText {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout {
+
+            0%,
+            71% {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .firework {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(50);
+                opacity: 0;
+            }
         }
     </style>
 </head>
-<body>
 
-    <h1>Content Loading...</h1>
-    <div class="spinner"></div>
-    <p class="loading">Please wait while we fetch the content...</p>
+<body>
+    <div class="loading">
+        <h2>Loading</h2>
+        <div class="bar"></div>
+        <h2>...</h2>
+    </div>
+    <div class="center">
+        <div>
+            <h2>Loading</h2>
+        </div>
+        <div></div>
+        <div>
+            <h2>...</h2>
+        </div>
+        <div></div>
+    </div>
+    <div class="firework" style="top: 25%; left: 25%; animation-delay: 3.5s;"></div>
+    <div class="firework" style="top: 75%; left: 25%; animation-delay: 3.9s;"></div>
+    <div class="firework" style="top: 25%; left: 75%; animation-delay: 4.2s;"></div>
+    <div class="firework" style="top: 75%; left: 75%; animation-delay: 4.7s;"></div>
+    <div class="firework" style="top: 50%; left: 50%; animation-delay: 4.9s;"></div>
+    <div class="firework" style="top: 20%; left: 40%; animation-delay: 5.1s;"></div>
+    <div class="firework" style="top: 80%; left: 60%; animation-delay: 5.3s;"></div>
+    <div class="firework" style="top: 30%; left: 70%; animation-delay: 5.5s;"></div>
+    <div class="firework" style="top: 70%; left: 30%; animation-delay: 5.7s;"></div>
+    <div class="firework" style="top: 40%; left: 20%; animation-delay: 5.9s;"></div>
+    <div class="firework" style="top: 60%; left: 80%; animation-delay: 6.1s;"></div>
+    <div class="firework" style="top: 10%; left: 10%; animation-delay: 6.3s;"></div>
+    <div class="firework" style="top: 90%; left: 90%; animation-delay: 6.5s;"></div>
+    <div class="firework" style="top: 10%; left: 90%; animation-delay: 6.7s;"></div>
+    <div class="firework" style="top: 90%; left: 10%; animation-delay: 6.9s;"></div>
+    <div class="firework" style="top: 50%; left: 50%; animation-delay: 7.1s;"></div>
 
     <script>
-        setTimeout(function() {
-            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; 
-        }, 6000); // Redirects after 6 seconds
+        // Redirect to dashboard.html after the loading and fireworks display
+        setTimeout(function () {
+            window.location.href = "dashboard.html";
+        }, 7100); // 7.1 seconds delay to match the fireworks display duration
     </script>
-
 </body>
+
 </html>
