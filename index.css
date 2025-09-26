@@ -203,7 +203,8 @@ p {
 }
 
 .aboutme {
-    background: url("https://flux-image.com/_next/image?url=https%3A%2F%2Fai.flux-image.com%2Fflux%2F3e6a73e1-3c6c-4de1-bb82-2c495052a907.png&w=3840&q=75") no-repeat;
+    /* background: url("https://flux-image.com/_next/image?url=https%3A%2F%2Fai.flux-image.com%2Fflux%2F3e6a73e1-3c6c-4de1-bb82-2c495052a907.png&w=3840&q=75") no-repeat; */
+    background: url("./mainimg.webp&w=3840&q=75") no-repeat;
     background-size: cover;
 }
 
