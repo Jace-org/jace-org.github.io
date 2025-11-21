@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Access Blocked — Network Policy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1E3A8A;
+            --primary-light: #3B82F6;
+            --primary-dark: #1E40AF;
+            --accent-cyan: #06B6D4;
+            --accent-purple: #7C3AED;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E0E7FF;
+            --text-muted: #A5B4FC;
+            --surface: rgba(255, 255, 255, 0.08);
+            --surface-hover: rgba(255, 255, 255, 0.12);
+            --border: rgba(255, 255, 255, 0.15);
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #06B6D4 100%);
+            background-size: 200% 200%;
+            animation: liquidGradient 15s ease infinite;
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes liquidGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Animated background orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-purple);
+            top: -10%;
+            left: -10%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-cyan);
+            bottom: -10%;
+            right: -10%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary-light);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.2;
+            }
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-wrapper {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            animation: slideDown 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+         .logo-placeholder img{
+            width: 70px;
+         }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .logo-placeholder:hover {
+                transform: scale(1.05) rotate(-5deg);
+                box-shadow: 0 12px 48px var(--shadow);
+            }
+        }
+
+        .company-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px var(--shadow);
+            animation: scaleIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s backwards;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .icon-wrapper {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .block-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.4));
+        }
+
+        @keyframes iconFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes shieldPulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .block-icon {
+                animation: iconFloat 3s ease-in-out infinite;
+            }
+
+            .block-icon .shield-bg {
+                animation: shieldPulse 2s ease-in-out infinite;
+            }
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+            background: linear-gradient(135deg, #FFFFFF 0%, #E0E7FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .description {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            font-size: 1.0625rem;
+            line-height: 1.7;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .info-item:hover {
+                background: var(--surface-hover);
+                border-color: var(--primary-light);
+                transform: translateX(4px);
+            }
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-family: 'Monaco', 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        .notice-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(6, 182, 212, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .notice-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            color: var(--accent-cyan);
+            margin-top: 2px;
+        }
+
+        .notice-text {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .notice-text strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            font-family: inherit;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .btn:hover::before {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            color: white;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+            }
+
+            .btn-primary:active {
+                transform: translateY(0);
+            }
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .btn-secondary:hover {
+                background: var(--surface-hover);
+                border-color: var(--primary-light);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            }
+
+            .btn-secondary:active {
+                transform: translateY(0);
+            }
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--primary-light);
+            outline-offset: 2px;
+        }
+
+        .btn svg {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-info {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 640px) {
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .block-icon {
+                width: 100px;
+                height: 100px;
+            }
+
+            .logo-placeholder {
+                width: 64px;
+                height: 64px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+
+            /* Light mode support - optional */
+            :root {
+                --text-primary: #1E293B;
+                --text-secondary: #475569;
+                --text-muted: #64748B;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="container">
+        <!-- Company Logo -->
+        <div class="logo-wrapper">
+            <div class="logo-placeholder" role="img" aria-label="Company Logo">
+                <img src="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png" alt="logo">
+            </div>
+            <div class="company-name">Jace(J's)- Jhapendra kandel Network</div>
+        </div>
+
+        <!-- Main Content Card -->
+        <div class="content-card">
+            <!-- Icon -->
+            <div class="icon-wrapper">
+                <svg class="block-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
+                    aria-label="Access Blocked">
+                    <defs>
+                        <linearGradient id="blockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Shield -->
+                    <path class="shield-bg" d="M60 15L20 32V60C20 85 37 105 60 112C83 105 100 85 100 60V32L60 15Z"
+                        fill="url(#blockGradient)" opacity="0.9" />
+                    <path d="M60 20L25 35V60C25 82 40 100 60 106C80 100 95 82 95 60V35L60 20Z" stroke="white"
+                        stroke-width="2.5" fill="none" />
+                    <!-- X mark -->
+                    <line x1="50" y1="50" x2="70" y2="70" stroke="white" stroke-width="4" stroke-linecap="round">
+                        <animate attributeName="stroke-dasharray" from="0 30" to="30 0" dur="0.6s" fill="freeze"
+                            begin="0.3s" />
+                    </line>
+                    <line x1="70" y1="50" x2="50" y2="70" stroke="white" stroke-width="4" stroke-linecap="round">
+                        <animate attributeName="stroke-dasharray" from="0 30" to="30 0" dur="0.6s" fill="freeze"
+                            begin="0.5s" />
+                    </line>
+                    <!-- Circle -->
+                    <circle cx="60" cy="60" r="22" stroke="white" stroke-width="2.5" fill="none" opacity="0.6" />
+                </svg>
+            </div>
+
+            <!-- Title & Description -->
+            <h1>Access Blocked</h1>
+            <p class="description">
+                This website has been blocked by your network administrator in accordance with company or organizational
+                security policies. Access is restricted to protect network resources and ensure compliance.
+            </p>
+
+            <!-- Info Grid -->
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Your IP Address</div>
+                    <div class="info-value" id="userIp">Loading...</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Device Information</div>
+                    <div class="info-value" id="deviceInfo">Loading...</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Timestamp</div>
+                    <div class="info-value" id="timestamp">Loading...</div>
+                </div>
+            </div>
+
+            <!-- Notice Box -->
+            <div class="notice-box">
+                <svg class="notice-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="notice-text">
+                    <strong>Important:</strong> This access attempt has been logged and reported to your system
+                    administrator. If you believe this is an error, please contact your IT support team for assistance.
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <a href="jhapendrakandel.com.np/" class="btn btn-primary">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span>Return to Homepage</span>
+                </a>
+
+                <a href="mailto:support@jhapendrakandel.com.np?subject=Network%20Access%20Request" class="btn btn-secondary">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span>Contact IT Support</span>
+                </a>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-info">
+                For authorized access, please contact your system administrator or IT help desk.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimestamp();
+            fetchUserIP();
+            setDeviceInfo();
+        });
+
+        function setTimestamp() {
+            const now = new Date();
+            const formatted = now.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+                timeZoneName: 'short'
+            });
+            document.getElementById('timestamp').textContent = formatted;
+        }
+
+        async function fetchUserIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                document.getElementById('userIp').textContent = data.ip || 'Unable to detect';
+            } catch (error) {
+                document.getElementById('userIp').textContent = 'Unable to detect';
+            }
+        }
+
+        function setDeviceInfo() {
+            const parser = new UAParser();
+            const result = parser.getResult();
+
+            const browser = result.browser.name || 'Unknown';
+            const os = result.os.name || 'Unknown';
+            const device = result.device.type || 'Desktop';
+
+            const deviceString = `${browser} on ${os}`;
+            document.getElementById('deviceInfo').textContent = deviceString;
+        }
+
+        // Simple User Agent Parser
+        function UAParser() {
+            const ua = navigator.userAgent;
+
+            this.getResult = function () {
+                return {
+                    browser: {
+                        name: getBrowser(ua)
+                    },
+                    os: {
+                        name: getOS(ua)
+                    },
+                    device: {
+                        type: getDeviceType(ua)
+                    }
+                };
+            };
+
+            function getBrowser(ua) {
+                if (ua.includes('Firefox')) return 'Firefox';
+                if (ua.includes('Chrome')) return 'Chrome';
+                if (ua.includes('Safari')) return 'Safari';
+                if (ua.includes('Edge')) return 'Edge';
+                return 'Unknown Browser';
+            }
+
+            function getOS(ua) {
+                if (ua.includes('Windows')) return 'Windows';
+                if (ua.includes('Mac')) return 'macOS';
+                if (ua.includes('Linux')) return 'Linux';
+                if (ua.includes('Android')) return 'Android';
+                if (ua.includes('iOS')) return 'iOS';
+                return 'Unknown OS';
+            }
+
+            function getDeviceType(ua) {
+                if (ua.includes('Mobile')) return 'Mobile';
+                if (ua.includes('Tablet')) return 'Tablet';
+                return 'Desktop';
+            }
+        }
+    </script>
+</body>
+
+</html>
