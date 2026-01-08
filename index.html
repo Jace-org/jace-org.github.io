@@ -1,293 +1,141 @@
-<!DOCTYPE html>
-<html lang="en">
 
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading..</title>
-    <link rel="icon" type="image/x-icon"
-        href="https://github.com/jhapendrakandel/Jace.github.io/blob/main/logo.png?raw=true">
+    <title>JK | Jhapendra Kandel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins:300,400');
+        :root {
+            --bg-color: #010409;
+            --text-color: #f8fafc;
+            --accent-red: #e11d48;
+            --accent-blue: #1e40af;
+            --subtext-color: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
 
-        /*font-family: 'Poppins', sans-serif;*/
+        .light-mode {
+            --bg-color: #ffffff;
+            --text-color: #020617;
+            --accent-red: #dc2626;
+            --accent-blue: #2563eb;
+            --subtext-color: #334155;
+            --card-bg: rgba(15, 23, 42, 0.05);
+            --border-color: rgba(15, 23, 42, 0.1);
+        }
+
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            font-family: 'Poppins', sans-serif;
-            background: #000;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        h1, h2, h3, .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
         }
 
-        .loading {
+        p, span:not(.font-orbitron) {
+            color: var(--subtext-color);
+        }
+        
+        .text-theme { color: var(--text-color) !important; }
+        .text-sub { color: var(--subtext-color) !important; }
+        .bg-card { background-color: var(--card-bg) !important; }
+        .border-theme { border-color: var(--border-color) !important; }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-red);
+        }
+
+        /* Intense Cinematic Lightning Flash */
+        @keyframes thunder-flash {
+            0%, 5%, 15%, 25%, 35%, 55%, 65%, 85%, 95%, 100% { opacity: 0; background: transparent; }
+            6% { opacity: 1; background: #fff; filter: brightness(1.5); }
+            7% { opacity: 0.4; background: #fff; }
+            8% { opacity: 1; background: #fff; }
+            9% { opacity: 0; }
+            60% { opacity: 1; background: #fff; filter: brightness(1.5); }
+            61% { opacity: 0.5; background: #fff; }
+            62% { opacity: 0.9; background: #fff; }
+            63% { opacity: 0; }
+        }
+
+        .lightning-white-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #FFF;
+            inset: 0;
+            pointer-events: none;
+            z-index: 900;
+            animation: thunder-flash 7s infinite;
+        }
+
+        /* Marquee Animation for Projects */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-marquee {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 15;
-            animation: fadeout 3s linear forwards;
+            width: fit-content;
+            animation: marquee 50s linear infinite;
         }
 
-        .loading h2 {
-            color: #000;
+        .animate-marquee:hover {
+            animation-play-state: paused;
         }
 
-        .loading .bar {
-            position: relative;
-            width: 400px;
-            height: 40px;
-            background: transparent;
-            margin: 0 20px;
-            border: 2px solid #000;
-            box-sizing: border-box;
+        .vignette {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 998;
+            background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.8) 160%);
         }
 
-        .loading .bar:after {
-            content: 'Loading...';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 10px;
-            text-align: center;
-            line-height: 36px;
-            color: #FFF;
-            font-size: 20px;
-            mix-blend-mode: difference;
+        .reveal-site {
+            transition: opacity 1.5s ease-in-out, filter 1.5s ease-in-out;
         }
-
-        .loading .bar:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            transform-origin: left;
-            animation: animate 3s linear forwards;
-        }
-
-        .center {
-            position: relative;
-            width: 400px;
-        }
-
-        .center div {
-            position: relative;
-            margin: -30px 0;
-            height: 100px;
-            z-index: 2;
-            transform: skewY(-5deg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .center div:nth-child(2),
-        .center div:nth-child(4) {
-            transform: skewY(14.5deg);
-            z-index: 1;
-        }
-
-        .center div:nth-child(4) {
-            transform: skewY(25deg);
-            transform-origin: left;
-            top: -52px;
-        }
-
-        .center div:before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .center div:nth-child(1):before,
-        .center div:nth-child(3):before {
-            background: linear-gradient(-160deg, #00ff3c, #673AB7);
-            transform: scaleX(0)
-        }
-
-        .center div:nth-child(2):before,
-        .center div:nth-child(4):before {
-            background: linear-gradient(-20deg, #FF0058, #44b73a);
-            transform: scaleX(0);
-        }
-
-        .center div:nth-child(1):before {
-            backface-visibility: hidden;
-            animation: animate 0.5s linear forwards;
-            transform-origin: right;
-            animation-delay: 2.8s;
-        }
-
-        .center div:nth-child(2):before {
-            backface-visibility: hidden;
-            animation: animate 0.5s linear forwards;
-            transform-origin: left;
-            animation-delay: 3.5s;
-        }
-
-        .center div:nth-child(3):before {
-            backface-visibility: hidden;
-            animation: animate 0.5s linear forwards;
-            transform-origin: right;
-            animation-delay: 4.2s;
-        }
-
-        .center div:nth-child(4):before {
-            backface-visibility: hidden;
-            animation: animate 0.5s linear forwards;
-            transform-origin: left;
-            animation-delay: 4.9s;
-            width: 60%;
-            left: 0;
-        }
-
-        .center div:nth-child(1):after,
-        .center div:nth-child(3):after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: rgba(255, 255, 255, .2);
-        }
-
-        .center div h2 {
-            position: relative;
-            margin: 0;
-            padding: 0;
-            z-index: 10;
+        .reveal-site.hidden-state {
             opacity: 0;
-            color: #FFF;
+            filter: blur(20px);
+            pointer-events: none;
         }
-
-        .center div:nth-child(1) h2 {
-            animation: fadeText 0.5s linear forwards;
-            animation-delay: 3s;
-            font-size: 40px;
-        }
-
-        .center div:nth-child(3) h2 {
-            animation: fadeText 0.5s linear forwards;
-            animation-delay: 3.5s;
-            font-size: 90px;
-            font-weight: bold;
-        }
-
-        @keyframes animate {
-            0% {
-                transform: scaleX(0);
-            }
-
-            100% {
-                transform: scaleX(1);
-            }
-        }
-
-        @keyframes fadeText {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeout {
-
-            0%,
-            71% {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            100% {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        .firework {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            animation: explode 1s ease-out forwards;
-        }
-
-        @keyframes explode {
-            0% {
-                transform: translate(-50%, -50%) scale(0);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) scale(50);
-                opacity: 0;
-            }
+        .reveal-site.visible-state {
+            opacity: 1;
+            filter: blur(0px);
+            pointer-events: auto;
         }
     </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "framer-motion": "https://esm.sh/framer-motion@^11.0.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.454.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
-
 <body>
-    <div class="loading">
-        <h2>Loading</h2>
-        <div class="bar"></div>
-        <h2>...</h2>
-    </div>
-    <div class="center">
-        <div>
-            <h2>Loading</h2>
-        </div>
-        <div></div>
-        <div>
-            <h2>...</h2>
-        </div>
-        <div></div>
-    </div>
-    <div class="firework" style="top: 25%; left: 25%; animation-delay: 3.5s;"></div>
-    <div class="firework" style="top: 75%; left: 25%; animation-delay: 3.9s;"></div>
-    <div class="firework" style="top: 25%; left: 75%; animation-delay: 4.2s;"></div>
-    <div class="firework" style="top: 75%; left: 75%; animation-delay: 4.7s;"></div>
-    <div class="firework" style="top: 50%; left: 50%; animation-delay: 4.9s;"></div>
-    <div class="firework" style="top: 20%; left: 40%; animation-delay: 5.1s;"></div>
-    <div class="firework" style="top: 80%; left: 60%; animation-delay: 5.3s;"></div>
-    <div class="firework" style="top: 30%; left: 70%; animation-delay: 5.5s;"></div>
-    <div class="firework" style="top: 70%; left: 30%; animation-delay: 5.7s;"></div>
-    <div class="firework" style="top: 40%; left: 20%; animation-delay: 5.9s;"></div>
-    <div class="firework" style="top: 60%; left: 80%; animation-delay: 6.1s;"></div>
-    <div class="firework" style="top: 10%; left: 10%; animation-delay: 6.3s;"></div>
-    <div class="firework" style="top: 90%; left: 90%; animation-delay: 6.5s;"></div>
-    <div class="firework" style="top: 10%; left: 90%; animation-delay: 6.7s;"></div>
-    <div class="firework" style="top: 90%; left: 10%; animation-delay: 6.9s;"></div>
-    <div class="firework" style="top: 50%; left: 50%; animation-delay: 7.1s;"></div>
-
-    <script>
-        // Redirect to dashboard.html after the loading and fireworks display
-        setTimeout(function () {
-            window.location.href = "dashboard.html";
-        }, 7100); // 7.1 seconds delay to match the fireworks display duration
-    </script>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
 </body>
-
 </html>
