@@ -84,8 +84,21 @@
         }
     }
 
+    /* ---------- Scroll progress bar ---------- */
+    var progress = document.getElementById("scroll-progress");
+    if (progress) {
+        var updateProgress = function () {
+            var h = document.documentElement;
+            var max = h.scrollHeight - h.clientHeight;
+            progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+        };
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+    }
+
     /* ---------- Header active-link scroll spy ---------- */
-    var spyIds = ["home", "about", "skills", "projects", "gallery", "contact"];
+    var spyIds = ["home", "about", "skills", "projects", "journey", "credentials", "contact"];
     var links = Array.prototype.slice.call(document.querySelectorAll('#nav-links a[href^="#"]'));
     var sections = spyIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
     if (sections.length && "IntersectionObserver" in window) {
