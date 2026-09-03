@@ -1,0 +1,202 @@
+/* Blog-specific styles. Loaded after ../assets/base.css */
+
+.post-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.post-filters button {
+    font: inherit;
+    font-size: .82rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    color: var(--c-muted);
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    transition: color .18s, border-color .18s;
+}
+
+.post-filters button:hover { color: var(--gold); }
+
+.post-filters button[aria-pressed="true"] {
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+}
+
+.post-card {
+    display: block;
+    border-radius: var(--radius);
+    padding: 24px 26px;
+    background: var(--c-surface);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    backdrop-filter: blur(14px) saturate(1.4);
+    border: 1px solid var(--c-border);
+    box-shadow: 0 8px 32px rgba(2, 6, 23, .22);
+    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(212, 175, 55, .45);
+    box-shadow: 0 20px 44px -22px rgba(0, 0, 0, .55);
+}
+
+.post-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+}
+
+.post-card .post-meta {
+    margin: 0 0 10px;
+}
+
+.post-card p.excerpt {
+    margin: 0;
+    color: var(--c-muted);
+    font-size: .96rem;
+}
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    font-size: .8rem;
+    color: var(--c-muted);
+}
+
+.post-meta .tag {
+    font-size: .72rem;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    border: 1px solid var(--c-border);
+}
+
+.empty {
+    color: var(--c-muted);
+    padding: 24px 0;
+}
+
+/* ---------- Single post ---------- */
+.back-link {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: var(--c-muted);
+    font-size: .9rem;
+    transition: color .18s;
+}
+
+.back-link:hover { color: var(--gold); }
+
+.post-head {
+    margin-bottom: 34px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--c-border);
+}
+
+.post-head h1 {
+    font-size: clamp(1.9rem, 5.5vw, 3rem);
+    margin-bottom: 14px;
+}
+
+#post-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* ---------- Prose ---------- */
+.prose {
+    max-width: 46rem;
+    font-size: 1.06rem;
+}
+
+.prose > * + * { margin-top: 1.15em; }
+
+.prose h2 {
+    font-size: 1.6rem;
+    margin-top: 2em;
+}
+
+.prose h3 {
+    font-size: 1.25rem;
+    margin-top: 1.6em;
+}
+
+.prose a {
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.prose strong { color: var(--c-text); }
+
+.prose ul, .prose ol {
+    padding-left: 1.4em;
+}
+
+.prose li + li { margin-top: .4em; }
+
+.prose blockquote {
+    margin: 1.4em 0;
+    padding: 4px 18px;
+    border-left: 3px solid var(--gold);
+    color: var(--c-muted);
+    font-style: italic;
+}
+
+.prose code {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .88em;
+    background: var(--gold-soft);
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.prose pre {
+    background: var(--c-surface-solid);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    overflow-x: auto;
+}
+
+.prose pre code {
+    background: none;
+    padding: 0;
+    font-size: .85rem;
+    line-height: 1.6;
+}
+
+.prose img {
+    border-radius: 12px;
+    border: 1px solid var(--c-border);
+}
+
+.prose hr {
+    border: none;
+    border-top: 1px solid var(--c-border);
+    margin: 2.4em 0;
+}
+
+/* ---------- Theme wipe ---------- */
+::view-transition-new(root) { animation: wipe .5s ease-in-out; }
+::view-transition-old(root) { animation: none; }
+
+@keyframes wipe {
+    from { clip-path: circle(0% at var(--wipe-x, 50%) var(--wipe-y, 50%)); }
+    to { clip-path: circle(150% at var(--wipe-x, 50%) var(--wipe-y, 50%)); }
+}

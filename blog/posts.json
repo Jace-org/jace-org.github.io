@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "hello-from-the-new-blog",
+    "title": "Hello from the new blog",
+    "date": "2026-09-03",
+    "tags": ["Meta"],
+    "excerpt": "A short note on why this blog now lives on my own site, and how it works.",
+    "file": "hello-from-the-new-blog.md"
+  },
+  {
+    "slug": "building-abc-news-solo",
+    "title": "Building the ABC News site on my own",
+    "date": "2026-08-20",
+    "tags": ["Web", "DevOps", "WordPress"],
+    "excerpt": "What it takes to build and run a full news site by yourself, from the theme down to the server.",
+    "file": "building-abc-news-solo.md"
+  },
+  {
+    "slug": "nepali-llm-at-home",
+    "title": "Training a Nepali language model at home",
+    "date": "2026-08-05",
+    "tags": ["AI", "Homelab", "Nepali"],
+    "excerpt": "Notes on fine-tuning and serving a Nepali LLM on a single AMD AI Pro 32GB GPU in my homelab.",
+    "file": "nepali-llm-at-home.md"
+  }
+]

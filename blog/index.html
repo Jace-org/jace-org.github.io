@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Blog — Jhapendra Kandel</title>
+    <meta name="description"
+        content="Writing on full-stack development, cybersecurity, self-hosting and building AI models at home by Jhapendra Kandel.">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/">
+    <link rel="icon" type="image/png"
+        href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/base.css">
+    <link rel="stylesheet" href="blog.css">
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../">Home</a>
+                <a href="./" aria-current="page">Blog</a>
+                <a href="../resources/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <div id="view-list">
+                <div class="page-head reveal">
+                    <p class="kicker">Writing</p>
+                    <h1>Blog</h1>
+                    <p>Notes on building things, breaking things, running my own servers and training models at home.
+                        Posts are written in Markdown and loaded straight from the repo.</p>
+                </div>
+                <div class="post-filters reveal" id="post-filters"></div>
+                <ul class="post-list" id="post-list"></ul>
+                <p class="empty" id="list-empty" hidden>No posts yet. Check back soon.</p>
+            </div>
+
+            <article id="view-post" hidden>
+                <a class="back-link" href="#">&larr; All posts</a>
+                <div class="post-head">
+                    <h1 id="post-title"></h1>
+                    <p class="post-meta"><span id="post-date"></span><span id="post-tags"></span></p>
+                </div>
+                <div class="prose" id="post-body"></div>
+            </article>
+
+            <p class="empty" id="load-error" hidden>That post could not be loaded. <a href="#">Back to all posts</a>.</p>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../assets/subpage.js" defer></script>
+    <script src="blog.js" defer></script>
+</body>
+
+</html>

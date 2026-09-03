@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Resources — Jhapendra Kandel</title>
+    <meta name="description"
+        content="Cheat sheets, templates, tools and links collected by Jhapendra Kandel. Free to download and use.">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/resources/">
+    <link rel="icon" type="image/png"
+        href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/base.css">
+    <link rel="stylesheet" href="resources.css">
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../">Home</a>
+                <a href="../blog/">Blog</a>
+                <a href="./" aria-current="page">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <div class="page-head reveal">
+                <p class="kicker">Downloads &amp; links</p>
+                <h1>Resources</h1>
+                <p>Cheat sheets, starter templates, tools and useful links I keep coming back to. Everything here is
+                    free to grab. Files live in the <code>resources/files</code> folder of the site repo.</p>
+            </div>
+
+            <div class="res-controls reveal">
+                <input type="search" id="res-search" placeholder="Search resources" aria-label="Search resources">
+                <div class="res-filters" id="res-filters"></div>
+            </div>
+
+            <div id="res-groups"></div>
+            <p class="empty" id="res-empty" hidden>Nothing matches that search.</p>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../assets/subpage.js" defer></script>
+    <script src="resources.js" defer></script>
+</body>
+
+</html>

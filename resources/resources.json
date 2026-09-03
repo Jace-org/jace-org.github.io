@@ -1,0 +1,40 @@
+[
+  {
+    "title": "Git quick reference",
+    "description": "The everyday Git commands on one page: branching, undoing changes, rebasing, stash and cleanup.",
+    "category": "Cheat Sheets",
+    "type": "Markdown",
+    "file": "git-quick-reference.md",
+    "size": "3 KB"
+  },
+  {
+    "title": "Linux server first-hour checklist",
+    "description": "What I run on a fresh Ubuntu box before it goes anywhere near the internet: users, SSH, firewall, updates, fail2ban.",
+    "category": "Cheat Sheets",
+    "type": "Markdown",
+    "file": "linux-server-checklist.md",
+    "size": "3 KB"
+  },
+  {
+    "title": "Static site starter",
+    "description": "A minimal HTML, CSS and JS starter with a dark and light theme toggle and no build step. The base for this site.",
+    "category": "Templates",
+    "type": "HTML",
+    "file": "static-site-starter.html",
+    "size": "4 KB"
+  },
+  {
+    "title": "NetGuard DNS Monitor",
+    "description": "My open-source real-time DNS monitoring and threat detection tool, on GitHub.",
+    "category": "Tools",
+    "type": "Repo",
+    "url": "https://github.com/jhapendra-kandel/NetGuard-DNS-Monitor"
+  },
+  {
+    "title": "My GitHub",
+    "description": "All my public code, experiments and project repositories in one place.",
+    "category": "Links",
+    "type": "Profile",
+    "url": "https://github.com/jhapendra-kandel"
+  }
+]
