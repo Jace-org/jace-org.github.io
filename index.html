@@ -4,290 +4,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading..</title>
-    <link rel="icon" type="image/x-icon"
-        href="https://github.com/jhapendrakandel/Jace.github.io/blob/main/logo.png?raw=true">
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins:300,400');
+    <meta name="theme-color" content="#0d0d10">
+    <meta name="color-scheme" content="dark light">
 
-        /*font-family: 'Poppins', sans-serif;*/
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            font-family: 'Poppins', sans-serif;
-            background: #000;
-        }
+    <title>Jhapendra Kandel (J.K) — Full-Stack Developer &amp; Web Designer</title>
+    <meta name="description"
+        content="Jhapendra Kandel (J.K) — full-stack developer and web designer from Nepal. Building shopping platforms, social apps, note-sharing tools and more with PHP, React, SQL and modern web tech.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/">
 
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #FFF;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 15;
-            animation: fadeout 3s linear forwards;
-        }
+    <link rel="icon" type="image/png"
+        href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <link rel="apple-touch-icon"
+        href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
 
-        .loading h2 {
-            color: #000;
-        }
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Jhapendra Kandel (J.K) — Full-Stack Developer &amp; Web Designer">
+    <meta property="og:description"
+        content="Full-stack developer and web designer from Nepal. Projects, photo journal and a way to get in touch.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/">
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta name="twitter:card" content="summary">
 
-        .loading .bar {
-            position: relative;
-            width: 400px;
-            height: 40px;
-            background: transparent;
-            margin: 0 20px;
-            border: 2px solid #000;
-            box-sizing: border-box;
-        }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 
-        .loading .bar:after {
-            content: 'Loading...';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 10px;
-            text-align: center;
-            line-height: 36px;
-            color: #FFF;
-            font-size: 20px;
-            mix-blend-mode: difference;
-        }
-
-        .loading .bar:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            transform-origin: left;
-            animation: animate 3s linear forwards;
-        }
-
-        .center {
-            position: relative;
-            width: 400px;
-        }
-
-        .center div {
-            position: relative;
-            margin: -30px 0;
-            height: 100px;
-            z-index: 2;
-            transform: skewY(-5deg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .center div:nth-child(2),
-        .center div:nth-child(4) {
-            transform: skewY(14.5deg);
-            z-index: 1;
-        }
-
-        .center div:nth-child(4) {
-            transform: skewY(25deg);
-            transform-origin: left;
-            top: -52px;
-        }
-
-        .center div:before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .center div:nth-child(1):before,
-        .center div:nth-child(3):before {
-            background: linear-gradient(-160deg, #00ff3c, #673AB7);
-            transform: scaleX(0)
-        }
-
-        .center div:nth-child(2):before,
-        .center div:nth-child(4):before {
-            background: linear-gradient(-20deg, #FF0058, #44b73a);
-            transform: scaleX(0);
-        }
-
-        .center div:nth-child(1):before {
-            backface-visibility: hidden;
-            animation: animate 0.5s linear forwards;
-            transform-origin: right;
-            animation-delay: 2.8s;
-        }
-
-        .center div:nth-child(2):before {
-            backface-visibility: hidden;
-            animation: animate 0.5s linear forwards;
-            transform-origin: left;
-            animation-delay: 3.5s;
-        }
-
-        .center div:nth-child(3):before {
-            backface-visibility: hidden;
-            animation: animate 0.5s linear forwards;
-            transform-origin: right;
-            animation-delay: 4.2s;
-        }
-
-        .center div:nth-child(4):before {
-            backface-visibility: hidden;
-            animation: animate 0.5s linear forwards;
-            transform-origin: left;
-            animation-delay: 4.9s;
-            width: 60%;
-            left: 0;
-        }
-
-        .center div:nth-child(1):after,
-        .center div:nth-child(3):after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: rgba(255, 255, 255, .2);
-        }
-
-        .center div h2 {
-            position: relative;
-            margin: 0;
-            padding: 0;
-            z-index: 10;
-            opacity: 0;
-            color: #FFF;
-        }
-
-        .center div:nth-child(1) h2 {
-            animation: fadeText 0.5s linear forwards;
-            animation-delay: 3s;
-            font-size: 40px;
-        }
-
-        .center div:nth-child(3) h2 {
-            animation: fadeText 0.5s linear forwards;
-            animation-delay: 3.5s;
-            font-size: 90px;
-            font-weight: bold;
-        }
-
-        @keyframes animate {
-            0% {
-                transform: scaleX(0);
-            }
-
-            100% {
-                transform: scaleX(1);
-            }
-        }
-
-        @keyframes fadeText {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeout {
-
-            0%,
-            71% {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            100% {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        .firework {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            animation: explode 1s ease-out forwards;
-        }
-
-        @keyframes explode {
-            0% {
-                transform: translate(-50%, -50%) scale(0);
-            }
-
-            100% {
-                transform: translate(-50%, -50%) scale(50);
-                opacity: 0;
-            }
-        }
-    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "alternateName": "J.K",
+        "url": "https://www.jhapendrakandel.com.np/",
+        "jobTitle": "Full-Stack Developer",
+        "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+        "sameAs": [
+            "https://github.com/jhapendrakandel",
+            "https://www.youtube.com/@Kandeljhapendra",
+            "https://www.instagram.com/jk.jk_100",
+            "https://facebook.com/uki.kandel"
+        ],
+        "knowsAbout": ["PHP", "JavaScript", "React", "SQL", "HTML", "CSS", "C"]
+    }
+    </script>
 </head>
 
 <body>
-    <div class="loading">
-        <h2>Loading</h2>
-        <div class="bar"></div>
-        <h2>...</h2>
-    </div>
-    <div class="center">
-        <div>
-            <h2>Loading</h2>
-        </div>
-        <div></div>
-        <div>
-            <h2>...</h2>
-        </div>
-        <div></div>
-    </div>
-    <div class="firework" style="top: 25%; left: 25%; animation-delay: 3.5s;"></div>
-    <div class="firework" style="top: 75%; left: 25%; animation-delay: 3.9s;"></div>
-    <div class="firework" style="top: 25%; left: 75%; animation-delay: 4.2s;"></div>
-    <div class="firework" style="top: 75%; left: 75%; animation-delay: 4.7s;"></div>
-    <div class="firework" style="top: 50%; left: 50%; animation-delay: 4.9s;"></div>
-    <div class="firework" style="top: 20%; left: 40%; animation-delay: 5.1s;"></div>
-    <div class="firework" style="top: 80%; left: 60%; animation-delay: 5.3s;"></div>
-    <div class="firework" style="top: 30%; left: 70%; animation-delay: 5.5s;"></div>
-    <div class="firework" style="top: 70%; left: 30%; animation-delay: 5.7s;"></div>
-    <div class="firework" style="top: 40%; left: 20%; animation-delay: 5.9s;"></div>
-    <div class="firework" style="top: 60%; left: 80%; animation-delay: 6.1s;"></div>
-    <div class="firework" style="top: 10%; left: 10%; animation-delay: 6.3s;"></div>
-    <div class="firework" style="top: 90%; left: 90%; animation-delay: 6.5s;"></div>
-    <div class="firework" style="top: 10%; left: 90%; animation-delay: 6.7s;"></div>
-    <div class="firework" style="top: 90%; left: 10%; animation-delay: 6.9s;"></div>
-    <div class="firework" style="top: 50%; left: 50%; animation-delay: 7.1s;"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <script>
-        // Redirect to dashboard.html after the loading and fireworks display
-        setTimeout(function () {
-            window.location.href = "dashboard.html";
-        }, 7100); // 7.1 seconds delay to match the fireworks display duration
-    </script>
+    <header class="site-header" id="site-header">
+        <div class="wrap header-inner">
+            <a class="brand" href="#home" aria-label="Home">
+                <img src="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png"
+                    alt="" width="34" height="34">
+                <span>Jhapendra<span class="dot">.</span>Kandel</span>
+            </a>
+
+            <nav class="nav" id="nav" aria-label="Primary">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#gallery">Journal</a>
+                <a href="#contact">Contact</a>
+                <a href="https://blogs.jhapendrakandel.com.np/">Blogs</a>
+                <a href="https://resource.jhapendrakandel.com.np/">Resources</a>
+            </nav>
+
+            <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- Hero -->
+        <section class="hero" id="home">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="wrap hero-inner reveal">
+                <p class="eyebrow">Kathmandu, Nepal</p>
+                <h1>Kandel <span class="accent">Jhapendra</span> <span class="tag">(J.K)</span></h1>
+                <p class="lead">
+                    <span id="typed" aria-hidden="true"></span><span class="cursor" aria-hidden="true">|</span>
+                    <span class="visually-hidden">Full-stack developer, web designer and front-end &amp; back-end
+                        engineer.</span>
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#projects">View projects</a>
+                    <a class="btn btn-ghost" href="#contact">Get in touch</a>
+                </div>
+            </div>
+            <a class="scroll-hint" href="#about" aria-label="Scroll to about">
+                <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+        </section>
+
+        <!-- About + skills -->
+        <section class="section" id="about">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="section-index">01</span>
+                    <h2>About me</h2>
+                </div>
+                <div class="about-grid">
+                    <p class="about-text reveal">
+                        I'm a web developer with a strong foundation in PHP, HTML, CSS and JavaScript, focused on
+                        building practical products — shopping websites, social platforms, web-hosting tools and
+                        note-sharing apps. With experience in C and SQL, I enjoy taking on complex problems and
+                        sharpening my craft with every project. I'm also exploring startup ideas, driven to bring
+                        creativity and solid engineering together. Thanks for stopping by.
+                    </p>
+                    <ul class="skills reveal" aria-label="Skills and proficiency">
+                        <li style="--v:90%"><span class="skill-name">HTML5</span><span class="skill-val">90</span>
+                            <span class="skill-track"><span class="skill-fill"></span></span>
+                        </li>
+                        <li style="--v:88%"><span class="skill-name">CSS</span><span class="skill-val">88</span>
+                            <span class="skill-track"><span class="skill-fill"></span></span>
+                        </li>
+                        <li style="--v:90%"><span class="skill-name">PHP</span><span class="skill-val">90</span>
+                            <span class="skill-track"><span class="skill-fill"></span></span>
+                        </li>
+                        <li style="--v:85%"><span class="skill-name">React</span><span class="skill-val">85</span>
+                            <span class="skill-track"><span class="skill-fill"></span></span>
+                        </li>
+                        <li style="--v:90%"><span class="skill-name">SQL</span><span class="skill-val">90</span>
+                            <span class="skill-track"><span class="skill-fill"></span></span>
+                        </li>
+                        <li style="--v:70%"><span class="skill-name">JavaScript / jQuery</span><span
+                                class="skill-val">70</span>
+                            <span class="skill-track"><span class="skill-fill"></span></span>
+                        </li>
+                        <li style="--v:45%"><span class="skill-name">Photoshop</span><span class="skill-val">45</span>
+                            <span class="skill-track"><span class="skill-fill"></span></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="section" id="projects">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="section-index">02</span>
+                    <h2>Selected projects</h2>
+                </div>
+                <div class="projects">
+                    <article class="project reveal">
+                        <div class="project-media">
+                            <img src="img/1.webp" alt="Techkart shopping website interface" loading="lazy" width="1600"
+                                height="676">
+                        </div>
+                        <div class="project-body">
+                            <h3>Techkart</h3>
+                            <p>A full shopping website — catalogue, cart and checkout flow with a PHP + SQL backend.</p>
+                            <ul class="tags"><li>PHP</li><li>SQL</li><li>JavaScript</li></ul>
+                        </div>
+                    </article>
+                    <article class="project reveal">
+                        <div class="project-media">
+                            <img src="img/2.webp" alt="Online Notes Sharing website interface" loading="lazy" width="1600"
+                                height="676">
+                        </div>
+                        <div class="project-body">
+                            <h3>ONSS</h3>
+                            <p>Online Notes Sharing System — upload, browse and download study notes with user accounts.
+                            </p>
+                            <ul class="tags"><li>PHP</li><li>MySQL</li><li>Bootstrap</li></ul>
+                        </div>
+                    </article>
+                    <article class="project reveal">
+                        <div class="project-media">
+                            <img src="img/3.webp" alt="Jace Arc social profile website interface" loading="lazy"
+                                width="1600" height="676">
+                        </div>
+                        <div class="project-body">
+                            <h3>Jace Arc</h3>
+                            <p>A profile-sharing social platform and portfolio builder for creators and developers.</p>
+                            <ul class="tags"><li>React</li><li>PHP</li><li>REST API</li></ul>
+                        </div>
+                    </article>
+                    <article class="project reveal">
+                        <div class="project-media">
+                            <img src="img/4.webp" alt="Cheat Sheets code template library interface" loading="lazy"
+                                width="1600" height="676">
+                        </div>
+                        <div class="project-body">
+                            <h3>Cheat Sheets</h3>
+                            <p>Ready-to-use forms and CSS templates paired with a clean, reliable backend.</p>
+                            <ul class="tags"><li>HTML</li><li>CSS</li><li>PHP</li></ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery / journal -->
+        <section class="section" id="gallery">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="section-index">03</span>
+                    <h2>Photo journal — Japan</h2>
+                </div>
+                <p class="gallery-note reveal">
+                    🌸 Just back from an incredible trip to Japan. From the neon energy of Tokyo to the street food of
+                    Osaka and the quiet of Mount Fuji — tradition meeting modernity at every turn.
+                </p>
+                <div class="masonry reveal">
+                    <figure><img src="jp/1.webp" alt="Japan trip photo — city street" loading="lazy"></figure>
+                    <figure><img src="jp/2.webp" alt="Japan trip photo" loading="lazy"></figure>
+                    <figure><img src="jp/3.webp" alt="Japan trip photo" loading="lazy"></figure>
+                    <figure><img src="jp/4.webp" alt="Japan trip photo — landscape" loading="lazy"></figure>
+                    <figure><img src="jp/5.webp" alt="Japan trip photo" loading="lazy"></figure>
+                    <figure><img src="jp/6.webp" alt="Japan trip photo" loading="lazy"></figure>
+                    <figure><img src="jp/7.webp" alt="Japan trip photo" loading="lazy"></figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section" id="contact">
+            <div class="wrap contact-wrap">
+                <div class="section-head reveal">
+                    <span class="section-index">04</span>
+                    <h2>Contact me</h2>
+                </div>
+                <p class="reveal">Interested in working together, or just want to say hello? Drop me a message.</p>
+                <form class="contact-form reveal" id="contact-form" method="POST"
+                    action="https://formsubmit.co/jhapendrakandel.mac@gmail.com">
+                    <div class="field">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" autocomplete="name" required>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
+                    </div>
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" minlength="10" required></textarea>
+                    </div>
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://www.jhapendrakandel.com.np/thanks.html">
+                    <button type="submit" id="submit" class="btn btn-primary">Send message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-inner">
+            <p class="footer-name">Jhapendra Kandel <span class="dot">·</span> J.K</p>
+            <nav class="social" aria-label="Social links">
+                <a href="https://github.com/jhapendrakandel" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.4-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.28 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+                </a>
+                <a href="https://www.youtube.com/@Kandeljhapendra" target="_blank" rel="noopener" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5 31 31 0 0 0 .1 12a31 31 0 0 0 .4 5.5 3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-5.5 31 31 0 0 0-.4-5.5ZM9.75 15.5v-7L15.8 12l-6.05 3.5Z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/jk.jk_100" target="_blank" rel="noopener" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.3.07 1.69.07 4.9s0 3.6-.07 4.9c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.3.06-1.69.07-4.9.07s-3.6 0-4.9-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5.01-4.74.07-.9.04-1.38.2-1.71.32-.43.17-.74.37-1.06.7-.32.31-.52.62-.69 1.05-.13.33-.28.82-.32 1.71C3.4 8.5 3.4 8.85 3.4 12s0 3.5.07 4.74c.04.9.2 1.38.32 1.71.17.43.37.74.7 1.06.31.32.62.52 1.05.69.33.13.82.28 1.71.32 1.24.06 1.59.07 4.74.07s3.5 0 4.74-.07c.9-.04 1.38-.2 1.71-.32.43-.17.74-.37 1.06-.7.32-.31.52-.62.69-1.05.13-.33.28-.82.32-1.71.06-1.24.07-1.59.07-4.74s0-3.5-.07-4.74c-.04-.9-.2-1.38-.32-1.71a2.8 2.8 0 0 0-.7-1.06 2.8 2.8 0 0 0-1.05-.69c-.33-.13-.82-.28-1.71-.32C15.5 4.01 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 17a4.94 4.94 0 0 1 0-9.88Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.03-1.14a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg>
+                </a>
+                <a href="https://facebook.com/uki.kandel" target="_blank" rel="noopener" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8.2h2.76l.41-3.2H13.5V7.55c0-.93.26-1.56 1.59-1.56h1.7V3.13c-.3-.04-1.3-.13-2.48-.13-2.45 0-4.13 1.5-4.13 4.24v2.36H7.3v3.2h2.87V21h3.33Z"/></svg>
+                </a>
+            </nav>
+            <p class="footer-copy">© <span id="year"></span> Jhapendra Kandel. Built &amp; hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="main.js" defer></script>
 </body>
 
 </html>
