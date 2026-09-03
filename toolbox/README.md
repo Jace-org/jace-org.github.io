@@ -1,11 +1,11 @@
 # Resources
 
-Files live in `files/`, listed in `resources.json`.
+Files live in `files/`, listed in `toolbox.json`.
 
 ## Add a downloadable file
 
 1. Drop the file into `files/` (pdf, md, zip, html, image, anything).
-2. Add an entry to `resources.json`:
+2. Add an entry to `toolbox.json`:
 
    ```json
    {

@@ -1,4 +1,4 @@
-/* Resources: reads resources.json and renders cards grouped by category,
+/* Resources: reads toolbox.json and renders cards grouped by category,
    with a category filter and a text search. Files are served from the
    resources/files folder; entries can also point at an external url.
    No server, no build step. */
@@ -100,7 +100,7 @@
         render();
     });
 
-    fetch("resources.json", { cache: "no-cache" })
+    fetch("toolbox.json", { cache: "no-cache" })
         .then(function (r) { return r.json(); })
         .then(function (data) {
             all = (data || []).slice().sort(function (a, b) {
