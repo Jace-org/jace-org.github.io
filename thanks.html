@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0d0d10">
+    <meta name="theme-color" content="#0f172a">
     <meta name="color-scheme" content="dark light">
     <meta name="robots" content="noindex">
     <title>Message sent — Jhapendra Kandel</title>
@@ -13,26 +13,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Playfair+Display:wght@600&family=Inter:wght@400;500&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --bg: #0d0d10;
-            --surface: #17171f;
-            --border: #2a2a36;
-            --text: #ececf1;
-            --text-dim: #a1a1ad;
-            --accent: #ff6363;
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root {
-                --bg: #fbfbfd;
-                --surface: #fff;
-                --border: #e4e4ec;
-                --text: #1a1a22;
-                --text-dim: #5b5b68;
-            }
+            --bg: #0f172a;
+            --surface: rgba(30, 41, 59, .45);
+            --border: rgba(212, 175, 55, .16);
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --gold: #d4af37;
         }
 
         * { box-sizing: border-box; }
@@ -46,68 +36,70 @@
             background: var(--bg);
             color: var(--text);
             font-family: "Inter", system-ui, sans-serif;
+            overflow: hidden;
         }
 
+        .aurora {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+        }
+
+        .a1 { top: -8rem; left: -8rem; width: 32rem; height: 32rem; background: rgba(212, 175, 55, .12); }
+        .a2 { bottom: -10rem; right: -6rem; width: 30rem; height: 30rem; background: rgba(99, 102, 241, .14); }
+
         .card {
+            position: relative;
             max-width: 460px;
             width: 100%;
             text-align: center;
             background: var(--surface);
+            -webkit-backdrop-filter: blur(14px) saturate(1.4);
+            backdrop-filter: blur(14px) saturate(1.4);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 46px 34px;
+            border-radius: 24px;
+            padding: 48px 34px;
+            box-shadow: 0 8px 32px rgba(2, 6, 23, .35);
         }
 
-        .check {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 22px;
-            display: block;
-        }
-
+        .check { width: 64px; height: 64px; margin: 0 auto 22px; display: block; }
         .check circle {
-            fill: none;
-            stroke: var(--accent);
-            stroke-width: 2;
-            stroke-dasharray: 166;
-            stroke-dashoffset: 166;
+            fill: none; stroke: var(--gold); stroke-width: 2;
+            stroke-dasharray: 166; stroke-dashoffset: 166;
             animation: stroke .6s cubic-bezier(.65, 0, .45, 1) forwards;
         }
-
         .check path {
-            fill: none;
-            stroke: var(--accent);
-            stroke-width: 2.4;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-dasharray: 48;
-            stroke-dashoffset: 48;
+            fill: none; stroke: var(--gold); stroke-width: 2.4;
+            stroke-linecap: round; stroke-linejoin: round;
+            stroke-dasharray: 48; stroke-dashoffset: 48;
             animation: stroke .35s cubic-bezier(.65, 0, .45, 1) .6s forwards;
         }
-
         @keyframes stroke { to { stroke-dashoffset: 0; } }
 
-        h1 {
-            font-family: "Space Grotesk", sans-serif;
-            font-size: 1.5rem;
-            margin: 0 0 10px;
+        .mono {
+            font-family: "Cinzel Decorative", serif;
+            color: var(--gold);
+            letter-spacing: .06em;
+            font-size: .85rem;
+            margin: 0 0 6px;
         }
 
-        p {
-            color: var(--text-dim);
-            margin: 0 0 26px;
-            line-height: 1.6;
-        }
+        h1 { font-family: "Playfair Display", serif; font-weight: 600; font-size: 1.55rem; margin: 0 0 10px; }
+        p { color: var(--muted); margin: 0 0 26px; line-height: 1.6; }
 
         a.btn {
             display: inline-block;
-            padding: 12px 26px;
+            padding: 12px 28px;
             border-radius: 999px;
             font-weight: 600;
             text-decoration: none;
-            color: #fff;
-            background: linear-gradient(135deg, #ff6363, #ff8a5c);
+            color: #0f172a;
+            background: var(--gold);
+            transition: box-shadow .2s;
         }
+
+        a.btn:hover { box-shadow: 0 0 24px rgba(212, 175, 55, .35); }
 
         @media (prefers-reduced-motion: reduce) {
             .check circle, .check path { animation: none; stroke-dashoffset: 0; }
@@ -116,11 +108,14 @@
 </head>
 
 <body>
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
     <div class="card">
         <svg class="check" viewBox="0 0 52 52" aria-hidden="true">
             <circle cx="26" cy="26" r="25" />
             <path d="M14 27l8 8 16-17" />
         </svg>
+        <p class="mono">J.K</p>
         <h1>Message sent</h1>
         <p>Thanks for reaching out — your message has been received. I'll get back to you soon.</p>
         <a class="btn" href="/">Back to home</a>

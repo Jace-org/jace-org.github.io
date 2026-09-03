@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0d0d10">
+    <meta name="theme-color" content="#0f172a">
     <meta name="color-scheme" content="dark light">
 
     <title>Jhapendra Kandel (J.K) — Full-Stack Developer &amp; Web Designer</title>
     <meta name="description"
-        content="Jhapendra Kandel (J.K) — full-stack developer and web designer from Nepal. Building shopping platforms, social apps, note-sharing tools and more with PHP, React, SQL and modern web tech.">
+        content="Jhapendra Kandel (J.K) — full-stack developer and web designer from Kathmandu, Nepal. Code with purpose, build with passion, secure with precision.">
     <meta name="author" content="Jhapendra Kandel">
+    <meta name="keywords" content="Jhapendra Kandel, Full-Stack Developer, Web Designer, Nepal Developer, PHP, React">
     <link rel="canonical" href="https://www.jhapendrakandel.com.np/">
 
     <link rel="icon" type="image/png"
@@ -31,7 +32,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
@@ -53,99 +54,159 @@
         "knowsAbout": ["PHP", "JavaScript", "React", "SQL", "HTML", "CSS", "C"]
     }
     </script>
+    <script>
+        // Set theme before paint to avoid a flash.
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+            if (t === "dark") document.documentElement.classList.add("dark");
+        } catch (e) { }
+    </script>
 </head>
 
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header" id="site-header">
-        <div class="wrap header-inner">
-            <a class="brand" href="#home" aria-label="Home">
-                <img src="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png"
-                    alt="" width="34" height="34">
-                <span>Jhapendra<span class="dot">.</span>Kandel</span>
-            </a>
+    <!-- z-0 : fixed ambient background -->
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="aurora aurora-3"></div>
+        <div class="bg-grid"></div>
+        <span class="shape shape-a"></span>
+        <span class="shape shape-b"></span>
+        <span class="shape shape-c"></span>
+        <span class="shape shape-d"></span>
+        <span class="shape shape-e"></span>
+        <div class="mouse-glow" id="mouse-glow"></div>
+    </div>
+    <div class="noise-overlay" aria-hidden="true"></div>
 
-            <nav class="nav" id="nav" aria-label="Primary">
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#gallery">Journal</a>
-                <a href="#contact">Contact</a>
-                <a href="https://blogs.jhapendrakandel.com.np/">Blogs</a>
-                <a href="https://resource.jhapendrakandel.com.np/">Resources</a>
-            </nav>
-
-            <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+    <!-- z-50 : fixed glass navbar -->
+    <header class="site-header">
+        <nav class="navbar" id="nav" aria-label="Primary">
+            <a class="brand" href="#home" data-magnetic aria-label="Home — Jhapendra Kandel">J<span
+                    class="dot">.</span>K</a>
+            <div class="nav-links" id="nav-links">
+                <a href="#about" data-magnetic>About</a>
+                <a href="#skills" data-magnetic>Skills</a>
+                <a href="#projects" data-magnetic>Projects</a>
+                <a href="#gallery" data-magnetic>Journal</a>
+                <a href="#contact" data-magnetic>Contact</a>
+                <a href="https://blogs.jhapendrakandel.com.np/" data-magnetic>Blog</a>
+                <a href="https://resource.jhapendrakandel.com.np/" data-magnetic>Resources</a>
+            </div>
+            <button class="theme-toggle" id="theme-toggle" data-magnetic aria-label="Switch colour theme">
+                <span class="theme-icon" aria-hidden="true">☾</span>
+            </button>
+            <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links"
+                aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
-        </div>
+        </nav>
     </header>
 
     <main id="main">
         <!-- Hero -->
         <section class="hero" id="home">
-            <div class="hero-bg" aria-hidden="true"></div>
-            <div class="wrap hero-inner reveal">
-                <p class="eyebrow">Kathmandu, Nepal</p>
-                <h1>Kandel <span class="accent">Jhapendra</span> <span class="tag">(J.K)</span></h1>
-                <p class="lead">
-                    <span id="typed" aria-hidden="true"></span><span class="cursor" aria-hidden="true">|</span>
+            <div class="hero-fx" aria-hidden="true">
+                <canvas id="ripple" class="ripple"></canvas>
+                <svg class="morph-blob" viewBox="0 0 500 500" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="blobGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.7" />
+                            <stop offset="100%" stop-color="#6366F1" stop-opacity="0.35" />
+                        </linearGradient>
+                    </defs>
+                    <path fill="url(#blobGrad)"
+                        d="M421,306Q397,362,344,392Q291,422,232,410Q173,398,130,355Q87,312,95,251Q103,190,142,146Q181,102,241,95Q301,88,352,120Q403,152,424,201Q445,250,421,306Z">
+                        <animate attributeName="d" dur="14s" repeatCount="indefinite"
+                            values="M421,306Q397,362,344,392Q291,422,232,410Q173,398,130,355Q87,312,95,251Q103,190,142,146Q181,102,241,95Q301,88,352,120Q403,152,424,201Q445,250,421,306Z;
+                                    M438,290Q409,352,352,384Q295,416,234,404Q173,392,124,351Q75,310,87,247Q99,184,142,140Q185,96,247,91Q309,86,360,120Q411,154,436,202Q461,250,438,290Z;
+                                    M404,318Q393,386,332,404Q271,422,213,406Q155,390,113,345Q71,300,83,240Q95,180,137,138Q179,96,239,90Q299,84,349,115Q399,146,407,198Q415,250,404,318Z;
+                                    M421,306Q397,362,344,392Q291,422,232,410Q173,398,130,355Q87,312,95,251Q103,190,142,146Q181,102,241,95Q301,88,352,120Q403,152,424,201Q445,250,421,306Z" />
+                    </path>
+                </svg>
+            </div>
+
+            <div class="wrap hero-inner">
+                <p class="eyebrow load-in" style="--d:.1s">
+                    Kathmandu, Nepal
+                    <span class="status"><span class="status-dot"></span>Available for work</span>
+                </p>
+                <h1 class="hero-title weight-shift load-in" style="--d:.22s">Kandel Jhapendra <span
+                        class="muted">(J.K)</span></h1>
+                <p class="hero-role load-in" style="--d:.34s">
+                    <span id="typed"></span><span class="cursor-blink" aria-hidden="true">|</span>
                     <span class="visually-hidden">Full-stack developer, web designer and front-end &amp; back-end
                         engineer.</span>
                 </p>
-                <div class="hero-actions">
-                    <a class="btn btn-primary" href="#projects">View projects</a>
-                    <a class="btn btn-ghost" href="#contact">Get in touch</a>
+                <p class="hero-tagline load-in" style="--d:.46s">&ldquo;Code with purpose, build with passion, secure
+                    with precision.&rdquo;</p>
+                <div class="hero-actions load-in" style="--d:.58s">
+                    <a class="btn btn-gold" href="#projects" data-magnetic>View projects</a>
+                    <a class="btn btn-glass" href="#contact" data-magnetic>Get in touch</a>
                 </div>
             </div>
+
             <a class="scroll-hint" href="#about" aria-label="Scroll to about">
-                <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
                     <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" />
                 </svg>
             </a>
         </section>
 
-        <!-- About + skills -->
+        <!-- About -->
         <section class="section" id="about">
             <div class="wrap">
                 <div class="section-head reveal">
                     <span class="section-index">01</span>
                     <h2>About me</h2>
                 </div>
-                <div class="about-grid">
-                    <p class="about-text reveal">
+                <div class="glass about-card reveal">
+                    <p class="about-text">
                         I'm a web developer with a strong foundation in PHP, HTML, CSS and JavaScript, focused on
                         building practical products — shopping websites, social platforms, web-hosting tools and
                         note-sharing apps. With experience in C and SQL, I enjoy taking on complex problems and
                         sharpening my craft with every project. I'm also exploring startup ideas, driven to bring
                         creativity and solid engineering together. Thanks for stopping by.
                     </p>
-                    <ul class="skills reveal" aria-label="Skills and proficiency">
-                        <li style="--v:90%"><span class="skill-name">HTML5</span><span class="skill-val">90</span>
-                            <span class="skill-track"><span class="skill-fill"></span></span>
-                        </li>
-                        <li style="--v:88%"><span class="skill-name">CSS</span><span class="skill-val">88</span>
-                            <span class="skill-track"><span class="skill-fill"></span></span>
-                        </li>
-                        <li style="--v:90%"><span class="skill-name">PHP</span><span class="skill-val">90</span>
-                            <span class="skill-track"><span class="skill-fill"></span></span>
-                        </li>
-                        <li style="--v:85%"><span class="skill-name">React</span><span class="skill-val">85</span>
-                            <span class="skill-track"><span class="skill-fill"></span></span>
-                        </li>
-                        <li style="--v:90%"><span class="skill-name">SQL</span><span class="skill-val">90</span>
-                            <span class="skill-track"><span class="skill-fill"></span></span>
-                        </li>
-                        <li style="--v:70%"><span class="skill-name">JavaScript / jQuery</span><span
-                                class="skill-val">70</span>
-                            <span class="skill-track"><span class="skill-fill"></span></span>
-                        </li>
-                        <li style="--v:45%"><span class="skill-name">Photoshop</span><span class="skill-val">45</span>
-                            <span class="skill-track"><span class="skill-fill"></span></span>
-                        </li>
-                    </ul>
                 </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section" id="skills">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="section-index">02</span>
+                    <h2>Skills</h2>
+                </div>
+                <ul class="skills reveal" aria-label="Skills and proficiency">
+                    <li style="--v:90%"><span class="skill-name">HTML5</span><span class="skill-val">90</span>
+                        <span class="skill-track"><span class="skill-fill"></span></span>
+                    </li>
+                    <li style="--v:88%"><span class="skill-name">CSS</span><span class="skill-val">88</span>
+                        <span class="skill-track"><span class="skill-fill"></span></span>
+                    </li>
+                    <li style="--v:90%"><span class="skill-name">PHP</span><span class="skill-val">90</span>
+                        <span class="skill-track"><span class="skill-fill"></span></span>
+                    </li>
+                    <li style="--v:85%"><span class="skill-name">React</span><span class="skill-val">85</span>
+                        <span class="skill-track"><span class="skill-fill"></span></span>
+                    </li>
+                    <li style="--v:90%"><span class="skill-name">SQL</span><span class="skill-val">90</span>
+                        <span class="skill-track"><span class="skill-fill"></span></span>
+                    </li>
+                    <li style="--v:70%"><span class="skill-name">JavaScript / jQuery</span><span
+                            class="skill-val">70</span>
+                        <span class="skill-track"><span class="skill-fill"></span></span>
+                    </li>
+                    <li style="--v:45%"><span class="skill-name">Photoshop</span><span class="skill-val">45</span>
+                        <span class="skill-track"><span class="skill-fill"></span></span>
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -153,11 +214,11 @@
         <section class="section" id="projects">
             <div class="wrap">
                 <div class="section-head reveal">
-                    <span class="section-index">02</span>
+                    <span class="section-index">03</span>
                     <h2>Selected projects</h2>
                 </div>
                 <div class="projects">
-                    <article class="project reveal">
+                    <article class="glass project tilt reveal">
                         <div class="project-media">
                             <img src="img/1.webp" alt="Techkart shopping website interface" loading="lazy" width="1600"
                                 height="676">
@@ -168,7 +229,7 @@
                             <ul class="tags"><li>PHP</li><li>SQL</li><li>JavaScript</li></ul>
                         </div>
                     </article>
-                    <article class="project reveal">
+                    <article class="glass project tilt reveal">
                         <div class="project-media">
                             <img src="img/2.webp" alt="Online Notes Sharing website interface" loading="lazy" width="1600"
                                 height="676">
@@ -180,7 +241,7 @@
                             <ul class="tags"><li>PHP</li><li>MySQL</li><li>Bootstrap</li></ul>
                         </div>
                     </article>
-                    <article class="project reveal">
+                    <article class="glass project tilt reveal">
                         <div class="project-media">
                             <img src="img/3.webp" alt="Jace Arc social profile website interface" loading="lazy"
                                 width="1600" height="676">
@@ -191,7 +252,7 @@
                             <ul class="tags"><li>React</li><li>PHP</li><li>REST API</li></ul>
                         </div>
                     </article>
-                    <article class="project reveal">
+                    <article class="glass project tilt reveal">
                         <div class="project-media">
                             <img src="img/4.webp" alt="Cheat Sheets code template library interface" loading="lazy"
                                 width="1600" height="676">
@@ -210,7 +271,7 @@
         <section class="section" id="gallery">
             <div class="wrap">
                 <div class="section-head reveal">
-                    <span class="section-index">03</span>
+                    <span class="section-index">04</span>
                     <h2>Photo journal — Japan</h2>
                 </div>
                 <p class="gallery-note reveal">
@@ -233,11 +294,11 @@
         <section class="section" id="contact">
             <div class="wrap contact-wrap">
                 <div class="section-head reveal">
-                    <span class="section-index">04</span>
+                    <span class="section-index">05</span>
                     <h2>Contact me</h2>
                 </div>
                 <p class="reveal">Interested in working together, or just want to say hello? Drop me a message.</p>
-                <form class="contact-form reveal" id="contact-form" method="POST"
+                <form class="glass contact-form reveal" id="contact-form" method="POST"
                     action="https://formsubmit.co/jhapendrakandel.mac@gmail.com">
                     <div class="field">
                         <label for="name">Name</label>
@@ -254,32 +315,63 @@
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://www.jhapendrakandel.com.np/thanks.html">
-                    <button type="submit" id="submit" class="btn btn-primary">Send message</button>
+                    <button type="submit" id="submit" class="btn btn-gold" data-magnetic>Send message</button>
                 </form>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <div class="wrap footer-inner">
-            <p class="footer-name">Jhapendra Kandel <span class="dot">·</span> J.K</p>
-            <nav class="social" aria-label="Social links">
-                <a href="https://github.com/jhapendrakandel" target="_blank" rel="noopener" aria-label="GitHub">
-                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.4-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.28 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
-                </a>
-                <a href="https://www.youtube.com/@Kandeljhapendra" target="_blank" rel="noopener" aria-label="YouTube">
-                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5 31 31 0 0 0 .1 12a31 31 0 0 0 .4 5.5 3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-5.5 31 31 0 0 0-.4-5.5ZM9.75 15.5v-7L15.8 12l-6.05 3.5Z"/></svg>
-                </a>
-                <a href="https://www.instagram.com/jk.jk_100" target="_blank" rel="noopener" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.3.07 1.69.07 4.9s0 3.6-.07 4.9c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.3.06-1.69.07-4.9.07s-3.6 0-4.9-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5.01-4.74.07-.9.04-1.38.2-1.71.32-.43.17-.74.37-1.06.7-.32.31-.52.62-.69 1.05-.13.33-.28.82-.32 1.71C3.4 8.5 3.4 8.85 3.4 12s0 3.5.07 4.74c.04.9.2 1.38.32 1.71.17.43.37.74.7 1.06.31.32.62.52 1.05.69.33.13.82.28 1.71.32 1.24.06 1.59.07 4.74.07s3.5 0 4.74-.07c.9-.04 1.38-.2 1.71-.32.43-.17.74-.37 1.06-.7.32-.31.52-.62.69-1.05.13-.33.28-.82.32-1.71.06-1.24.07-1.59.07-4.74s0-3.5-.07-4.74c-.04-.9-.2-1.38-.32-1.71a2.8 2.8 0 0 0-.7-1.06 2.8 2.8 0 0 0-1.05-.69c-.33-.13-.82-.28-1.71-.32C15.5 4.01 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 17a4.94 4.94 0 0 1 0-9.88Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.03-1.14a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg>
-                </a>
-                <a href="https://facebook.com/uki.kandel" target="_blank" rel="noopener" aria-label="Facebook">
-                    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8.2h2.76l.41-3.2H13.5V7.55c0-.93.26-1.56 1.59-1.56h1.7V3.13c-.3-.04-1.3-.13-2.48-.13-2.45 0-4.13 1.5-4.13 4.24v2.36H7.3v3.2h2.87V21h3.33Z"/></svg>
-                </a>
-            </nav>
-            <p class="footer-copy">© <span id="year"></span> Jhapendra Kandel. Built &amp; hosted on GitHub Pages.</p>
+        <div class="footer-orb footer-orb-a" aria-hidden="true"></div>
+        <div class="footer-orb footer-orb-b" aria-hidden="true"></div>
+        <div class="wrap">
+            <div class="glass footer-card">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <span class="brand" aria-hidden="true">J<span class="dot">.</span>K</span>
+                        <p class="footer-tag">Code with purpose, build with passion, secure with precision.</p>
+                        <a class="footer-mail" href="mailto:jhapendrakandel.mac@gmail.com" data-magnetic>jhapendrakandel.mac@gmail.com</a>
+                        <p class="footer-loc">Kathmandu, Nepal</p>
+                    </div>
+                    <nav class="footer-col" aria-label="Explore">
+                        <p class="footer-h">Explore</p>
+                        <a href="#about">About</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#gallery">Journal</a>
+                        <a href="#contact">Contact</a>
+                    </nav>
+                    <div class="footer-col">
+                        <p class="footer-h">Connect</p>
+                        <nav class="social" aria-label="Social links">
+                            <a href="https://github.com/jhapendrakandel" target="_blank" rel="noopener" data-magnetic aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.4-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.28 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/@Kandeljhapendra" target="_blank" rel="noopener" data-magnetic aria-label="YouTube">
+                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5 31 31 0 0 0 .1 12a31 31 0 0 0 .4 5.5 3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-5.5 31 31 0 0 0-.4-5.5ZM9.75 15.5v-7L15.8 12l-6.05 3.5Z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/jk.jk_100" target="_blank" rel="noopener" data-magnetic aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.3.07 1.69.07 4.9s0 3.6-.07 4.9c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.3.06-1.69.07-4.9.07s-3.6 0-4.9-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5.01-4.74.07-.9.04-1.38.2-1.71.32-.43.17-.74.37-1.06.7-.32.31-.52.62-.69 1.05-.13.33-.28.82-.32 1.71C3.4 8.5 3.4 8.85 3.4 12s0 3.5.07 4.74c.04.9.2 1.38.32 1.71.17.43.37.74.7 1.06.31.32.62.52 1.05.69.33.13.82.28 1.71.32 1.24.06 1.59.07 4.74.07s3.5 0 4.74-.07c.9-.04 1.38-.2 1.71-.32.43-.17.74-.37 1.06-.7.32-.31.52-.62.69-1.05.13-.33.28-.82.32-1.71.06-1.24.07-1.59.07-4.74s0-3.5-.07-4.74c-.04-.9-.2-1.38-.32-1.71a2.8 2.8 0 0 0-.7-1.06 2.8 2.8 0 0 0-1.05-.69c-.33-.13-.82-.28-1.71-.32C15.5 4.01 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 17a4.94 4.94 0 0 1 0-9.88Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.03-1.14a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg>
+                            </a>
+                            <a href="https://facebook.com/uki.kandel" target="_blank" rel="noopener" data-magnetic aria-label="Facebook">
+                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8.2h2.76l.41-3.2H13.5V7.55c0-.93.26-1.56 1.59-1.56h1.7V3.13c-.3-.04-1.3-.13-2.48-.13-2.45 0-4.13 1.5-4.13 4.24v2.36H7.3v3.2h2.87V21h3.33Z"/></svg>
+                            </a>
+                        </nav>
+                        <button type="button" class="back-top" id="back-top" data-magnetic>Back to top <span aria-hidden="true">↑</span></button>
+                    </div>
+                </div>
+                <div class="footer-base">
+                    <p>© <span id="year"></span> Jhapendra Kandel · Full-Stack Developer</p>
+                    <p>Static build · hosted on GitHub Pages</p>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <!-- z-60 : custom cursor -->
+    <div class="cursor-layer" id="cursor-layer" aria-hidden="true">
+        <div class="cursor-dot" id="cursor-dot"></div>
+        <div class="cursor-ring" id="cursor-ring"></div>
+    </div>
 
     <script src="main.js" defer></script>
 </body>

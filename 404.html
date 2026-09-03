@@ -1,23 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404 — Page not found</title>
-<style>
-:root{color-scheme:dark light}
-body{margin:0;min-height:100svh;display:grid;place-items:center;background:#0d0d10;color:#ececf1;font-family:"Space Grotesk",system-ui,sans-serif;text-align:center;padding:24px}
-@media(prefers-color-scheme:light){body{background:#fbfbfd;color:#1a1a22}}
-h1{font-size:4rem;margin:0;color:#ff6363}
-p{color:#a1a1ad}
-a{display:inline-block;margin-top:18px;padding:12px 26px;border-radius:999px;font-weight:600;text-decoration:none;color:#fff;background:linear-gradient(135deg,#ff6363,#ff8a5c)}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>404 — Page not found</title>
+    <link rel="icon" type="image/png"
+        href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&family=Playfair+Display:wght@600&family=Inter:wght@400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --gold: #d4af37;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100svh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 24px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Inter", system-ui, sans-serif;
+            overflow: hidden;
+        }
+
+        .aurora {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+        }
+
+        .a1 { top: -8rem; left: -8rem; width: 32rem; height: 32rem; background: rgba(212, 175, 55, .12); }
+        .a2 { bottom: -10rem; right: -6rem; width: 30rem; height: 30rem; background: rgba(99, 102, 241, .14); }
+
+        h1 {
+            font-family: "Cinzel Decorative", serif;
+            font-size: clamp(4rem, 18vw, 8rem);
+            margin: 0;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        h2 { font-family: "Playfair Display", serif; font-weight: 600; margin: 12px 0 0; }
+        p { color: var(--muted); margin: 8px 0 0; }
+
+        a {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 12px 28px;
+            border-radius: 999px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #0f172a;
+            background: var(--gold);
+            transition: box-shadow .2s;
+        }
+
+        a:hover { box-shadow: 0 0 24px rgba(212, 175, 55, .35); }
+    </style>
 </head>
+
 <body>
-<div>
-<h1>404</h1>
-<p>That page doesn't exist.</p>
-<a href="/">Back to home</a>
-</div>
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div>
+        <h1>404</h1>
+        <h2>This page wandered off</h2>
+        <p>The link may be broken, or the page may have moved.</p>
+        <a href="/">Back to home</a>
+    </div>
 </body>
+
 </html>
