@@ -167,6 +167,9 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <script type="application/ld+json">
     {jsonld}
     </script>
+    <script type="application/ld+json">
+    {breadcrumb_jsonld}
+    </script>
     <script>
         try {{
             var t = localStorage.getItem("theme");
@@ -252,6 +255,16 @@ def build_posts(posts):
             "keywords": ", ".join(tags),
         }, ensure_ascii=False, indent=4)
 
+        breadcrumb_jsonld = json.dumps({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE}/"},
+                {"@type": "ListItem", "position": 2, "name": "Blog", "item": f"{SITE}/blog/"},
+                {"@type": "ListItem", "position": 3, "name": p["title"], "item": url},
+            ],
+        }, ensure_ascii=False, indent=4)
+
         html_out = POST_TEMPLATE.format(
             title=esc(p["title"]),
             excerpt=esc(p.get("excerpt", "")),
@@ -260,6 +273,7 @@ def build_posts(posts):
             date=date_iso,
             tag_meta=tag_meta,
             jsonld=jsonld,
+            breadcrumb_jsonld=breadcrumb_jsonld,
             display_date=display_date,
             tag_html=tag_html,
             body=body,
