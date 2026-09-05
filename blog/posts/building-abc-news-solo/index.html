@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Building the ABC News site on my own — Jhapendra Kandel</title>
+    <meta name="description" content="What it takes to build and run a full news site by yourself, from the theme down to the server.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/posts/building-abc-news-solo/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Building the ABC News site on my own">
+    <meta property="og:description" content="What it takes to build and run a full news site by yourself, from the theme down to the server.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/posts/building-abc-news-solo/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="article:published_time" content="2026-08-20">
+    <meta property="article:author" content="Jhapendra Kandel">
+    <meta property="article:tag" content="Web">
+    <meta property="article:tag" content="DevOps">
+    <meta property="article:tag" content="WordPress">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building the ABC News site on my own">
+    <meta name="twitter:description" content="What it takes to build and run a full news site by yourself, from the theme down to the server.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/base.css">
+    <link rel="stylesheet" href="../blog.css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Building the ABC News site on my own",
+    "description": "What it takes to build and run a full news site by yourself, from the theme down to the server.",
+    "datePublished": "2026-08-20",
+    "dateModified": "2026-08-20",
+    "url": "https://www.jhapendrakandel.com.np/blog/posts/building-abc-news-solo/",
+    "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+    "author": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "url": "https://www.jhapendrakandel.com.np/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.jhapendrakandel.com.np/blog/posts/building-abc-news-solo/"
+    },
+    "keywords": "Web, DevOps, WordPress"
+}
+    </script>
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../../">Home</a>
+                <a href="../">Blog</a>
+                <a href="../../toolbox/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <article>
+                <a class="back-link" href="../">&larr; All posts</a>
+                <div class="post-head">
+                    <h1>Building the ABC News site on my own</h1>
+                    <p class="post-meta"><span>August 20, 2026</span><span class="tag">Web</span><span class="tag">DevOps</span><span class="tag">WordPress</span></p>
+                </div>
+                <div class="prose">
+<p>I built the ABC News site by myself, start to finish. That meant the design, the WordPress theme, the publishing tools, and all of the server and deployment work. This post is a plain rundown of what that involved.</p>
+<h2>The front of the site</h2>
+<p>The theme is custom. Home page layout, category pages, the article template, the menus, the search, all of it hand written rather than a bought theme with the parts swapped out. I kept the markup simple so pages stay fast on slow connections, which matters a lot for readers in Nepal.</p>
+<h2>The publishing side</h2>
+<p>A news site lives or dies on how fast editors can get a story out. I spent a good amount of time on the editor workflow: draft, review, publish, with the roles set up so the right people can do the right things and nothing else. There is also automation around article generation and importing content, so routine posts do not eat an editor's whole day.</p>
+<h2>Running it</h2>
+<p>This is the part people forget when they picture a "website".</p>
+<ul><li>A Linux server, set up and hardened by hand</li><li>Docker containers for the app, the database and the cache</li><li>Backups that actually get tested, not just scheduled</li><li>TLS, a CDN in front, and monitoring so I hear about problems before readers do</li></ul>
+<p>When something breaks at 2am, there is no team to hand it to. So I built it to be boring and easy to bring back up.</p>
+<h2>What I took away from it</h2>
+<p>Doing every layer yourself is slow, but you end up understanding the whole system. When a page is slow I know whether it is the theme, the database, the cache or the network, because I built each one. That is worth the extra time.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../../assets/subpage.js" defer></script>
+</body>
+
+</html>

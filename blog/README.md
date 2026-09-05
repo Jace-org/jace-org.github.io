@@ -18,8 +18,19 @@ Posts are plain Markdown files in `posts/`, listed in `posts.json`.
    }
    ```
 
-3. Commit and push. The site rebuilds automatically.
+3. Run `python3 blog/build.py` from the repo root. This generates a real,
+   static `posts/<slug>/index.html` page for the post (with its own
+   title, meta description, Open Graph/Twitter tags and JSON-LD), adds
+   it to the pre-rendered list in `blog/index.html`, and refreshes the
+   top-level `sitemap.xml`.
+4. Commit and push (source `.md` file, `posts.json`, the generated
+   `posts/<slug>/index.html`, updated `blog/index.html`, updated
+   `sitemap.xml`).
 
 Newest `date` shows first. `tags` become filter buttons.
 The renderer supports headings, lists, links, images, quotes,
 inline code and fenced code blocks.
+
+Each post is a real static page at its own URL (not a `#hash` route) so
+it can be indexed and shared individually — this is why step 3 above
+is needed any time a post is added or its content/title/date changes.

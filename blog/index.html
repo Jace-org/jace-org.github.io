@@ -9,9 +9,26 @@
     <title>Blog — Jhapendra Kandel</title>
     <meta name="description"
         content="Writing on full-stack development, cybersecurity, self-hosting and building AI models at home by Jhapendra Kandel.">
+    <meta name="author" content="Jhapendra Kandel">
     <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/">
     <link rel="icon" type="image/png"
         href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Blog — Jhapendra Kandel">
+    <meta property="og:description"
+        content="Writing on full-stack development, cybersecurity, self-hosting and building AI models at home by Jhapendra Kandel.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/">
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog — Jhapendra Kandel">
+    <meta name="twitter:description"
+        content="Writing on full-stack development, cybersecurity, self-hosting and building AI models at home by Jhapendra Kandel.">
+    <meta name="twitter:image"
+        content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -50,28 +67,39 @@
 
     <main id="main" class="page">
         <div class="wrap">
-            <div id="view-list">
-                <div class="page-head reveal">
-                    <p class="kicker">Writing</p>
-                    <h1>Blog</h1>
-                    <p>Notes on building things, breaking things, running my own servers and training models at home.
-                        Posts are written in Markdown and loaded straight from the repo.</p>
-                </div>
-                <div class="post-filters reveal" id="post-filters"></div>
-                <ul class="post-list" id="post-list"></ul>
-                <p class="empty" id="list-empty" hidden>No posts yet. Check back soon.</p>
+            <div class="page-head reveal">
+                <p class="kicker">Writing</p>
+                <h1>Blog</h1>
+                <p>Notes on building things, breaking things, running my own servers and training models at home.
+                    Posts are written in Markdown, each one a real page of its own.</p>
             </div>
-
-            <article id="view-post" hidden>
-                <a class="back-link" href="#">&larr; All posts</a>
-                <div class="post-head">
-                    <h1 id="post-title"></h1>
-                    <p class="post-meta"><span id="post-date"></span><span id="post-tags"></span></p>
-                </div>
-                <div class="prose" id="post-body"></div>
-            </article>
-
-            <p class="empty" id="load-error" hidden>That post could not be loaded. <a href="#">Back to all posts</a>.</p>
+            <div class="post-filters reveal" id="post-filters"></div>
+            <ul class="post-list" id="post-list">
+                <!-- POSTS:START -->
+                    <li class="reveal" data-tags="Meta">
+                        <a class="post-card" href="posts/hello-from-the-new-blog/">
+                            <h2>Hello from the new blog</h2>
+                            <p class="post-meta"><span>September 3, 2026</span><span class="tag">Meta</span></p>
+                            <p class="excerpt">A short note on why this blog now lives on my own site, and how it works.</p>
+                        </a>
+                    </li>
+                    <li class="reveal" data-tags="Web|DevOps|WordPress">
+                        <a class="post-card" href="posts/building-abc-news-solo/">
+                            <h2>Building the ABC News site on my own</h2>
+                            <p class="post-meta"><span>August 20, 2026</span><span class="tag">Web</span><span class="tag">DevOps</span><span class="tag">WordPress</span></p>
+                            <p class="excerpt">What it takes to build and run a full news site by yourself, from the theme down to the server.</p>
+                        </a>
+                    </li>
+                    <li class="reveal" data-tags="AI|Homelab|Nepali">
+                        <a class="post-card" href="posts/nepali-llm-at-home/">
+                            <h2>Training a Nepali language model at home</h2>
+                            <p class="post-meta"><span>August 5, 2026</span><span class="tag">AI</span><span class="tag">Homelab</span><span class="tag">Nepali</span></p>
+                            <p class="excerpt">Notes on fine-tuning and serving a Nepali LLM on a single AMD AI Pro 32GB GPU in my homelab.</p>
+                        </a>
+                    </li>
+                    <!-- POSTS:END -->
+            </ul>
+            <p class="empty" id="list-empty" hidden>No posts yet. Check back soon.</p>
         </div>
     </main>
 
