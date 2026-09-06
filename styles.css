@@ -14,6 +14,8 @@
     --c-border: rgba(15, 23, 42, 0.12);
     --gold: #d4af37;
     --gold-soft: rgba(212, 175, 55, 0.14);
+    --pub: #15803d;
+    --pub-soft: rgba(21, 128, 61, 0.1);
     --indigo: #6366f1;
     --max: 1120px;
     --radius: 20px;
@@ -32,6 +34,8 @@ html.dark {
     --c-muted: #94a3b8;
     --c-border: rgba(212, 175, 55, 0.16);
     --gold-soft: rgba(212, 175, 55, 0.1);
+    --pub: #4ade80;
+    --pub-soft: rgba(74, 222, 128, 0.12);
     color-scheme: dark;
 }
 
@@ -829,6 +833,7 @@ html.dark .morph-blob { opacity: .25; }
 }
 
 .project {
+    position: relative;
     border-radius: var(--radius);
     padding: 26px 26px 24px;
     display: flex;
@@ -843,11 +848,35 @@ html.dark .morph-blob { opacity: .25; }
     box-shadow: 0 24px 50px -24px rgba(0, 0, 0, .6), 0 0 24px rgba(212, 175, 55, .12);
 }
 
+.project.is-public:hover {
+    border-color: var(--pub);
+    box-shadow: 0 24px 50px -24px rgba(0, 0, 0, .6), 0 0 24px var(--pub-soft);
+}
+
+/* Whole-card link for public projects (stretched over the card) */
+.project-link {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: var(--radius);
+    font-size: 0;
+    color: transparent;
+}
+
+.project-link:focus-visible {
+    outline: 2px solid var(--pub);
+    outline-offset: 2px;
+}
+
+.project .tags,
+.project .project-cat { position: relative; z-index: 1; }
+
 .project-top {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 10px 12px;
     margin-bottom: 10px;
 }
 
@@ -871,6 +900,31 @@ html.dark .morph-blob { opacity: .25; }
     border: 1px solid rgba(212, 175, 55, .4);
     border-radius: 999px;
     padding: 4px 10px;
+}
+
+.project-flags {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pstatus {
+    flex: none;
+    font-size: .62rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    border-radius: 999px;
+    padding: 4px 10px;
+    border: 1px solid var(--c-border);
+    color: var(--c-muted);
+}
+
+.pstatus-public {
+    color: var(--pub);
+    border-color: var(--pub);
+    background: var(--pub-soft);
 }
 
 .repo-link {
