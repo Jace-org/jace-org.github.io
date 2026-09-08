@@ -54,19 +54,23 @@ The blog has no feed at all. `blog/build.py` already walks `posts.json`
 — have it emit `blog/feed.xml` in the same pass. Needed for feed
 readers, planet aggregators, and some newsletter tools.
 
-### 8. Tags + tag pages
-Add a `tags` array to each post in `posts.json`, generate
-`/blog/tag/<tag>/` index pages, show tag chips on posts and the blog
-index.
+### 8. Tag index pages
+Posts already have a `tags` array, tag chips render on posts and the
+blog index, and the index has client-side tag filter buttons (as of
+2026-09-08, 18 posts across `AI` `LLM` `Security` `Agents` `DevOps`
+`Infra` `Homelab` `Nepali` `Web` `WordPress` `Meta`). Still missing:
+real `/blog/tag/<tag>/` static index pages for crawlers and direct
+links — generate them in `build.py` in the same pass.
 
 ### 9. Post niceties
 Reading-time estimate, "next / previous post" links, and a small table
 of contents for long posts — all derivable at build time.
 
 ### 10. Structured data
-`Person` + `WebSite` JSON-LD on the homepage; `BlogPosting` +
-`BreadcrumbList` on blog pages. Improves Google rich results. (The
-abcnews theme already does this — can lift the shape.)
+`BlogPosting` + `BreadcrumbList` JSON-LD is already emitted on every
+generated blog post by `build.py`. Still to do: `Person` + `WebSite`
+JSON-LD on the homepage. Improves Google rich results. (The abcnews
+theme already does this — can lift the shape.)
 
 ### 11. Per-page Open Graph images
 Share cards are currently bare. Either hand-make a few (`/assets/og/`)
