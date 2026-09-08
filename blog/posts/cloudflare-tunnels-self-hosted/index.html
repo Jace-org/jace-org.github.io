@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Cloudflare Tunnels as Part of a Self-Hosted Infrastructure — Jhapendra Kandel</title>
+    <meta name="description" content="Exposing self-hosted services without opening ports: what tunnels buy you, how I use them, and where they fall short.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/posts/cloudflare-tunnels-self-hosted/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Cloudflare Tunnels as Part of a Self-Hosted Infrastructure">
+    <meta property="og:description" content="Exposing self-hosted services without opening ports: what tunnels buy you, how I use them, and where they fall short.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/posts/cloudflare-tunnels-self-hosted/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="article:published_time" content="2026-05-06">
+    <meta property="article:author" content="Jhapendra Kandel">
+    <meta property="article:tag" content="Infra">
+    <meta property="article:tag" content="Homelab">
+    <meta property="article:tag" content="DevOps">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cloudflare Tunnels as Part of a Self-Hosted Infrastructure">
+    <meta name="twitter:description" content="Exposing self-hosted services without opening ports: what tunnels buy you, how I use them, and where they fall short.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/base.css">
+    <link rel="stylesheet" href="../blog.css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Cloudflare Tunnels as Part of a Self-Hosted Infrastructure",
+    "description": "Exposing self-hosted services without opening ports: what tunnels buy you, how I use them, and where they fall short.",
+    "datePublished": "2026-05-06",
+    "dateModified": "2026-05-06",
+    "url": "https://www.jhapendrakandel.com.np/blog/posts/cloudflare-tunnels-self-hosted/",
+    "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+    "author": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "url": "https://www.jhapendrakandel.com.np/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.jhapendrakandel.com.np/blog/posts/cloudflare-tunnels-self-hosted/"
+    },
+    "keywords": "Infra, Homelab, DevOps"
+}
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.jhapendrakandel.com.np/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.jhapendrakandel.com.np/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Cloudflare Tunnels as Part of a Self-Hosted Infrastructure",
+            "item": "https://www.jhapendrakandel.com.np/blog/posts/cloudflare-tunnels-self-hosted/"
+        }
+    ]
+}
+    </script>
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../../">Home</a>
+                <a href="../">Blog</a>
+                <a href="../../toolbox/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <article>
+                <a class="back-link" href="../">&larr; All posts</a>
+                <div class="post-head">
+                    <h1>Cloudflare Tunnels as Part of a Self-Hosted Infrastructure</h1>
+                    <p class="post-meta"><span>May 6, 2026</span><span class="tag">Infra</span><span class="tag">Homelab</span><span class="tag">DevOps</span></p>
+                </div>
+                <div class="prose">
+<p>I run services on machines that sit behind a home or office router. Cloudflare Tunnel is how I expose the few that need to be public without opening any ports. Here is where it fits and where it does not.</p>
+<h2>The problem it solves</h2>
+<p>Normally, to reach a service from the internet you forward a port on your router to the machine. That means:</p>
+<ul><li>An open port that gets scanned continuously</li><li>Your real IP address exposed</li><li>A need for a static IP or dynamic DNS</li></ul>
+<p>A tunnel flips this around. A small daemon on your machine makes an outbound connection to Cloudflare and holds it open. Traffic for your hostname arrives at Cloudflare's edge and rides back down that connection. There are no inbound ports at all.</p>
+<h2>What that buys you</h2>
+<ul><li>Nothing to forward, nothing to open in the firewall</li><li>TLS terminates at the edge, so certificates are handled for you</li><li>The origin IP stays hidden</li><li>It works the same whether the box is on the LAN, has moved networks, or is behind CGNAT</li></ul>
+<h2>How I use it</h2>
+<ul><li>Public status pages and dashboards that should be reachable off the office network</li><li>A CDN origin on the NAS, with Cloudflare caching in front</li><li>Anything I would otherwise have shoved onto the VPS just to get a public URL</li></ul>
+<p>Internal-only services do not get a tunnel. They stay on the private network and I reach them over a VPN.</p>
+<h2>Limitations to know</h2>
+<ul><li>You are trusting Cloudflare with your traffic and depending on their uptime</li><li>It is an HTTP proxy at heart, so other protocols need extra setup or do not fit</li><li>The free tier terms are worth reading if you plan to serve large files or video</li><li>The daemon is one more process to keep alive, so it needs a watchdog and a start-on-boot entry</li></ul>
+<h2>Where it sits in the bigger picture</h2>
+<p>Tunnels are the public door. Behind them everything is still segmented: public services on their own path, private services on the VPN, and the sensitive machines never exposed at all. A tunnel reduces attack surface. It does not replace the rest of the design.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../../assets/subpage.js" defer></script>
+</body>
+
+</html>

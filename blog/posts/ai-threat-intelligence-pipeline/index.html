@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Building an AI-Powered Threat Intelligence Pipeline — Jhapendra Kandel</title>
+    <meta name="description" content="Collect, normalize, analyze, enrich, summarize. Turning the threat-intel firehose into a short digest, with AI as one stage.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/posts/ai-threat-intelligence-pipeline/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Building an AI-Powered Threat Intelligence Pipeline">
+    <meta property="og:description" content="Collect, normalize, analyze, enrich, summarize. Turning the threat-intel firehose into a short digest, with AI as one stage.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/posts/ai-threat-intelligence-pipeline/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="article:published_time" content="2026-09-06">
+    <meta property="article:author" content="Jhapendra Kandel">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Security">
+    <meta property="article:tag" content="Agents">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building an AI-Powered Threat Intelligence Pipeline">
+    <meta name="twitter:description" content="Collect, normalize, analyze, enrich, summarize. Turning the threat-intel firehose into a short digest, with AI as one stage.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/base.css">
+    <link rel="stylesheet" href="../blog.css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Building an AI-Powered Threat Intelligence Pipeline",
+    "description": "Collect, normalize, analyze, enrich, summarize. Turning the threat-intel firehose into a short digest, with AI as one stage.",
+    "datePublished": "2026-09-06",
+    "dateModified": "2026-09-06",
+    "url": "https://www.jhapendrakandel.com.np/blog/posts/ai-threat-intelligence-pipeline/",
+    "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+    "author": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "url": "https://www.jhapendrakandel.com.np/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.jhapendrakandel.com.np/blog/posts/ai-threat-intelligence-pipeline/"
+    },
+    "keywords": "AI, Security, Agents"
+}
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.jhapendrakandel.com.np/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.jhapendrakandel.com.np/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Building an AI-Powered Threat Intelligence Pipeline",
+            "item": "https://www.jhapendrakandel.com.np/blog/posts/ai-threat-intelligence-pipeline/"
+        }
+    ]
+}
+    </script>
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../../">Home</a>
+                <a href="../">Blog</a>
+                <a href="../../toolbox/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <article>
+                <a class="back-link" href="../">&larr; All posts</a>
+                <div class="post-head">
+                    <h1>Building an AI-Powered Threat Intelligence Pipeline</h1>
+                    <p class="post-meta"><span>September 6, 2026</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
+                </div>
+                <div class="prose">
+<p>Threat intel is a firehose of feeds, advisories, blog posts and reports, most of it not relevant to you. I built a pipeline to turn that stream into a short, useful summary. The AI part is one stage, not the whole thing.</p>
+<h2>The stages</h2>
+<ol><li>Collect: pull from feeds, advisory sources, vendor bulletins and a few blogs, on a schedule</li><li>Normalize: parse everything into one structured format, dedupe near-identical items, drop obvious noise</li><li>Analyze: score each item for relevance to the systems and software I actually run</li><li>Enrich: attach related CVEs, affected versions, known exploitation status, links to primary sources</li><li>Summarize: produce a short digest, most important first, each item traceable back to its source</li></ol>
+<h2>Where the model helps</h2>
+<ul><li>Normalizing messy prose into structured fields</li><li>Judging relevance against a description of my environment</li><li>Writing the digest so it is actually readable</li></ul>
+<p>Everything factual in the enrich stage comes from lookups, not the model. A CVE's details come from a database. Exploitation status comes from a real source. The model arranges and explains. It does not supply the facts.</p>
+<h2>Keeping it trustworthy</h2>
+<ul><li>Every item in the digest links to its primary source</li><li>CVE and version data is pulled from authoritative databases, then shown, not paraphrased from memory</li><li>If relevance scoring is unsure, the item stays in rather than being dropped silently</li><li>I read the sources for anything I am going to act on</li></ul>
+<h2>Why it is worth building</h2>
+<p>The value is not the AI. It is going from hundreds of items a week down to a handful that matter to my stack, with the reasoning and the sources attached. The model makes the reading and sorting faster. The pipeline structure is what keeps it from confidently telling me something false.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../../assets/subpage.js" defer></script>
+</body>
+
+</html>

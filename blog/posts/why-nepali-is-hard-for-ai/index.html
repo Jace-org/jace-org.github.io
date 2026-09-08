@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Why Nepali Is Still a Hard Language for AI Models — Jhapendra Kandel</title>
+    <meta name="description" content="Thin data, tokenizers built for English, and manual evaluation. The concrete reasons Nepali still lags, and what helps.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/posts/why-nepali-is-hard-for-ai/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Why Nepali Is Still a Hard Language for AI Models">
+    <meta property="og:description" content="Thin data, tokenizers built for English, and manual evaluation. The concrete reasons Nepali still lags, and what helps.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/posts/why-nepali-is-hard-for-ai/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="article:published_time" content="2026-04-02">
+    <meta property="article:author" content="Jhapendra Kandel">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="LLM">
+    <meta property="article:tag" content="Nepali">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why Nepali Is Still a Hard Language for AI Models">
+    <meta name="twitter:description" content="Thin data, tokenizers built for English, and manual evaluation. The concrete reasons Nepali still lags, and what helps.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/base.css">
+    <link rel="stylesheet" href="../blog.css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Why Nepali Is Still a Hard Language for AI Models",
+    "description": "Thin data, tokenizers built for English, and manual evaluation. The concrete reasons Nepali still lags, and what helps.",
+    "datePublished": "2026-04-02",
+    "dateModified": "2026-04-02",
+    "url": "https://www.jhapendrakandel.com.np/blog/posts/why-nepali-is-hard-for-ai/",
+    "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+    "author": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "url": "https://www.jhapendrakandel.com.np/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.jhapendrakandel.com.np/blog/posts/why-nepali-is-hard-for-ai/"
+    },
+    "keywords": "AI, LLM, Nepali"
+}
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.jhapendrakandel.com.np/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.jhapendrakandel.com.np/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Why Nepali Is Still a Hard Language for AI Models",
+            "item": "https://www.jhapendrakandel.com.np/blog/posts/why-nepali-is-hard-for-ai/"
+        }
+    ]
+}
+    </script>
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../../">Home</a>
+                <a href="../">Blog</a>
+                <a href="../../toolbox/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <article>
+                <a class="back-link" href="../">&larr; All posts</a>
+                <div class="post-head">
+                    <h1>Why Nepali Is Still a Hard Language for AI Models</h1>
+                    <p class="post-meta"><span>April 2, 2026</span><span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Nepali</span></p>
+                </div>
+                <div class="prose">
+<p>English models feel close to solved. Nepali still does not. I have spent a lot of time running Nepali text through LLMs, and the gap comes down to a few concrete things, not anything mysterious about the language.</p>
+<h2>There is not enough data</h2>
+<p>Models learn from scale. English has trillions of words of clean, varied text on the open web. Nepali has a small fraction of that, and a lot of what exists is low quality:</p>
+<ul><li>News copy that repeats the same handful of phrasings</li><li>Machine translated pages that teach the model broken grammar</li><li>Text with broken encoding, or romanized Nepali mixed in with Devanagari</li></ul>
+<p>Cleaning it is most of the work, and once it is clean there is far less left than you hoped for.</p>
+<h2>Tokenization works against it</h2>
+<p>Most tokenizers were built and tuned around English. They chop Devanagari into many small pieces, so a Nepali sentence uses two to four times more tokens than the same sentence in English. That has real effects:</p>
+<ul><li>Shorter usable context for the same token budget</li><li>Slower generation</li><li>More points where the model can lose the thread of a long sentence</li></ul>
+<p>Some newer tokenizers handle Indic scripts better, but plenty of deployed models still do not.</p>
+<h2>Quality is uneven</h2>
+<p>A large model can usually produce grammatical Nepali on common topics. It slips on:</p>
+<ul><li>Less common vocabulary and technical terms</li><li>Long or multi-part questions</li><li>Formal versus spoken register</li><li>Numbers, dates and honorifics</li></ul>
+<p>It also tends to fall back to English sentence structure translated word by word, which reads wrong to a native speaker even when every individual word is valid.</p>
+<h2>What actually helps</h2>
+<ul><li>Fine tuning on cleaned native Nepali text, not translated text</li><li>A tokenizer that does not shred the script</li><li>Keeping the model in Nepali end to end instead of translating in and back out</li><li>Real test prompts written by someone who speaks the language, so changes can be measured instead of guessed at</li></ul>
+<h2>Where this leaves us</h2>
+<p>Nepali is not hard because of anything about the language itself. It is hard because the data is thin, the tooling was built for English, and evaluation is still manual. All three are fixable with effort, which is most of why I keep working on it.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../../assets/subpage.js" defer></script>
+</body>
+
+</html>

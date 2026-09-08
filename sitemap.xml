@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.jhapendrakandel.com.np/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.jhapendrakandel.com.np/blog/</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.jhapendrakandel.com.np/toolbox/</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/</loc><lastmod>2026-09-08</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/</loc><lastmod>2026-09-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/toolbox/</loc><lastmod>2026-09-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/ai-threat-intelligence-pipeline/</loc><lastmod>2026-09-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.jhapendrakandel.com.np/blog/posts/hello-from-the-new-blog/</loc><lastmod>2026-09-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/cybersecurity-ai-agent-pipeline/</loc><lastmod>2026-09-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/llm-hallucinations-in-cybersecurity/</loc><lastmod>2026-08-25</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.jhapendrakandel.com.np/blog/posts/building-abc-news-solo/</loc><lastmod>2026-08-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/ai-agents-for-cybersecurity/</loc><lastmod>2026-08-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.jhapendrakandel.com.np/blog/posts/nepali-llm-at-home/</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/security-research-assistant-local-llms/</loc><lastmod>2026-08-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/internet-facing-server-attacked/</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/production-engineering-vs-code/</loc><lastmod>2026-07-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/localhost-to-production/</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/network-isolation-security-lab/</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/how-i-think-about-backups/</loc><lastmod>2026-06-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/multi-layer-server-architecture/</loc><lastmod>2026-05-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/cloudflare-tunnels-self-hosted/</loc><lastmod>2026-05-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/parallel-ai-agents/</loc><lastmod>2026-04-21</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/why-nepali-is-hard-for-ai/</loc><lastmod>2026-04-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.jhapendrakandel.com.np/blog/posts/running-llms-locally-vram/</loc><lastmod>2026-03-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

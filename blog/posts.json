@@ -22,5 +22,125 @@
     "tags": ["AI", "Homelab", "Nepali"],
     "excerpt": "Notes on fine-tuning and serving a Nepali LLM on a single AMD AI Pro 32GB GPU in my homelab.",
     "file": "nepali-llm-at-home.md"
+  },
+  {
+    "slug": "running-llms-locally-vram",
+    "title": "Running Large Language Models Locally: What VRAM Actually Means",
+    "date": "2026-03-18",
+    "tags": ["AI", "LLM", "Homelab"],
+    "excerpt": "Parameters are not gigabytes. Where VRAM really goes, why quantization works, and why a 70B model does not need 70GB.",
+    "file": "running-llms-locally-vram.md"
+  },
+  {
+    "slug": "why-nepali-is-hard-for-ai",
+    "title": "Why Nepali Is Still a Hard Language for AI Models",
+    "date": "2026-04-02",
+    "tags": ["AI", "LLM", "Nepali"],
+    "excerpt": "Thin data, tokenizers built for English, and manual evaluation. The concrete reasons Nepali still lags, and what helps.",
+    "file": "why-nepali-is-hard-for-ai.md"
+  },
+  {
+    "slug": "parallel-ai-agents",
+    "title": "Can Multiple AI Agents Work in Parallel? Understanding Parallel Agent Architectures",
+    "date": "2026-04-21",
+    "tags": ["AI", "LLM", "Agents"],
+    "excerpt": "When running AI agents in parallel actually helps, the architecture that works, and the judging step everyone skips.",
+    "file": "parallel-ai-agents.md"
+  },
+  {
+    "slug": "cloudflare-tunnels-self-hosted",
+    "title": "Cloudflare Tunnels as Part of a Self-Hosted Infrastructure",
+    "date": "2026-05-06",
+    "tags": ["Infra", "Homelab", "DevOps"],
+    "excerpt": "Exposing self-hosted services without opening ports: what tunnels buy you, how I use them, and where they fall short.",
+    "file": "cloudflare-tunnels-self-hosted.md"
+  },
+  {
+    "slug": "multi-layer-server-architecture",
+    "title": "What I Learned Designing a Multi-Layer Server Architecture",
+    "date": "2026-05-19",
+    "tags": ["Infra", "Homelab", "DevOps"],
+    "excerpt": "A VPS, a NAS, a backup box and some tunnels, each with one job. Why the separation happened and what it costs.",
+    "file": "multi-layer-server-architecture.md"
+  },
+  {
+    "slug": "how-i-think-about-backups",
+    "title": "How I Think About Backups After Designing My Own Infrastructure",
+    "date": "2026-06-03",
+    "tags": ["DevOps", "Infra", "Homelab"],
+    "excerpt": "Tiers not copies, the target pulls, keep history, test the restore. The backup model I use after building my own infra.",
+    "file": "how-i-think-about-backups.md"
+  },
+  {
+    "slug": "network-isolation-security-lab",
+    "title": "Why Network Isolation Matters in a Cybersecurity Lab",
+    "date": "2026-06-17",
+    "tags": ["Security", "Homelab", "Infra"],
+    "excerpt": "VLANs, default-deny between segments, and small-scale zero trust. Why isolation keeps a lab from becoming an incident.",
+    "file": "network-isolation-security-lab.md"
+  },
+  {
+    "slug": "localhost-to-production",
+    "title": "From Localhost to Production: Problems Nobody Mentions in Tutorials",
+    "date": "2026-07-01",
+    "tags": ["DevOps", "Infra"],
+    "excerpt": "DNS, service networking, permissions, containers and env config. The things that break the first few times you ship for real.",
+    "file": "localhost-to-production.md"
+  },
+  {
+    "slug": "production-engineering-vs-code",
+    "title": "Why Production Engineering Is Different from Writing Code",
+    "date": "2026-07-14",
+    "tags": ["DevOps"],
+    "excerpt": "Writing code that works is the small part. Reliability, monitoring, backups, security and deployment are the rest.",
+    "file": "production-engineering-vs-code.md"
+  },
+  {
+    "slug": "internet-facing-server-attacked",
+    "title": "What Happens When an Internet-Facing Server Gets Attacked?",
+    "date": "2026-07-23",
+    "tags": ["Security", "DevOps"],
+    "excerpt": "The constant background noise, what the attack surface really is, why logs must leave the box, and a short IR plan.",
+    "file": "internet-facing-server-attacked.md"
+  },
+  {
+    "slug": "security-research-assistant-local-llms",
+    "title": "Building a Security Research Assistant with Local LLMs",
+    "date": "2026-08-01",
+    "tags": ["AI", "Security", "LLM", "Homelab"],
+    "excerpt": "A private security research helper on local models: RAG for knowledge, tool calling for facts, and keeping output honest.",
+    "file": "security-research-assistant-local-llms.md"
+  },
+  {
+    "slug": "ai-agents-for-cybersecurity",
+    "title": "Using AI Agents for Cybersecurity: Where They Help and Where They Fail",
+    "date": "2026-08-12",
+    "tags": ["AI", "Security", "Agents"],
+    "excerpt": "Where AI agents genuinely help in security work, where they fail with confidence, and how to use them without getting burned.",
+    "file": "ai-agents-for-cybersecurity.md"
+  },
+  {
+    "slug": "llm-hallucinations-in-cybersecurity",
+    "title": "LLM Hallucinations in Cybersecurity: Why Verification Matters",
+    "date": "2026-08-25",
+    "tags": ["AI", "Security", "LLM"],
+    "excerpt": "Fabricated CVEs, plausible-but-wrong details, and made-up citations. Why every model claim in security work needs verifying.",
+    "file": "llm-hallucinations-in-cybersecurity.md"
+  },
+  {
+    "slug": "cybersecurity-ai-agent-pipeline",
+    "title": "Designing a Cybersecurity AI Agent Pipeline",
+    "date": "2026-09-01",
+    "tags": ["AI", "Security", "Agents"],
+    "excerpt": "Narrow specialized agents, evidence passed between stages, and a fact-check stage that assumes every finding is wrong.",
+    "file": "cybersecurity-ai-agent-pipeline.md"
+  },
+  {
+    "slug": "ai-threat-intelligence-pipeline",
+    "title": "Building an AI-Powered Threat Intelligence Pipeline",
+    "date": "2026-09-06",
+    "tags": ["AI", "Security", "Agents"],
+    "excerpt": "Collect, normalize, analyze, enrich, summarize. Turning the threat-intel firehose into a short digest, with AI as one stage.",
+    "file": "ai-threat-intelligence-pipeline.md"
   }
 ]

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>LLM Hallucinations in Cybersecurity: Why Verification Matters — Jhapendra Kandel</title>
+    <meta name="description" content="Fabricated CVEs, plausible-but-wrong details, and made-up citations. Why every model claim in security work needs verifying.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/posts/llm-hallucinations-in-cybersecurity/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="LLM Hallucinations in Cybersecurity: Why Verification Matters">
+    <meta property="og:description" content="Fabricated CVEs, plausible-but-wrong details, and made-up citations. Why every model claim in security work needs verifying.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/posts/llm-hallucinations-in-cybersecurity/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="article:published_time" content="2026-08-25">
+    <meta property="article:author" content="Jhapendra Kandel">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Security">
+    <meta property="article:tag" content="LLM">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LLM Hallucinations in Cybersecurity: Why Verification Matters">
+    <meta name="twitter:description" content="Fabricated CVEs, plausible-but-wrong details, and made-up citations. Why every model claim in security work needs verifying.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/base.css">
+    <link rel="stylesheet" href="../blog.css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "LLM Hallucinations in Cybersecurity: Why Verification Matters",
+    "description": "Fabricated CVEs, plausible-but-wrong details, and made-up citations. Why every model claim in security work needs verifying.",
+    "datePublished": "2026-08-25",
+    "dateModified": "2026-08-25",
+    "url": "https://www.jhapendrakandel.com.np/blog/posts/llm-hallucinations-in-cybersecurity/",
+    "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+    "author": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "url": "https://www.jhapendrakandel.com.np/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.jhapendrakandel.com.np/blog/posts/llm-hallucinations-in-cybersecurity/"
+    },
+    "keywords": "AI, Security, LLM"
+}
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.jhapendrakandel.com.np/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.jhapendrakandel.com.np/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "LLM Hallucinations in Cybersecurity: Why Verification Matters",
+            "item": "https://www.jhapendrakandel.com.np/blog/posts/llm-hallucinations-in-cybersecurity/"
+        }
+    ]
+}
+    </script>
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../../">Home</a>
+                <a href="../">Blog</a>
+                <a href="../../toolbox/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <article>
+                <a class="back-link" href="../">&larr; All posts</a>
+                <div class="post-head">
+                    <h1>LLM Hallucinations in Cybersecurity: Why Verification Matters</h1>
+                    <p class="post-meta"><span>August 25, 2026</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">LLM</span></p>
+                </div>
+                <div class="prose">
+<p>A language model that makes something up in a poem is a curiosity. One that makes something up in a vulnerability assessment is a liability. This is why I treat every model claim in security work as unverified until it is not.</p>
+<h2>What hallucination looks like here</h2>
+<ul><li>CVE numbers that do not exist, or that exist but describe something else entirely</li><li>Version numbers, config keys and command flags that are plausible but wrong</li><li>A described vulnerability in code that is not actually there</li><li>Citations to advisories or docs that were never written</li></ul>
+<p>The tone is the real problem. All of this comes out with the same confidence as correct output.</p>
+<h2>Why it is worse in security</h2>
+<ul><li>The claims are specific and technical, so they look exactly like the kind of thing a model would know</li><li>A wrong CVE or a missed real issue changes what gets fixed and what gets ignored</li><li>Reports get read by people who were not in the room, and they take the content at face value</li><li>A false finding wastes time. A fabricated all-clear is dangerous.</li></ul>
+<h2>Verification, concretely</h2>
+<ul><li>Check every CVE against a real database, not the model's memory</li><li>Confirm versions and config details against the actual system</li><li>Reproduce any claimed vulnerability before it goes in a report</li><li>Follow every citation to the real source</li><li>Prefer tools over recall for anything that has to be true</li></ul>
+<h2>Architecture, not good intentions</h2>
+<p>You do not fix this by asking the model to be careful. You fix it by building the workflow so claims must be backed:</p>
+<ul><li>Retrieval from a trusted local corpus</li><li>Tool calls for lookups and checks</li><li>A separate pass, sometimes a separate model, whose only job is to challenge claims</li><li>A human who reads the evidence</li></ul>
+<h2>The rule I keep</h2>
+<p>If a finding cannot be traced to a source or reproduced, it is not a finding yet. The model is allowed to suggest. It is not allowed to assert.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../../assets/subpage.js" defer></script>
+</body>
+
+</html>

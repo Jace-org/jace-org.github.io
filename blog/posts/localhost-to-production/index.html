@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>From Localhost to Production: Problems Nobody Mentions in Tutorials — Jhapendra Kandel</title>
+    <meta name="description" content="DNS, service networking, permissions, containers and env config. The things that break the first few times you ship for real.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/posts/localhost-to-production/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="From Localhost to Production: Problems Nobody Mentions in Tutorials">
+    <meta property="og:description" content="DNS, service networking, permissions, containers and env config. The things that break the first few times you ship for real.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/posts/localhost-to-production/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="article:published_time" content="2026-07-01">
+    <meta property="article:author" content="Jhapendra Kandel">
+    <meta property="article:tag" content="DevOps">
+    <meta property="article:tag" content="Infra">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="From Localhost to Production: Problems Nobody Mentions in Tutorials">
+    <meta name="twitter:description" content="DNS, service networking, permissions, containers and env config. The things that break the first few times you ship for real.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/base.css">
+    <link rel="stylesheet" href="../blog.css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "From Localhost to Production: Problems Nobody Mentions in Tutorials",
+    "description": "DNS, service networking, permissions, containers and env config. The things that break the first few times you ship for real.",
+    "datePublished": "2026-07-01",
+    "dateModified": "2026-07-01",
+    "url": "https://www.jhapendrakandel.com.np/blog/posts/localhost-to-production/",
+    "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+    "author": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "url": "https://www.jhapendrakandel.com.np/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.jhapendrakandel.com.np/blog/posts/localhost-to-production/"
+    },
+    "keywords": "DevOps, Infra"
+}
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.jhapendrakandel.com.np/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.jhapendrakandel.com.np/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "From Localhost to Production: Problems Nobody Mentions in Tutorials",
+            "item": "https://www.jhapendrakandel.com.np/blog/posts/localhost-to-production/"
+        }
+    ]
+}
+    </script>
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../../">Home</a>
+                <a href="../">Blog</a>
+                <a href="../../toolbox/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <article>
+                <a class="back-link" href="../">&larr; All posts</a>
+                <div class="post-head">
+                    <h1>From Localhost to Production: Problems Nobody Mentions in Tutorials</h1>
+                    <p class="post-meta"><span>July 1, 2026</span><span class="tag">DevOps</span><span class="tag">Infra</span></p>
+                </div>
+                <div class="prose">
+<p>The tutorial ends when it runs on your machine. That is where the real work starts. These are the things that broke the first few times I shipped something for real.</p>
+<h2>DNS</h2>
+<p>It works by name on your laptop because of a hosts file entry you forgot you added. In production you need a real domain, records pointed at the right place, and the patience to wait for propagation. Half of "the site is down" right after a launch is just DNS not having caught up yet.</p>
+<h2>Networking between services</h2>
+<p>On localhost everything is 127.0.0.1 and every port is open. In production your app, database and cache are separate hosts or containers on a network with rules. "Connection refused" almost always means the service is fine and the network is not.</p>
+<h2>Permissions</h2>
+<p>Your dev user can read and write everything. The production service account cannot, and should not. Files owned by the wrong user, a directory the app cannot write to, a mounted volume that came up owned by root: each of these costs an hour the first time you meet it.</p>
+<h2>Containers</h2>
+<p>The image that worked yesterday pulls a new base layer and breaks today. Config that is baked in at build time does not change just because you edited the file on the server. You learn to pin versions and to actually rebuild, not just pull.</p>
+<h2>Environment configuration</h2>
+<p>Secrets and settings that lived in your shell now have to come from somewhere on the server. Miss one variable and the app starts, looks healthy, and fails only on the one code path that needed it.</p>
+<h2>The pattern</h2>
+<p>Every one of these is the same lesson. Your machine is a forgiving environment full of state you set up without noticing. Production is a clean, locked-down machine that does exactly what you told it and nothing more. Shipping is mostly the work of finding everything you were relying on without knowing.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../../assets/subpage.js" defer></script>
+</body>
+
+</html>

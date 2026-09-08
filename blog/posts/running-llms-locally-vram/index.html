@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Running Large Language Models Locally: What VRAM Actually Means — Jhapendra Kandel</title>
+    <meta name="description" content="Parameters are not gigabytes. Where VRAM really goes, why quantization works, and why a 70B model does not need 70GB.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/posts/running-llms-locally-vram/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Running Large Language Models Locally: What VRAM Actually Means">
+    <meta property="og:description" content="Parameters are not gigabytes. Where VRAM really goes, why quantization works, and why a 70B model does not need 70GB.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/posts/running-llms-locally-vram/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="article:published_time" content="2026-03-18">
+    <meta property="article:author" content="Jhapendra Kandel">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="LLM">
+    <meta property="article:tag" content="Homelab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Running Large Language Models Locally: What VRAM Actually Means">
+    <meta name="twitter:description" content="Parameters are not gigabytes. Where VRAM really goes, why quantization works, and why a 70B model does not need 70GB.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/base.css">
+    <link rel="stylesheet" href="../blog.css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Running Large Language Models Locally: What VRAM Actually Means",
+    "description": "Parameters are not gigabytes. Where VRAM really goes, why quantization works, and why a 70B model does not need 70GB.",
+    "datePublished": "2026-03-18",
+    "dateModified": "2026-03-18",
+    "url": "https://www.jhapendrakandel.com.np/blog/posts/running-llms-locally-vram/",
+    "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+    "author": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "url": "https://www.jhapendrakandel.com.np/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.jhapendrakandel.com.np/blog/posts/running-llms-locally-vram/"
+    },
+    "keywords": "AI, LLM, Homelab"
+}
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.jhapendrakandel.com.np/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.jhapendrakandel.com.np/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Running Large Language Models Locally: What VRAM Actually Means",
+            "item": "https://www.jhapendrakandel.com.np/blog/posts/running-llms-locally-vram/"
+        }
+    ]
+}
+    </script>
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../../">Home</a>
+                <a href="../">Blog</a>
+                <a href="../../toolbox/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <article>
+                <a class="back-link" href="../">&larr; All posts</a>
+                <div class="post-head">
+                    <h1>Running Large Language Models Locally: What VRAM Actually Means</h1>
+                    <p class="post-meta"><span>March 18, 2026</span><span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Homelab</span></p>
+                </div>
+                <div class="prose">
+<p>People ask why a 14B model runs fine on my card but a 70B one will not, and whether "70B" is supposed to mean "70GB". It does not. Here is how the numbers actually work.</p>
+<h2>Parameters are not gigabytes</h2>
+<p>A parameter is one number the model learned during training. Model size is quoted as a count: 7B, 14B, 70B. What that count costs in memory depends on how many bytes each number takes up.</p>
+<ul><li>Full precision (FP32): 4 bytes per parameter</li><li>Half precision (FP16 or BF16): 2 bytes per parameter</li><li>4-bit quantized: about 0.5 bytes per parameter</li></ul>
+<p>So a 14B model is roughly 28GB at FP16, or about 8GB at 4-bit. Same model, very different footprint.</p>
+<h2>Quantization</h2>
+<p>Quantization stores each weight in fewer bits. 4-bit is the common sweet spot: the model gets about four times smaller and runs faster, and for most tasks the quality drop is small enough that you have to look for it. Go much below 4-bit and it starts to show. This is the main reason a 32GB card can run a model that on paper looks far too big.</p>
+<h2>Why 70B still does not fit</h2>
+<p>Weights are only part of the bill. You also pay for:</p>
+<ul><li>The KV cache, which grows with context length. Long prompts cost real memory.</li><li>Activations during the forward pass</li><li>Overhead from the runtime itself</li></ul>
+<p>A 70B model at 4-bit is around 35 to 40GB of weights alone, before any context. That is why it will not sit on a 32GB card without splitting across devices or offloading layers to system RAM, which is much slower than the GPU.</p>
+<h2>Rules of thumb I use</h2>
+<ul><li>4-bit memory needed, in GB, is roughly the parameter count in billions divided by two, then add headroom for context</li><li>Leave a few GB free. A model that only just fits will fall back to CPU or crash on a long prompt.</li><li>If it does not fit, move to a smaller model before you drop below 4-bit</li></ul>
+<h2>What this means in practice</h2>
+<p>On a 32GB card I run mid-size models comfortably at 4-bit with a decent context window, and I can keep two smaller models resident at once. The trick is not chasing the biggest number. It is matching the model to the memory you have, and knowing where that memory actually goes.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../../assets/subpage.js" defer></script>
+</body>
+
+</html>

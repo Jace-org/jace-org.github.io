@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>How I Think About Backups After Designing My Own Infrastructure — Jhapendra Kandel</title>
+    <meta name="description" content="Tiers not copies, the target pulls, keep history, test the restore. The backup model I use after building my own infra.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/posts/how-i-think-about-backups/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="How I Think About Backups After Designing My Own Infrastructure">
+    <meta property="og:description" content="Tiers not copies, the target pulls, keep history, test the restore. The backup model I use after building my own infra.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/posts/how-i-think-about-backups/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="article:published_time" content="2026-06-03">
+    <meta property="article:author" content="Jhapendra Kandel">
+    <meta property="article:tag" content="DevOps">
+    <meta property="article:tag" content="Infra">
+    <meta property="article:tag" content="Homelab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How I Think About Backups After Designing My Own Infrastructure">
+    <meta name="twitter:description" content="Tiers not copies, the target pulls, keep history, test the restore. The backup model I use after building my own infra.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/base.css">
+    <link rel="stylesheet" href="../blog.css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How I Think About Backups After Designing My Own Infrastructure",
+    "description": "Tiers not copies, the target pulls, keep history, test the restore. The backup model I use after building my own infra.",
+    "datePublished": "2026-06-03",
+    "dateModified": "2026-06-03",
+    "url": "https://www.jhapendrakandel.com.np/blog/posts/how-i-think-about-backups/",
+    "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+    "author": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "url": "https://www.jhapendrakandel.com.np/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.jhapendrakandel.com.np/blog/posts/how-i-think-about-backups/"
+    },
+    "keywords": "DevOps, Infra, Homelab"
+}
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.jhapendrakandel.com.np/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.jhapendrakandel.com.np/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "How I Think About Backups After Designing My Own Infrastructure",
+            "item": "https://www.jhapendrakandel.com.np/blog/posts/how-i-think-about-backups/"
+        }
+    ]
+}
+    </script>
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../../">Home</a>
+                <a href="../">Blog</a>
+                <a href="../../toolbox/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <article>
+                <a class="back-link" href="../">&larr; All posts</a>
+                <div class="post-head">
+                    <h1>How I Think About Backups After Designing My Own Infrastructure</h1>
+                    <p class="post-meta"><span>June 3, 2026</span><span class="tag">DevOps</span><span class="tag">Infra</span><span class="tag">Homelab</span></p>
+                </div>
+                <div class="prose">
+<p>I used to think a nightly copy was a backup. Then I designed a setup I actually had to trust, and my definition changed. This is the model I use now.</p>
+<h2>Tiers, not one copy</h2>
+<ul><li>Primary server: the live data</li><li>Secondary server: a second machine that pulls copies on a schedule</li><li>NAS: bulk and medium-term storage, larger and cheaper per gigabyte</li><li>Off-site or older data: history kept somewhere the live machines cannot touch</li></ul>
+<p>Each tier answers a different failure. One disk dies. One server dies. One bad deploy. One account gets compromised.</p>
+<h2>Rules I follow</h2>
+<ul><li>The backup target pulls. The source cannot write into it. If a compromised server can delete its own backups, they were never backups.</li><li>Keep history, not just the latest copy. Corruption often gets copied for days before anyone notices.</li><li>A backup you have never restored is a guess. Test the restore, not just the schedule.</li><li>Alert on missing backups. A silent job that quietly stopped a week ago is the usual way people find out too late.</li></ul>
+<h2>Recovery is the real metric</h2>
+<p>The numbers that matter are how long it takes to get back to working, and how much data you lose along the way. I try to know both for each machine before I need them. If the answer is "I am not sure", that is the next thing to fix.</p>
+<h2>What this looks like day to day</h2>
+<p>Nightly pulls to the secondary and the NAS. Older snapshots retained on a schedule so I can go back weeks, not just to last night. A small check that shouts if any of it did not run. Nothing clever. The value is in it being boring and tested.</p>
+<h2>The mindset shift</h2>
+<p>I stopped asking "is it backed up" and started asking "what happens when this exact machine is gone". That question forces the tiers, the pull model, the retained history and the restore test to fall out on their own.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../../assets/subpage.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Designing a Cybersecurity AI Agent Pipeline — Jhapendra Kandel</title>
+    <meta name="description" content="Narrow specialized agents, evidence passed between stages, and a fact-check stage that assumes every finding is wrong.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/posts/cybersecurity-ai-agent-pipeline/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Designing a Cybersecurity AI Agent Pipeline">
+    <meta property="og:description" content="Narrow specialized agents, evidence passed between stages, and a fact-check stage that assumes every finding is wrong.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/posts/cybersecurity-ai-agent-pipeline/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="article:published_time" content="2026-09-01">
+    <meta property="article:author" content="Jhapendra Kandel">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Security">
+    <meta property="article:tag" content="Agents">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Designing a Cybersecurity AI Agent Pipeline">
+    <meta name="twitter:description" content="Narrow specialized agents, evidence passed between stages, and a fact-check stage that assumes every finding is wrong.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/base.css">
+    <link rel="stylesheet" href="../blog.css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Designing a Cybersecurity AI Agent Pipeline",
+    "description": "Narrow specialized agents, evidence passed between stages, and a fact-check stage that assumes every finding is wrong.",
+    "datePublished": "2026-09-01",
+    "dateModified": "2026-09-01",
+    "url": "https://www.jhapendrakandel.com.np/blog/posts/cybersecurity-ai-agent-pipeline/",
+    "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+    "author": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "url": "https://www.jhapendrakandel.com.np/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.jhapendrakandel.com.np/blog/posts/cybersecurity-ai-agent-pipeline/"
+    },
+    "keywords": "AI, Security, Agents"
+}
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.jhapendrakandel.com.np/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.jhapendrakandel.com.np/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Designing a Cybersecurity AI Agent Pipeline",
+            "item": "https://www.jhapendrakandel.com.np/blog/posts/cybersecurity-ai-agent-pipeline/"
+        }
+    ]
+}
+    </script>
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../../">Home</a>
+                <a href="../">Blog</a>
+                <a href="../../toolbox/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <article>
+                <a class="back-link" href="../">&larr; All posts</a>
+                <div class="post-head">
+                    <h1>Designing a Cybersecurity AI Agent Pipeline</h1>
+                    <p class="post-meta"><span>September 1, 2026</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
+                </div>
+                <div class="prose">
+<p>One big agent told to "do security analysis" produces confident mush. Splitting the work into a pipeline of narrow agents, with evidence passed between them, works much better. Here is the design I have landed on.</p>
+<h2>Stages</h2>
+<ol><li>Collect: gather raw material, scan output, logs, configs, target information, from real sources and tools</li><li>Normalize: turn all of it into a consistent structured form the later stages can reason over</li><li>Analyze: specialized agents each look at one thing, misconfigurations, exposed services, known CVEs, and flag candidates</li><li>Fact-check: a separate stage verifies each candidate against a database, a reproduction, or the actual system</li><li>Summarize: turn what survived verification into a report, with evidence attached</li></ol>
+<h2>Specialized agents beat one generalist</h2>
+<p>Each analysis agent gets a narrow job, a small prompt, and only the context it needs. That means:</p>
+<ul><li>Less drift and less invention</li><li>Failures are easy to locate</li><li>I can improve one stage without disturbing the rest</li></ul>
+<h2>Evidence is the currency</h2>
+<p>Nothing moves between stages as an assertion. It moves as a claim plus its evidence: the log line, the tool output, the database record. The summarize stage is not allowed to include anything that arrived without evidence.</p>
+<h2>The fact-check stage is not optional</h2>
+<p>This is the stage that makes the rest safe. It assumes every candidate finding is wrong until a lookup, a reproduction, or a check against the real system says otherwise. Ideally it uses different tools, and sometimes a different model, than the stage that produced the finding.</p>
+<h2>Humans in the loop</h2>
+<p>A person reviews the verified findings before anything is delivered. The pipeline's job is to get from noise to a short, evidence-backed list quickly. The judgement about severity, scope and what to do stays with a human.</p>
+<h2>Why bother</h2>
+<p>Done this way, the agents do the tedious wide-net work, the verification stage catches the confident nonsense, and I spend my time on the part that needs a person. That is the only division of labour with AI in security that I actually trust.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../../assets/subpage.js" defer></script>
+</body>
+
+</html>

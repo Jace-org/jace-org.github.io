@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Why Production Engineering Is Different from Writing Code — Jhapendra Kandel</title>
+    <meta name="description" content="Writing code that works is the small part. Reliability, monitoring, backups, security and deployment are the rest.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://www.jhapendrakandel.com.np/blog/posts/production-engineering-vs-code/">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Why Production Engineering Is Different from Writing Code">
+    <meta property="og:description" content="Writing code that works is the small part. Reliability, monitoring, backups, security and deployment are the rest.">
+    <meta property="og:url" content="https://www.jhapendrakandel.com.np/blog/posts/production-engineering-vs-code/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="article:published_time" content="2026-07-14">
+    <meta property="article:author" content="Jhapendra Kandel">
+    <meta property="article:tag" content="DevOps">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why Production Engineering Is Different from Writing Code">
+    <meta name="twitter:description" content="Writing code that works is the small part. Reliability, monitoring, backups, security and deployment are the rest.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/base.css">
+    <link rel="stylesheet" href="../blog.css">
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Why Production Engineering Is Different from Writing Code",
+    "description": "Writing code that works is the small part. Reliability, monitoring, backups, security and deployment are the rest.",
+    "datePublished": "2026-07-14",
+    "dateModified": "2026-07-14",
+    "url": "https://www.jhapendrakandel.com.np/blog/posts/production-engineering-vs-code/",
+    "image": "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png",
+    "author": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel",
+        "url": "https://www.jhapendrakandel.com.np/"
+    },
+    "publisher": {
+        "@type": "Person",
+        "name": "Jhapendra Kandel"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.jhapendrakandel.com.np/blog/posts/production-engineering-vs-code/"
+    },
+    "keywords": "DevOps"
+}
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.jhapendrakandel.com.np/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://www.jhapendrakandel.com.np/blog/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Why Production Engineering Is Different from Writing Code",
+            "item": "https://www.jhapendrakandel.com.np/blog/posts/production-engineering-vs-code/"
+        }
+    ]
+}
+    </script>
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../../">Home</a>
+                <a href="../">Blog</a>
+                <a href="../../toolbox/">Resources</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <article>
+                <a class="back-link" href="../">&larr; All posts</a>
+                <div class="post-head">
+                    <h1>Why Production Engineering Is Different from Writing Code</h1>
+                    <p class="post-meta"><span>July 14, 2026</span><span class="tag">DevOps</span></p>
+                </div>
+                <div class="prose">
+<p>Writing code that works is a small part of running something people depend on. The rest is a different skill set, and it is the part that decides whether the thing stays up.</p>
+<h2>Writing code answers "does it work"</h2>
+<p>Production engineering answers a harder set of questions:</p>
+<ul><li>Does it still work at 3am with nobody watching</li><li>What happens when a dependency is slow or down</li><li>How do I find out it broke before a user tells me</li><li>How fast can I get it back</li><li>What is the damage if it is attacked, or the data leaks</li></ul>
+<h2>The parts that are not code</h2>
+<ul><li>Reliability: retries, timeouts, graceful failure, not falling over because one thing hiccuped</li><li>Monitoring: metrics and alerts that fire on real problems and stay quiet on noise</li><li>Backups: tested restores, retained history, a target the main box cannot wipe</li><li>Security: least privilege, patched systems, a small attack surface, secrets kept out of the repo</li><li>Deployment: a repeatable way to ship and to roll back, so a bad release is a five minute problem</li></ul>
+<h2>A different sense of "done"</h2>
+<p>Code is done when the feature works. A production system is never done. It needs patching, its dependencies move, its traffic changes, and its failure modes only show up under load you did not test for. "Done" turns into "running well and easy to fix".</p>
+<h2>Why it is worth learning</h2>
+<p>Building every layer of my own infrastructure forced this on me. There was no ops team to hand a broken thing to. That was slow, but now when something is wrong I can tell whether it is the code, the container, the database, the network or the host, because I own all of them. Writing the code was the easy half.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../../assets/subpage.js" defer></script>
+</body>
+
+</html>
