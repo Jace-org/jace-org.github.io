@@ -7,9 +7,9 @@
     <meta name="theme-color" content="#000000">
     <meta name="color-scheme" content="dark">
 
-    <title>Hack Me — Challenge Coming Soon | Jhapendra Kandel</title>
+    <title>Hack Me — Try My Labs | Jhapendra Kandel</title>
     <meta name="description"
-        content="A capture-the-flag style honeypot challenge by Jhapendra Kandel. Not live yet. Drop your email and get pinged the moment it goes online.">
+        content="Try to hack my labs. Get in and you get a genuine congratulations for being a pro. Not live yet. Leave your email and get told when the door opens.">
     <meta name="author" content="Jhapendra Kandel">
     <link rel="canonical" href="https://www.jhapendrakandel.com.np/hack-me/">
 
@@ -17,9 +17,9 @@
         href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Hack Me — Challenge Coming Soon">
+    <meta property="og:title" content="Hack Me — Try My Labs">
     <meta property="og:description"
-        content="A CTF style honeypot challenge. Not live yet. Stay alerted.">
+        content="Try to hack my labs. Get in and you get a genuine congratulations. Not live yet. Stay alerted.">
     <meta property="og:url" content="https://www.jhapendrakandel.com.np/hack-me/">
     <meta property="og:image"
         content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
@@ -367,32 +367,33 @@
     <div class="fx vignette"></div>
 
     <main class="wrap">
-        <div class="tag">// jhapendrakandel.com.np / security-lab</div>
+        <div class="tag">// jhapendrakandel.com.np / try-to-hack-my-labs</div>
         <h1 class="glitch" data-text="HACK ME">HACK ME</h1>
 
         <section class="term" aria-label="System status">
             <div class="term-bar">
                 <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-                <span>root@honeypot: ~ /challenge</span>
+                <span>guest@labs: ~ $ (access denied)</span>
             </div>
             <div class="term-body" id="termBody"></div>
         </section>
 
         <form class="notify" id="notifyForm" method="POST"
             action="https://formsubmit.co/jhapendrakandel.mac@gmail.com">
-            <p>Challenge is offline. Leave your email and get one message the day it drops.</p>
+            <p>Labs are offline for now. Leave your email and I will ping you once when
+                there is finally a door for you to bang your head against.</p>
             <div class="row">
                 <input type="email" name="email" placeholder="you@domain.tld" required autocomplete="email">
                 <button type="submit">&gt; notify_me</button>
             </div>
-            <input type="hidden" name="_subject" value="hack-me challenge — alert signup">
+            <input type="hidden" name="_subject" value="hack-me labs — alert signup">
             <input type="hidden" name="_next" value="https://www.jhapendrakandel.com.np/thanks.html">
             <input type="hidden" name="_template" value="table">
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         </form>
 
         <div class="foot">
-            <span class="pulse">STATUS: COMING SOON</span>
+            <span class="pulse">STATUS: LOCKED // COMING SOON</span>
             <a href="/">&larr; back to main site</a>
             <a href="/blog/">read the blog</a>
         </div>
@@ -443,18 +444,21 @@
         (function () {
             var target = document.getElementById("termBody");
             var lines = [
-                { t: "$ ./init_challenge --env prod", cls: "" },
-                { t: "[  ok  ] spinning up isolated honeypot container", cls: "ok" },
-                { t: "[  ok  ] loading trap set: web / auth / recon", cls: "ok" },
-                { t: "[ warn ] public endpoint not yet exposed", cls: "warn" },
-                { t: "[ fail ] scoreboard service :: OFFLINE", cls: "err" },
+                { t: "$ ssh guest@labs.jhapendrakandel.com.np", cls: "" },
+                { t: "[  ok  ] connection reached the box", cls: "ok" },
+                { t: "[  ok  ] your recon so far ....... noted, unimpressed", cls: "ok" },
+                { t: "[ warn ] labs not exposed to the public yet", cls: "warn" },
+                { t: "[ fail ] your access level ....... GUEST (read: nobody)", cls: "err" },
                 { t: "", cls: "" },
-                { t: "> challenge build ..... 87% complete", cls: "muted" },
-                { t: "> deploy window ....... SOON", cls: "muted" },
+                { t: "> nmap -sV your-skills ... 0 open ports found", cls: "muted" },
+                { t: "> deploy window ......... SOON(tm)", cls: "muted" },
                 { t: "", cls: "" },
-                { t: "MESSAGE: A CTF-style honeypot is being built here.", cls: "ok" },
-                { t: "         Your job will be to break in, escalate,", cls: "ok" },
-                { t: "         and capture the flag. Stay alerted.", cls: "ok" }
+                { t: "MESSAGE: This is Hack Me. Try to hack my labs.", cls: "ok" },
+                { t: "         Actually get in and I will congratulate you,", cls: "ok" },
+                { t: "         publicly, for being a genuine pro.", cls: "ok" },
+                { t: "         Until then: copy-pasting a payload off Google", cls: "ok" },
+                { t: "         and watching one YouTube video does not make", cls: "ok" },
+                { t: "         you a hacker. Come back when it is live.", cls: "ok" }
             ];
 
             var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
