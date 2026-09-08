@@ -162,8 +162,8 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/base.css">
-    <link rel="stylesheet" href="../blog.css">
+    <link rel="stylesheet" href="../../../assets/base.css">
+    <link rel="stylesheet" href="../../blog.css">
     <script type="application/ld+json">
     {jsonld}
     </script>
@@ -189,11 +189,11 @@ POST_TEMPLATE = """<!DOCTYPE html>
 
     <header class="subnav">
         <div class="subnav-inner">
-            <a class="home" href="../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <a class="home" href="../../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
             <nav class="links" aria-label="Sections">
-                <a href="../../">Home</a>
-                <a href="../">Blog</a>
-                <a href="../../toolbox/">Resources</a>
+                <a href="../../../">Home</a>
+                <a href="../../">Blog</a>
+                <a href="../../../toolbox/">Resources</a>
             </nav>
             <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
         </div>
@@ -202,7 +202,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <main id="main" class="page">
         <div class="wrap">
             <article>
-                <a class="back-link" href="../">&larr; All posts</a>
+                <a class="back-link" href="../../">&larr; All posts</a>
                 <div class="post-head">
                     <h1>{title}</h1>
                     <p class="post-meta"><span>{display_date}</span>{tag_html}</p>
@@ -215,11 +215,11 @@ POST_TEMPLATE = """<!DOCTYPE html>
     </main>
 
     <footer class="subfooter">
-        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../">home</a> · <a
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../../">home</a> · <a
                 href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
     </footer>
 
-    <script src="../../assets/subpage.js" defer></script>
+    <script src="../../../assets/subpage.js" defer></script>
 </body>
 
 </html>
