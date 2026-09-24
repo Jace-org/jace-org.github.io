@@ -30,7 +30,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BLOG = ROOT / "blog"
-SITE = "https://www.jhapendrakandel.com.np"
+SITE = "https://portfolio.jhapendrakandel.com.np"
 LOGO = "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png"
 
 # ---------------------------------------------------------------- markdown

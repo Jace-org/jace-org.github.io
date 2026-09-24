@@ -14,9 +14,9 @@ description and were effectively invisible to search individually.
 Fixed: each post now has a real static page at its own URL, generated
 by `blog/build.py` from `blog/posts.json`:
 
-- `https://www.jhapendrakandel.com.np/blog/posts/hello-from-the-new-blog/`
-- `https://www.jhapendrakandel.com.np/blog/posts/building-abc-news-solo/`
-- `https://www.jhapendrakandel.com.np/blog/posts/nepali-llm-at-home/`
+- `https://portfolio.jhapendrakandel.com.np/blog/posts/hello-from-the-new-blog/`
+- `https://portfolio.jhapendrakandel.com.np/blog/posts/building-abc-news-solo/`
+- `https://portfolio.jhapendrakandel.com.np/blog/posts/nepali-llm-at-home/`
 
 Each has its own `<title>`, meta description, canonical URL, OG/Twitter
 tags, and JSON-LD `BlogPosting` schema. `sitemap.xml` was regenerated
@@ -36,8 +36,8 @@ what Google actually sees from here on — check that assumption first.
 
 1. **Is the new content actually live?**
    ```
-   curl -s https://www.jhapendrakandel.com.np/sitemap.xml
-   curl -s https://www.jhapendrakandel.com.np/blog/posts/hello-from-the-new-blog/ | grep -o '<title>[^<]*</title>'
+   curl -s https://portfolio.jhapendrakandel.com.np/sitemap.xml
+   curl -s https://portfolio.jhapendrakandel.com.np/blog/posts/hello-from-the-new-blog/ | grep -o '<title>[^<]*</title>'
    ```
    Sitemap should show 6 `<url>` entries with `<lastmod>`. The post page
    should NOT return the generic "Blog — Jhapendra Kandel" title — it
