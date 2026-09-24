@@ -31,6 +31,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BLOG = ROOT / "blog"
 SITE = "https://portfolio.jhapendrakandel.com.np"
+# The blog is primary on the apex (Fableweb); these static posts are a mirror, so
+# they canonicalise there to avoid duplicate-content splits in search.
+APEX = "https://jhapendrakandel.com.np"
 LOGO = "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png"
 
 # ---------------------------------------------------------------- markdown
@@ -233,7 +236,7 @@ def build_posts(posts):
         md = re.sub(r"^\s*#\s+.*\n", "", md, count=1)  # drop duplicate H1
         body = render_markdown(md)
 
-        url = f"{SITE}/blog/posts/{p['slug']}/"
+        url = f"{APEX}/blog/{p['slug']}"
         tags = p.get("tags", [])
         tag_html = "".join(f'<span class="tag">{esc(t)}</span>' for t in tags)
         tag_meta = "\n".join(f'    <meta property="article:tag" content="{esc(t)}">' for t in tags)
@@ -260,7 +263,7 @@ def build_posts(posts):
             "@type": "BreadcrumbList",
             "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE}/"},
-                {"@type": "ListItem", "position": 2, "name": "Blog", "item": f"{SITE}/blog/"},
+                {"@type": "ListItem", "position": 2, "name": "Blog", "item": f"{APEX}/blog"},
                 {"@type": "ListItem", "position": 3, "name": p["title"], "item": url},
             ],
         }, ensure_ascii=False, indent=4)
@@ -317,13 +320,11 @@ def update_sitemap(posts):
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     static_urls = [
         (f"{SITE}/", "monthly", "1.0", today),
-        (f"{SITE}/blog/", "weekly", "0.8", today),
         (f"{SITE}/toolbox/", "monthly", "0.6", today),
+        (f"{SITE}/hack-me/", "monthly", "0.6", today),
     ]
-    post_urls = [
-        (f"{SITE}/blog/posts/{p['slug']}/", "monthly", "0.7", p["date"])
-        for p in posts
-    ]
+    # blog index + posts canonicalise to the apex, so they are not listed here
+    post_urls = []
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for loc, freq, prio, lastmod in static_urls + post_urls:
