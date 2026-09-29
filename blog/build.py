@@ -30,9 +30,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BLOG = ROOT / "blog"
-SITE = "https://portfolio.jhapendrakandel.com.np"
-# The blog is primary on the apex (Fableweb); these static posts are a mirror, so
-# they canonicalise there to avoid duplicate-content splits in search.
+SITE = "https://jhapendrakandel.com.np"
+# The blog is primary on the apex (this static site); Fableweb's copy at
+# portfolio.jhapendrakandel.com.np canonicalises here to avoid duplicate-content splits.
 APEX = "https://jhapendrakandel.com.np"
 LOGO = "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png"
 
@@ -323,8 +323,9 @@ def update_sitemap(posts):
         (f"{SITE}/toolbox/", "monthly", "0.6", today),
         (f"{SITE}/hack-me/", "monthly", "0.6", today),
     ]
-    # blog index + posts canonicalise to the apex, so they are not listed here
-    post_urls = []
+    # the blog is canonical on this host, so it is listed here
+    post_urls = [(f"{SITE}/blog", "weekly", "0.8", posts[0]["date"] if posts else today)]
+    post_urls += [(f"{SITE}/blog/{p['slug']}", "monthly", "0.7", p["date"]) for p in posts]
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for loc, freq, prio, lastmod in static_urls + post_urls:
