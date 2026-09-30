@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Honeypot Lab Project — Jhapendra Kandel</title>
+    <meta name="description"
+        content="Project concept: a web-based honeypot management and security assessment portal built with Flask, Jinja2 and MySQL.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://jhapendrakandel.com.np/project/">
+    <link rel="icon" type="image/png"
+        href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Honeypot Lab Project — Jhapendra Kandel">
+    <meta property="og:description"
+        content="Project concept: a web-based honeypot management and security assessment portal.">
+    <meta property="og:url" content="https://jhapendrakandel.com.np/project/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/base.css">
+    <link rel="stylesheet" href="project.css">
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../">Home</a>
+                <a href="../blog/">Blog</a>
+                <a href="../toolbox/">Resources</a>
+                <a href="./" aria-current="page">Project</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <div class="page-head reveal">
+                <p class="kicker">Module project concept</p>
+                <h1>Honeypot Lab</h1>
+                <p>A web-based honeypot management and security assessment portal. Attackers hit deliberately weak
+                    decoy services, analysts manage the response in a portal, and then the portal itself is attacked,
+                    fixed and retested.</p>
+            </div>
+
+            <section class="proj-section reveal">
+                <h2>The idea</h2>
+                <p>Most security projects either break things or defend things. This one does both in one story. A
+                    honeypot lures and records attackers. A management portal, used by a small security team, turns
+                    those records into cases, blocklists and alerts. The portal is then treated as a real
+                    application under assessment: its vulnerabilities are found, demonstrated, fixed and proven fixed.
+                </p>
+            </section>
+
+            <section class="proj-section reveal">
+                <h2>How it fits together</h2>
+                <ol class="proj-steps">
+                    <li><strong>Decoys</strong> are intentionally vulnerable web pages and a fake API. They never
+                        hold real data and have no outbound internet access.</li>
+                    <li><strong>Event capture</strong> records every probe (who, what, when, which payload type) and
+                        classifies it, for example SQL injection, XSS or path traversal.</li>
+                    <li><strong>The portal</strong> is where analysts log in to review events, open incidents, block
+                        sources and set alert rules.</li>
+                    <li><strong>Assessment</strong> is the second half: the portal is attacked with standard tools,
+                        the flaws are fixed, and the same tests are run again.</li>
+                </ol>
+            </section>
+
+            <section class="proj-section reveal">
+                <h2>Portal modules</h2>
+                <div class="proj-grid">
+                    <div class="proj-card">
+                        <h3>Users &amp; roles</h3>
+                        <p>Admin and analyst accounts, secure login, role-based access.</p>
+                    </div>
+                    <div class="proj-card">
+                        <h3>Incidents</h3>
+                        <p>Open, triage, assign and close cases built from captured attacks.</p>
+                    </div>
+                    <div class="proj-card">
+                        <h3>Blocklist</h3>
+                        <p>Maintain a watchlist of hostile sources with notes and expiry.</p>
+                    </div>
+                    <div class="proj-card">
+                        <h3>Alert rules</h3>
+                        <p>Choose what counts as serious and where the notification goes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="proj-section reveal">
+                <h2>Security assessment plan</h2>
+                <p>The portal is first built with a small set of realistic, documented weaknesses. Each one follows
+                    the same loop: find it, demonstrate it, fix it, retest it.</p>
+                <div class="table-scroll">
+                    <table class="proj-table">
+                        <thead>
+                            <tr>
+                                <th>Weakness class</th>
+                                <th>What it shows</th>
+                                <th>Type of fix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Injection</td>
+                                <td>Unsafe handling of search input</td>
+                                <td>Safe query handling, input validation</td>
+                            </tr>
+                            <tr>
+                                <td>Cross-site scripting</td>
+                                <td>Untrusted notes shown back to users</td>
+                                <td>Output encoding, content security policy</td>
+                            </tr>
+                            <tr>
+                                <td>Broken access control</td>
+                                <td>Analysts reaching admin functions</td>
+                                <td>Server-side role checks</td>
+                            </tr>
+                            <tr>
+                                <td>Insecure direct object reference</td>
+                                <td>Viewing another user's cases by changing an ID</td>
+                                <td>Ownership checks on every request</td>
+                            </tr>
+                            <tr>
+                                <td>Weak session handling</td>
+                                <td>Predictable or long-lived sessions</td>
+                                <td>Hardened cookies, expiry, rotation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="proj-section reveal">
+                <h2>Technology</h2>
+                <ul>
+                    <li><strong>Backend:</strong> Flask REST API</li>
+                    <li><strong>Frontend:</strong> Jinja2 templates</li>
+                    <li><strong>Database:</strong> MySQL</li>
+                    <li><strong>Authentication:</strong> session or token based, with hashed passwords</li>
+                    <li><strong>Testing:</strong> Burp Suite, Nmap and manual checks</li>
+                    <li><strong>Version control:</strong> Git and GitHub</li>
+                </ul>
+            </section>
+
+            <section class="proj-section reveal">
+                <h2>What gets delivered</h2>
+                <ul>
+                    <li>A working portal with four management modules and two user roles</li>
+                    <li>Honeypot decoys feeding real attack data into it</li>
+                    <li>A threat model and an ethics and legal statement</li>
+                    <li>A findings table: vulnerability, evidence, fix, retest result</li>
+                    <li>A written report with before-and-after comparison</li>
+                </ul>
+            </section>
+
+            <section class="proj-section reveal">
+                <h2>Ethics and scope</h2>
+                <p class="proj-note">All testing is carried out only on systems I own, inside an isolated,
+                    authorised lab environment. The decoys hold no real data, cannot reach the internet, and never
+                    execute anything an attacker uploads.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../">home</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <script src="../assets/subpage.js" defer></script>
+</body>
+
+</html>

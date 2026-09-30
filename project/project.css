@@ -1,0 +1,78 @@
+/* /project page styles. Loaded after ../assets/base.css */
+
+.proj-section { margin-bottom: 44px; }
+
+.proj-section h2 {
+    font-family: var(--font-display);
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .22em;
+    color: var(--gold);
+    margin: 0 0 16px;
+}
+
+.proj-section p,
+.proj-section li { color: var(--c-muted); line-height: 1.7; }
+
+.proj-section ul { padding-left: 1.2rem; margin: 0; }
+.proj-section li { margin-bottom: 8px; }
+.proj-section li strong { color: var(--c-text); }
+
+.proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+}
+
+.proj-card {
+    padding: 18px 20px;
+    border-radius: 14px;
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+}
+
+.proj-card h3 { margin: 0 0 6px; font-size: 1rem; color: var(--c-text); }
+.proj-card p { margin: 0; font-size: .92rem; }
+
+.proj-table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.proj-table th,
+.proj-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--c-border);
+    color: var(--c-muted);
+    vertical-align: top;
+}
+.proj-table th { color: var(--c-text); font-weight: 600; }
+.table-scroll { overflow-x: auto; }
+
+.proj-steps { counter-reset: step; list-style: none; padding: 0; }
+.proj-steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 44px;
+    margin-bottom: 14px;
+}
+.proj-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: .85rem;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+}
+
+.proj-note {
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--gold);
+    background: var(--gold-soft);
+    color: var(--c-muted);
+    font-size: .92rem;
+}
