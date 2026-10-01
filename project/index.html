@@ -8,7 +8,7 @@
     <meta name="color-scheme" content="dark light">
     <title>Honeypot Lab Project — Jhapendra Kandel</title>
     <meta name="description"
-        content="Project concept: a web-based honeypot management and security assessment portal built with Flask, Jinja2 and MySQL.">
+        content="Honeypot Lab: a web-based honeypot management and security assessment portal (Flask, Jinja2, MySQL). Project overview, isolated lab design, assessment plan and an interactive demo.">
     <meta name="author" content="Jhapendra Kandel">
     <link rel="canonical" href="https://jhapendrakandel.com.np/project/">
     <link rel="icon" type="image/png"
@@ -17,7 +17,7 @@
     <meta property="og:site_name" content="Jhapendra Kandel">
     <meta property="og:title" content="Honeypot Lab Project — Jhapendra Kandel">
     <meta property="og:description"
-        content="Project concept: a web-based honeypot management and security assessment portal.">
+        content="A web-based honeypot management and security assessment portal, with an interactive browser demo.">
     <meta property="og:url" content="https://jhapendrakandel.com.np/project/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +49,6 @@
             <nav class="links" aria-label="Sections">
                 <a href="../">Home</a>
                 <a href="../blog/">Blog</a>
-                <a href="../toolbox/">Resources</a>
                 <a href="./" aria-current="page">Project</a>
                 <a href="../lab/">Lab</a>
             </nav>
@@ -60,11 +59,29 @@
     <main id="main" class="page">
         <div class="wrap">
             <div class="page-head reveal">
-                <p class="kicker">Module project concept</p>
+                <p class="kicker">Module project · overview</p>
                 <h1>Honeypot Lab</h1>
-                <p>A web-based honeypot management and security assessment portal. Attackers hit deliberately weak
-                    decoy services, analysts manage the response in a portal, and then the portal itself is attacked,
-                    fixed and retested.</p>
+                <p class="proj-registered">Web-Based Honeypot Management and Security Assessment Portal</p>
+                <p>Attackers hit deliberately weak decoy services, analysts manage the response in a portal, and then
+                    the portal itself is attacked, fixed and retested.</p>
+                <div class="proj-cta">
+                    <a class="btn btn-gold" href="../lab/">Open the interactive demo →</a>
+                    <a class="btn btn-glass" href="#status">Project status</a>
+                </div>
+            </div>
+
+            <dl class="proj-facts reveal">
+                <div><dt>Student</dt><dd>Jhapendra Kandel</dd></div>
+                <div><dt>Type</dt><dd>Bachelor module project</dd></div>
+                <div><dt>Stack</dt><dd>Flask · Jinja2 · MySQL</dd></div>
+                <div><dt>Testing</dt><dd>Burp Suite · Nmap · manual</dd></div>
+            </dl>
+
+            <div class="proj-stats reveal" aria-label="At a glance">
+                <div><b>4</b><span>portal modules</span></div>
+                <div><b>2</b><span>user roles</span></div>
+                <div><b>5</b><span>weaknesses assessed</span></div>
+                <div><b>4</b><span>isolated lab machines</span></div>
             </div>
 
             <section class="proj-section reveal">
@@ -78,6 +95,14 @@
 
             <section class="proj-section reveal">
                 <h2>How it fits together</h2>
+                <ol class="proj-flow" aria-label="Data flow">
+                    <li><b>Attacker</b><span>probes &amp; payloads</span></li>
+                    <li><b>Decoys</b><span>fake, weak services</span></li>
+                    <li><b>Collector</b><span>one door for events</span></li>
+                    <li><b>Classifier</b><span>category + severity</span></li>
+                    <li><b>Event store</b><span>searchable history</span></li>
+                    <li><b>Portal</b><span>cases, blocks, alerts</span></li>
+                </ol>
                 <ol class="proj-steps">
                     <li><strong>Decoys</strong> are intentionally vulnerable web pages and a fake API. They never
                         hold real data and have no outbound internet access.</li>
@@ -91,8 +116,40 @@
             </section>
 
             <section class="proj-section reveal">
+                <h2>The isolated lab</h2>
+                <p>Everything runs on a dedicated machine that is physically separate from any other network, split
+                    into virtual machines so that each part can only reach what it needs.</p>
+                <div class="proj-grid four">
+                    <div class="proj-card">
+                        <h3>Attacker VM</h3>
+                        <p>Standard testing tools. The only source of attack traffic.</p>
+                    </div>
+                    <div class="proj-card">
+                        <h3>Decoy VM</h3>
+                        <p>The bait. No route to the internet and no access to stored data.</p>
+                    </div>
+                    <div class="proj-card">
+                        <h3>Core VM</h3>
+                        <p>Event pipeline and storage, on an internal segment the attacker can't touch.</p>
+                    </div>
+                    <div class="proj-card">
+                        <h3>Portal VM</h3>
+                        <p>The application under assessment, snapshotted before and after fixes.</p>
+                    </div>
+                </div>
+                <ul class="proj-checks">
+                    <li>No internet route out of the lab after setup</li>
+                    <li>Decoys and data live on separate network segments</li>
+                    <li>Host machine unreachable from every VM</li>
+                    <li>Clean snapshots restored after each test session</li>
+                    <li>Captured files stored as inert data, never executed</li>
+                    <li>Isolation proven by tests before any attack traffic</li>
+                </ul>
+            </section>
+
+            <section class="proj-section reveal">
                 <h2>Portal modules</h2>
-                <div class="proj-grid">
+                <div class="proj-grid two">
                     <div class="proj-card">
                         <h3>Users &amp; roles</h3>
                         <p>Admin and analyst accounts, secure login, role-based access.</p>
@@ -114,13 +171,20 @@
 
             <section class="proj-section reveal">
                 <h2>Security assessment plan</h2>
-                <p>The portal is first built with a small set of realistic, documented weaknesses. Each one follows
-                    the same loop: find it, demonstrate it, fix it, retest it.</p>
+                <p>The portal is first built with a small set of realistic, documented weaknesses (v1). Each one
+                    follows the same loop, ending in a hardened build (v2).</p>
+                <ol class="proj-loop" aria-label="Assessment loop">
+                    <li>Find</li>
+                    <li>Demonstrate</li>
+                    <li>Fix</li>
+                    <li>Retest</li>
+                </ol>
                 <div class="table-scroll">
                     <table class="proj-table">
                         <thead>
                             <tr>
                                 <th>Weakness class</th>
+                                <th>Maps to</th>
                                 <th>What it shows</th>
                                 <th>Type of fix</th>
                             </tr>
@@ -128,44 +192,51 @@
                         <tbody>
                             <tr>
                                 <td>Injection</td>
+                                <td class="nw">CWE-89 · A03</td>
                                 <td>Unsafe handling of search input</td>
                                 <td>Safe query handling, input validation</td>
                             </tr>
                             <tr>
                                 <td>Cross-site scripting</td>
+                                <td class="nw">CWE-79 · A03</td>
                                 <td>Untrusted notes shown back to users</td>
                                 <td>Output encoding, content security policy</td>
                             </tr>
                             <tr>
                                 <td>Broken access control</td>
+                                <td class="nw">CWE-862 · A01</td>
                                 <td>Analysts reaching admin functions</td>
                                 <td>Server-side role checks</td>
                             </tr>
                             <tr>
                                 <td>Insecure direct object reference</td>
+                                <td class="nw">CWE-639 · A01</td>
                                 <td>Viewing another user's cases by changing an ID</td>
                                 <td>Ownership checks on every request</td>
                             </tr>
                             <tr>
                                 <td>Weak session handling</td>
+                                <td class="nw">CWE-330 · A07</td>
                                 <td>Predictable or long-lived sessions</td>
                                 <td>Hardened cookies, expiry, rotation</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <p class="proj-small">Mappings use CWE identifiers and the OWASP Top 10 (2021) categories.</p>
             </section>
 
             <section class="proj-section reveal">
                 <h2>Technology</h2>
-                <ul>
-                    <li><strong>Backend:</strong> Flask REST API</li>
-                    <li><strong>Frontend:</strong> Jinja2 templates</li>
-                    <li><strong>Database:</strong> MySQL</li>
-                    <li><strong>Authentication:</strong> session or token based, with hashed passwords</li>
-                    <li><strong>Testing:</strong> Burp Suite, Nmap and manual checks</li>
-                    <li><strong>Version control:</strong> Git and GitHub</li>
-                </ul>
+                <div class="proj-tech">
+                    <div><b>Backend</b><span>Flask REST API</span></div>
+                    <div><b>Frontend</b><span>Jinja2 templates</span></div>
+                    <div><b>Database</b><span>MySQL</span></div>
+                    <div><b>Auth</b><span>Hashed passwords, session or token based</span></div>
+                    <div><b>Testing</b><span>Burp Suite, Nmap, manual checks</span></div>
+                    <div><b>Lab</b><span>KVM virtual machines on an isolated host</span></div>
+                    <div><b>Versioning</b><span>Git and GitHub, tagged v1 / v2</span></div>
+                </div>
             </section>
 
             <section class="proj-section reveal">
@@ -179,11 +250,29 @@
                 </ul>
             </section>
 
+            <section class="proj-section reveal" id="status">
+                <h2>Status</h2>
+                <ol class="proj-road">
+                    <li class="done"><b>Project registered</b><span>Idea and scope submitted</span></li>
+                    <li class="done"><b>Concept site and interactive demo</b><span>This page and the browser-only <a href="../lab/">lab walkthrough</a></span></li>
+                    <li class="now"><b>Isolated lab build</b><span>Dedicated machine, virtual machines, isolation tests</span></li>
+                    <li><b>Portal v1</b><span>Four modules, two roles, documented weaknesses</span></li>
+                    <li><b>Assessment</b><span>Attack, collect evidence, then build v2 and retest</span></li>
+                    <li><b>Report</b><span>Findings, before-and-after comparison, ethics</span></li>
+                </ol>
+                <p class="proj-small">The demo linked above is a simulation that runs in your browser. The real
+                    sandbox runs on an isolated machine I own, separate from this website.</p>
+            </section>
+
             <section class="proj-section reveal">
-                <h2>Try it</h2>
-                <p>There is an <a href="../lab/" style="color:var(--gold)">interactive walkthrough</a> of the whole idea:
-                    fire simulated attacks, work cases in a mock portal, and compare vulnerable and hardened builds.
-                    It runs entirely in your browser with made-up data.</p>
+                <div class="proj-try">
+                    <div>
+                        <h3>See it working</h3>
+                        <p>Fire simulated attacks, work cases in a mock portal, and compare vulnerable and hardened
+                            builds side by side. Includes a guided tour for presenting.</p>
+                    </div>
+                    <a class="btn btn-gold" href="../lab/">Open the demo →</a>
+                </div>
             </section>
 
             <section class="proj-section reveal">
@@ -196,7 +285,7 @@
     </main>
 
     <footer class="subfooter">
-        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../">home</a> · <a
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../">home</a> · <a href="../lab/">demo</a> · <a
                 href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
     </footer>
 

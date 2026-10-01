@@ -6,14 +6,18 @@
     --warn: #d97706;
 }
 html.dark { --ok: #4ade80; --bad: #f87171; --warn: #fbbf24; }
+:root { --gold-ink: #8a6a0e; }
+html.dark { --gold-ink: var(--gold); }
+html:not(.dark) .page-head .kicker { color: var(--gold-ink); }
 
-.lab-section { margin-bottom: 56px; scroll-margin-top: 90px; }
+.lab-section { margin-bottom: 56px; scroll-margin-top: 130px; }
+#findings { scroll-margin-top: 150px; }
 .lab-section h2 {
     font-family: var(--font-display);
     font-size: .8rem;
     text-transform: uppercase;
     letter-spacing: .22em;
-    color: var(--gold);
+    color: var(--gold-ink);
     margin: 0 0 12px;
 }
 .lab-lead { color: var(--c-muted); line-height: 1.7; margin: 0 0 20px; max-width: 70ch; }
@@ -29,7 +33,9 @@ html.dark { --ok: #4ade80; --bad: #f87171; --warn: #fbbf24; }
     background: var(--gold-soft);
     font-size: .9rem;
 }
-.lab-sim a { color: var(--gold); }
+.lab-sim a, .lab-lead a { color: var(--gold-ink); }
+.lab-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.lab-note { padding: 14px 18px; border-radius: 12px; border: 1px solid var(--gold); background: var(--gold-soft); color: var(--c-muted); font-size: .92rem; line-height: 1.6; }
 
 .lab-pills {
     position: sticky;
@@ -41,10 +47,11 @@ html.dark { --ok: #4ade80; --bad: #f87171; --warn: #fbbf24; }
     padding: 8px;
     margin: 0 0 32px;
     border-radius: 999px;
-    background: var(--c-surface);
+    background: color-mix(in srgb, var(--c-bg-solid) 90%, transparent);
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     border: 1px solid var(--c-border);
+    box-shadow: 0 6px 24px rgba(2, 6, 23, .18);
     scrollbar-width: none;
 }
 .lab-pills a {
@@ -55,7 +62,8 @@ html.dark { --ok: #4ade80; --bad: #f87171; --warn: #fbbf24; }
     color: var(--c-muted);
     white-space: nowrap;
 }
-.lab-pills a:hover, .lab-pills a.on { color: var(--gold); background: var(--gold-soft); }
+.lab-pills a:hover, .lab-pills a.on { color: var(--gold-ink); background: var(--gold-soft); }
+@media (max-width: 620px) { .lab-pills { top: 66px; } }
 
 .lab-card {
     padding: 18px 20px;
@@ -98,7 +106,7 @@ html.dark { --ok: #4ade80; --bad: #f87171; --warn: #fbbf24; }
 /* pipeline */
 .lab-pipe { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
 @media (max-width: 860px) { .lab-pipe { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 420px) { .lab-pipe { grid-template-columns: 1fr; } }
+@media (max-width: 420px) { .lab-pipe { gap: 8px; } .lab-stage { padding: 10px 11px; } .lab-stage span { font-size: .75rem; } }
 .lab-stage {
     position: relative;
     font: inherit;
@@ -113,13 +121,15 @@ html.dark { --ok: #4ade80; --bad: #f87171; --warn: #fbbf24; }
 }
 .lab-stage b { display: block; font-size: .95rem; margin-bottom: 4px; }
 .lab-stage span { font-size: .8rem; color: var(--c-muted); line-height: 1.4; display: block; }
-.lab-stage em { font-style: normal; font-size: .72rem; color: var(--gold); letter-spacing: .1em; }
+.lab-stage em { font-style: normal; font-size: .72rem; color: var(--gold-ink); letter-spacing: .1em; }
 .lab-stage:hover { border-color: var(--gold); transform: translateY(-2px); }
 .lab-stage.sel { border-color: var(--gold); }
 .lab-stage.active { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft), 0 0 28px rgba(212, 175, 55, .35); transform: translateY(-3px); }
 
 /* tables, pre, verdict */
 .lab-table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+#findings { min-width: 520px; }
+#findings td:nth-child(n+2) { white-space: nowrap; }
 .lab-table th, .lab-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--c-border); color: var(--c-muted); vertical-align: top; }
 .lab-table th { color: var(--c-text); font-weight: 600; white-space: nowrap; }
 .lab-table tr.new td { animation: flash 1.2s ease-out; }
@@ -139,7 +149,7 @@ html.dark { --ok: #4ade80; --bad: #f87171; --warn: #fbbf24; }
 .lab-term .ok { color: #4ade80; } .lab-term .no { color: #f87171; } .lab-term .dim { color: #94a3b8; }
 .lab-stats { display: flex; gap: 20px; margin-bottom: 8px; }
 .lab-stats div { display: flex; flex-direction: column; }
-.lab-stats b { font-size: 1.5rem; color: var(--gold); font-variant-numeric: tabular-nums; }
+.lab-stats b { font-size: 1.5rem; color: var(--gold-ink); font-variant-numeric: tabular-nums; }
 .lab-stats span { font-size: .75rem; color: var(--c-muted); text-transform: uppercase; letter-spacing: .08em; }
 
 .badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: .74rem; border: 1px solid currentColor; white-space: nowrap; }
@@ -210,3 +220,30 @@ html.dark { --ok: #4ade80; --bad: #f87171; --warn: #fbbf24; }
     transition: opacity .25s, transform .25s; max-width: 90vw;
 }
 .lab-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* guided tour */
+.lab-tour {
+    position: fixed; z-index: 70; right: 20px; bottom: 20px; width: min(380px, calc(100vw - 32px));
+    padding: 16px 18px; border-radius: 16px;
+    background: var(--c-surface-solid); border: 1px solid var(--gold);
+    box-shadow: 0 18px 50px rgba(2, 6, 23, .45);
+}
+.lab-tour[hidden] { display: none; }
+.lab-tour-head { display: flex; justify-content: space-between; align-items: center; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-ink); }
+.lab-tour b { display: block; margin: 6px 0 4px; font-family: var(--font-heading); font-size: 1.15rem; color: var(--c-text); }
+.lab-tour p { margin: 0 0 12px; font-size: .9rem; line-height: 1.55; color: var(--c-muted); }
+.lab-tour-nav { display: flex; justify-content: space-between; gap: 8px; }
+.lab-link { border: 0; background: none; padding: 4px 8px; color: var(--c-muted); font-size: 1rem; }
+.lab-link:hover { color: var(--c-text); }
+.lab-spot { outline: 2px solid var(--gold); outline-offset: 6px; border-radius: 14px; transition: outline-color .3s; }
+@media (max-width: 620px) { .lab-tour { left: 16px; right: 16px; bottom: 12px; width: auto; } body.touring .subfooter { padding-bottom: 230px; } }
+
+@media print {
+    .subnav, .bg-layer, .lab-pills, .lab-tour, .lab-toast, .lab-cta { display: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+@media (max-width: 760px) {
+    .lab-tabs { display: flex; overflow-x: auto; gap: 6px; padding-bottom: 4px; scrollbar-width: none; }
+    .lab-tabs .lab-tab { flex: none; white-space: nowrap; border-radius: 999px; }
+}

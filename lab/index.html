@@ -59,13 +59,19 @@
     <main id="main" class="page">
         <div class="wrap">
             <div class="page-head reveal">
-                <p class="kicker">Interactive walkthrough</p>
+                <p class="kicker">Interactive demo · simulation</p>
                 <h1>Honeypot Lab</h1>
                 <p>Poke at the whole idea in your browser: fire attacks at a decoy, watch them get classified, work the
                     cases in a management portal, then see each weakness found, fixed and retested.</p>
                 <p class="lab-sim"><strong>Simulation.</strong> Everything here runs locally in this page with made-up
                     data and documentation-range addresses. Nothing is sent anywhere, and no real portal exists yet:
-                    this is a mock-up of the planned one. See the <a href="../project/">project concept</a>.</p>
+                    this is a mock-up of the planned one. See the <a href="../project/">project overview</a>.</p>
+                <div class="lab-cta">
+                    <button class="btn btn-gold" id="tour-start" type="button">▶ Start guided demo</button>
+                    <a class="btn btn-glass" href="#s-map">Explore on my own</a>
+                </div>
+                <noscript><p class="lab-sim">This demo needs JavaScript. The <a href="../project/">project overview</a>
+                        works without it.</p></noscript>
             </div>
 
             <nav class="lab-pills" id="lab-pills" aria-label="Walkthrough steps">
@@ -180,16 +186,26 @@
             <section class="lab-section reveal" id="s-status">
                 <h2>6 · Where the real project is</h2>
                 <ul class="lab-road" id="road"></ul>
-                <p class="proj-note">All real testing will happen only on systems I own, inside an isolated, authorised
+                <p class="lab-note">All real testing will happen only on systems I own, inside an isolated, authorised
                     lab. This page contains no real data, no real addresses, and no code from the real portal.</p>
             </section>
         </div>
     </main>
 
     <footer class="subfooter">
-        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../">home</a> · <a href="../project/">project</a> · <a
+        <p>Honeypot Lab · module project demo · © <span id="year"></span> Jhapendra Kandel · <a href="../project/">project</a> · <a
                 href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
     </footer>
+
+    <div class="lab-tour" id="tour" role="dialog" aria-label="Guided demo" hidden>
+        <div class="lab-tour-head"><span id="tour-count"></span><button class="lab-link" id="tour-exit" type="button" aria-label="Exit guided demo">✕</button></div>
+        <b id="tour-title"></b>
+        <p id="tour-say"></p>
+        <div class="lab-tour-nav">
+            <button class="lab-btn" id="tour-back" type="button">← Back</button>
+            <button class="lab-btn gold" id="tour-next" type="button">Next →</button>
+        </div>
+    </div>
 
     <div class="lab-toast" id="toast" role="status" aria-live="polite"></div>
 

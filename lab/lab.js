@@ -132,7 +132,7 @@
     ];
     var feed = $("#feed"), feedEmpty = $("#feed-empty");
     var counts = { total: 0, high: 0, srcs: {} };
-    var lastEvents = [];
+    var lastEv = null;
     function makeEvent(a) {
         var sev = Math.max(5, Math.min(99, a.base + rnd(15) - 7));
         return { t: clock(), src: "203.0.113." + (2 + rnd(250)), cat: a.cat, sev: sev, tags: a.tags, title: a.label + " against the decoy" };
@@ -170,13 +170,14 @@
         v.appendChild(h("div", { class: "lab-meter" }, [h("i", { style: "width:" + ev.sev + "%" })]));
         v.appendChild(h("div", { class: "lab-tags" }, ev.tags.map(function (t) { return badge(t, "mute"); })));
         $("#atk-reply").textContent = a.reply;
-        addEvent(ev); runPipeline(a.label);
+        lastEv = ev; addEvent(ev); runPipeline(a.label);
     }
-    var stormT;
-    $("#storm").addEventListener("change", function (e) {
-        clearInterval(stormT);
-        if (e.target.checked) stormT = setInterval(function () { if (!document.hidden) addEvent(makeEvent(ATTACKS[rnd(ATTACKS.length)])); }, 1700);
-    });
+    var stormT, stormBox = $("#storm");
+    function setStorm(on) {
+        clearInterval(stormT); stormBox.checked = on;
+        if (on) stormT = setInterval(function () { if (!document.hidden) addEvent(makeEvent(ATTACKS[rnd(ATTACKS.length)])); }, 1700);
+    }
+    stormBox.addEventListener("change", function () { setStorm(stormBox.checked); });
 
     /* =========================================================
        3 · PORTAL
@@ -200,7 +201,7 @@
         portalEl.appendChild(body);
     }
     function loginView() {
-        var sel = h("select", { id: "login-user", "aria-label": "Demo account" }, S.users.filter(function (u) { return u.active; }).map(function (u) { return h("option", { value: u.name, text: u.name + " (" + u.role + ")" }); }));
+        var sel = h("select", { id: "login-user", "aria-label": "Demo account" }, S.users.filter(function (u) { return u.active; }).sort(function (a, b) { return a.role === b.role ? 0 : a.role === "analyst" ? -1 : 1; }).map(function (u) { return h("option", { value: u.name, text: u.name + " (" + u.role + ")" }); }));
         return h("form", { class: "p-login", onsubmit: function (e) { e.preventDefault(); P.user = S.users.filter(function (u) { return u.name === sel.value; })[0]; P.tab = "incidents"; renderPortal(); } }, [
             h("h3", { text: "Sign in" }),
             h("div", { class: "p-form" }, [
@@ -322,7 +323,7 @@
                     return { q: tmpl, ok: !flawed, msg: flawed ? "Query logic changed: returned all " + data.length + " rows, including restricted ones." : "Returned " + data.filter(function (d) { return d.toLowerCase().indexOf(q.toLowerCase()) > -1; }).length + " matching row(s).", rows: flawed ? data : null };
                 }
                 var bad = !/^[\w\s\-.,:\/]{0,60}$/.test(q);
-                return { q: "SELECT id, title FROM incidents WHERE title LIKE ?   -- bound: '%" + q + "%'", ok: true, blocked: bad, msg: bad ? "400 Rejected by input validation. The text never reaches the query." : "Searched as plain text: " + data.filter(function (d) { return d.toLowerCase().indexOf(q.toLowerCase()) > -1; }).length + " match(es)." };
+                return { q: bad ? "SELECT id, title FROM incidents WHERE title LIKE ?   -- (no query executed)" : "SELECT id, title FROM incidents WHERE title LIKE ?   -- bound: '%" + q + "%'", ok: true, blocked: bad, msg: bad ? "400 Rejected by input validation. The text never reaches the query." : "Searched as plain text: " + data.filter(function (d) { return d.toLowerCase().indexOf(q.toLowerCase()) > -1; }).length + " match(es)." };
             },
             ui: function (ctx) {
                 var inp = h("input", { type: "text", value: "SQLi", "aria-label": "Search text", maxlength: "80" });
@@ -333,7 +334,7 @@
                     out.appendChild(h("code", { text: r.q })); out.appendChild(h("br")); out.appendChild(document.createTextNode(r.msg));
                     if (bad) ctx.record("exploited"); else if (ctx.ver === "v2" && r.blocked) ctx.record("blocked");
                 }.bind(this);
-                return h("div", null, [h("div", { class: "p-form inline" }, [h("label", null, ["Search cases", inp]), h("div", { class: "lab-row" }, [h("button", { class: "lab-btn gold", type: "button", text: "Search", onclick: go }), h("button", { class: "lab-btn", type: "button", text: "Use example attack", onclick: function () { inp.value = ctx.w.example; go(); } })])]), out]);
+                return h("div", null, [h("label", { class: "lab-small" }, ["Search cases", inp]), h("div", { class: "lab-row" }, [h("button", { class: "lab-btn gold", type: "button", text: "Search", onclick: go }), h("button", { class: "lab-btn", type: "button", text: "Use example attack", onclick: function () { inp.value = ctx.w.example; go(); } })]), out]);
             }
         },
         {
@@ -469,12 +470,16 @@
     function renderSnap() {
         $("#snap-state").textContent = dirty === 0 ? "State: clean snapshot." : "State: " + dirty + " change(s) since the clean snapshot. A real lab reverts the VMs the same way after every test run.";
     }
-    $("#snap-revert").addEventListener("click", function () {
-        S = seed(); dirty = 0; counts = { total: 0, high: 0, srcs: {} }; R = {}; P.user = null; P.sel = null;
+    function resetAll() {
+        setStorm(false);
+        S = seed(); dirty = 0; counts = { total: 0, high: 0, srcs: {} }; R = {}; P.user = null; P.sel = null; P.tab = "incidents"; lastEv = null;
+        curWeak = 0; curVer = "v1";
         try { localStorage.removeItem(KEY); } catch (e) { }
         clear(feed); feedEmpty.hidden = false; $("#st-total").textContent = "0"; $("#st-high").textContent = "0"; $("#st-src").textContent = "0";
-        renderPortal(); renderFindings(); renderWeak(); renderSnap(); toast("Reverted to the clean snapshot.");
-    });
+        clear(term).textContent = "$ waiting for a connection test…";
+        renderPortal(); renderTabs(); renderFindings(); renderWeak(); renderSnap();
+    }
+    $("#snap-revert").addEventListener("click", function () { resetAll(); toast("Reverted to the clean snapshot."); });
 
     /* =========================================================
        6 · STATUS (honest)
@@ -490,6 +495,81 @@
         var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { for (var k in links) links[k].classList.toggle("on", k === en.target.id); } }); }, { rootMargin: "-30% 0px -60% 0px" });
         Object.keys(links).forEach(function (id) { io.observe(document.getElementById(id)); });
     }
+
+    /* =========================================================
+       GUIDED TOUR (for presenting)
+       ========================================================= */
+    var tourEl = $("#tour"), tourI = 0, tourGen = 0, tourCase = false;
+    function later(ms, fn) { var g = tourGen; setTimeout(function () { if (g === tourGen) fn(); }, reduce ? 50 : ms); }
+    function runWeakDemo(i, ver, prep) {
+        curWeak = i; curVer = ver; renderTabs(); renderWeak();
+        if (prep) prep();
+        var btns = Array.prototype.slice.call(panel.querySelectorAll("button"));
+        var b = btns.filter(function (x) { return /example attack/.test(x.textContent); })[0] || panel.querySelector(".lab-btn.gold");
+        if (b) b.click();
+    }
+    function idorPrep() { var n = panel.querySelector('input[type="number"]'); if (n) n.value = "103"; }
+    var TOUR = [
+        { sec: "#s-map", title: "The lab map", say: "Six stages turn a hostile request into a case an analyst can act on. Watch one probe travel through all of them.",
+          act: function () { showStage(1); runPipeline("probe"); } },
+        { sec: "#s-attack", title: "An attacker hits a decoy", say: "An SQL injection probe reaches the fake web app. The decoy answers with made-up content, and the classifier labels the request with a category and a 0–100 severity.",
+          act: function () { fire(ATTACKS[0], chips.children[0]); } },
+        { sec: "#s-attack", title: "Live event feed", say: "With the storm on, events keep arriving. Anything over the alert threshold triggers a notification (simulated).",
+          act: function () { setStorm(true); } },
+        { sec: "#s-portal", title: "The analyst opens a case", say: "The analyst signs in and turns the SQL injection event into a case, with a status, an assignee and notes.",
+          act: function () {
+              setStorm(false);
+              if (!tourCase) { openCase(lastEv || makeEvent(ATTACKS[0])); tourCase = true; }
+              P.user = S.users.filter(function (u) { return u.name === "analyst1"; })[0]; P.tab = "incidents"; P.sel = S.incidents[0].id; renderPortal();
+          } },
+        { sec: "#s-portal", title: "Role checks", say: "The same analyst tries the admin-only Users & roles tab and gets 403. The role is checked on the server, not just by hiding the button.",
+          act: function () { P.tab = "users"; renderPortal(); } },
+        { sec: "#s-assess", title: "Injection: v1 against v2", say: "On the vulnerable build the payload changes the query and leaks restricted rows. On the hardened build, the same input is rejected before it reaches the database.",
+          act: function () { runWeakDemo(0, "v1"); later(2200, function () { runWeakDemo(0, "v2"); }); } },
+        { sec: "#s-assess", title: "IDOR: someone else's case", say: "Changing the case ID in the URL to 103 reads another analyst's case on v1. v2 checks ownership on every request and refuses.",
+          act: function () { runWeakDemo(3, "v1", idorPrep); later(2200, function () { runWeakDemo(3, "v2", idorPrep); }); } },
+        { sec: "#findings", title: "The findings table", say: "Running all five weaknesses against both builds gives the before-and-after evidence the report needs: every v1 exploited, every v2 blocked.",
+          act: function () {
+              [1, 2, 4].forEach(function (i) { runWeakDemo(i, "v1"); runWeakDemo(i, "v2"); });
+              [0, 3].forEach(function (i) { runWeakDemo(i, "v1", i === 3 ? idorPrep : null); runWeakDemo(i, "v2", i === 3 ? idorPrep : null); });
+          } },
+        { sec: "#s-sandbox", title: "The sandbox", say: "Hostile traffic can only go where it is meant to. Decoys can't reach the internet or the data, and the host can't be reached at all.",
+          act: function () { $("#conn-all").click(); } },
+        { sec: "#s-status", title: "Where the real project is", say: "This page is a browser simulation. Next comes the real isolated lab, then portal v1, the assessment, v2 and the report.",
+          act: function () { } }
+    ];
+    function tourGo(i) {
+        tourGen++; tourI = Math.max(0, Math.min(TOUR.length - 1, i));
+        var st = TOUR[tourI], target = $(st.sec);
+        document.querySelectorAll(".lab-spot").forEach(function (e) { e.classList.remove("lab-spot"); });
+        var spot = target.closest(".lab-section") || target; spot.classList.add("lab-spot", "in-view");
+        target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+        $("#tour-count").textContent = "Guided demo · " + (tourI + 1) + " / " + TOUR.length;
+        $("#tour-title").textContent = st.title; $("#tour-say").textContent = st.say;
+        $("#tour-back").disabled = tourI === 0;
+        $("#tour-next").textContent = tourI === TOUR.length - 1 ? "Finish" : "Next →";
+        later(450, st.act);
+    }
+    function tourStart() {
+        resetAll(); tourCase = false;
+        tourEl.hidden = false; document.body.classList.add("touring");
+        tourGo(0); $("#tour-next").focus();
+    }
+    function tourEnd() {
+        tourGen++; setStorm(false); tourEl.hidden = true; document.body.classList.remove("touring");
+        document.querySelectorAll(".lab-spot").forEach(function (e) { e.classList.remove("lab-spot"); });
+        $("#tour-start").focus();
+    }
+    $("#tour-start").addEventListener("click", tourStart);
+    $("#tour-exit").addEventListener("click", tourEnd);
+    $("#tour-back").addEventListener("click", function () { tourGo(tourI - 1); });
+    $("#tour-next").addEventListener("click", function () { if (tourI === TOUR.length - 1) { tourEnd(); toast("Demo finished. Everything is still interactive."); } else tourGo(tourI + 1); });
+    document.addEventListener("keydown", function (e) {
+        if (tourEl.hidden || /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return;
+        if (e.key === "ArrowRight") { e.preventDefault(); $("#tour-next").click(); }
+        else if (e.key === "ArrowLeft" && tourI > 0) { e.preventDefault(); tourGo(tourI - 1); }
+        else if (e.key === "Escape") tourEnd();
+    });
 
     /* ---------- init ---------- */
     renderPortal(); renderTabs(); renderWeak(); renderFindings(); renderSnap();
