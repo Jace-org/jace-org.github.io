@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <title>Honeypot Lab: Interactive Walkthrough — Jhapendra Kandel</title>
+    <meta name="description"
+        content="A browser-only interactive walkthrough of the Honeypot Lab project: fire simulated attacks, manage incidents in a mock portal, and see each weakness found, fixed and retested.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://jhapendrakandel.com.np/lab/">
+    <link rel="icon" type="image/png"
+        href="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jhapendra Kandel">
+    <meta property="og:title" content="Honeypot Lab: Interactive Walkthrough — Jhapendra Kandel">
+    <meta property="og:description"
+        content="Fire simulated attacks, manage incidents in a mock portal, and watch weaknesses get found, fixed and retested. All in your browser.">
+    <meta property="og:url" content="https://jhapendrakandel.com.np/lab/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/base.css">
+    <link rel="stylesheet" href="lab.css">
+    <script>
+        try {
+            var t = localStorage.getItem("theme");
+            if (t === "light") document.documentElement.classList.remove("dark");
+        } catch (e) { }
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="bg-layer" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <header class="subnav">
+        <div class="subnav-inner">
+            <a class="home" href="../" aria-label="Back to home">J<span class="dot">.</span>K</a>
+            <nav class="links" aria-label="Sections">
+                <a href="../">Home</a>
+                <a href="../blog/">Blog</a>
+                <a href="../project/">Project</a>
+                <a href="./" aria-current="page">Lab</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
+        </div>
+    </header>
+
+    <main id="main" class="page">
+        <div class="wrap">
+            <div class="page-head reveal">
+                <p class="kicker">Interactive walkthrough</p>
+                <h1>Honeypot Lab</h1>
+                <p>Poke at the whole idea in your browser: fire attacks at a decoy, watch them get classified, work the
+                    cases in a management portal, then see each weakness found, fixed and retested.</p>
+                <p class="lab-sim"><strong>Simulation.</strong> Everything here runs locally in this page with made-up
+                    data and documentation-range addresses. Nothing is sent anywhere, and no real portal exists yet:
+                    this is a mock-up of the planned one. See the <a href="../project/">project concept</a>.</p>
+            </div>
+
+            <nav class="lab-pills" id="lab-pills" aria-label="Walkthrough steps">
+                <a href="#s-map">1 · Map</a>
+                <a href="#s-attack">2 · Attack</a>
+                <a href="#s-portal">3 · Portal</a>
+                <a href="#s-assess">4 · Assess</a>
+                <a href="#s-sandbox">5 · Sandbox</a>
+                <a href="#s-status">6 · Status</a>
+            </nav>
+
+            <!-- 1 MAP -->
+            <section class="lab-section reveal" id="s-map">
+                <h2>1 · The lab map</h2>
+                <p class="lab-lead">Six stages turn a hostile request into something an analyst can act on. Click a
+                    stage to read what it does, or send a probe through all of them.</p>
+                <div class="lab-pipe" id="pipe" role="list"></div>
+                <div class="lab-row">
+                    <button class="lab-btn gold" id="probe-btn" type="button">Send a probe through the lab</button>
+                    <span class="lab-status" id="pipe-status" aria-live="polite">Idle.</span>
+                </div>
+                <div class="lab-card" id="stage-detail" aria-live="polite"></div>
+            </section>
+
+            <!-- 2 ATTACK -->
+            <section class="lab-section reveal" id="s-attack">
+                <h2>2 · Fire an attack at the decoy</h2>
+                <p class="lab-lead">Pick an attack. The decoy answers with something fake, records the request, and the
+                    classifier gives it a category and a severity score.</p>
+                <div class="lab-chips" id="attack-chips" role="group" aria-label="Attack types"></div>
+                <div class="lab-two">
+                    <div class="lab-card">
+                        <h3>Request seen by the decoy</h3>
+                        <pre class="lab-pre" id="atk-req" aria-live="polite">Choose an attack above.</pre>
+                        <h3>Classifier verdict</h3>
+                        <div id="atk-verdict" class="lab-verdict" aria-live="polite">—</div>
+                        <h3>What the decoy answered</h3>
+                        <p id="atk-reply" class="lab-small">—</p>
+                    </div>
+                    <div class="lab-card">
+                        <div class="lab-stats">
+                            <div><b id="st-total">0</b><span>events</span></div>
+                            <div><b id="st-high">0</b><span>high severity</span></div>
+                            <div><b id="st-src">0</b><span>sources</span></div>
+                        </div>
+                        <label class="lab-check"><input type="checkbox" id="storm"> Simulate a live attack storm</label>
+                        <div class="table-scroll">
+                            <table class="lab-table" aria-label="Live event feed">
+                                <thead>
+                                    <tr><th>Time</th><th>Source</th><th>Category</th><th>Sev</th><th></th></tr>
+                                </thead>
+                                <tbody id="feed"></tbody>
+                            </table>
+                        </div>
+                        <p class="lab-small" id="feed-empty">No events yet.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3 PORTAL -->
+            <section class="lab-section reveal" id="s-portal">
+                <h2>3 · The management portal (mock-up)</h2>
+                <p class="lab-lead">Sign in as an analyst or an admin. Turn events from step 2 into cases, block sources,
+                    tune alert rules, and manage users. Try the admin tab as an analyst.</p>
+                <div class="lab-window">
+                    <div class="lab-bar"><i></i><i></i><i></i><span>portal.lab.invalid</span></div>
+                    <div id="portal" class="lab-portal"></div>
+                </div>
+            </section>
+
+            <!-- 4 ASSESS -->
+            <section class="lab-section reveal" id="s-assess">
+                <h2>4 · Find it, break it, fix it, retest it</h2>
+                <p class="lab-lead">Each weakness has a vulnerable build (v1) and a hardened build (v2). Run the same
+                    action against both and compare. Results fill the findings table below.</p>
+                <div class="lab-two assess">
+                    <div class="lab-tabs" id="weak-tabs" role="tablist" aria-label="Weakness classes"></div>
+                    <div class="lab-card" id="weak-panel"></div>
+                </div>
+                <h3 class="lab-sub">Findings table</h3>
+                <div class="table-scroll">
+                    <table class="lab-table" id="findings">
+                        <thead>
+                            <tr><th>Weakness</th><th>CWE</th><th>OWASP 2021</th><th>v1</th><th>v2</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <p class="lab-small" id="find-progress"></p>
+            </section>
+
+            <!-- 5 SANDBOX -->
+            <section class="lab-section reveal" id="s-sandbox">
+                <h2>5 · The sandbox: what can reach what</h2>
+                <p class="lab-lead">The lab is built so hostile traffic can only go where it is meant to. Try each
+                    connection and see the verdict.</p>
+                <div class="lab-two">
+                    <div class="lab-card">
+                        <div class="lab-conns" id="conns"></div>
+                        <button class="lab-btn" id="conn-all" type="button">Run all</button>
+                    </div>
+                    <div class="lab-card">
+                        <pre class="lab-term" id="term" aria-live="polite">$ waiting for a connection test…</pre>
+                        <h3>Snapshots</h3>
+                        <p class="lab-small" id="snap-state"></p>
+                        <button class="lab-btn" id="snap-revert" type="button">Revert to clean snapshot</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6 STATUS -->
+            <section class="lab-section reveal" id="s-status">
+                <h2>6 · Where the real project is</h2>
+                <ul class="lab-road" id="road"></ul>
+                <p class="proj-note">All real testing will happen only on systems I own, inside an isolated, authorised
+                    lab. This page contains no real data, no real addresses, and no code from the real portal.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="subfooter">
+        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../">home</a> · <a href="../project/">project</a> · <a
+                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+
+    <div class="lab-toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="../assets/subpage.js" defer></script>
+    <script src="lab.js" defer></script>
+</body>
+
+</html>
