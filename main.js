@@ -104,6 +104,7 @@
                 if (!frag.childNodes.length) return;
                 wireList.innerHTML = "";
                 wireList.appendChild(frag);
+                wire.classList.add("is-ready");
                 if (reduce) return;
                 // duplicate once for a seamless loop; the copy is hidden from AT
                 $$("li", wireList).forEach(function (li) {
@@ -116,7 +117,7 @@
                 wire.style.setProperty("--wire-dur", Math.max(30, w / 70) + "s");
                 wire.classList.add("is-moving");
             })
-            .catch(function () { /* the plain link stays */ });
+            .catch(function () { /* bar stays hidden */ });
     }
 
     /* ---------- Method slider ---------- */
