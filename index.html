@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f172a">
-    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0a1020">
+    <meta name="color-scheme" content="dark">
 
     <title>Jhapendra Kandel (J.K), Full-Stack Developer, Cybersecurity &amp; Automation</title>
     <meta name="description"
@@ -37,10 +37,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Inter:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260908">
+    <link rel="stylesheet" href="styles.css?v=20261111">
+    <link rel="preload" as="image" href="mainimg.webp">
 
     <script type="application/ld+json">
     {
@@ -62,516 +62,245 @@
         "knowsAbout": ["PHP", "JavaScript", "React", "WordPress", "MySQL", "Linux", "Docker", "Ethical Hacking", "AI Automation"]
     }
     </script>
-    <script>
-        try {
-            var t = localStorage.getItem("theme");
-            if (t === "light") document.documentElement.classList.remove("dark");
-            if (t === "dark") document.documentElement.classList.add("dark");
-        } catch (e) { }
-    </script>
+    <script>document.documentElement.classList.add("js");</script>
 </head>
 
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
-    <!-- z-0 : ambient background -->
-    <div class="bg-layer" aria-hidden="true">
-        <div class="aurora aurora-1"></div>
-        <div class="aurora aurora-2"></div>
-        <div class="aurora aurora-3"></div>
-        <div class="bg-grid"></div>
-        <span class="shape shape-a"></span>
-        <span class="shape shape-b"></span>
-        <span class="shape shape-c"></span>
-        <span class="shape shape-d"></span>
-        <span class="shape shape-e"></span>
-        <div class="mouse-glow" id="mouse-glow"></div>
-    </div>
-    <div class="noise-overlay" aria-hidden="true"></div>
-
-    <!-- z-50 : glass navbar -->
-    <header class="site-header">
-        <nav class="navbar" id="nav" aria-label="Primary">
-            <a class="brand" href="#home" data-magnetic aria-label="Home, Jhapendra Kandel">J<span
-                    class="dot">.</span>K</a>
-            <div class="nav-links" id="nav-links">
-                <a href="#about" data-magnetic>About</a>
-                <a href="#skills" data-magnetic>Skills</a>
-                <a href="#projects" data-magnetic>Projects</a>
-                <a href="#journey" data-magnetic>Journey</a>
-                <a href="#credentials" data-magnetic>Credentials</a>
-                <a href="#contact" data-magnetic>Contact</a>
-                <a href="blog/" data-magnetic>Blog</a>
-                <a href="toolbox/" data-magnetic>Resources</a>
-            </div>
-            <button class="theme-toggle" id="theme-toggle" data-magnetic aria-label="Switch colour theme">
-                <span class="theme-icon" aria-hidden="true">☾</span>
-            </button>
-            <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
+    <header class="site-nav">
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <nav id="nav-links" class="nav-links" aria-label="Primary">
+            <a href="#work">Work</a>
+            <a href="#method">Method</a>
+            <a href="blog/">Blog</a>
+            <a href="toolbox/">Resources</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
     <main id="main">
-        <!-- Hero -->
+        <!-- Hero: the desk at night, the name beneath it -->
         <section class="hero" id="home">
-            <div class="hero-fx" aria-hidden="true">
-                <canvas id="ripple" class="ripple"></canvas>
-                <svg class="morph-blob" viewBox="0 0 500 500" aria-hidden="true">
-                    <defs>
-                        <linearGradient id="blobGrad" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.7" />
-                            <stop offset="100%" stop-color="#6366F1" stop-opacity="0.35" />
-                        </linearGradient>
-                    </defs>
-                    <path fill="url(#blobGrad)"
-                        d="M421,306Q397,362,344,392Q291,422,232,410Q173,398,130,355Q87,312,95,251Q103,190,142,146Q181,102,241,95Q301,88,352,120Q403,152,424,201Q445,250,421,306Z">
-                        <animate attributeName="d" dur="14s" repeatCount="indefinite"
-                            values="M421,306Q397,362,344,392Q291,422,232,410Q173,398,130,355Q87,312,95,251Q103,190,142,146Q181,102,241,95Q301,88,352,120Q403,152,424,201Q445,250,421,306Z;
-                                    M438,290Q409,352,352,384Q295,416,234,404Q173,392,124,351Q75,310,87,247Q99,184,142,140Q185,96,247,91Q309,86,360,120Q411,154,436,202Q461,250,438,290Z;
-                                    M404,318Q393,386,332,404Q271,422,213,406Q155,390,113,345Q71,300,83,240Q95,180,137,138Q179,96,239,90Q299,84,349,115Q399,146,407,198Q415,250,404,318Z;
-                                    M421,306Q397,362,344,392Q291,422,232,410Q173,398,130,355Q87,312,95,251Q103,190,142,146Q181,102,241,95Q301,88,352,120Q403,152,424,201Q445,250,421,306Z" />
-                    </path>
-                </svg>
+            <figure class="hero-photo">
+                <img src="mainimg.webp" width="1024" height="1024" alt="A laptop with code on screen on a dark desk at night, a desk lamp glowing behind it" fetchpriority="high">
+            </figure>
+            <div class="hero-band">
+                <div class="hero-row">
+                    <p class="hero-lede" data-rise>Full-stack developer in Kathmandu. I build web platforms, secure them, and run them on servers I set up myself.</p>
+                    <a class="btn" href="#contact" data-rise>Write to me</a>
+                </div>
+                <h1 class="hero-name"><span>Jhapendra</span> <span>Kandel</span></h1>
             </div>
+        </section>
 
-            <div class="wrap hero-inner">
-                <p class="eyebrow load-in" style="--d:.1s">
-                    Kathmandu, Nepal
-                    <span class="status"><span class="status-dot"></span>Available for work</span>
+        <!-- The one live thing: what the pipeline I wrote just published -->
+        <section class="live" id="live" aria-labelledby="live-h">
+            <div class="live-inner">
+                <h2 class="live-h" id="live-h" data-rise>Live on abcnews.com.np</h2>
+                <p class="live-story" data-rise>
+                    <a id="live-link" href="https://abcnews.com.np/" target="_blank" rel="noopener">The news site I built publishes around the clock through a pipeline I wrote. Read the latest story.</a>
                 </p>
-                <h1 class="hero-title weight-shift load-in" style="--d:.22s">Kandel Jhapendra <span
-                        class="muted">(J.K)</span></h1>
-                <p class="hero-role load-in" style="--d:.34s">
-                    <span id="typed"></span><span class="cursor-blink" aria-hidden="true">|</span>
-                    <span class="visually-hidden">Full-stack developer, cybersecurity enthusiast and automation
-                        engineer.</span>
-                </p>
-                <p class="hero-tagline load-in" style="--d:.46s">&ldquo;Build with precision, secure by design, automate
-                    with purpose.&rdquo;</p>
-                <div class="hero-actions load-in" style="--d:.58s">
-                    <a class="btn btn-gold" href="#projects" data-magnetic>View projects</a>
-                    <a class="btn btn-glass" href="#contact" data-magnetic>Get in touch</a>
-                </div>
-            </div>
-
-            <a class="scroll-hint" href="#about" aria-label="Scroll to about">
-                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-                    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </a>
-        </section>
-
-        <!-- About -->
-        <section class="section" id="about">
-            <div class="wrap">
-                <div class="section-head reveal">
-                    <span class="section-index">01</span>
-                    <h2>About me</h2>
-                </div>
-                <div class="glass about-card reveal">
-                    <p class="about-text">
-                        I'm a full-stack developer, cybersecurity enthusiast and automation engineer based in Kathmandu,
-                        Nepal, and I'm working towards a Bachelor's in Information Technology. I build secure, scalable
-                        web applications, from custom WordPress platforms and news portals to REST APIs and self-hosted
-                        infrastructure. I try to keep security part of the work from the start rather than adding it at
-                        the end.
-                    </p>
-                </div>
-
-                <div class="about-cols">
-                    <div class="glass info-card reveal">
-                        <h3>Focus areas</h3>
-                        <ul class="ticks">
-                            <li>Ethical hacking &amp; penetration testing</li>
-                            <li>Network security &amp; secure software development</li>
-                            <li>DevOps &amp; infrastructure automation</li>
-                            <li>Applied AI, LLM systems &amp; workflow automation</li>
-                        </ul>
-                    </div>
-                    <div class="glass info-card reveal">
-                        <h3>Currently learning</h3>
-                        <ul class="ticks">
-                            <li>Advanced LLM fine-tuning</li>
-                            <li>RAG pipelines</li>
-                            <li>Model Context Protocol (MCP)</li>
-                            <li>Container orchestration</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <ul class="stat-row reveal">
-                    <li class="glass"><strong>BIT</strong><span>Information Technology</span></li>
-                    <li class="glass"><strong>3</strong><span>professional certifications</span></li>
-                    <li class="glass"><strong>80<span class="s">th</span></strong><span>Hack Astra CTF · of 450</span>
-                    </li>
-                    <li class="glass"><strong>Self-hosted</strong><span>Ubuntu on Orange Pi</span></li>
-                </ul>
+                <p class="live-meta" data-rise><span id="live-when">Updated every few minutes</span> &middot; <span id="ktm-time">Kathmandu</span></p>
             </div>
         </section>
 
-        <!-- Skills -->
-        <section class="section" id="skills">
-            <div class="wrap">
-                <div class="section-head reveal">
-                    <span class="section-index">02</span>
-                    <h2>Skills</h2>
+        <!-- About + journey: statement held on the left, the story walks past on the right -->
+        <section class="about" id="about" aria-labelledby="about-h">
+            <div class="about-grid">
+                <div class="about-pin">
+                    <h2 id="about-h" class="visually-hidden">About</h2>
+                    <p class="statement" data-rise>I started with school websites. Now I build, break and run whole systems from a desk in Kathmandu.</p>
+                    <p class="about-text" data-rise>I am working towards a Bachelor's in Information Technology. I build secure, scalable web applications, from custom WordPress platforms and news portals to REST APIs and self-hosted infrastructure, and I keep security part of the work from the first line rather than adding it at the end.</p>
                 </div>
-                <ul class="skills reveal" aria-label="Skills and proficiency">
-                    <li style="--v:92%;--c:#e34f26"><span class="skill-name">HTML5</span><span class="skill-val">92</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                    <li style="--v:90%;--c:#2965f1"><span class="skill-name">CSS3</span><span class="skill-val">90</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                    <li style="--v:85%;--c:#f0db4f"><span class="skill-name">JavaScript</span><span
-                            class="skill-val">85</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                    <li style="--v:88%;--c:#8993be"><span class="skill-name">PHP</span><span class="skill-val">88</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                    <li style="--v:82%;--c:#61dafb"><span class="skill-name">React</span><span
-                            class="skill-val">82</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                    <li style="--v:80%;--c:#3776ab"><span class="skill-name">Python</span><span
-                            class="skill-val">80</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                    <li style="--v:85%;--c:#00758f"><span class="skill-name">MySQL</span><span
-                            class="skill-val">85</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                    <li style="--v:90%;--c:#21759b"><span class="skill-name">WordPress</span><span
-                            class="skill-val">90</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                    <li style="--v:78%;--c:#e95420"><span class="skill-name">Linux / Server admin</span><span
-                            class="skill-val">78</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                    <li style="--v:75%;--c:#2496ed"><span class="skill-name">Docker</span><span
-                            class="skill-val">75</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                    <li style="--v:70%;--c:#a80030"><span class="skill-name">Ethical hacking / Pen-testing</span><span
-                            class="skill-val">70</span>
-                        <span class="skill-track"><span class="skill-fill"></span></span>
-                    </li>
-                </ul>
-            </div>
-        </section>
 
-        <!-- Projects -->
-        <section class="section" id="projects">
-            <div class="wrap">
-                <div class="section-head reveal">
-                    <span class="section-index">03</span>
-                    <h2>Selected projects</h2>
-                </div>
-                <div class="projects">
-                    <article class="glass project tilt reveal is-public">
-                        <a class="project-link" href="https://abcnews.com.np/#footer" target="_blank"
-                            rel="noopener">Open ABC News Nepal</a>
-                        <div class="project-top">
-                            <h3>ABC News Nepal</h3>
-                            <div class="project-flags">
-                                <span class="badge">Featured</span>
-                                <span class="pstatus pstatus-public">Public</span>
-                            </div>
-                        </div>
-                        <p>Built the full ABC News site by myself from scratch. Front end, back end, and all the server
-                            work and DevOps to deploy it and keep it running.</p>
-                        <ul class="tags"><li>WordPress</li><li>PHP</li><li>DevOps</li><li>Automation</li></ul>
-                        <p class="project-cat">Web Platform</p>
-                    </article>
-
-                    <article class="glass project tilt reveal">
-                        <div class="project-top">
-                            <h3>Nepali Text to Speech Model</h3>
-                            <div class="project-flags">
-                                <span class="badge">Featured</span>
-                                <span class="pstatus pstatus-private">Private</span>
-                            </div>
-                        </div>
-                        <p>Trained a speech model that reads Nepali out loud, so Nepali text can be turned into natural
-                            sounding audio.</p>
-                        <ul class="tags"><li>Python</li><li>PyTorch</li><li>Speech</li></ul>
-                        <p class="project-cat">AI / Machine Learning</p>
-                    </article>
-
-                    <article class="glass project tilt reveal">
-                        <div class="project-top">
-                            <h3>Video Reel Generator</h3>
-                            <div class="project-flags">
-                                <span class="pstatus pstatus-private">Private</span>
-                            </div>
-                        </div>
-                        <p>A model that takes a topic or a short script and builds a vertical video reel from it, adding
-                            cuts and captions on its own.</p>
-                        <ul class="tags"><li>Python</li><li>Video</li><li>Generative AI</li></ul>
-                        <p class="project-cat">AI / Machine Learning</p>
-                    </article>
-
-                    <article class="glass project tilt reveal">
-                        <div class="project-top">
-                            <h3>Voice to Text Model</h3>
-                            <div class="project-flags">
-                                <span class="pstatus pstatus-private">Private</span>
-                            </div>
-                        </div>
-                        <p>A speech recognition model that listens to spoken audio and writes out what was said.</p>
-                        <ul class="tags"><li>Python</li><li>ASR</li><li>Audio</li></ul>
-                        <p class="project-cat">AI / Machine Learning</p>
-                    </article>
-
-                    <article class="glass project tilt reveal">
-                        <div class="project-top">
-                            <h3>Nepali LLM on Home Hardware</h3>
-                            <div class="project-flags">
-                                <span class="badge">Featured</span>
-                                <span class="pstatus pstatus-private">Private</span>
-                            </div>
-                        </div>
-                        <p>A language model built for Nepali, trained and served entirely on my own homelab machine
-                            running an AMD AI Pro 32GB GPU.</p>
-                        <ul class="tags"><li>LLM</li><li>Fine-tuning</li><li>AMD ROCm</li><li>Homelab</li></ul>
-                        <p class="project-cat">AI / Machine Learning</p>
-                    </article>
-
-                    <article class="glass project tilt reveal">
-                        <div class="project-top">
-                            <h3>Kandel Holdings</h3>
-                            <div class="project-flags">
-                                <span class="pstatus pstatus-private">Private</span>
-                            </div>
-                        </div>
-                        <p>Property and bill management platform with real-time updates for tenants and owners.</p>
-                        <ul class="tags"><li>PHP</li><li>MySQL</li><li>Real-time</li></ul>
-                        <p class="project-cat">Web Application</p>
-                    </article>
-
-                    <article class="glass project tilt reveal">
-                        <div class="project-top">
-                            <h3>Restaurant Management System</h3>
-                            <div class="project-flags">
-                                <span class="pstatus pstatus-private">Private</span>
-                            </div>
-                        </div>
-                        <p>Order and invoice management that keeps table orders, billing and kitchen tickets in one
-                            dashboard.</p>
-                        <ul class="tags"><li>PHP</li><li>MySQL</li><li>JavaScript</li></ul>
-                        <p class="project-cat">Web Application</p>
-                    </article>
-
-                    <article class="glass project tilt reveal">
-                        <div class="project-top">
-                            <h3>Notes Sharing Platform</h3>
-                            <div class="project-flags">
-                                <span class="pstatus pstatus-private">Private</span>
-                            </div>
-                        </div>
-                        <p>Collaborative learning platform with note uploads, browsing and real-time chat between
-                            students.</p>
-                        <ul class="tags"><li>PHP</li><li>MySQL</li><li>WebSockets</li></ul>
-                        <p class="project-cat">Web Application</p>
-                    </article>
-
-                    <article class="glass project tilt reveal is-public">
-                        <a class="project-link" href="https://github.com/jhapendra-kandel/NetGuard-DNS-Monitor"
-                            target="_blank" rel="noopener">Open NetGuard DNS Monitor on GitHub</a>
-                        <div class="project-top">
-                            <h3>NetGuard DNS Monitor</h3>
-                            <div class="project-flags">
-                                <span class="pstatus pstatus-public">Public</span>
-                            </div>
-                        </div>
-                        <p>Real-time DNS monitoring and threat detection that flags suspicious lookups as they happen.</p>
-                        <ul class="tags"><li>Python</li><li>Networking</li><li>Security</li></ul>
-                        <p class="project-cat">Cybersecurity Tool</p>
-                    </article>
-
-                    <article class="glass project tilt reveal">
-                        <div class="project-top">
-                            <h3>Techkart</h3>
-                            <div class="project-flags">
-                                <span class="pstatus pstatus-private">Private</span>
-                            </div>
-                        </div>
-                        <p>A full shopping website with a catalogue, cart and checkout flow on a PHP and SQL backend.</p>
-                        <ul class="tags"><li>PHP</li><li>SQL</li><li>JavaScript</li></ul>
-                        <p class="project-cat">E-commerce</p>
-                    </article>
-
-                    <article class="glass project tilt reveal is-public">
-                        <a class="project-link" href="https://onss.great-site.net" target="_blank"
-                            rel="noopener">Open ONSS</a>
-                        <div class="project-top">
-                            <h3>ONSS</h3>
-                            <div class="project-flags">
-                                <span class="pstatus pstatus-public">Public</span>
-                            </div>
-                        </div>
-                        <p>Online Notes Sharing System. Upload, browse and download study notes with user accounts.</p>
-                        <ul class="tags"><li>PHP</li><li>MySQL</li><li>Bootstrap</li></ul>
-                        <p class="project-cat">Web Application</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Hack Me challenge -->
-        <section class="section" id="hackme" aria-label="Hack Me challenge">
-            <div class="wrap">
-                <a class="hackme-box glass reveal" href="/hack-me/">
-                    <div class="hackme-glyph" aria-hidden="true">&gt;_</div>
-                    <div class="hackme-copy">
-                        <span class="hackme-kicker">Security lab // still locked</span>
-                        <h3>Hack Me</h3>
-                        <p>Try to hack my labs. Get in and I will personally congratulate you for
-                            being an actual pro. Until then, reading writeups is not the same as
-                            owning a box, and this door stays shut. Not live yet, leave your email
-                            and I will tell you when there is something here for you to fail at.</p>
-                    </div>
-                    <span class="hackme-cta">Enter <span aria-hidden="true">&rarr;</span></span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Journey -->
-        <section class="section" id="journey">
-            <div class="wrap">
-                <div class="section-head reveal">
-                    <span class="section-index">04</span>
-                    <h2>The journey</h2>
-                </div>
-                <ol class="timeline">
-                    <li class="tl-item reveal">
-                        <span class="tl-node" aria-hidden="true"></span>
-                        <p class="tl-kicker">01 &middot; Where it started</p>
+                <ol class="journey">
+                    <li data-rise>
                         <h3>Started with websites, stayed for the rest.</h3>
-                        <p class="tl-body">I began building small websites in school and never really stopped. Along the
-                            way I got interested in how systems break, and now I care about building and securing them at
-                            the same time. I try to keep things safe from the first line of code instead of fixing it
-                            later.</p>
+                        <p>I began building small websites in school and never really stopped. Along the way I got interested in how systems break, and now I care about building and securing them at the same time.</p>
                     </li>
-                    <li class="tl-item reveal">
-                        <span class="tl-node" aria-hidden="true"></span>
-                        <p class="tl-kicker">02 &middot; Learning the whole stack</p>
+                    <li class="journey-pic pic-left" data-rise>
+                        <img src="assets/img/sundhara-at-night-kathmandu-4.jpg" width="1920" height="1440" loading="lazy" decoding="async"
+                            alt="Sundhara junction in Kathmandu at night, the Dharahara tower lit on the left">
+                        <p class="pic-note">Kathmandu after dark, where most of this gets built.</p>
+                    </li>
+                    <li data-rise>
                         <h3>One layer at a time.</h3>
-                        <p class="tl-body">I picked up the stack piece by piece. C and Python first, then databases and
-                            Node on the server, then React on the front end. Now I am comfortable working across all of
-                            it on the same project.</p>
-                        <ul class="chips">
-                            <li>Python</li><li>JavaScript</li><li>React</li><li>Node.js</li><li>PHP</li><li>MySQL</li>
-                        </ul>
+                        <p>C and Python first, then databases and Node on the server, then React on the front end. Now I work across all of it on the same project: Python, JavaScript, React, Node.js, PHP and MySQL.</p>
                     </li>
-                    <li class="tl-item reveal">
-                        <span class="tl-node" aria-hidden="true"></span>
-                        <p class="tl-kicker">03 &middot; Getting into security</p>
+                    <li data-rise>
                         <h3>Learning how things break.</h3>
-                        <p class="tl-body">I spend time on ethical hacking, network security and penetration testing.
-                            Understanding how something can be attacked makes me better at building it. I treat every
-                            input as untrusted.</p>
-                        <ul class="chips">
-                            <li>Ethical Hacking</li><li>Network Security</li><li>Hack Astra CTF, 80th of 450</li>
-                        </ul>
+                        <p>Ethical hacking, network security and penetration testing. Understanding how something can be attacked makes me better at building it. I treat every input as untrusted, and I placed 80th of 450 at Hack Astra CTF.</p>
                     </li>
-                    <li class="tl-item reveal">
-                        <span class="tl-node" aria-hidden="true"></span>
-                        <p class="tl-kicker">04 &middot; Shipping real things</p>
+                    <li data-rise>
                         <h3>Not demos, real products.</h3>
-                        <p class="tl-body">These are running in production, not sitting in a folder. A property and
-                            billing platform, a restaurant order and invoice system, a notes app with live chat, and a
-                            DNS monitor that watches for bad lookups.</p>
+                        <p>A property and billing platform, a restaurant order and invoice system, a notes app with live chat, and a DNS monitor that watches for bad lookups. They run in production, not in a folder.</p>
                     </li>
-                    <li class="tl-item reveal">
-                        <span class="tl-node" aria-hidden="true"></span>
-                        <p class="tl-kicker">05 &middot; Running my own servers</p>
+                    <li class="journey-pic pic-right" data-rise>
+                        <img src="assets/img/orange-pi-mini-2.jpg" width="1920" height="1247" loading="lazy" decoding="async"
+                            alt="A blue Orange Pi single-board computer photographed from above">
+                        <p class="pic-note">An Orange Pi board, the same family as the Zero 2W that runs my home server.</p>
+                    </li>
+                    <li data-rise>
                         <h3>I like knowing how it runs.</h3>
-                        <p class="tl-body">I self host an Ubuntu server on an Orange Pi Zero 2W at home, and I run a
-                            homelab machine with an AMD AI Pro 32GB GPU for model training. I set up the Docker
-                            containers, the web server and the database myself.</p>
-                        <ul class="chips">
-                            <li>Orange Pi self-hosting</li><li>AMD GPU homelab</li><li>Docker &amp; Compose</li>
-                        </ul>
+                        <p>I self-host an Ubuntu server on an Orange Pi Zero 2W at home and run a homelab GPU machine for model training. Docker containers, web server and database, all set up by hand.</p>
                     </li>
-                    <li class="tl-item reveal">
-                        <span class="tl-node" aria-hidden="true"></span>
-                        <p class="tl-kicker">06 &middot; What I am on now</p>
-                        <h3>Mostly models and automation.</h3>
-                        <p class="tl-body">Right now I am spending my time on training and running language models,
-                            Nepali speech models, RAG pipelines and container orchestration. If you are building
-                            something that needs to be solid and secure, I would be glad to help.</p>
-                        <a class="btn btn-glass" href="#contact" data-magnetic>Get in touch</a>
+                    <li data-rise>
+                        <h3>Mostly models and automation now.</h3>
+                        <p>Training and running language models, Nepali speech models, RAG pipelines, the Model Context Protocol and container orchestration. If you are building something that has to be solid and secure, I would be glad to help.</p>
                     </li>
                 </ol>
             </div>
         </section>
 
-        <!-- Credentials -->
-        <section class="section" id="credentials">
-            <div class="wrap">
-                <div class="section-head reveal">
-                    <span class="section-index">05</span>
-                    <h2>Credentials</h2>
-                </div>
+        <!-- One exhibit: the script the Nepali models learn to read -->
+        <figure class="manuscript" data-rise>
+            <img src="assets/img/text-folio-155-recto-from-a-manuscript.jpg" width="1920" height="287" loading="lazy" decoding="async"
+                alt="A long palm-leaf manuscript page from Nepal, dense lines of hand-written script in three blocks">
+            <figcaption>A palm-leaf manuscript from Nepal, written in 1119. My speech and language models are about teaching machines to read and speak Nepali.</figcaption>
+        </figure>
 
-                <h3 class="sub-h reveal">Education</h3>
-                <div class="glass edu-card reveal">
-                    <div class="edu-top">
-                        <h4>Bachelor of Information Technology (BIT)</h4>
-                        <span class="badge">Pursuing</span>
-                    </div>
-                    <p>Undergraduate study across software engineering, networking, cybersecurity, databases, operating
-                        systems and modern web technologies.</p>
-                </div>
+        <!-- Work: the names are the index, the frame shows the active one -->
+        <section class="work" id="work" aria-labelledby="work-h">
+            <h2 class="work-h" id="work-h" data-rise>Selected work</h2>
+            <div class="work-grid">
+                <ul class="work-list" id="work-list">
+                    <li class="work-item is-active" data-rise>
+                        <figure class="work-pic"><img src="assets/shots/abcnews.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="The abcnews.com.np home page with its Nepali navigation and trending headlines"></figure>
+                        <a class="work-name" href="https://abcnews.com.np/" target="_blank" rel="noopener" data-pane="0">ABC News Nepal</a>
+                        <p class="work-meta">Web platform &middot; live</p>
+                        <p class="work-desc">Built the whole site by myself from scratch: front end, back end, and all the server work and DevOps to deploy it and keep it running. WordPress, PHP, DevOps, automation.</p>
+                    </li>
+                    <li class="work-item" data-rise>
+                        <figure class="work-pic"><img src="assets/img/shinybox-46mxc-ribbon-microphone-lowswing-studio-berlin.jpg" width="1920" height="1285" loading="lazy" decoding="async" alt="A studio condenser microphone in a shock mount against a perforated wall"></figure>
+                        <button class="work-name" type="button" data-pane="1">Nepali text to speech</button>
+                        <p class="work-meta">AI model &middot; private</p>
+                        <p class="work-desc">A speech model that reads Nepali out loud, so Nepali text can be turned into natural-sounding audio. Its partner listens to spoken audio and writes out what was said. Python, PyTorch, ASR.</p>
+                    </li>
+                    <li class="work-item" data-rise>
+                        <figure class="work-pic"><img src="assets/img/amd-fiji-gpu-package-with-gpu-hbm.jpg" width="1920" height="1285" loading="lazy" decoding="async" alt="Close-up of a bare GPU chip package with its memory stacks around the die"></figure>
+                        <button class="work-name" type="button" data-pane="2">Nepali LLM at home</button>
+                        <p class="work-meta">AI model &middot; private</p>
+                        <p class="work-desc">A language model built for Nepali, trained and served entirely on my own homelab machine with a 32 GB GPU. Fine-tuning, homelab, self-hosted inference.</p>
+                    </li>
+                    <li class="work-item" data-rise>
+                        <figure class="work-pic"><img src="assets/shots/lab.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="The Honeypot Lab page: a dark interactive walkthrough with a guided demo button"></figure>
+                        <a class="work-name" href="lab/" data-pane="3">Honeypot Lab</a>
+                        <p class="work-meta">Security &middot; demo</p>
+                        <p class="work-desc">Fire attacks at a decoy in your browser, watch them get classified, work the cases in a management portal, then see each weakness fixed and retested. Runs entirely in the page.</p>
+                    </li>
+                    <li class="work-item" data-rise>
+                        <figure class="work-pic"><img src="assets/shots/netguard.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="The NetGuard DNS Monitor repository on GitHub, with 118 commits and 14 releases"></figure>
+                        <a class="work-name" href="https://github.com/jhapendra-kandel/NetGuard-DNS-Monitor" target="_blank" rel="noopener" data-pane="4">NetGuard DNS Monitor</a>
+                        <p class="work-meta">Security tool &middot; open source</p>
+                        <p class="work-desc">Real-time DNS monitoring and threat detection that flags suspicious lookups as they happen. Python, networking, security.</p>
+                    </li>
+                    <li class="work-item" data-rise>
+                        <figure class="work-pic"><img src="assets/shots/onss.jpg" width="1280" height="800" loading="lazy" decoding="async" alt="The ShareNotes home page, a dark illustrated landing screen for sharing study notes"></figure>
+                        <a class="work-name" href="https://onss.great-site.net" target="_blank" rel="noopener" data-pane="5">ONSS</a>
+                        <p class="work-meta">Web app &middot; live</p>
+                        <p class="work-desc">Online Notes Sharing System. Upload, browse and download study notes with user accounts. PHP, MySQL, Bootstrap.</p>
+                    </li>
+                </ul>
+                <div class="work-frame" id="work-frame" aria-hidden="true"></div>
+            </div>
+        </section>
 
-                <h3 class="sub-h reveal">Certifications</h3>
-                <div class="cert-grid">
-                    <article class="glass cert tilt reveal">
-                        <h4>GitHub Foundations</h4>
-                        <p class="cert-issuer">GitHub</p>
-                        <p class="cert-meta">Professional · 2025</p>
-                    </article>
-                    <article class="glass cert tilt reveal">
-                        <h4>Google Cloud Computing Foundations</h4>
-                        <p class="cert-issuer">Google Cloud</p>
-                        <p class="cert-meta">Professional · 2025</p>
-                    </article>
-                    <article class="glass cert tilt reveal">
-                        <h4>Cloudflare Fundamentals</h4>
-                        <p class="cert-issuer">Cloudflare</p>
-                        <p class="cert-meta">Professional · 2025</p>
-                    </article>
+        <!-- Method: drag through the four verbs -->
+        <section class="method" id="method" aria-labelledby="method-h">
+            <h2 id="method-h" class="visually-hidden">How I work</h2>
+            <div class="method-fields">
+                <div class="method-say">
+                    <p class="method-clause" id="method-clause" aria-live="polite">Build it with precision.</p>
+                    <p class="method-tools" id="method-tools">HTML, CSS, JavaScript, React, PHP, Python, MySQL and WordPress, across the front end and the back.</p>
                 </div>
-
-                <h3 class="sub-h reveal">Competitions</h3>
-                <ul class="comp-list reveal">
-                    <li class="glass"><span class="comp-name">Hack Astra CTF</span><span class="comp-cat">Cybersecurity ·
-                            The Hackers Community Nepal</span><span class="comp-result">Ranked 80th of 450</span></li>
-                    <li class="glass"><span class="comp-name">Nutanix Capture The Flag</span><span
-                            class="comp-cat">Cybersecurity</span><span class="comp-result">Participant</span></li>
-                    <li class="glass"><span class="comp-name">Digital Forensics Hackathon</span><span
-                            class="comp-cat">Cybersecurity</span><span class="comp-result">Participant</span></li>
+                <div class="method-show">
+                    <pre class="frag is-on" data-ui data-stage="0"><code><span class="c">$ git log --oneline -3</span>
+1139564 Use FormSubmit endpoint in form actions
+591d804 Cache-bust lab assets so HTML and JS match
+dace43f Polish /project and /lab for demo</code></pre>
+                    <pre class="frag" data-ui data-stage="1"><code><span class="c">// every input is untrusted</span>
+$title = sanitize_text_field( wp_unslash( $_POST['title'] ?? '' ) );
+if ( ! wp_verify_nonce( $_POST['_nonce'] ?? '', 'vote' ) ) {
+    wp_send_json_error( 'bad nonce', 403 );
+}</code></pre>
+                    <pre class="frag" data-ui data-stage="2"><code><span class="c"># crontab: the news pipeline</span>
+*/45 * * * *  run.sh english   <span class="c"># fetch, rewrite, publish</span>
+*/10 * * * *  run.sh nepali    <span class="c"># scrape, filter, draft</span>
+0 2  * * *    backup.sh        <span class="c"># dump + encrypted backup</span></code></pre>
+                    <pre class="frag" data-ui data-stage="3"><code><span class="c">$ docker compose ps --format '{{.Name}} {{.Status}}'</span>
+wordpress   Up
+mysql       Up
+redis       Up
+<span class="c">$ systemctl is-active cloudflared</span>
+active</code></pre>
+                </div>
+            </div>
+            <div class="method-control">
+                <label class="visually-hidden" for="stage">Stage of the work</label>
+                <input type="range" id="stage" min="0" max="3" step="1" value="0"
+                    aria-valuetext="Build">
+                <ul class="method-stops" id="method-stops">
+                    <li><button type="button" data-to="0" class="is-on">Build</button></li>
+                    <li><button type="button" data-to="1">Secure</button></li>
+                    <li><button type="button" data-to="2">Automate</button></li>
+                    <li><button type="button" data-to="3">Run</button></li>
                 </ul>
             </div>
         </section>
 
-        <!-- Contact -->
-        <section class="section" id="contact">
-            <div class="wrap contact-wrap">
-                <div class="section-head reveal">
-                    <span class="section-index">06</span>
-                    <h2>Contact me</h2>
-                </div>
-                <p class="reveal">Interested in working together, or just want to say hello? Drop me a message.</p>
-                <form class="glass contact-form reveal" id="contact-form" method="POST"
-                    action="https://formsubmit.co/5cd9e20c92fe46aa65897efcf33b2446">
+        <!-- Hack Me: the locked door -->
+        <section class="hackme" id="hackme" aria-labelledby="hackme-h">
+            <figure class="hackme-pic" data-rise>
+                <img src="assets/shots/hackme.jpg" width="1280" height="800" loading="lazy" decoding="async"
+                    alt="The Hack Me page: a terminal reporting access denied and labs not yet exposed">
+            </figure>
+            <div class="hackme-copy">
+                <h2 id="hackme-h" data-rise>Hack Me</h2>
+                <p data-rise>Try to hack my labs. Get in and I will personally congratulate you for being an actual pro. Until then, reading writeups is not the same as owning a box, and this door stays shut. Not live yet: leave your email and I will tell you when there is something here for you to fail at.</p>
+                <p class="hackme-links" data-rise>
+                    <a class="text-link" href="hack-me/">Try the door</a>
+                    <a class="text-link" href="project/">Read the lab concept</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Everything else, one type size -->
+        <section class="record" id="credentials" aria-labelledby="record-h">
+            <h2 id="record-h" class="visually-hidden">Other projects and credentials</h2>
+            <table class="lineup">
+                <tbody>
+                    <tr class="group"><th colspan="4" scope="colgroup">Also built</th></tr>
+                    <tr data-rise><td>Video reel generator</td><td>Topic or script to vertical reel, cuts and captions</td><td>Python, generative AI</td><td>Private</td></tr>
+                    <tr data-rise><td>Voice to text</td><td>Speech recognition for spoken audio</td><td>Python, ASR</td><td>Private</td></tr>
+                    <tr data-rise><td>Kandel Holdings</td><td>Property and bill management, live updates</td><td>PHP, MySQL</td><td>Private</td></tr>
+                    <tr data-rise><td>Restaurant system</td><td>Table orders, billing and kitchen tickets</td><td>PHP, MySQL, JS</td><td>Private</td></tr>
+                    <tr data-rise><td>Notes platform</td><td>Note uploads with real-time student chat</td><td>PHP, WebSockets</td><td>Private</td></tr>
+                    <tr data-rise><td>Techkart</td><td>Shop with catalogue, cart and checkout</td><td>PHP, SQL, JS</td><td>Private</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="group"><th colspan="4" scope="colgroup">Study and certificates</th></tr>
+                    <tr data-rise><td>Bachelor of IT</td><td>Software, networks, security, databases, OS</td><td>Undergraduate</td><td>Pursuing</td></tr>
+                    <tr data-rise><td>GitHub Foundations</td><td>GitHub</td><td>Professional</td><td>2025</td></tr>
+                    <tr data-rise><td>Cloud Computing Foundations</td><td>Google Cloud</td><td>Professional</td><td>2025</td></tr>
+                    <tr data-rise><td>Cloudflare Fundamentals</td><td>Cloudflare</td><td>Professional</td><td>2025</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="group"><th colspan="4" scope="colgroup">Competitions</th></tr>
+                    <tr data-rise><td>Hack Astra CTF</td><td>The Hackers Community Nepal</td><td>Cybersecurity</td><td>80th of 450</td></tr>
+                    <tr data-rise><td>Nutanix CTF</td><td>Capture the flag</td><td>Cybersecurity</td><td>Took part</td></tr>
+                    <tr data-rise><td>Forensics Hackathon</td><td>Digital forensics</td><td>Cybersecurity</td><td>Took part</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Contact: the address is the headline -->
+        <section class="contact" id="contact" aria-labelledby="contact-h">
+            <div class="contact-top">
+                <h2 id="contact-h" class="visually-hidden">Contact</h2>
+                <p class="contact-say" data-rise>Building something that has to stay up and stay safe? Write to me.</p>
+                <form class="contact-form" id="contact-form" method="POST"
+                    action="https://formsubmit.co/5cd9e20c92fe46aa65897efcf33b2446" data-rise>
                     <div class="field">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" autocomplete="name" required>
@@ -580,86 +309,68 @@
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" autocomplete="email" required>
                     </div>
-                    <div class="field">
+                    <div class="field field-wide">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" minlength="10" required></textarea>
+                        <textarea id="message" name="message" rows="4" minlength="10" required></textarea>
                     </div>
                     <input type="hidden" name="_captcha" value="true">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://jhapendrakandel.com.np/thanks.html">
-                    <button type="submit" id="submit" class="btn btn-gold" data-magnetic>Send message</button>
+                    <button type="submit" id="submit" class="btn btn-dark">Send message</button>
                 </form>
+            </div>
+            <a class="contact-mail" href="mailto:jhapendrakandel.mac@gmail.com"><span>jhapendrakandel.mac@</span><span>gmail.com</span></a>
+            <div class="contact-base">
+                <p>Kathmandu, Nepal</p>
+                <p class="contact-social">
+                    <a href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/jhapendrakandel" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://www.youtube.com/@Kandeljhapendra" target="_blank" rel="noopener">YouTube</a>
+                </p>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-orb footer-orb-a" aria-hidden="true"></div>
-        <div class="footer-orb footer-orb-b" aria-hidden="true"></div>
-        <div class="wrap">
-            <div class="glass footer-card">
-                <div class="footer-grid">
-                    <div class="footer-brand">
-                        <span class="brand" aria-hidden="true">J<span class="dot">.</span>K</span>
-                        <p class="footer-tag">Build with precision, secure by design, automate with purpose.</p>
-                        <a class="footer-mail" href="mailto:jhapendrakandel.mac@gmail.com"
-                            data-magnetic>jhapendrakandel.mac@gmail.com</a>
-                        <p class="footer-loc">Kathmandu, Nepal</p>
-                    </div>
-                    <nav class="footer-col" aria-label="Explore">
-                        <p class="footer-h">Explore</p>
-                        <a href="#about">About</a>
-                        <a href="#projects">Projects</a>
-                        <a href="#hackme">Hack Me</a>
-                        <a href="#journey">Journey</a>
-                        <a href="#credentials">Credentials</a>
-                        <a href="#contact">Contact</a>
-                    </nav>
-                    <nav class="footer-col" aria-label="Elsewhere">
-                        <p class="footer-h">Elsewhere</p>
-                        <a href="blog/">Blog</a>
-                        <a href="toolbox/">Resources</a>
-                        <a href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a>
-                    </nav>
-                    <div class="footer-col">
-                        <p class="footer-h">Connect</p>
-                        <nav class="social" aria-label="Social links">
-                            <a href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener" data-magnetic
-                                aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.4-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.28 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
-                            </a>
-                            <a href="https://www.linkedin.com/in/jhapendrakandel" target="_blank" rel="noopener"
-                                data-magnetic aria-label="LinkedIn">
-                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM3.2 8.5h3.5V21H3.2V8.5Zm5.66 0h3.35v1.7h.05c.47-.85 1.6-1.75 3.3-1.75 3.53 0 4.18 2.2 4.18 5.07V21h-3.5v-5.5c0-1.31-.02-3-1.86-3-1.86 0-2.14 1.42-2.14 2.9V21h-3.5V8.5Z"/></svg>
-                            </a>
-                            <a href="https://www.youtube.com/@Kandeljhapendra" target="_blank" rel="noopener"
-                                data-magnetic aria-label="YouTube">
-                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4A3 3 0 0 0 .5 6.5 31 31 0 0 0 .1 12a31 31 0 0 0 .4 5.5 3 3 0 0 0 2.1 2.1C4.5 20 12 20 12 20s7.5 0 9.4-.4a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-5.5 31 31 0 0 0-.4-5.5ZM9.75 15.5v-7L15.8 12l-6.05 3.5Z"/></svg>
-                            </a>
-                            <a href="https://www.instagram.com/jk.jk_100" target="_blank" rel="noopener" data-magnetic
-                                aria-label="Instagram">
-                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.3.07 1.69.07 4.9s0 3.6-.07 4.9c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.3.06-1.69.07-4.9.07s-3.6 0-4.9-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5.01-4.74.07-.9.04-1.38.2-1.71.32-.43.17-.74.37-1.06.7-.32.31-.52.62-.69 1.05-.13.33-.28.82-.32 1.71C3.4 8.5 3.4 8.85 3.4 12s0 3.5.07 4.74c.04.9.2 1.38.32 1.71.17.43.37.74.7 1.06.31.32.62.52 1.05.69.33.13.82.28 1.71.32 1.24.06 1.59.07 4.74.07s3.5 0 4.74-.07c.9-.04 1.38-.2 1.71-.32.43-.17.74-.37 1.06-.7.32-.31.52-.62.69-1.05.13-.33.28-.82.32-1.71.06-1.24.07-1.59.07-4.74s0-3.5-.07-4.74c-.04-.9-.2-1.38-.32-1.71a2.8 2.8 0 0 0-.7-1.06 2.8 2.8 0 0 0-1.05-.69c-.33-.13-.82-.28-1.71-.32C15.5 4.01 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 17a4.94 4.94 0 0 1 0-9.88Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.03-1.14a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg>
-                            </a>
-                        </nav>
-                        <button type="button" class="back-top" id="back-top" data-magnetic>Back to top <span
-                                aria-hidden="true">↑</span></button>
-                    </div>
-                </div>
-                <div class="footer-base">
-                    <p>© <span id="year"></span> Jhapendra Kandel · Full-Stack Developer &amp; Cybersecurity</p>
-                    <p>Static build · hosted on GitHub Pages</p>
-                </div>
+        <div class="footer-cols">
+            <nav aria-label="This page">
+                <p>This page</p>
+                <a href="#about">About</a>
+                <a href="#work">Work</a>
+                <a href="#method">Method</a>
+                <a href="#credentials">Credentials</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <nav aria-label="On this site">
+                <p>On this site</p>
+                <a href="blog/">Blog</a>
+                <a href="toolbox/">Resources</a>
+                <a href="lab/">Honeypot Lab</a>
+                <a href="project/">Lab concept</a>
+                <a href="hack-me/">Hack Me</a>
+            </nav>
+            <nav aria-label="Elsewhere">
+                <p>Elsewhere</p>
+                <a href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/jhapendrakandel" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.youtube.com/@Kandeljhapendra" target="_blank" rel="noopener">YouTube</a>
+                <a href="https://www.instagram.com/jk.jk_100" target="_blank" rel="noopener">Instagram</a>
+            </nav>
+            <div class="footer-credits">
+                <p>Pictures</p>
+                <p>Kathmandu at night by Muhammad Saddam Hussain, CC BY 4.0. Orange Pi Mini 2 by Rajib Ghosh, CC BY-SA 4.0. AMD Fiji GPU package by C. Spille, pcgameshardware.de, CC BY-SA 4.0. Ribbon microphone by Marc Wathieu, CC BY 2.0. Palm-leaf manuscript, Nepal 1119, Cleveland Museum of Art, public domain. All via <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>.</p>
             </div>
+        </div>
+        <svg class="wordmark" viewBox="0 0 1000 118" role="img" aria-label="Jhapendra Kandel">
+            <text x="0" y="104" textLength="1000" lengthAdjust="spacingAndGlyphs">JHAPENDRA KANDEL</text>
+        </svg>
+        <div class="footer-legal">
+            <p>&copy; <span id="year">2026</span> Jhapendra Kandel</p>
+            <button type="button" class="back-top" id="back-top">Back to top</button>
         </div>
     </footer>
 
-    <!-- z-60 : custom cursor -->
-    <div class="cursor-layer" id="cursor-layer" aria-hidden="true">
-        <div class="cursor-dot" id="cursor-dot"></div>
-        <div class="cursor-ring" id="cursor-ring"></div>
-    </div>
-
-    <script src="main.js" defer></script>
+    <script src="main.js?v=20261111" defer></script>
 </body>
 
 </html>
