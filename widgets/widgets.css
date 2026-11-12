@@ -80,12 +80,16 @@
 .dw-time a { font-weight: 700; text-underline-offset: 5px; text-decoration-thickness: 2px; }
 
 /* Homepage widgets */
-.dw-hn { padding: clamp(56px, 7vw, 100px) var(--pad) 0; }
+.dw-hn { padding: clamp(32px, 4vw, 56px) var(--pad) clamp(48px, 6vw, 96px); }
 .dw-hn .dw-h { font-family: var(--display); font-stretch: 62%; font-weight: 900; text-transform: uppercase; font-size: clamp(2.5rem, 1.6rem + 4vw, 5.5rem); line-height: .86; }
 .dw-hn .dw-card { background: var(--paper); color: var(--on-light); }
 .dw-hn .dw-card .dw-meta { color: #4a4a4a; }
 .dw-hn .score { font-weight: 800; color: var(--on-light); background: var(--orange); border-radius: 999px; padding: 2px 10px; }
 .dw-hn .dw-note { color: #a6a6a6; }
+.dw-hn .dw-cards { margin-top: 24px; }
+.dw-hn .dw-cards li:nth-child(n+7) { display: none; }
+.dw-hn .dw-card { padding: 18px; gap: 10px; }
+.dw-hn .dw-card h3 { font-size: 1.125rem; }
 .dw-now { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; padding: 12px var(--pad); background: var(--yellow); color: var(--on-light); font-weight: 700; }
 .dw-now .tag { font-family: var(--display); font-stretch: 62%; font-weight: 900; text-transform: uppercase; font-size: 1.25rem; letter-spacing: .02em; }
 .dw-now .when { font-weight: 500; font-size: .875rem; opacity: .7; }

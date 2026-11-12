@@ -119,6 +119,15 @@
             .catch(function () { /* block stays hidden */ });
     }
 
+    /* ---------- Data widgets: Now strip + Hacker News (hidden until data loads) ---------- */
+    function refreshTriggers() { if (window.ScrollTrigger) { try { ScrollTrigger.refresh(); } catch (e) { } } }
+    if (window.renderNow && $("#now-strip")) {
+        Promise.resolve(renderNow($("#now-strip"))).then(refreshTriggers);
+    }
+    if (window.renderHN && $("#hn-card")) {
+        Promise.resolve(renderHN($("#hn-card"))).then(refreshTriggers);
+    }
+
     /* ---------- Method slider ---------- */
     var stage = $("#stage"), method = $("#method");
     if (stage && method) {
