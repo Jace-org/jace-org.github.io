@@ -63,46 +63,33 @@
         }, 2600);
     }
 
-    /* ---------- The wire: real headlines from abcnews.com.np ---------- */
+    /* ---------- The wire + Tech Briefing block (fetch/decode/ago shared via tech/tech.js) ---------- */
+    var TB = window.TechBriefing;
     var wire = $("#wire"), wireList = $("#wire-list");
-    if (wire && wireList && window.fetch) {
-        var ago = function (date) {
-            var mins = Math.max(0, Math.round((Date.now() - date.getTime()) / 60000));
-            if (mins < 1) return "now";
-            if (mins < 60) return mins + "m ago";
-            var h = Math.round(mins / 60);
-            if (h < 24) return h + "h ago";
-            return Math.round(h / 24) + "d ago";
-        };
-        var decode = function (html) {
-            var doc = new DOMParser().parseFromString(html, "text/html");
-            return (doc.body.textContent || "").trim();
-        };
-        var ctl = window.AbortController ? new AbortController() : null;
-        if (ctl) setTimeout(function () { ctl.abort(); }, 8000);
-        fetch("https://abcnews.com.np/wp-json/wp/v2/posts?per_page=8&_fields=title,link,date_gmt", ctl ? { signal: ctl.signal } : {})
-            .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    if (TB && wire && wireList) {
+        TB.fetchPosts({ per_page: 8 }, "title,link,date_gmt")
             .then(function (posts) {
-                if (!Array.isArray(posts) || !posts.length) return;
+                if (!posts.length) return;
                 var frag = document.createDocumentFragment();
                 posts.forEach(function (p) {
-                    var title = p && p.title ? decode(p.title.rendered || "") : "";
-                    if (!title || !/^https:\/\/abcnews\.com\.np\//.test(p.link || "")) return;
+                    var title = p && p.title ? TB.decode(p.title.rendered || "") : "";
+                    var href = TB.safeLink(p && p.link);
+                    if (!title || !href) return;
                     var li = document.createElement("li");
                     if (p.date_gmt) {
                         var t = document.createElement("time");
                         t.dateTime = p.date_gmt + "Z";
-                        t.textContent = ago(new Date(p.date_gmt + "Z"));
+                        t.textContent = TB.ago(new Date(p.date_gmt + "Z"));
                         li.appendChild(t);
                     }
                     var a = document.createElement("a");
-                    a.href = p.link; a.target = "_blank"; a.rel = "noopener";
+                    a.href = href; a.target = "_blank"; a.rel = "noopener noreferrer";
                     a.textContent = title;
                     li.appendChild(a);
                     frag.appendChild(li);
                 });
                 if (!frag.childNodes.length) return;
-                wireList.innerHTML = "";
+                wireList.textContent = "";
                 wireList.appendChild(frag);
                 wire.classList.add("is-ready");
                 if (reduce) return;
@@ -118,6 +105,18 @@
                 wire.classList.add("is-moving");
             })
             .catch(function () { /* bar stays hidden */ });
+    }
+
+    var techb = $("#tech"), techbGrid = $("#techb-grid");
+    if (TB && techb && techbGrid) {
+        TB.fetchTech(1, 4)
+            .then(function (posts) {
+                var frag = TB.buildCards(posts);
+                if (!frag.childNodes.length) return;
+                techbGrid.appendChild(frag);
+                techb.classList.add("is-ready");
+            })
+            .catch(function () { /* block stays hidden */ });
     }
 
     /* ---------- Method slider ---------- */

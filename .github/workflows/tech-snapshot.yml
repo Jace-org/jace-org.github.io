@@ -1,0 +1,31 @@
+name: Tech Briefing snapshot
+
+on:
+  schedule:
+    - cron: "17 */4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tech-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Build snapshot
+        run: python3 tech/build_snapshot.py
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- tech/index.html tech/feed.xml; then
+            echo "no change"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tech/index.html tech/feed.xml
+          git commit -m "Tech Briefing: refresh snapshot"
+          git push
