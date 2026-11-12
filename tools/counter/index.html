@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
+<title>Counter demo — Jhapendra Kandel</title>
+<meta name="description" content="A generic demo: read a total from a public WordPress REST endpoint via the X-WP-Total header.">
+<meta name="author" content="Jhapendra Kandel">
+<link rel="canonical" href="https://jhapendrakandel.com.np/tools/counter/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jhapendra Kandel">
+<meta property="og:title" content="Counter demo — Jhapendra Kandel">
+<meta property="og:description" content="A generic demo: read a total from a public WordPress REST endpoint via the X-WP-Total header.">
+<meta property="og:url" content="https://jhapendrakandel.com.np/tools/counter/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Counter demo — Jhapendra Kandel">
+<meta name="twitter:description" content="A generic demo: read a total from a public WordPress REST endpoint via the X-WP-Total header.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css?v=20261112b">
+<link rel="stylesheet" href="../../widgets/widgets.css?v=4">
+<link rel="stylesheet" href="t.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+<a class="nav-mark" href="../../" aria-label="Jhapendra Kandel, home">J.K</a>
+<button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" class="nav-links" aria-label="Primary">
+<a href="../../">Home</a>
+<a href="../../blog/">Blog</a>
+<a href="../../tech/">Tech</a>
+<a href="../../pulse/">Nepal Pulse</a>
+<a href="../../security/">Security Wire</a>
+<a href="../../tools/">Tools</a>
+<a href="../../toolbox/">Resources</a>
+<a class="nav-cta" href="../../#contact">Contact</a>
+</nav>
+</header>
+<main id="main" class="dw-page">
+<p class="kicker">Tools · Counter</p>
+<h1 class="sec-h dw-title">Count from a header</h1>
+<p class="dw-lede">A generic demo: read a total from a public WordPress REST endpoint via the X-WP-Total header.</p>
+<noscript><p class="dw-status is-warn">This preview loads its data with JavaScript.</p></noscript>
+<p id="status" class="dw-status" role="status" hidden></p>
+<h2 class="dw-h2">Articles published by my automation</h2>
+<div class="dw-stats"><div class="fact"><p class="fact-num tl-numwrap" id="total">–</p><p class="fact-say">in total</p></div>
+<div class="fact"><p class="fact-num" id="month">–</p><p class="fact-say" id="monthsay">this month</p></div></div>
+<p class="dw-copy">The request asks for one post only (<code>per_page=1</code>) and the browser reads the total count from the <strong>X-WP-Total</strong> response header, so no article text is downloaded. The "this month" figure repeats the request with an <code>after=</code> date filter set to the first day of the current month (UTC).</p>
+<h2 class="dw-h2">Data sources &amp; privacy</h2>
+<p class="dw-note">The counts are read from the public REST API of a WordPress site I run; the address is kept in a constant in the script. The server must list X-WP-Total in Access-Control-Expose-Headers for a browser to read it. Requests go straight from your browser to the named service, without cookies or an API key; that service sees your IP address as in any web request. Everything received is treated as untrusted text and shown with safe DOM methods. Nothing is sent to this site, and this preview page is not indexed by search engines.</p>
+</main>
+<footer class="site-footer">
+<div class="footer-cols">
+<div class="footer-say"><p class="footer-jk">J.K</p><p>Build with precision, secure by design, automate with purpose.</p></div>
+<nav aria-label="On this site"><p>On this site</p><a href="../../">Home</a><a href="../../blog/">Blog</a><a href="../../tech/">Tech Briefing</a><a href="../../pulse/">Pulse</a><a href="../../security/">Security Wire</a><a href="../../tools/">Tools</a><a href="../../toolbox/">Resources</a></nav>
+</div>
+<div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
+</footer>
+<script src="../../widgets/nav.js?v=3"></script>
+<script src="counter.js?v=1"></script>
+</body>
+</html>

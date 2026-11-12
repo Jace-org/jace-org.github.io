@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
+<title>Feed preview — Jhapendra Kandel</title>
+<meta name="description" content="What an Atom feed for the blog would look like, generated here from the post index.">
+<meta name="author" content="Jhapendra Kandel">
+<link rel="canonical" href="https://jhapendrakandel.com.np/tools/feeds/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jhapendra Kandel">
+<meta property="og:title" content="Feed preview — Jhapendra Kandel">
+<meta property="og:description" content="What an Atom feed for the blog would look like, generated here from the post index.">
+<meta property="og:url" content="https://jhapendrakandel.com.np/tools/feeds/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Feed preview — Jhapendra Kandel">
+<meta name="twitter:description" content="What an Atom feed for the blog would look like, generated here from the post index.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css?v=20261112b">
+<link rel="stylesheet" href="../../widgets/widgets.css?v=4">
+<link rel="stylesheet" href="t.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+<a class="nav-mark" href="../../" aria-label="Jhapendra Kandel, home">J.K</a>
+<button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" class="nav-links" aria-label="Primary">
+<a href="../../">Home</a>
+<a href="../../blog/">Blog</a>
+<a href="../../tech/">Tech</a>
+<a href="../../pulse/">Nepal Pulse</a>
+<a href="../../security/">Security Wire</a>
+<a href="../../tools/">Tools</a>
+<a href="../../toolbox/">Resources</a>
+<a class="nav-cta" href="../../#contact">Contact</a>
+</nav>
+</header>
+<main id="main" class="dw-page">
+<p class="kicker">Tools · Feeds</p>
+<h1 class="sec-h dw-title">Blog feed preview</h1>
+<p class="dw-lede">What an Atom feed for the blog would look like, generated here from the post index.</p>
+<noscript><p class="dw-status is-warn">This preview loads its data with JavaScript.</p></noscript>
+<p id="status" class="dw-status" role="status" hidden></p>
+<div class="tl-ctrl"><button type="button" class="tl-btn solid" id="dl" hidden>Download feed.xml</button><a class="tl-btn" href="feed.sample.xml">Static sample file</a></div>
+<h2 class="dw-h2">Sample feed.xml</h2>
+<pre class="tl-pre" id="xml" tabindex="0" aria-label="Generated Atom feed"></pre>
+<h2 class="dw-h2">How it would work</h2>
+<p class="dw-copy">The blog generator already writes <code>blog/posts.json</code> with a title, date, tags and excerpt for each post. A feed is the same list in XML: one <strong>entry</strong> per post with a link, an id, a date and a summary. Readers and aggregators poll that file and show new posts without anyone visiting the site. This preview builds the XML in your browser from the live index; a real feed would be written once by the generator and served as a static file.</p>
+<h2 class="dw-h2">Data sources &amp; privacy</h2>
+<p class="dw-note">The post index is read from this site (blog/posts.json); no third party is contacted. Requests go straight from your browser to the named service, without cookies or an API key; that service sees your IP address as in any web request. Everything received is treated as untrusted text and shown with safe DOM methods. Nothing is sent to this site, and this preview page is not indexed by search engines.</p>
+</main>
+<footer class="site-footer">
+<div class="footer-cols">
+<div class="footer-say"><p class="footer-jk">J.K</p><p>Build with precision, secure by design, automate with purpose.</p></div>
+<nav aria-label="On this site"><p>On this site</p><a href="../../">Home</a><a href="../../blog/">Blog</a><a href="../../tech/">Tech Briefing</a><a href="../../pulse/">Pulse</a><a href="../../security/">Security Wire</a><a href="../../tools/">Tools</a><a href="../../toolbox/">Resources</a></nav>
+</div>
+<div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
+</footer>
+<script src="../../widgets/nav.js?v=3"></script>
+<script src="feeds.js?v=1"></script>
+</body>
+</html>

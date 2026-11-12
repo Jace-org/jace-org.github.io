@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
+<title>Kathmandu Clock Widget — Jhapendra Kandel</title>
+<meta name="description" content="A tiny header widget that shows Nepal time and the temperature, written as a snippet you can drop into any page.">
+<meta name="author" content="Jhapendra Kandel">
+<link rel="canonical" href="https://jhapendrakandel.com.np/tools/clock/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jhapendra Kandel">
+<meta property="og:title" content="Kathmandu Clock Widget — Jhapendra Kandel">
+<meta property="og:description" content="A tiny header widget that shows Nepal time and the temperature, written as a snippet you can drop into any page.">
+<meta property="og:url" content="https://jhapendrakandel.com.np/tools/clock/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kathmandu Clock Widget — Jhapendra Kandel">
+<meta name="twitter:description" content="A tiny header widget that shows Nepal time and the temperature, written as a snippet you can drop into any page.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css?v=20261112b">
+<link rel="stylesheet" href="../../widgets/widgets.css?v=4">
+<link rel="stylesheet" href="clock.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+<a class="nav-mark" href="../../" aria-label="Jhapendra Kandel, home">J.K</a>
+<button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" class="nav-links" aria-label="Primary">
+<a href="../../">Home</a>
+<a href="../../blog/">Blog</a>
+<a href="../../tech/">Tech</a>
+<a href="../../pulse/">Nepal Pulse</a>
+<a href="../../security/">Security Wire</a>
+<a href="../../tools/">Tools</a>
+<a href="../../toolbox/">Resources</a>
+<a class="nav-cta" href="../../#contact">Contact</a>
+</nav>
+</header>
+<main id="main" class="dw-page">
+<p class="kicker">Tools · Header widget</p>
+<h1 class="sec-h dw-title">Kathmandu in one line</h1>
+<p class="dw-lede">A tiny header widget that shows Nepal time and the temperature, written as a snippet you can drop into any page.</p>
+<noscript><p class="dw-status is-warn">The live numbers on this page need JavaScript.</p></noscript>
+<h2 class="dw-h2">In the header</h2>
+<div class="c-demo" aria-label="Demo of the widget in a site header">
+<span class="c-mark">J.K</span>
+<span class="c-links" aria-hidden="true">Home &nbsp; Blog &nbsp; Tech</span>
+<span id="ktm-clock" class="ktm-clock" hidden></span>
+</div>
+<p class="dw-note">The line above is the real widget. If the weather service does not answer within 8 seconds, it quietly drops to just "22:58 in Kathmandu".</p>
+<h2 class="dw-h2">Use it</h2>
+<p class="dw-copy">One small file, no dependencies. Copy <a href="ktm-clock.js">ktm-clock.js</a> next to the page, add the three lines below where the clock should appear, and style <code>.ktm-clock</code> to fit the header. The element stays hidden until the script has a time to show.</p>
+<pre class="c-code" tabindex="0"><code id="snip">&lt;span id="ktm-clock" class="ktm-clock" hidden&gt;&lt;/span&gt;
+&lt;script src="ktm-clock.js"&gt;&lt;/script&gt;
+&lt;script&gt;ktmClock(document.getElementById('ktm-clock'));&lt;/script&gt;</code></pre>
+<p class="dw-copy">What it does: the time is formatted in your browser for the Asia/Kathmandu zone (UTC+5:45, no daylight saving). The temperature is fetched once at load and every 15 minutes, rounded to a whole degree, and validated as a plain number in a sane range before it is shown. It only ever writes with <code>textContent</code>.</p>
+<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>The time is computed in your browser. The temperature comes from <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (CC BY 4.0), which sees your IP address when the widget loads. Nothing is sent to this site's servers or stored.</p></section>
+</main>
+<footer class="site-footer">
+<div class="footer-cols">
+<div class="footer-say"><p class="footer-jk">J.K</p><p>Build with precision, secure by design, automate with purpose.</p></div>
+<nav aria-label="On this site"><p>On this site</p><a href="../../">Home</a><a href="../../blog/">Blog</a><a href="../../tech/">Tech Briefing</a><a href="../../pulse/">Pulse</a><a href="../../security/">Security Wire</a><a href="../../tools/">Tools</a><a href="../../toolbox/">Resources</a></nav>
+</div>
+<div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
+</footer>
+<script src="../../widgets/nav.js?v=3"></script>
+<script src="ktm-clock.js?v=1"></script>
+<script>ktmClock(document.getElementById('ktm-clock'));</script>
+</body>
+</html>

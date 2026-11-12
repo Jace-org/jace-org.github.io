@@ -9,7 +9,7 @@
 
     <title>Hack Me — Try My Labs | Jhapendra Kandel</title>
     <meta name="description"
-        content="Try to hack my labs. Get in and you get a genuine congratulations for being a pro. Not live yet. Leave your email and get told when the door opens.">
+        content="Try to hack my labs. Get in and you get a genuine congratulations for being a pro. The live challenge is The site is a CTF at /tools/ctf/. The full labs are not open yet; leave your email to be told when they are.">
     <meta name="author" content="Jhapendra Kandel">
     <link rel="canonical" href="https://jhapendrakandel.com.np/hack-me/">
 
@@ -19,7 +19,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Hack Me — Try My Labs">
     <meta property="og:description"
-        content="Try to hack my labs. Get in and you get a genuine congratulations. Not live yet. Stay alerted.">
+        content="Try to hack my labs. Get in and you get a genuine congratulations. The live challenge is The site is a CTF. The full labs are not open yet.">
     <meta property="og:url" content="https://jhapendrakandel.com.np/hack-me/">
     <meta property="og:image"
         content="https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png">
@@ -378,9 +378,13 @@
             <div class="term-body" id="termBody"></div>
         </section>
 
+        <div class="notify">
+            <p>The live challenge is open now: <a href="/tools/ctf/" style="color:inherit;text-decoration:underline">The site is a CTF</a>. Eight hidden flags, browser tools only.</p>
+        </div>
+
         <form class="notify" id="notifyForm" method="POST"
             action="https://formsubmit.co/5cd9e20c92fe46aa65897efcf33b2446">
-            <p>Labs are offline for now. Leave your email and I will ping you once when
+            <p>The full labs are offline for now. Leave your email and I will ping you once when
                 there is finally a door for you to bang your head against.</p>
             <div class="row">
                 <input type="email" name="email" placeholder="you@domain.tld" required autocomplete="email">
@@ -393,7 +397,7 @@
         </form>
 
         <div class="foot">
-            <span class="pulse">STATUS: LOCKED // COMING SOON</span>
+            <span class="pulse">STATUS: CTF LIVE // FULL LABS LOCKED</span>
             <a href="/">&larr; back to main site</a>
             <a href="/blog/">read the blog</a>
         </div>
@@ -447,18 +451,18 @@
                 { t: "$ ssh guest@labs.jhapendrakandel.com.np", cls: "" },
                 { t: "[  ok  ] connection reached the box", cls: "ok" },
                 { t: "[  ok  ] your recon so far ....... noted, unimpressed", cls: "ok" },
-                { t: "[ warn ] labs not exposed to the public yet", cls: "warn" },
+                { t: "[ warn ] full labs not exposed yet. live challenge: /tools/ctf/", cls: "warn" },
                 { t: "[ fail ] your access level ....... GUEST (read: nobody)", cls: "err" },
                 { t: "", cls: "" },
                 { t: "> nmap -sV your-skills ... 0 open ports found", cls: "muted" },
-                { t: "> deploy window ......... SOON(tm)", cls: "muted" },
+                { t: "> live challenge ......... OPEN at /tools/ctf/", cls: "muted" },
                 { t: "", cls: "" },
                 { t: "MESSAGE: This is Hack Me. Try to hack my labs.", cls: "ok" },
                 { t: "         Actually get in and I will congratulate you,", cls: "ok" },
                 { t: "         publicly, for being a genuine pro.", cls: "ok" },
                 { t: "         Until then: copy-pasting a payload off Google", cls: "ok" },
                 { t: "         and watching one YouTube video does not make", cls: "ok" },
-                { t: "         you a hacker. Come back when it is live.", cls: "ok" }
+                { t: "         you a hacker. The door is open: /tools/ctf/", cls: "ok" }
             ];
 
             var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

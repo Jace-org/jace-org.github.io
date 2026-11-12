@@ -27,6 +27,7 @@ is a deploy (Pages rebuilds in ~1 minute). Verify with `curl -s https://jhapendr
 | `blog/` | Blog: markdown in `blog/posts/` → `python3 blog/build.py` → static HTML. Post-page paths are depth-sensitive in `POST_TEMPLATE`. |
 | `toolbox/` | "Resources" page (`toolbox.json` driven) |
 | `lab/` | Honeypot Lab interactive demo |
+| `tools/` | 20 public browser tools (was `/test/`, promoted 2026-11-12); `tools/index.html` lists them. `test/index.html` is only a redirect stub |
 | `project/` | Lab concept page |
 | `hack-me/` | Hack Me locked-door page |
 | `thanks.html` | FormSubmit redirect target |

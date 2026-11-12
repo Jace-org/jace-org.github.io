@@ -1,0 +1,808 @@
+{
+ "about": "Static index built from the public pages of this site. Nothing private.",
+ "generated": "2026-11-12",
+ "entries": [
+  {
+   "id": "about",
+   "type": "profile",
+   "title": "Who is Jhapendra Kandel",
+   "url": "/",
+   "text": "Jhapendra Kandel (J.K) is a full-stack developer, cybersecurity enthusiast and automation engineer based in Kathmandu, Nepal. He is working towards a Bachelor of Information Technology. He builds secure, scalable web applications, from custom WordPress platforms and news portals to REST APIs and self-hosted infrastructure, and keeps security part of the work from the start. He is available for work.",
+   "keywords": [
+    "who",
+    "about",
+    "developer",
+    "kathmandu",
+    "nepal",
+    "available",
+    "hire",
+    "work",
+    "engineer"
+   ]
+  },
+  {
+   "id": "motto",
+   "type": "profile",
+   "title": "Motto",
+   "url": "/",
+   "text": "Build with precision, secure by design, automate with purpose. The homepage line is: I build it. Then I break it.",
+   "keywords": [
+    "motto",
+    "philosophy",
+    "principle",
+    "values"
+   ]
+  },
+  {
+   "id": "focus",
+   "type": "profile",
+   "title": "Focus areas",
+   "url": "/#about",
+   "text": "Focus areas: ethical hacking and penetration testing; network security and secure software development; DevOps and infrastructure automation; applied AI, LLM systems and workflow automation.",
+   "keywords": [
+    "focus",
+    "interests",
+    "security",
+    "devops",
+    "ai",
+    "specialty",
+    "specialize"
+   ]
+  },
+  {
+   "id": "learning",
+   "type": "profile",
+   "title": "Currently learning",
+   "url": "/#about",
+   "text": "Currently learning: advanced LLM fine-tuning, RAG pipelines, the Model Context Protocol (MCP) and container orchestration.",
+   "keywords": [
+    "learning",
+    "studying",
+    "now",
+    "current",
+    "next",
+    "rag",
+    "mcp",
+    "kubernetes"
+   ]
+  },
+  {
+   "id": "education",
+   "type": "credentials",
+   "title": "Education",
+   "url": "/#creds",
+   "text": "Bachelor of Information Technology (BIT), in progress. Undergraduate study across software engineering, networking, cybersecurity, databases, operating systems and modern web technologies.",
+   "keywords": [
+    "education",
+    "degree",
+    "university",
+    "bit",
+    "study",
+    "student",
+    "bachelor"
+   ]
+  },
+  {
+   "id": "certs",
+   "type": "credentials",
+   "title": "Certifications",
+   "url": "/#creds",
+   "text": "Certifications, all 2025: GitHub Foundations (GitHub), Google Cloud Computing Foundations (Google Cloud) and Cloudflare Fundamentals (Cloudflare).",
+   "keywords": [
+    "certification",
+    "certifications",
+    "certificate",
+    "certified",
+    "github",
+    "google",
+    "cloudflare"
+   ]
+  },
+  {
+   "id": "competitions",
+   "type": "credentials",
+   "title": "Competitions",
+   "url": "/#creds",
+   "text": "Hack Astra CTF run by The Hackers Community Nepal: ranked 80th of 450 players. Also took part in the Nutanix Capture The Flag and a Digital Forensics Hackathon.",
+   "keywords": [
+    "competition",
+    "ctf",
+    "hackathon",
+    "hack astra",
+    "nutanix",
+    "forensics",
+    "rank",
+    "award"
+   ]
+  },
+  {
+   "id": "news",
+   "type": "project",
+   "title": "Nepali news site (solo build)",
+   "url": "/blog/building-abc-news-solo",
+   "text": "Built a full Nepali news site alone from scratch: front end, back end, and all the server work and DevOps to deploy it and keep it running. Stack: WordPress, PHP, DevOps and automation. Featured, public project.",
+   "keywords": [
+    "news",
+    "wordpress",
+    "php",
+    "website",
+    "portal",
+    "devops",
+    "featured",
+    "solo"
+   ]
+  },
+  {
+   "id": "tts",
+   "type": "project",
+   "title": "Nepali text to speech",
+   "url": "/",
+   "text": "Trained a speech model that reads Nepali out loud, so Nepali text can be turned into natural-sounding audio. Python, PyTorch, speech. Featured AI and machine learning project, private.",
+   "keywords": [
+    "tts",
+    "speech",
+    "voice",
+    "audio",
+    "nepali",
+    "pytorch",
+    "text to speech"
+   ]
+  },
+  {
+   "id": "nllm",
+   "type": "project",
+   "title": "Nepali LLM at home",
+   "url": "/blog/nepali-llm-at-home",
+   "text": "A language model built for Nepali, trained and served entirely on a homelab machine with a 32 GB GPU. LLM, fine-tuning, homelab. Featured AI project, private.",
+   "keywords": [
+    "llm",
+    "nepali",
+    "language model",
+    "fine-tuning",
+    "homelab",
+    "gpu",
+    "training"
+   ]
+  },
+  {
+   "id": "honeypot",
+   "type": "project",
+   "title": "Honeypot Lab",
+   "url": "/lab/",
+   "text": "Fire attacks at a decoy in your browser, watch them get classified, work the cases in a management portal, then see each weakness fixed and retested. Security and detection, runs in the page. A public demo.",
+   "keywords": [
+    "honeypot",
+    "lab",
+    "attack",
+    "detection",
+    "decoy",
+    "security",
+    "demo",
+    "classify"
+   ]
+  },
+  {
+   "id": "netguard",
+   "type": "project",
+   "title": "NetGuard DNS Monitor",
+   "url": "https://github.com/jhapendra-kandel/NetGuard-DNS-Monitor",
+   "text": "Real-time DNS monitoring and threat detection that flags suspicious lookups as they happen. Python, networking, security. Public cybersecurity tool on GitHub.",
+   "keywords": [
+    "dns",
+    "netguard",
+    "monitor",
+    "threat",
+    "detection",
+    "python",
+    "networking"
+   ]
+  },
+  {
+   "id": "onss",
+   "type": "project",
+   "title": "ONSS (notes sharing)",
+   "url": "/",
+   "text": "ONSS, the Online Notes Sharing System: upload, browse and download study notes with user accounts. PHP, MySQL, Bootstrap. A public web application.",
+   "keywords": [
+    "onss",
+    "notes",
+    "sharing",
+    "php",
+    "mysql",
+    "bootstrap",
+    "study"
+   ]
+  },
+  {
+   "id": "reel",
+   "type": "project",
+   "title": "Video Reel Generator",
+   "url": "/",
+   "text": "A model that takes a topic or a short script and builds a vertical video reel from it, adding cuts and captions on its own. Python, video, generative AI. Private.",
+   "keywords": [
+    "video",
+    "reel",
+    "generator",
+    "captions",
+    "generative"
+   ]
+  },
+  {
+   "id": "stt",
+   "type": "project",
+   "title": "Voice to Text Model",
+   "url": "/",
+   "text": "A speech recognition model that listens to spoken audio and writes out what was said. Python, ASR, audio. Private.",
+   "keywords": [
+    "voice",
+    "speech",
+    "recognition",
+    "asr",
+    "transcribe",
+    "audio"
+   ]
+  },
+  {
+   "id": "kandel",
+   "type": "project",
+   "title": "Kandel Holdings",
+   "url": "/",
+   "text": "Property and bill management platform with real-time updates for tenants and owners. PHP, MySQL, real-time. Private web app.",
+   "keywords": [
+    "property",
+    "bills",
+    "tenants",
+    "real-time",
+    "kandel holdings"
+   ]
+  },
+  {
+   "id": "restaurant",
+   "type": "project",
+   "title": "Restaurant Management System",
+   "url": "/",
+   "text": "Order and invoice management that keeps table orders, billing and kitchen tickets in one dashboard. PHP, MySQL, JavaScript. Private.",
+   "keywords": [
+    "restaurant",
+    "orders",
+    "invoice",
+    "billing",
+    "kitchen",
+    "dashboard"
+   ]
+  },
+  {
+   "id": "notesplat",
+   "type": "project",
+   "title": "Notes Sharing Platform",
+   "url": "/",
+   "text": "Collaborative learning platform with note uploads, browsing and real-time chat between students. PHP, MySQL, WebSockets. Private.",
+   "keywords": [
+    "notes",
+    "chat",
+    "students",
+    "websockets",
+    "learning",
+    "collaborative"
+   ]
+  },
+  {
+   "id": "techkart",
+   "type": "project",
+   "title": "Techkart",
+   "url": "/",
+   "text": "A full shopping website with a catalogue, cart and checkout flow on a PHP and SQL backend. PHP, SQL, JavaScript. E-commerce, private.",
+   "keywords": [
+    "shop",
+    "shopping",
+    "ecommerce",
+    "cart",
+    "checkout",
+    "techkart"
+   ]
+  },
+  {
+   "id": "skills",
+   "type": "skills",
+   "title": "Skills (self-rated out of 100)",
+   "url": "/#skills",
+   "text": "Self-rated skills out of 100: HTML5 92, CSS3 90, WordPress 90, PHP 88, JavaScript 85, MySQL 85, React 82, Python 80, Linux and server admin 78, Docker 75, ethical hacking and penetration testing 70. The ratings are the owner's own, not a test result.",
+   "keywords": [
+    "skills",
+    "skill",
+    "languages",
+    "technologies",
+    "tech stack",
+    "stack",
+    "best",
+    "strongest",
+    "html",
+    "css",
+    "wordpress",
+    "php",
+    "javascript",
+    "mysql",
+    "react",
+    "python",
+    "linux",
+    "docker",
+    "pentest",
+    "level",
+    "rating"
+   ]
+  },
+  {
+   "id": "journey1",
+   "type": "journey",
+   "title": "How it started",
+   "url": "/#journey",
+   "text": "Started by building small websites in school and never stopped. Along the way interest grew in how systems break, so now building and securing go together, with safety from the first line of code.",
+   "keywords": [
+    "start",
+    "started",
+    "begin",
+    "history",
+    "school",
+    "story"
+   ]
+  },
+  {
+   "id": "journey2",
+   "type": "journey",
+   "title": "Learning the whole stack",
+   "url": "/#journey",
+   "text": "Picked up the stack piece by piece: C and Python first, then databases and Node on the server, then React on the front end. Now comfortable across all of it on the same project.",
+   "keywords": [
+    "stack",
+    "c",
+    "python",
+    "node",
+    "react",
+    "databases",
+    "full-stack"
+   ]
+  },
+  {
+   "id": "journey3",
+   "type": "journey",
+   "title": "Getting into security",
+   "url": "/#journey",
+   "text": "Spends time on ethical hacking, network security and penetration testing. Understanding how something can be attacked makes for better building. Treats every input as untrusted.",
+   "keywords": [
+    "security",
+    "ethical hacking",
+    "pentest",
+    "untrusted",
+    "input"
+   ]
+  },
+  {
+   "id": "journey4",
+   "type": "journey",
+   "title": "Shipping real products",
+   "url": "/#journey",
+   "text": "Products run in production: a property and billing platform, a restaurant order and invoice system, a notes app with live chat, and a DNS monitor that watches for bad lookups.",
+   "keywords": [
+    "production",
+    "real",
+    "products",
+    "shipping"
+   ]
+  },
+  {
+   "id": "homelab",
+   "type": "journey",
+   "title": "Self-hosting and homelab",
+   "url": "/blog/cloudflare-tunnels-self-hosted",
+   "text": "Self-hosts an Ubuntu server on an Orange Pi Zero 2W at home, and runs a homelab machine with a 32 GB GPU for model training. Sets up the Docker containers, the web server and the database personally.",
+   "keywords": [
+    "homelab",
+    "self-host",
+    "self-hosted",
+    "orange pi",
+    "server",
+    "ubuntu",
+    "docker",
+    "gpu",
+    "hardware",
+    "home server"
+   ]
+  },
+  {
+   "id": "now",
+   "type": "journey",
+   "title": "What he is on now",
+   "url": "/#journey",
+   "text": "Right now spending time on training and running language models, Nepali speech models, RAG pipelines and container orchestration.",
+   "keywords": [
+    "now",
+    "current",
+    "currently",
+    "today",
+    "recent"
+   ]
+  },
+  {
+   "id": "contact",
+   "type": "contact",
+   "title": "Contact",
+   "url": "/#contact",
+   "text": "Email jhapendrakandel.mac@gmail.com, or use the contact form on the homepage. Also on GitHub (jhapendra-kandel), LinkedIn (jhapendrakandel), YouTube (@Kandeljhapendra) and Instagram (jk.jk_100). Open to work and to building things that stay up.",
+   "keywords": [
+    "contact",
+    "email",
+    "reach",
+    "hire",
+    "github",
+    "linkedin",
+    "youtube",
+    "instagram",
+    "social",
+    "message"
+   ]
+  },
+  {
+   "id": "hackme",
+   "type": "site",
+   "title": "Hack Me and the site CTF",
+   "url": "/hack-me/",
+   "text": "The Hack Me page points to The site is a CTF at /tools/ctf/, a live scavenger hunt with eight hidden flags. Tools at /tools/ lists twenty free browser tools. Try to hack the labs and get a personal congratulations. The Honeypot Lab shows attacks being classified in the browser.",
+   "keywords": [
+    "hack",
+    "hack me",
+    "try",
+    "labs",
+    "door"
+   ]
+  },
+  {
+   "id": "pulse",
+   "type": "site",
+   "title": "Nepal Internet Pulse",
+   "url": "/pulse/",
+   "text": "A small public view of Nepal's internet routing: networks, announced prefixes, a 90-day trend and a hand-kept outage timeline.",
+   "keywords": [
+    "pulse",
+    "nepal",
+    "internet",
+    "routing",
+    "bgp",
+    "asn",
+    "outage"
+   ]
+  },
+  {
+   "id": "security",
+   "type": "site",
+   "title": "Security Wire",
+   "url": "/security/",
+   "text": "A live security news and vulnerability page on the site, showing recent CVEs and headlines.",
+   "keywords": [
+    "security wire",
+    "cve",
+    "vulnerabilities",
+    "news",
+    "headlines"
+   ]
+  },
+  {
+   "id": "post-hello-from-the-new-blog",
+   "type": "blog",
+   "title": "Blog: Hello from the new blog",
+   "url": "/blog/hello-from-the-new-blog",
+   "text": "A short note on why this blog now lives on my own site, and how it works. Tags: Meta. Published 2026-09-03.",
+   "keywords": [
+    "meta",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-building-abc-news-solo",
+   "type": "blog",
+   "title": "Blog: Building a news site on my own",
+   "url": "/blog/building-abc-news-solo",
+   "text": "What it takes to build and run a full news site by yourself, from the theme down to the server. Tags: Web, DevOps, WordPress. Published 2026-08-20.",
+   "keywords": [
+    "web",
+    "devops",
+    "wordpress",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-nepali-llm-at-home",
+   "type": "blog",
+   "title": "Blog: Training a Nepali language model at home",
+   "url": "/blog/nepali-llm-at-home",
+   "text": "Notes on fine-tuning and serving a Nepali LLM on a single AMD AI Pro 32GB GPU in my homelab. Tags: AI, Homelab, Nepali. Published 2026-08-05.",
+   "keywords": [
+    "ai",
+    "homelab",
+    "nepali",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-running-llms-locally-vram",
+   "type": "blog",
+   "title": "Blog: Running Large Language Models Locally: What VRAM Actually Means",
+   "url": "/blog/running-llms-locally-vram",
+   "text": "Parameters are not gigabytes. Where VRAM really goes, why quantization works, and why a 70B model does not need 70GB. Tags: AI, LLM, Homelab. Published 2026-03-18.",
+   "keywords": [
+    "ai",
+    "llm",
+    "homelab",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-why-nepali-is-hard-for-ai",
+   "type": "blog",
+   "title": "Blog: Why Nepali Is Still a Hard Language for AI Models",
+   "url": "/blog/why-nepali-is-hard-for-ai",
+   "text": "Thin data, tokenizers built for English, and manual evaluation. The concrete reasons Nepali still lags, and what helps. Tags: AI, LLM, Nepali. Published 2026-04-02.",
+   "keywords": [
+    "ai",
+    "llm",
+    "nepali",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-parallel-ai-agents",
+   "type": "blog",
+   "title": "Blog: Can Multiple AI Agents Work in Parallel? Understanding Parallel Agent Architectures",
+   "url": "/blog/parallel-ai-agents",
+   "text": "When running AI agents in parallel actually helps, the architecture that works, and the judging step everyone skips. Tags: AI, LLM, Agents. Published 2026-04-21.",
+   "keywords": [
+    "ai",
+    "llm",
+    "agents",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-cloudflare-tunnels-self-hosted",
+   "type": "blog",
+   "title": "Blog: Cloudflare Tunnels as Part of a Self-Hosted Infrastructure",
+   "url": "/blog/cloudflare-tunnels-self-hosted",
+   "text": "Exposing self-hosted services without opening ports: what tunnels buy you, how I use them, and where they fall short. Tags: Infra, Homelab, DevOps. Published 2026-05-06.",
+   "keywords": [
+    "infra",
+    "homelab",
+    "devops",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-multi-layer-server-architecture",
+   "type": "blog",
+   "title": "Blog: What I Learned Designing a Multi-Layer Server Architecture",
+   "url": "/blog/multi-layer-server-architecture",
+   "text": "A VPS, a NAS, a backup box and some tunnels, each with one job. Why the separation happened and what it costs. Tags: Infra, Homelab, DevOps. Published 2026-05-19.",
+   "keywords": [
+    "infra",
+    "homelab",
+    "devops",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-how-i-think-about-backups",
+   "type": "blog",
+   "title": "Blog: How I Think About Backups After Designing My Own Infrastructure",
+   "url": "/blog/how-i-think-about-backups",
+   "text": "Tiers not copies, the target pulls, keep history, test the restore. The backup model I use after building my own infra. Tags: DevOps, Infra, Homelab. Published 2026-06-03.",
+   "keywords": [
+    "devops",
+    "infra",
+    "homelab",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-network-isolation-security-lab",
+   "type": "blog",
+   "title": "Blog: Why Network Isolation Matters in a Cybersecurity Lab",
+   "url": "/blog/network-isolation-security-lab",
+   "text": "VLANs, default-deny between segments, and small-scale zero trust. Why isolation keeps a lab from becoming an incident. Tags: Security, Homelab, Infra. Published 2026-06-17.",
+   "keywords": [
+    "security",
+    "homelab",
+    "infra",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-localhost-to-production",
+   "type": "blog",
+   "title": "Blog: From Localhost to Production: Problems Nobody Mentions in Tutorials",
+   "url": "/blog/localhost-to-production",
+   "text": "DNS, service networking, permissions, containers and env config. The things that break the first few times you ship for real. Tags: DevOps, Infra. Published 2026-07-01.",
+   "keywords": [
+    "devops",
+    "infra",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-production-engineering-vs-code",
+   "type": "blog",
+   "title": "Blog: Why Production Engineering Is Different from Writing Code",
+   "url": "/blog/production-engineering-vs-code",
+   "text": "Writing code that works is the small part. Reliability, monitoring, backups, security and deployment are the rest. Tags: DevOps. Published 2026-07-14.",
+   "keywords": [
+    "devops",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-internet-facing-server-attacked",
+   "type": "blog",
+   "title": "Blog: What Happens When an Internet-Facing Server Gets Attacked?",
+   "url": "/blog/internet-facing-server-attacked",
+   "text": "The constant background noise, what the attack surface really is, why logs must leave the box, and a short IR plan. Tags: Security, DevOps. Published 2026-07-23.",
+   "keywords": [
+    "security",
+    "devops",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-security-research-assistant-local-llms",
+   "type": "blog",
+   "title": "Blog: Building a Security Research Assistant with Local LLMs",
+   "url": "/blog/security-research-assistant-local-llms",
+   "text": "A private security research helper on local models: RAG for knowledge, tool calling for facts, and keeping output honest. Tags: AI, Security, LLM, Homelab. Published 2026-08-01.",
+   "keywords": [
+    "ai",
+    "security",
+    "llm",
+    "homelab",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-ai-agents-for-cybersecurity",
+   "type": "blog",
+   "title": "Blog: Using AI Agents for Cybersecurity: Where They Help and Where They Fail",
+   "url": "/blog/ai-agents-for-cybersecurity",
+   "text": "Where AI agents genuinely help in security work, where they fail with confidence, and how to use them without getting burned. Tags: AI, Security, Agents. Published 2026-08-12.",
+   "keywords": [
+    "ai",
+    "security",
+    "agents",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-llm-hallucinations-in-cybersecurity",
+   "type": "blog",
+   "title": "Blog: LLM Hallucinations in Cybersecurity: Why Verification Matters",
+   "url": "/blog/llm-hallucinations-in-cybersecurity",
+   "text": "Fabricated CVEs, plausible-but-wrong details, and made-up citations. Why every model claim in security work needs verifying. Tags: AI, Security, LLM. Published 2026-08-25.",
+   "keywords": [
+    "ai",
+    "security",
+    "llm",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-cybersecurity-ai-agent-pipeline",
+   "type": "blog",
+   "title": "Blog: Designing a Cybersecurity AI Agent Pipeline",
+   "url": "/blog/cybersecurity-ai-agent-pipeline",
+   "text": "Narrow specialized agents, evidence passed between stages, and a fact-check stage that assumes every finding is wrong. Tags: AI, Security, Agents. Published 2026-09-01.",
+   "keywords": [
+    "ai",
+    "security",
+    "agents",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  },
+  {
+   "id": "post-ai-threat-intelligence-pipeline",
+   "type": "blog",
+   "title": "Blog: Building an AI-Powered Threat Intelligence Pipeline",
+   "url": "/blog/ai-threat-intelligence-pipeline",
+   "text": "Collect, normalize, analyze, enrich, summarize. Turning the threat-intel firehose into a short digest, with AI as one stage. Tags: AI, Security, Agents. Published 2026-09-06.",
+   "keywords": [
+    "ai",
+    "security",
+    "agents",
+    "blog",
+    "post",
+    "article",
+    "wrote",
+    "written",
+    "read"
+   ]
+  }
+ ]
+}
