@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
+<title>Password Leak Check — Jhapendra Kandel</title>
+<meta name="description" content="Check a password against known breaches without sending it anywhere. Only 5 characters of its SHA-1 hash leave your device.">
+<meta name="author" content="Jhapendra Kandel">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css?v=20261112b">
+<link rel="stylesheet" href="../../widgets/widgets.css?v=4">
+<link rel="stylesheet" href="../sec-shared/lab.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+<a class="nav-mark" href="../../" aria-label="Jhapendra Kandel, home">J.K</a>
+<button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" class="nav-links" aria-label="Primary">
+<a href="../../">Home</a>
+<a href="../../blog/">Blog</a>
+<a href="../../tech/">Tech</a>
+<a href="../../pulse/">Nepal Pulse</a>
+<a href="../../security/">Security Wire</a>
+<a href="../../toolbox/">Resources</a>
+<a class="nav-cta" href="../../#contact">Contact</a>
+</nav>
+</header>
+<main id="main" class="dw-page">
+<p class="kicker">Password leak check</p>
+<h1 class="sec-h dw-title">Has this password leaked?</h1>
+<p class="dw-lede">Your password never leaves this page. Only five characters of its hash do.</p>
+<span class="lab-banner">Test lab preview</span>
+<form id="f" class="lab-form" novalidate>
+<label for="pw">Password to test</label>
+<input id="pw" class="lab-input is-mono" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="256" placeholder="Type a password" required>
+<button class="btn btn-solid" id="go" type="submit">Check it</button>
+<button class="lab-linkbtn" id="tog" type="button" aria-pressed="false">Show</button>
+</form>
+<p class="dw-note">Tip: test an old password you no longer use. Try "password1" to see a hit.</p>
+<p id="status" class="dw-status" role="status" hidden></p>
+<div id="out" aria-live="polite"></div>
+<section class="lab-privacy" aria-labelledby="priv-h">
+<h2 id="priv-h">Data sources &amp; privacy</h2>
+<p>Only the first 5 hex characters of the password's SHA-1 hash are sent to api.pwnedpasswords.com (Have I Been Pwned, run by Troy Hunt). That service sees your IP address and the 5-character prefix, which matches around 800 other hashes, so it cannot tell which password you tried. The request carries an Add-Padding header so response sizes do not hint at the answer.</p>
+<p>The password and the full hash stay in this tab's memory, are never stored, logged or sent, and the field is wiped after the check. Even so, prefer testing a retired password over one you still use.</p>
+</section>
+<noscript><p class="dw-status is-warn">This tool needs JavaScript.</p></noscript>
+</main>
+<footer class="site-footer">
+<div class="footer-cols">
+<div class="footer-say"><p class="footer-jk">J.K</p><p>Build with precision, secure by design, automate with purpose.</p></div>
+<nav aria-label="On this site"><p>On this site</p><a href="../../">Home</a><a href="../../blog/">Blog</a><a href="../../tech/">Tech Briefing</a><a href="../../pulse/">Pulse</a><a href="../../security/">Security Wire</a><a href="../../toolbox/">Resources</a></nav>
+</div>
+<div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
+</footer>
+<script src="../../widgets/nav.js?v=3"></script>
+<script src="../sec-shared/lab.js?v=1"></script>
+<script src="pwned.js?v=1"></script>
+</body>
+</html>
