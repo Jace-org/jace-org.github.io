@@ -1,0 +1,23 @@
+/* Test-lab page extras. Loaded after ../../styles.css and ../../widgets/widgets.css (reuse tokens, tiles, nav). */
+.tl-bar{display:flex;height:18px;border-radius:999px;overflow:hidden;background:var(--surface-2);margin-top:20px}
+.tl-bar span{display:block;height:100%}
+.tl-legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-size:.9375rem;color:var(--ink-soft)}
+.tl-legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:-1px}
+.tl-c0{background:var(--yellow)}.tl-c1{background:var(--orange)}.tl-c2{background:var(--mint)}.tl-c3{background:var(--blue)}.tl-c4{background:var(--red)}.tl-c5{background:var(--paper)}
+.tl-list{display:grid;gap:10px;margin-top:20px;max-width:90ch}
+.tl-row{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;padding:14px 20px;border-radius:var(--r-md);background:var(--surface)}
+.tl-row a{font-weight:700;text-underline-offset:5px;text-decoration-thickness:2px;overflow-wrap:anywhere}
+.tl-row time,.tl-row .tl-m{color:var(--muted);font-size:.9375rem}
+.tl-tag{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--yellow);color:var(--on-light);font-weight:800;font-size:.8125rem}
+.tl-ctrl{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.tl-ctrl button,.tl-btn{font:inherit;font-weight:800;padding:10px 20px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.tl-ctrl button[aria-pressed="true"],.tl-btn.solid{background:var(--yellow);border-color:var(--yellow);color:var(--on-light)}
+.tl-ctrl button:focus-visible,.tl-btn:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+.tl-pre{margin-top:20px;padding:20px;border-radius:var(--r-md);background:var(--surface);overflow:auto;max-height:520px;font:500 .8125rem/1.55 ui-monospace,Menlo,Consolas,monospace;color:var(--ink-soft);white-space:pre}
+.tl-badges{display:grid;gap:14px;margin-top:20px}
+.tl-bgrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:14px 20px;border-radius:var(--r-md);background:var(--surface)}
+.tl-bgrow b{min-width:min(100%,220px);font-weight:800;overflow-wrap:anywhere}
+.tl-bgrow svg{height:22px;width:auto;display:block}
+.tl-group{margin-top:36px}
+.tl-group h3{font-family:var(--display);font-stretch:75%;font-weight:800;font-size:1.75rem;line-height:1.05}
+.tl-big{font-family:var(--display);font-stretch:62%;font-weight:900;font-size:clamp(4rem,2rem + 10vw,11rem);line-height:.85;color:var(--yellow);font-variant-numeric:tabular-nums}
