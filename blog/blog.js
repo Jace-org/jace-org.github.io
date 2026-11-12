@@ -4,6 +4,23 @@
 (function () {
     "use strict";
 
+    var y = document.getElementById("year");
+    if (y) y.textContent = new Date().getFullYear();
+
+    var menuBtn = document.getElementById("menu-btn"), navLinks = document.getElementById("nav-links");
+    if (menuBtn && navLinks) {
+        var setMenu = function (open) {
+            navLinks.classList.toggle("open", open);
+            menuBtn.setAttribute("aria-expanded", String(open));
+            menuBtn.textContent = open ? "Close" : "Menu";
+        };
+        menuBtn.addEventListener("click", function () { setMenu(!navLinks.classList.contains("open")); });
+        navLinks.addEventListener("click", function (e) { if (e.target.tagName === "A") setMenu(false); });
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && navLinks.classList.contains("open")) { setMenu(false); menuBtn.focus(); }
+        });
+    }
+
     var listEl = document.getElementById("post-list");
     var filtersEl = document.getElementById("post-filters");
     var listEmpty = document.getElementById("list-empty");
@@ -44,6 +61,7 @@
             li.hidden = !show;
             if (show) visible++;
         });
+        listEl.classList.toggle("is-filtered", activeTag !== "All");
         if (listEmpty) listEmpty.hidden = visible > 0;
     }
 

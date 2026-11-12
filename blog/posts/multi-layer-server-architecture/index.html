@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f172a">
-    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#111111">
+    <meta name="color-scheme" content="dark">
     <title>What I Learned Designing a Multi-Layer Server Architecture — Jhapendra Kandel</title>
     <meta name="description" content="A VPS, a NAS, a backup box and some tunnels, each with one job. Why the separation happened and what it costs.">
     <meta name="author" content="Jhapendra Kandel">
@@ -30,11 +30,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/base.css">
-    <link rel="stylesheet" href="../../blog.css">
+    <link rel="stylesheet" href="../../../styles.css?v=20261112d">
+    <link rel="stylesheet" href="../../blog.css?v=20261112a">
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
@@ -87,44 +86,38 @@
     ]
 }
     </script>
-    <script>
-        try {
-            var t = localStorage.getItem("theme");
-            if (t === "light") document.documentElement.classList.remove("dark");
-        } catch (e) { }
-    </script>
 </head>
 
-<body>
+<body class="blog-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="bg-layer" aria-hidden="true">
-        <div class="aurora aurora-1"></div>
-        <div class="aurora aurora-2"></div>
-        <div class="bg-grid"></div>
-    </div>
-
-    <header class="subnav">
-        <div class="subnav-inner">
-            <a class="home" href="../../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
-            <nav class="links" aria-label="Sections">
-                <a href="../../../">Home</a>
-                <a href="../../">Blog</a>
-                <a href="../../../toolbox/">Resources</a>
-            </nav>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
-        </div>
+    <header class="site-nav" id="top">
+        <a class="nav-mark" href="../../../" aria-label="Jhapendra Kandel, home">J.K</a>
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <nav id="nav-links" class="nav-links" aria-label="Primary">
+            <a href="../../../#about">About</a>
+            <a href="../../../#work">Work</a>
+            <a href="../../../#skills">Skills</a>
+            <a href="../../../#journey">Journey</a>
+            <a href="../../../#credentials">Credentials</a>
+            <a href="../../" class="is-here" aria-current="page">Blog</a>
+            <a href="../../../tech/">Tech</a>
+            <a href="../../../pulse/">Pulse</a>
+            <a href="../../../security/">Security Wire</a>
+            <a href="../../../tools/">Tools</a>
+            <a href="../../../toolbox/">Resources</a>
+            <a class="nav-cta" href="../../../#contact">Contact</a>
+        </nav>
     </header>
 
-    <main id="main" class="page">
-        <div class="wrap">
-            <article>
-                <a class="back-link" href="../../">&larr; All posts</a>
-                <div class="post-head">
-                    <h1>What I Learned Designing a Multi-Layer Server Architecture</h1>
-                    <p class="post-meta"><span>May 19, 2026</span><span class="tag">Infra</span><span class="tag">Homelab</span><span class="tag">DevOps</span></p>
-                </div>
-                <div class="prose">
+    <main id="main" class="post-main">
+        <article class="post">
+            <a class="back-link" href="../../">&larr; All posts</a>
+            <header class="post-head">
+                <h1 class="post-title">What I Learned Designing a Multi-Layer Server Architecture</h1>
+                <p class="post-meta"><time datetime="2026-05-19">May 19, 2026</time><span class="rt">2 min read</span><span class="tag">Infra</span><span class="tag">Homelab</span><span class="tag">DevOps</span></p>
+            </header>
+            <div class="prose">
 <p>My setup is not one server. It is a VPS, a NAS, a backup box and some tunnels, each with one job. Splitting it that way was not planned up front. It grew out of hitting problems. Here is what pushed it into shape.</p>
 <h2>The layers</h2>
 <ul><li>A VPS that runs the public sites. Small, replaceable, exposed on purpose.</li><li>A NAS at the office for bulk storage: media, archives, datasets. Never public.</li><li>A separate backup server that pulls copies and keeps history. It reaches the others; nothing reaches back into it.</li><li>Tunnels and a VPN connecting everything, so the private machines never need open ports.</li></ul>
@@ -138,17 +131,19 @@
 <ul><li>More machines to patch and monitor</li><li>More network plumbing, which is where most of my outages have actually started</li><li>You have to know which machine does what at 2am, from memory</li></ul>
 <h2>The payoff</h2>
 <p>Each machine has a small, clear job, so a problem is easier to place. I can lose any one layer and recover from it. And the pieces that would genuinely hurt to lose are the ones that nothing can reach directly.</p>
-                </div>
-            </article>
-        </div>
+            </div>
+            <nav class="post-nav" aria-label="More posts">
+                <a class="pn pn-newer" href="../how-i-think-about-backups/"><span class="pn-k">&larr; Newer</span><span class="pn-t">How I Think About Backups After Designing My Own Infrastructure</span></a>
+                <a class="pn pn-older" href="../cloudflare-tunnels-self-hosted/"><span class="pn-k">Older &rarr;</span><span class="pn-t">Cloudflare Tunnels as Part of a Self-Hosted Infrastructure</span></a>
+            </nav>
+        </article>
     </main>
 
-    <footer class="subfooter">
-        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../../">home</a> · <a
-                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    <footer class="blog-foot">
+        <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; <a class="text-link" href="../../">All posts</a> &middot; <a class="text-link" href="../../../">Front page</a></p>
     </footer>
 
-    <script src="../../../assets/subpage.js" defer></script>
+    <script src="../../blog.js?v=20261112a" defer></script>
 </body>
 
 </html>

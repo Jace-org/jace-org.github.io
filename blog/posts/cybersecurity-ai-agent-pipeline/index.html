@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f172a">
-    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#111111">
+    <meta name="color-scheme" content="dark">
     <title>Designing a Cybersecurity AI Agent Pipeline — Jhapendra Kandel</title>
     <meta name="description" content="Narrow specialized agents, evidence passed between stages, and a fact-check stage that assumes every finding is wrong.">
     <meta name="author" content="Jhapendra Kandel">
@@ -30,11 +30,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/base.css">
-    <link rel="stylesheet" href="../../blog.css">
+    <link rel="stylesheet" href="../../../styles.css?v=20261112d">
+    <link rel="stylesheet" href="../../blog.css?v=20261112a">
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
@@ -87,44 +86,38 @@
     ]
 }
     </script>
-    <script>
-        try {
-            var t = localStorage.getItem("theme");
-            if (t === "light") document.documentElement.classList.remove("dark");
-        } catch (e) { }
-    </script>
 </head>
 
-<body>
+<body class="blog-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="bg-layer" aria-hidden="true">
-        <div class="aurora aurora-1"></div>
-        <div class="aurora aurora-2"></div>
-        <div class="bg-grid"></div>
-    </div>
-
-    <header class="subnav">
-        <div class="subnav-inner">
-            <a class="home" href="../../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
-            <nav class="links" aria-label="Sections">
-                <a href="../../../">Home</a>
-                <a href="../../">Blog</a>
-                <a href="../../../toolbox/">Resources</a>
-            </nav>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
-        </div>
+    <header class="site-nav" id="top">
+        <a class="nav-mark" href="../../../" aria-label="Jhapendra Kandel, home">J.K</a>
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <nav id="nav-links" class="nav-links" aria-label="Primary">
+            <a href="../../../#about">About</a>
+            <a href="../../../#work">Work</a>
+            <a href="../../../#skills">Skills</a>
+            <a href="../../../#journey">Journey</a>
+            <a href="../../../#credentials">Credentials</a>
+            <a href="../../" class="is-here" aria-current="page">Blog</a>
+            <a href="../../../tech/">Tech</a>
+            <a href="../../../pulse/">Pulse</a>
+            <a href="../../../security/">Security Wire</a>
+            <a href="../../../tools/">Tools</a>
+            <a href="../../../toolbox/">Resources</a>
+            <a class="nav-cta" href="../../../#contact">Contact</a>
+        </nav>
     </header>
 
-    <main id="main" class="page">
-        <div class="wrap">
-            <article>
-                <a class="back-link" href="../../">&larr; All posts</a>
-                <div class="post-head">
-                    <h1>Designing a Cybersecurity AI Agent Pipeline</h1>
-                    <p class="post-meta"><span>September 1, 2026</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
-                </div>
-                <div class="prose">
+    <main id="main" class="post-main">
+        <article class="post">
+            <a class="back-link" href="../../">&larr; All posts</a>
+            <header class="post-head">
+                <h1 class="post-title">Designing a Cybersecurity AI Agent Pipeline</h1>
+                <p class="post-meta"><time datetime="2026-09-01">September 1, 2026</time><span class="rt">2 min read</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
+            </header>
+            <div class="prose">
 <p>One big agent told to "do security analysis" produces confident mush. Splitting the work into a pipeline of narrow agents, with evidence passed between them, works much better. Here is the design I have landed on.</p>
 <h2>Stages</h2>
 <ol><li>Collect: gather raw material, scan output, logs, configs, target information, from real sources and tools</li><li>Normalize: turn all of it into a consistent structured form the later stages can reason over</li><li>Analyze: specialized agents each look at one thing, misconfigurations, exposed services, known CVEs, and flag candidates</li><li>Fact-check: a separate stage verifies each candidate against a database, a reproduction, or the actual system</li><li>Summarize: turn what survived verification into a report, with evidence attached</li></ol>
@@ -139,17 +132,19 @@
 <p>A person reviews the verified findings before anything is delivered. The pipeline's job is to get from noise to a short, evidence-backed list quickly. The judgement about severity, scope and what to do stays with a human.</p>
 <h2>Why bother</h2>
 <p>Done this way, the agents do the tedious wide-net work, the verification stage catches the confident nonsense, and I spend my time on the part that needs a person. That is the only division of labour with AI in security that I actually trust.</p>
-                </div>
-            </article>
-        </div>
+            </div>
+            <nav class="post-nav" aria-label="More posts">
+                <a class="pn pn-newer" href="../hello-from-the-new-blog/"><span class="pn-k">&larr; Newer</span><span class="pn-t">Hello from the new blog</span></a>
+                <a class="pn pn-older" href="../llm-hallucinations-in-cybersecurity/"><span class="pn-k">Older &rarr;</span><span class="pn-t">LLM Hallucinations in Cybersecurity: Why Verification Matters</span></a>
+            </nav>
+        </article>
     </main>
 
-    <footer class="subfooter">
-        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../../">home</a> · <a
-                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    <footer class="blog-foot">
+        <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; <a class="text-link" href="../../">All posts</a> &middot; <a class="text-link" href="../../../">Front page</a></p>
     </footer>
 
-    <script src="../../../assets/subpage.js" defer></script>
+    <script src="../../blog.js?v=20261112a" defer></script>
 </body>
 
 </html>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f172a">
-    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#111111">
+    <meta name="color-scheme" content="dark">
     <title>Blog — Jhapendra Kandel</title>
     <meta name="description"
         content="Writing on full-stack development, cybersecurity, self-hosting and building AI models at home by Jhapendra Kandel.">
@@ -31,190 +31,197 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../assets/base.css">
-    <link rel="stylesheet" href="blog.css">
-    <script>
-        try {
-            var t = localStorage.getItem("theme");
-            if (t === "light") document.documentElement.classList.remove("dark");
-        } catch (e) { }
-    </script>
+    <link rel="stylesheet" href="../styles.css?v=20261112d">
+    <link rel="stylesheet" href="blog.css?v=20261112a">
 </head>
 
-<body>
+<body class="blog-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="bg-layer" aria-hidden="true">
-        <div class="aurora aurora-1"></div>
-        <div class="aurora aurora-2"></div>
-        <div class="bg-grid"></div>
-    </div>
-
-    <header class="subnav">
-        <div class="subnav-inner">
-            <a class="home" href="../" aria-label="Back to home">J<span class="dot">.</span>K</a>
-            <nav class="links" aria-label="Sections">
-                <a href="../">Home</a>
-                <a href="./" aria-current="page">Blog</a>
-                <a href="../toolbox/">Resources</a>
-            </nav>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
-        </div>
+    <header class="site-nav" id="top">
+        <a class="nav-mark" href="../" aria-label="Jhapendra Kandel, home">J.K</a>
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <nav id="nav-links" class="nav-links" aria-label="Primary">
+            <a href="../#about">About</a>
+            <a href="../#work">Work</a>
+            <a href="../#skills">Skills</a>
+            <a href="../#journey">Journey</a>
+            <a href="../#credentials">Credentials</a>
+            <a href="./" class="is-here" aria-current="page">Blog</a>
+            <a href="../tech/">Tech</a>
+            <a href="../pulse/">Pulse</a>
+            <a href="../security/">Security Wire</a>
+            <a href="../tools/">Tools</a>
+            <a href="../toolbox/">Resources</a>
+            <a class="nav-cta" href="../#contact">Contact</a>
+        </nav>
     </header>
 
-    <main id="main" class="page">
-        <div class="wrap">
-            <div class="page-head reveal">
-                <p class="kicker">Writing</p>
-                <h1>Blog</h1>
-                <p>Notes on building things, breaking things, running my own servers and training models at home.
-                    Posts are written in Markdown, each one a real page of its own.</p>
-            </div>
-            <div class="post-filters reveal" id="post-filters"></div>
+    <main id="main" class="blog-main">
+        <section aria-labelledby="blog-h">
+            <p class="kicker">Writing</p>
+            <h1 id="blog-h" class="sec-h blog-h">Blog</h1>
+            <p class="blog-lede">Notes on building things, breaking things, running my own servers and training models at home. Each post is a real page of its own.</p>
+            <div class="post-filters" id="post-filters" role="group" aria-label="Filter posts by tag"></div>
             <ul class="post-list" id="post-list">
                 <!-- POSTS:START -->
-                    <li class="reveal" data-tags="AI|Security|Agents">
+                    <li class="is-feature" data-tags="AI|Security|Agents">
                         <a class="post-card" href="posts/ai-threat-intelligence-pipeline/">
+                            <p class="post-meta"><time datetime="2026-09-06">September 6, 2026</time><span class="rt">1 min read</span></p>
                             <h2>Building an AI-Powered Threat Intelligence Pipeline</h2>
-                            <p class="post-meta"><span>September 6, 2026</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
                             <p class="excerpt">Collect, normalize, analyze, enrich, summarize. Turning the threat-intel firehose into a short digest, with AI as one stage.</p>
+                            <p class="card-tags"><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="Meta">
+                    <li data-tags="Meta">
                         <a class="post-card" href="posts/hello-from-the-new-blog/">
+                            <p class="post-meta"><time datetime="2026-09-03">September 3, 2026</time><span class="rt">1 min read</span></p>
                             <h2>Hello from the new blog</h2>
-                            <p class="post-meta"><span>September 3, 2026</span><span class="tag">Meta</span></p>
                             <p class="excerpt">A short note on why this blog now lives on my own site, and how it works.</p>
+                            <p class="card-tags"><span class="tag">Meta</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="AI|Security|Agents">
+                    <li data-tags="AI|Security|Agents">
                         <a class="post-card" href="posts/cybersecurity-ai-agent-pipeline/">
+                            <p class="post-meta"><time datetime="2026-09-01">September 1, 2026</time><span class="rt">2 min read</span></p>
                             <h2>Designing a Cybersecurity AI Agent Pipeline</h2>
-                            <p class="post-meta"><span>September 1, 2026</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
                             <p class="excerpt">Narrow specialized agents, evidence passed between stages, and a fact-check stage that assumes every finding is wrong.</p>
+                            <p class="card-tags"><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="AI|Security|LLM">
+                    <li data-tags="AI|Security|LLM">
                         <a class="post-card" href="posts/llm-hallucinations-in-cybersecurity/">
+                            <p class="post-meta"><time datetime="2026-08-25">August 25, 2026</time><span class="rt">1 min read</span></p>
                             <h2>LLM Hallucinations in Cybersecurity: Why Verification Matters</h2>
-                            <p class="post-meta"><span>August 25, 2026</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">LLM</span></p>
                             <p class="excerpt">Fabricated CVEs, plausible-but-wrong details, and made-up citations. Why every model claim in security work needs verifying.</p>
+                            <p class="card-tags"><span class="tag">AI</span><span class="tag">Security</span><span class="tag">LLM</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="Web|DevOps|WordPress">
+                    <li data-tags="Web|DevOps|WordPress">
                         <a class="post-card" href="posts/building-abc-news-solo/">
+                            <p class="post-meta"><time datetime="2026-08-20">August 20, 2026</time><span class="rt">1 min read</span></p>
                             <h2>Building the ABC News site on my own</h2>
-                            <p class="post-meta"><span>August 20, 2026</span><span class="tag">Web</span><span class="tag">DevOps</span><span class="tag">WordPress</span></p>
                             <p class="excerpt">What it takes to build and run a full news site by yourself, from the theme down to the server.</p>
+                            <p class="card-tags"><span class="tag">Web</span><span class="tag">DevOps</span><span class="tag">WordPress</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="AI|Security|Agents">
+                    <li data-tags="AI|Security|Agents">
                         <a class="post-card" href="posts/ai-agents-for-cybersecurity/">
+                            <p class="post-meta"><time datetime="2026-08-12">August 12, 2026</time><span class="rt">1 min read</span></p>
                             <h2>Using AI Agents for Cybersecurity: Where They Help and Where They Fail</h2>
-                            <p class="post-meta"><span>August 12, 2026</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
                             <p class="excerpt">Where AI agents genuinely help in security work, where they fail with confidence, and how to use them without getting burned.</p>
+                            <p class="card-tags"><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="AI|Homelab|Nepali">
+                    <li data-tags="AI|Homelab|Nepali">
                         <a class="post-card" href="posts/nepali-llm-at-home/">
+                            <p class="post-meta"><time datetime="2026-08-05">August 5, 2026</time><span class="rt">1 min read</span></p>
                             <h2>Training a Nepali language model at home</h2>
-                            <p class="post-meta"><span>August 5, 2026</span><span class="tag">AI</span><span class="tag">Homelab</span><span class="tag">Nepali</span></p>
                             <p class="excerpt">Notes on fine-tuning and serving a Nepali LLM on a single AMD AI Pro 32GB GPU in my homelab.</p>
+                            <p class="card-tags"><span class="tag">AI</span><span class="tag">Homelab</span><span class="tag">Nepali</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="AI|Security|LLM|Homelab">
+                    <li data-tags="AI|Security|LLM|Homelab">
                         <a class="post-card" href="posts/security-research-assistant-local-llms/">
+                            <p class="post-meta"><time datetime="2026-08-01">August 1, 2026</time><span class="rt">2 min read</span></p>
                             <h2>Building a Security Research Assistant with Local LLMs</h2>
-                            <p class="post-meta"><span>August 1, 2026</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">LLM</span><span class="tag">Homelab</span></p>
                             <p class="excerpt">A private security research helper on local models: RAG for knowledge, tool calling for facts, and keeping output honest.</p>
+                            <p class="card-tags"><span class="tag">AI</span><span class="tag">Security</span><span class="tag">LLM</span><span class="tag">Homelab</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="Security|DevOps">
+                    <li data-tags="Security|DevOps">
                         <a class="post-card" href="posts/internet-facing-server-attacked/">
+                            <p class="post-meta"><time datetime="2026-07-23">July 23, 2026</time><span class="rt">2 min read</span></p>
                             <h2>What Happens When an Internet-Facing Server Gets Attacked?</h2>
-                            <p class="post-meta"><span>July 23, 2026</span><span class="tag">Security</span><span class="tag">DevOps</span></p>
                             <p class="excerpt">The constant background noise, what the attack surface really is, why logs must leave the box, and a short IR plan.</p>
+                            <p class="card-tags"><span class="tag">Security</span><span class="tag">DevOps</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="DevOps">
+                    <li data-tags="DevOps">
                         <a class="post-card" href="posts/production-engineering-vs-code/">
+                            <p class="post-meta"><time datetime="2026-07-14">July 14, 2026</time><span class="rt">1 min read</span></p>
                             <h2>Why Production Engineering Is Different from Writing Code</h2>
-                            <p class="post-meta"><span>July 14, 2026</span><span class="tag">DevOps</span></p>
                             <p class="excerpt">Writing code that works is the small part. Reliability, monitoring, backups, security and deployment are the rest.</p>
+                            <p class="card-tags"><span class="tag">DevOps</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="DevOps|Infra">
+                    <li data-tags="DevOps|Infra">
                         <a class="post-card" href="posts/localhost-to-production/">
+                            <p class="post-meta"><time datetime="2026-07-01">July 1, 2026</time><span class="rt">1 min read</span></p>
                             <h2>From Localhost to Production: Problems Nobody Mentions in Tutorials</h2>
-                            <p class="post-meta"><span>July 1, 2026</span><span class="tag">DevOps</span><span class="tag">Infra</span></p>
                             <p class="excerpt">DNS, service networking, permissions, containers and env config. The things that break the first few times you ship for real.</p>
+                            <p class="card-tags"><span class="tag">DevOps</span><span class="tag">Infra</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="Security|Homelab|Infra">
+                    <li data-tags="Security|Homelab|Infra">
                         <a class="post-card" href="posts/network-isolation-security-lab/">
+                            <p class="post-meta"><time datetime="2026-06-17">June 17, 2026</time><span class="rt">1 min read</span></p>
                             <h2>Why Network Isolation Matters in a Cybersecurity Lab</h2>
-                            <p class="post-meta"><span>June 17, 2026</span><span class="tag">Security</span><span class="tag">Homelab</span><span class="tag">Infra</span></p>
                             <p class="excerpt">VLANs, default-deny between segments, and small-scale zero trust. Why isolation keeps a lab from becoming an incident.</p>
+                            <p class="card-tags"><span class="tag">Security</span><span class="tag">Homelab</span><span class="tag">Infra</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="DevOps|Infra|Homelab">
+                    <li data-tags="DevOps|Infra|Homelab">
                         <a class="post-card" href="posts/how-i-think-about-backups/">
+                            <p class="post-meta"><time datetime="2026-06-03">June 3, 2026</time><span class="rt">1 min read</span></p>
                             <h2>How I Think About Backups After Designing My Own Infrastructure</h2>
-                            <p class="post-meta"><span>June 3, 2026</span><span class="tag">DevOps</span><span class="tag">Infra</span><span class="tag">Homelab</span></p>
                             <p class="excerpt">Tiers not copies, the target pulls, keep history, test the restore. The backup model I use after building my own infra.</p>
+                            <p class="card-tags"><span class="tag">DevOps</span><span class="tag">Infra</span><span class="tag">Homelab</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="Infra|Homelab|DevOps">
+                    <li data-tags="Infra|Homelab|DevOps">
                         <a class="post-card" href="posts/multi-layer-server-architecture/">
+                            <p class="post-meta"><time datetime="2026-05-19">May 19, 2026</time><span class="rt">2 min read</span></p>
                             <h2>What I Learned Designing a Multi-Layer Server Architecture</h2>
-                            <p class="post-meta"><span>May 19, 2026</span><span class="tag">Infra</span><span class="tag">Homelab</span><span class="tag">DevOps</span></p>
                             <p class="excerpt">A VPS, a NAS, a backup box and some tunnels, each with one job. Why the separation happened and what it costs.</p>
+                            <p class="card-tags"><span class="tag">Infra</span><span class="tag">Homelab</span><span class="tag">DevOps</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="Infra|Homelab|DevOps">
+                    <li data-tags="Infra|Homelab|DevOps">
                         <a class="post-card" href="posts/cloudflare-tunnels-self-hosted/">
+                            <p class="post-meta"><time datetime="2026-05-06">May 6, 2026</time><span class="rt">2 min read</span></p>
                             <h2>Cloudflare Tunnels as Part of a Self-Hosted Infrastructure</h2>
-                            <p class="post-meta"><span>May 6, 2026</span><span class="tag">Infra</span><span class="tag">Homelab</span><span class="tag">DevOps</span></p>
                             <p class="excerpt">Exposing self-hosted services without opening ports: what tunnels buy you, how I use them, and where they fall short.</p>
+                            <p class="card-tags"><span class="tag">Infra</span><span class="tag">Homelab</span><span class="tag">DevOps</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="AI|LLM|Agents">
+                    <li data-tags="AI|LLM|Agents">
                         <a class="post-card" href="posts/parallel-ai-agents/">
+                            <p class="post-meta"><time datetime="2026-04-21">April 21, 2026</time><span class="rt">2 min read</span></p>
                             <h2>Can Multiple AI Agents Work in Parallel? Understanding Parallel Agent Architectures</h2>
-                            <p class="post-meta"><span>April 21, 2026</span><span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Agents</span></p>
                             <p class="excerpt">When running AI agents in parallel actually helps, the architecture that works, and the judging step everyone skips.</p>
+                            <p class="card-tags"><span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Agents</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="AI|LLM|Nepali">
+                    <li data-tags="AI|LLM|Nepali">
                         <a class="post-card" href="posts/why-nepali-is-hard-for-ai/">
+                            <p class="post-meta"><time datetime="2026-04-02">April 2, 2026</time><span class="rt">2 min read</span></p>
                             <h2>Why Nepali Is Still a Hard Language for AI Models</h2>
-                            <p class="post-meta"><span>April 2, 2026</span><span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Nepali</span></p>
                             <p class="excerpt">Thin data, tokenizers built for English, and manual evaluation. The concrete reasons Nepali still lags, and what helps.</p>
+                            <p class="card-tags"><span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Nepali</span></p>
                         </a>
                     </li>
-                    <li class="reveal" data-tags="AI|LLM|Homelab">
+                    <li data-tags="AI|LLM|Homelab">
                         <a class="post-card" href="posts/running-llms-locally-vram/">
+                            <p class="post-meta"><time datetime="2026-03-18">March 18, 2026</time><span class="rt">2 min read</span></p>
                             <h2>Running Large Language Models Locally: What VRAM Actually Means</h2>
-                            <p class="post-meta"><span>March 18, 2026</span><span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Homelab</span></p>
                             <p class="excerpt">Parameters are not gigabytes. Where VRAM really goes, why quantization works, and why a 70B model does not need 70GB.</p>
+                            <p class="card-tags"><span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Homelab</span></p>
                         </a>
                     </li>
                     <!-- POSTS:END -->
             </ul>
-            <p class="empty" id="list-empty" hidden>No posts yet. Check back soon.</p>
-        </div>
+            <p class="empty" id="list-empty" hidden>No posts match that tag.</p>
+        </section>
     </main>
 
-    <footer class="subfooter">
-        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../">home</a> · <a
-                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    <footer class="blog-foot">
+        <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; <a class="text-link" href="../">Back to the front page</a></p>
     </footer>
 
-    <script src="../assets/subpage.js" defer></script>
-    <script src="blog.js" defer></script>
+    <script src="blog.js?v=20261112a" defer></script>
 </body>
 
 </html>

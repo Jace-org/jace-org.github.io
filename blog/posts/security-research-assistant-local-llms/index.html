@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f172a">
-    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#111111">
+    <meta name="color-scheme" content="dark">
     <title>Building a Security Research Assistant with Local LLMs — Jhapendra Kandel</title>
     <meta name="description" content="A private security research helper on local models: RAG for knowledge, tool calling for facts, and keeping output honest.">
     <meta name="author" content="Jhapendra Kandel">
@@ -31,11 +31,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/base.css">
-    <link rel="stylesheet" href="../../blog.css">
+    <link rel="stylesheet" href="../../../styles.css?v=20261112d">
+    <link rel="stylesheet" href="../../blog.css?v=20261112a">
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
@@ -88,44 +87,38 @@
     ]
 }
     </script>
-    <script>
-        try {
-            var t = localStorage.getItem("theme");
-            if (t === "light") document.documentElement.classList.remove("dark");
-        } catch (e) { }
-    </script>
 </head>
 
-<body>
+<body class="blog-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="bg-layer" aria-hidden="true">
-        <div class="aurora aurora-1"></div>
-        <div class="aurora aurora-2"></div>
-        <div class="bg-grid"></div>
-    </div>
-
-    <header class="subnav">
-        <div class="subnav-inner">
-            <a class="home" href="../../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
-            <nav class="links" aria-label="Sections">
-                <a href="../../../">Home</a>
-                <a href="../../">Blog</a>
-                <a href="../../../toolbox/">Resources</a>
-            </nav>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
-        </div>
+    <header class="site-nav" id="top">
+        <a class="nav-mark" href="../../../" aria-label="Jhapendra Kandel, home">J.K</a>
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <nav id="nav-links" class="nav-links" aria-label="Primary">
+            <a href="../../../#about">About</a>
+            <a href="../../../#work">Work</a>
+            <a href="../../../#skills">Skills</a>
+            <a href="../../../#journey">Journey</a>
+            <a href="../../../#credentials">Credentials</a>
+            <a href="../../" class="is-here" aria-current="page">Blog</a>
+            <a href="../../../tech/">Tech</a>
+            <a href="../../../pulse/">Pulse</a>
+            <a href="../../../security/">Security Wire</a>
+            <a href="../../../tools/">Tools</a>
+            <a href="../../../toolbox/">Resources</a>
+            <a class="nav-cta" href="../../../#contact">Contact</a>
+        </nav>
     </header>
 
-    <main id="main" class="page">
-        <div class="wrap">
-            <article>
-                <a class="back-link" href="../../">&larr; All posts</a>
-                <div class="post-head">
-                    <h1>Building a Security Research Assistant with Local LLMs</h1>
-                    <p class="post-meta"><span>August 1, 2026</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">LLM</span><span class="tag">Homelab</span></p>
-                </div>
-                <div class="prose">
+    <main id="main" class="post-main">
+        <article class="post">
+            <a class="back-link" href="../../">&larr; All posts</a>
+            <header class="post-head">
+                <h1 class="post-title">Building a Security Research Assistant with Local LLMs</h1>
+                <p class="post-meta"><time datetime="2026-08-01">August 1, 2026</time><span class="rt">2 min read</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">LLM</span><span class="tag">Homelab</span></p>
+            </header>
+            <div class="prose">
 <p>I wanted a research helper for security work that does not send everything I look at to someone else's API. Local models are good enough for this now, if you build around their limits. Here is the shape of it.</p>
 <h2>Why local</h2>
 <ul><li>Privacy: target names, findings and internal notes stay on my own hardware</li><li>Cost: no per-token bill while I poke at it all day</li><li>Latency: no round trip, and it keeps working offline</li></ul>
@@ -141,17 +134,19 @@
 <p>Local models hallucinate at least as much as big ones. The architecture is what makes the output trustworthy, not the model.</p>
 <h2>What it is good for</h2>
 <p>Fast orientation on an unfamiliar topic, pulling together scattered notes, drafting write-ups from real findings, explaining output I have not seen before. The final judgement stays mine. It is a faster way to get to the point where I can think, not a replacement for thinking.</p>
-                </div>
-            </article>
-        </div>
+            </div>
+            <nav class="post-nav" aria-label="More posts">
+                <a class="pn pn-newer" href="../nepali-llm-at-home/"><span class="pn-k">&larr; Newer</span><span class="pn-t">Training a Nepali language model at home</span></a>
+                <a class="pn pn-older" href="../internet-facing-server-attacked/"><span class="pn-k">Older &rarr;</span><span class="pn-t">What Happens When an Internet-Facing Server Gets Attacked?</span></a>
+            </nav>
+        </article>
     </main>
 
-    <footer class="subfooter">
-        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../../">home</a> · <a
-                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    <footer class="blog-foot">
+        <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; <a class="text-link" href="../../">All posts</a> &middot; <a class="text-link" href="../../../">Front page</a></p>
     </footer>
 
-    <script src="../../../assets/subpage.js" defer></script>
+    <script src="../../blog.js?v=20261112a" defer></script>
 </body>
 
 </html>
