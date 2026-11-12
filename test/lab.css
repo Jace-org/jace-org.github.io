@@ -1,0 +1,4 @@
+.lab-cards{list-style:none;padding:0}
+.lab-cards .dw-card{display:flex;flex-direction:column;gap:10px}
+.lab-cards .dw-meta{min-height:1.6em}
+.tl-tag{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--yellow);color:var(--on-light);font-weight:800;font-size:.8125rem}

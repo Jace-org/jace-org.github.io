@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
+<title>Lab — Jhapendra Kandel</title>
+<meta name="description" content="Experimental features I am trying out. Hidden from search and unstable.">
+<meta name="author" content="Jhapendra Kandel">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css?v=20261112b">
+<link rel="stylesheet" href="../../widgets/widgets.css?v=4">
+<link rel="stylesheet" href="lab.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+<a class="nav-mark" href="../../" aria-label="Jhapendra Kandel, home">J.K</a>
+<button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" class="nav-links" aria-label="Primary">
+<a href="../../">Home</a>
+<a href="../../blog/">Blog</a>
+<a href="../../tech/">Tech</a>
+<a href="../../pulse/">Nepal Pulse</a>
+<a href="../../security/">Security Wire</a>
+<a href="../../toolbox/">Resources</a>
+<a class="nav-cta" href="../../#contact">Contact</a>
+</nav>
+</header>
+<main id="main" class="dw-page">
+<p class="kicker">Lab</p>
+<h1 class="sec-h dw-title">Experimental features</h1>
+<p class="dw-lede">Things I am trying out before deciding which ones move to the main site. Some will change, break or disappear.</p>
+<h2 class="dw-h2">Security tools</h2>
+<ul class="dw-cards lab-cards">
+<li class="dw-card"><h3>Email &amp; DNS Check</h3><p>Grade a domain on SPF, DMARC, MTA-STS, BIMI, CAA, DNSSEC and MX using DNS-over-HTTPS.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="dns-check/">Open Email &amp; DNS Check</a></li>
+<li class="dw-card"><h3>Password Leak Check</h3><p>Check a password against known breaches without sending it anywhere. Only 5 characters of its SHA-1 hash leave your device.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="pwned/">Open Password Leak Check</a></li>
+<li class="dw-card"><h3>IP Owner Lookup</h3><p>Find who announces an IP address or prefix, its AS holder and RPKI status using RIPEstat.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="ip/">Open IP Owner Lookup</a></li>
+<li class="dw-card"><h3>Exploit Forecast</h3><p>New CVEs ranked by their EPSS probability of being exploited in the next 30 days, shown like a weather report.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="forecast/">Open Exploit Forecast</a></li>
+<li class="dw-card"><h3>Breach Timeline</h3><p>A filterable timeline of public data breaches from Have I Been Pwned.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="breaches/">Open Breach Timeline</a></li>
+</ul>
+<h2 class="dw-h2">Nepal &amp; place</h2>
+<ul class="dw-cards lab-cards">
+<li class="dw-card"><h3>Kathmandu Right Now</h3><p>Official exchange rates, air quality, weather, sunrise and the Bikram Sambat date for Kathmandu, on one calm page.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="ktm/">Open Kathmandu Right Now</a></li>
+<li class="dw-card"><h3>Himalaya Quake Watch</h3><p>Recent earthquakes across the central Himalaya from the USGS feed, with the latest one measured from Kathmandu.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="quakes/">Open Himalaya Quake Watch</a></li>
+<li class="dw-card"><h3>ISS Over Kathmandu</h3><p>The International Space Station right now, how far it is from Kathmandu, and the path it is tracing around the Earth.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="iss/">Open ISS Over Kathmandu</a></li>
+<li class="dw-card"><h3>On This Day in Computing</h3><p>Dated events from Wikipedia about computers, the internet, software, satellites and cryptography, for any day of the year.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="onthisday/">Open On This Day in Computing</a></li>
+<li class="dw-card"><h3>Kathmandu Clock Widget</h3><p>A tiny header widget that shows Nepal time and the temperature, written as a snippet you can drop into any page.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="clock/">Open Kathmandu Clock Widget</a></li>
+</ul>
+<h2 class="dw-h2">Interactive</h2>
+<ul class="dw-cards lab-cards">
+<li class="dw-card"><h3>The site is a CTF</h3><p>A static scavenger hunt: find eight hidden flags with browser tools. Nothing here attacks anything.</p><p class="dw-meta"></p><a href="ctf/">Open The site is a CTF</a></li>
+<li class="dw-card"><h3>Ask my portfolio</h3><p>A small AI that runs in your browser and answers questions from a public index of this site. Opt-in download.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="webllm/">Open Ask my portfolio</a></li>
+<li class="dw-card"><h3>Webmentions wall</h3><p>A live wall of replies, likes and links from other sites, with the setup snippet to switch it on.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="mentions/">Open Webmentions wall</a></li>
+<li class="dw-card"><h3>Attack replay theatre</h3><p>An animated map replaying a synthetic honeypot dataset, with speed control, filters and commentary.</p><p class="dw-meta"></p><a href="replay/">Open Attack replay theatre</a></li>
+</ul>
+<h2 class="dw-h2">Dev feeds</h2>
+<ul class="dw-cards lab-cards">
+<li class="dw-card"><h3>GitHub activity</h3><p>Public repositories, language mix and the latest commit, read live from GitHub.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="github/">Open GitHub activity</a></li>
+<li class="dw-card"><h3>Reading list</h3><p>Fresh community articles on security, Python and Linux, filtered by tag.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="reading/">Open Reading list</a></li>
+<li class="dw-card"><h3>Changelog</h3><p>Recent releases and commits across the public repositories, grouped by project.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="changelog/">Open Changelog</a></li>
+<li class="dw-card"><h3>Counter demo</h3><p>A generic demo: read a total from a public WordPress REST endpoint via the X-WP-Total header.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="counter/">Open Counter demo</a></li>
+<li class="dw-card"><h3>Feed preview</h3><p>What an Atom feed for the blog would look like, generated here from the post index.</p><p class="dw-meta"></p><a href="feeds/">Open Feed preview</a></li>
+<li class="dw-card"><h3>Project status</h3><p>Release, build and last-push badges for each public project, drawn locally from live data.</p><p class="dw-meta"><span class="tl-tag">Third-party data</span></p><a href="status/">Open Project status</a></li>
+</ul>
+<h2 class="dw-h2">About this lab</h2>
+<p class="dw-note">These pages are hidden from search engines and are not linked from the main navigation. They are unstable: layouts, data and links may change without notice. Pages marked third-party data call another service straight from your browser, and each explains this in its own data sources and privacy note.</p>
+</main>
+<footer class="site-footer">
+<div class="footer-cols">
+<div class="footer-say"><p class="footer-jk">J.K</p><p>Build with precision, secure by design, automate with purpose.</p></div>
+<nav aria-label="On this site"><p>On this site</p><a href="../../">Home</a><a href="../../blog/">Blog</a><a href="../../tech/">Tech Briefing</a><a href="../../pulse/">Pulse</a><a href="../../security/">Security Wire</a><a href="../../toolbox/">Resources</a></nav>
+</div>
+<div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
+</footer>
+<script src="../../widgets/nav.js?v=3"></script>
+<script src="github.js?v=1"></script>
+</body>
+</html>

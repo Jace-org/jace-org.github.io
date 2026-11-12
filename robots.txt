@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /test/
 
 Sitemap: https://jhapendrakandel.com.np/sitemap.xml
