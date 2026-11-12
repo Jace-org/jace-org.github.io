@@ -1,0 +1,23 @@
+/* test-lab tool styles: only extends the shared tokens from styles.css */
+.tl-source { margin-top: clamp(40px, 5vw, 72px); padding: 22px 26px; border-radius: var(--r-md); background: var(--surface); max-width: 72ch; }
+.tl-source h2 { font-size: 1.0625rem; font-weight: 800; color: var(--yellow); margin-bottom: 10px; }
+.tl-source p { color: var(--ink-soft); font-size: 1rem; line-height: 1.55; margin-top: 8px; }
+.tl-source a, .dw-copy a, .dw-note a { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; font-weight: 700; }
+.tl-row { display: grid; gap: clamp(12px, 1.5vw, 20px); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); margin-top: 32px; }
+.tl-row .fact { min-height: 200px; }
+.tl-row .fact:hover { transform: none; }
+.tl-row .fact-num { font-size: clamp(3.25rem, 2.4rem + 3.4vw, 6rem); overflow-wrap: anywhere; }
+.tl-sub { font-size: .9375rem; font-weight: 700; opacity: .8; }
+.tl-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.tl-btn { font: 800 1rem var(--body); padding: 12px 20px; border-radius: 999px; border: 2px solid var(--yellow); background: transparent; color: var(--yellow); cursor: pointer; min-height: 44px; }
+.tl-btn:hover, .tl-btn:focus-visible { background: var(--yellow); color: var(--on-light); }
+.tl-btn[aria-pressed="true"] { background: var(--yellow); color: var(--on-light); }
+
+.c-demo { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 28px; padding: 16px 24px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
+.c-mark { font-family: var(--display); font-stretch: 62%; font-weight: 900; font-size: 1.5rem; color: var(--yellow); }
+.c-links { color: var(--ink-soft); font-weight: 700; font-size: .9375rem; }
+.ktm-clock { margin-left: auto; font-weight: 800; font-size: .9375rem; font-variant-numeric: tabular-nums; color: var(--ink); }
+@media (max-width: 600px) { .c-demo { border-radius: var(--r-md); } .ktm-clock { margin-left: 0; width: 100%; } }
+.c-code { margin-top: 16px; padding: 20px 24px; border-radius: var(--r-md); background: var(--surface); overflow-x: auto; max-width: 80ch; }
+.c-code code, .dw-copy code { font-family: var(--mono); font-size: .9375rem; color: var(--mint); white-space: pre; }
+.dw-copy code { white-space: normal; }
