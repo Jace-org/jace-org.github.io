@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f172a">
-    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#111111">
+    <meta name="color-scheme" content="dark">
     <title>Building the ABC News site on my own — Jhapendra Kandel</title>
     <meta name="description" content="What it takes to build and run a full news site by yourself, from the theme down to the server.">
     <meta name="author" content="Jhapendra Kandel">
@@ -30,11 +30,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/base.css">
-    <link rel="stylesheet" href="../../blog.css">
+    <link rel="stylesheet" href="../../../styles.css?v=20261112d">
+    <link rel="stylesheet" href="../../blog.css?v=20261112a">
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
@@ -87,44 +86,38 @@
     ]
 }
     </script>
-    <script>
-        try {
-            var t = localStorage.getItem("theme");
-            if (t === "light") document.documentElement.classList.remove("dark");
-        } catch (e) { }
-    </script>
 </head>
 
-<body>
+<body class="blog-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="bg-layer" aria-hidden="true">
-        <div class="aurora aurora-1"></div>
-        <div class="aurora aurora-2"></div>
-        <div class="bg-grid"></div>
-    </div>
-
-    <header class="subnav">
-        <div class="subnav-inner">
-            <a class="home" href="../../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
-            <nav class="links" aria-label="Sections">
-                <a href="../../../">Home</a>
-                <a href="../../">Blog</a>
-                <a href="../../../toolbox/">Resources</a>
-            </nav>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
-        </div>
+    <header class="site-nav" id="top">
+        <a class="nav-mark" href="../../../" aria-label="Jhapendra Kandel, home">J.K</a>
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <nav id="nav-links" class="nav-links" aria-label="Primary">
+            <a href="../../../#about">About</a>
+            <a href="../../../#work">Work</a>
+            <a href="../../../#skills">Skills</a>
+            <a href="../../../#journey">Journey</a>
+            <a href="../../../#credentials">Credentials</a>
+            <a href="../../" class="is-here" aria-current="page">Blog</a>
+            <a href="../../../tech/">Tech</a>
+            <a href="../../../pulse/">Pulse</a>
+            <a href="../../../security/">Security Wire</a>
+            <a href="../../../tools/">Tools</a>
+            <a href="../../../toolbox/">Resources</a>
+            <a class="nav-cta" href="../../../#contact">Contact</a>
+        </nav>
     </header>
 
-    <main id="main" class="page">
-        <div class="wrap">
-            <article>
-                <a class="back-link" href="../../">&larr; All posts</a>
-                <div class="post-head">
-                    <h1>Building the ABC News site on my own</h1>
-                    <p class="post-meta"><span>August 20, 2026</span><span class="tag">Web</span><span class="tag">DevOps</span><span class="tag">WordPress</span></p>
-                </div>
-                <div class="prose">
+    <main id="main" class="post-main">
+        <article class="post">
+            <a class="back-link" href="../../">&larr; All posts</a>
+            <header class="post-head">
+                <h1 class="post-title">Building the ABC News site on my own</h1>
+                <p class="post-meta"><time datetime="2026-08-20">August 20, 2026</time><span class="rt">1 min read</span><span class="tag">Web</span><span class="tag">DevOps</span><span class="tag">WordPress</span></p>
+            </header>
+            <div class="prose">
 <p>I built the ABC News site by myself, start to finish. That meant the design, the WordPress theme, the publishing tools, and all of the server and deployment work. This post is a plain rundown of what that involved.</p>
 <h2>The front of the site</h2>
 <p>The theme is custom. Home page layout, category pages, the article template, the menus, the search, all of it hand written rather than a bought theme with the parts swapped out. I kept the markup simple so pages stay fast on slow connections, which matters a lot for readers in Nepal.</p>
@@ -136,17 +129,19 @@
 <p>When something breaks at 2am, there is no team to hand it to. So I built it to be boring and easy to bring back up.</p>
 <h2>What I took away from it</h2>
 <p>Doing every layer yourself is slow, but you end up understanding the whole system. When a page is slow I know whether it is the theme, the database, the cache or the network, because I built each one. That is worth the extra time.</p>
-                </div>
-            </article>
-        </div>
+            </div>
+            <nav class="post-nav" aria-label="More posts">
+                <a class="pn pn-newer" href="../llm-hallucinations-in-cybersecurity/"><span class="pn-k">&larr; Newer</span><span class="pn-t">LLM Hallucinations in Cybersecurity: Why Verification Matters</span></a>
+                <a class="pn pn-older" href="../ai-agents-for-cybersecurity/"><span class="pn-k">Older &rarr;</span><span class="pn-t">Using AI Agents for Cybersecurity: Where They Help and Where They Fail</span></a>
+            </nav>
+        </article>
     </main>
 
-    <footer class="subfooter">
-        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../../">home</a> · <a
-                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    <footer class="blog-foot">
+        <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; <a class="text-link" href="../../">All posts</a> &middot; <a class="text-link" href="../../../">Front page</a></p>
     </footer>
 
-    <script src="../../../assets/subpage.js" defer></script>
+    <script src="../../blog.js?v=20261112a" defer></script>
 </body>
 
 </html>

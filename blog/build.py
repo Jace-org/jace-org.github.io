@@ -133,13 +133,13 @@ def fmt_date(iso):
 
 
 POST_TEMPLATE = """<!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f172a">
-    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#111111">
+    <meta name="color-scheme" content="dark">
     <title>{title} — Jhapendra Kandel</title>
     <meta name="description" content="{excerpt}">
     <meta name="author" content="Jhapendra Kandel">
@@ -162,79 +162,88 @@ POST_TEMPLATE = """<!DOCTYPE html>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/base.css">
-    <link rel="stylesheet" href="../../blog.css">
+    <link rel="stylesheet" href="../../../styles.css?v=20261112d">
+    <link rel="stylesheet" href="../../blog.css?v=20261112a">
     <script type="application/ld+json">
     {jsonld}
     </script>
     <script type="application/ld+json">
     {breadcrumb_jsonld}
     </script>
-    <script>
-        try {{
-            var t = localStorage.getItem("theme");
-            if (t === "light") document.documentElement.classList.remove("dark");
-        }} catch (e) {{ }}
-    </script>
 </head>
 
-<body>
+<body class="blog-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="bg-layer" aria-hidden="true">
-        <div class="aurora aurora-1"></div>
-        <div class="aurora aurora-2"></div>
-        <div class="bg-grid"></div>
-    </div>
-
-    <header class="subnav">
-        <div class="subnav-inner">
-            <a class="home" href="../../../" aria-label="Back to home">J<span class="dot">.</span>K</a>
-            <nav class="links" aria-label="Sections">
-                <a href="../../../">Home</a>
-                <a href="../../">Blog</a>
-                <a href="../../../toolbox/">Resources</a>
-            </nav>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Switch colour theme">☾</button>
-        </div>
+    <header class="site-nav" id="top">
+        <a class="nav-mark" href="../../../" aria-label="Jhapendra Kandel, home">J.K</a>
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <nav id="nav-links" class="nav-links" aria-label="Primary">
+            <a href="../../../#about">About</a>
+            <a href="../../../#work">Work</a>
+            <a href="../../../#skills">Skills</a>
+            <a href="../../../#journey">Journey</a>
+            <a href="../../../#credentials">Credentials</a>
+            <a href="../../" class="is-here" aria-current="page">Blog</a>
+            <a href="../../../tech/">Tech</a>
+            <a href="../../../pulse/">Pulse</a>
+            <a href="../../../security/">Security Wire</a>
+            <a href="../../../tools/">Tools</a>
+            <a href="../../../toolbox/">Resources</a>
+            <a class="nav-cta" href="../../../#contact">Contact</a>
+        </nav>
     </header>
 
-    <main id="main" class="page">
-        <div class="wrap">
-            <article>
-                <a class="back-link" href="../../">&larr; All posts</a>
-                <div class="post-head">
-                    <h1>{title}</h1>
-                    <p class="post-meta"><span>{display_date}</span>{tag_html}</p>
-                </div>
-                <div class="prose">
+    <main id="main" class="post-main">
+        <article class="post">
+            <a class="back-link" href="../../">&larr; All posts</a>
+            <header class="post-head">
+                <h1 class="post-title">{title}</h1>
+                <p class="post-meta"><time datetime="{date}">{display_date}</time><span class="rt">{read_min} min read</span>{tag_html}</p>
+            </header>
+            <div class="prose">
 {body}
-                </div>
-            </article>
-        </div>
+            </div>
+            <nav class="post-nav" aria-label="More posts">
+{nav_html}
+            </nav>
+        </article>
     </main>
 
-    <footer class="subfooter">
-        <p>© <span id="year"></span> Jhapendra Kandel · <a href="../../../">home</a> · <a
-                href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a></p>
+    <footer class="blog-foot">
+        <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; <a class="text-link" href="../../">All posts</a> &middot; <a class="text-link" href="../../../">Front page</a></p>
     </footer>
 
-    <script src="../../../assets/subpage.js" defer></script>
+    <script src="../../blog.js?v=20261112a" defer></script>
 </body>
 
 </html>
 """
 
 
+def read_min(md):
+    words = len(re.findall(r"\w+", md))
+    return max(1, round(words / 220))
+
+
 def build_posts(posts):
-    for p in posts:
+    for idx, p in enumerate(posts):
         md_path = BLOG / "posts" / p["file"]
         md = md_path.read_text(encoding="utf-8")
         md = re.sub(r"^\s*#\s+.*\n", "", md, count=1)  # drop duplicate H1
         body = render_markdown(md)
+        rm = read_min(md)
+        p["_rm"] = rm
+        newer = posts[idx - 1] if idx > 0 else None
+        older = posts[idx + 1] if idx + 1 < len(posts) else None
+        nav = []
+        if newer:
+            nav.append(f'                <a class="pn pn-newer" href="../{newer["slug"]}/"><span class="pn-k">&larr; Newer</span><span class="pn-t">{esc(newer["title"])}</span></a>')
+        if older:
+            nav.append(f'                <a class="pn pn-older" href="../{older["slug"]}/"><span class="pn-k">Older &rarr;</span><span class="pn-t">{esc(older["title"])}</span></a>')
+        nav_html = "\n".join(nav)
 
         url = f"{APEX}/blog/{p['slug']}"
         tags = p.get("tags", [])
@@ -280,6 +289,8 @@ def build_posts(posts):
             display_date=display_date,
             tag_html=tag_html,
             body=body,
+            read_min=rm,
+            nav_html=nav_html,
         )
         out_dir = BLOG / "posts" / p["slug"]
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -294,12 +305,14 @@ def update_index_list(posts):
     for p in posts:
         tags_html = "".join(f'<span class="tag">{esc(t)}</span>' for t in p.get("tags", []))
         tag_attr = esc("|".join(p.get("tags", [])))
+        cls = ' class="is-feature"' if not items else ""
         items.append(
-            f'                    <li class="reveal" data-tags="{tag_attr}">\n'
+            f'                    <li{cls} data-tags="{tag_attr}">\n'
             f'                        <a class="post-card" href="posts/{p["slug"]}/">\n'
+            f'                            <p class="post-meta"><time datetime="{p["date"]}">{fmt_date(p["date"])}</time><span class="rt">{p.get("_rm", 1)} min read</span></p>\n'
             f'                            <h2>{esc(p["title"])}</h2>\n'
-            f'                            <p class="post-meta"><span>{fmt_date(p["date"])}</span>{tags_html}</p>\n'
             f'                            <p class="excerpt">{esc(p.get("excerpt", ""))}</p>\n'
+            f'                            <p class="card-tags">{tags_html}</p>\n'
             "                        </a>\n"
             "                    </li>"
         )
