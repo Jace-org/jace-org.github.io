@@ -97,8 +97,11 @@ def cards_html(items):
     return "\n".join(out)
 
 
+_BAD_XML = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\u202a-\u202e\u2066-\u2069\ufffe\uffff]')
+
+
 def feed_xml(items):
-    e = html.escape
+    e = lambda v: html.escape(_BAD_XML.sub('', str(v)))
     newest = max(it["when"] for it in items)
     rows = []
     for it in items:

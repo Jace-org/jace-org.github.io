@@ -1,5 +1,0 @@
-{"schema":1,"generated_at":"2026-11-12T00:00:00Z","items":[
-{"id":"CVE-2026-0001","published":"2026-11-12T00:00:00Z","cvss":9.9,"summary":"<img src=x onerror=alert(1)> evil summary","url":"https://nvd.nist.gov/vuln/detail/CVE-2026-0001"},
-{"id":"CVE-2026-0002","published":"2026-11-12T00:00:00Z","cvss":9.5,"summary":"offsite link must be dropped","url":"https://evil.example/nvd.nist.gov"},
-{"id":"CVE-2026-0003","published":"2026-11-12T00:00:00Z","cvss":9.5,"summary":"js url dropped","url":"javascript:alert(1)"},
-{"id":"<b>x</b>","published":"2026-11-12T00:00:00Z","cvss":9.5,"summary":"bad id","url":"https://nvd.nist.gov/vuln/detail/x"}]}
