@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
+<title>ISS Over Kathmandu — Jhapendra Kandel</title>
+<meta name="description" content="The International Space Station right now, how far it is from Kathmandu, and the path it is tracing around the Earth.">
+<meta name="author" content="Jhapendra Kandel">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css?v=20261112b">
+<link rel="stylesheet" href="../../widgets/widgets.css?v=4">
+<link rel="stylesheet" href="iss.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+<a class="nav-mark" href="../../" aria-label="Jhapendra Kandel, home">J.K</a>
+<button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" class="nav-links" aria-label="Primary">
+<a href="../../">Home</a>
+<a href="../../blog/">Blog</a>
+<a href="../../tech/">Tech</a>
+<a href="../../pulse/">Nepal Pulse</a>
+<a href="../../security/">Security Wire</a>
+<a href="../../toolbox/">Resources</a>
+<a class="nav-cta" href="../../#contact">Contact</a>
+</nav>
+</header>
+<main id="main" class="dw-page">
+<p class="kicker">Test lab · Night sky</p>
+<h1 class="sec-h dw-title">Where is the ISS?</h1>
+<p class="dw-lede">The International Space Station right now, how far it is from Kathmandu, and the path it is tracing around the Earth.</p>
+<noscript><p class="dw-status is-warn">The live numbers on this page need JavaScript.</p></noscript>
+<p id="status" class="dw-status" role="status" hidden></p>
+<div class="tl-row" id="tiles" hidden>
+<div class="fact fact-yellow"><p class="fact-num" id="i-dist"></p><p class="fact-say" id="i-dist-say"></p></div>
+<div class="fact fact-orange"><p class="fact-num" id="i-alt"></p><p class="fact-say">Altitude, moving at <span id="i-vel"></span></p></div>
+<div class="fact fact-mint"><p class="fact-num" id="i-over">--</p><p class="fact-say" id="i-over-say"></p></div>
+</div>
+<h2 class="dw-h2">Where it is</h2>
+<div class="i-mapwrap"><svg id="map" viewBox="0 0 720 360" role="img" aria-label="Flat world map showing the ISS position, its orbit trace and Kathmandu"></svg></div>
+<p class="dw-note" id="i-note">Yellow dot: the station now. Faint line: its path from 30 minutes ago to 60 minutes ahead. White dot: Kathmandu. The map is a plain latitude and longitude grid, not a land map. Position updates every 10 seconds while this tab is visible and pauses when you switch away.</p>
+<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>Positions come from the <a href="https://wheretheiss.at/" target="_blank" rel="noopener noreferrer">Where the ISS at?</a> public API. Your browser contacts it directly, so it sees your IP address. Nothing is sent to this site's servers or stored. Distances are computed in your browser; "straight line" includes the station's altitude, "along the ground" does not.</p></section>
+</main>
+<footer class="site-footer">
+<div class="footer-cols">
+<div class="footer-say"><p class="footer-jk">J.K</p><p>Build with precision, secure by design, automate with purpose.</p></div>
+<nav aria-label="On this site"><p>On this site</p><a href="../../">Home</a><a href="../../blog/">Blog</a><a href="../../tech/">Tech Briefing</a><a href="../../pulse/">Pulse</a><a href="../../security/">Security Wire</a><a href="../../toolbox/">Resources</a></nav>
+</div>
+<div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
+</footer>
+<script src="../../widgets/nav.js?v=3"></script>
+<script src="iss.js?v=1"></script>
+</body>
+</html>

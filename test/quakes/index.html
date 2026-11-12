@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
+<title>Himalaya Quake Watch — Jhapendra Kandel</title>
+<meta name="description" content="Recent earthquakes across the central Himalaya from the USGS feed, with the latest one measured from Kathmandu.">
+<meta name="author" content="Jhapendra Kandel">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css?v=20261112b">
+<link rel="stylesheet" href="../../widgets/widgets.css?v=4">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="quakes.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+<a class="nav-mark" href="../../" aria-label="Jhapendra Kandel, home">J.K</a>
+<button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" class="nav-links" aria-label="Primary">
+<a href="../../">Home</a>
+<a href="../../blog/">Blog</a>
+<a href="../../tech/">Tech</a>
+<a href="../../pulse/">Nepal Pulse</a>
+<a href="../../security/">Security Wire</a>
+<a href="../../toolbox/">Resources</a>
+<a class="nav-cta" href="../../#contact">Contact</a>
+</nav>
+</header>
+<main id="main" class="dw-page">
+<p class="kicker">Test lab · Himalaya</p>
+<h1 class="sec-h dw-title">Quakes near Kathmandu</h1>
+<p class="dw-lede">Recent earthquakes across the central Himalaya from the USGS feed, with the latest one measured from Kathmandu.</p>
+<noscript><p class="dw-status is-warn">The live numbers on this page need JavaScript.</p></noscript>
+<p id="status" class="dw-status" role="status" hidden></p>
+<div class="tl-row" id="tiles" hidden>
+<div class="fact fact-orange"><p class="fact-num" id="q-mag"></p><p class="fact-say" id="q-mag-say"></p></div>
+<div class="fact fact-yellow"><p class="fact-num" id="q-dist"></p><p class="fact-say" id="q-dist-say"></p></div>
+<div class="fact fact-mint"><p class="fact-num" id="q-count"></p><p class="fact-say">Magnitude 2.5+ events in the box over the last 30 days</p></div>
+</div>
+<h2 class="dw-h2">Map</h2>
+<div id="map" class="q-map" role="region" aria-label="Map of recent earthquakes in the Himalaya region"><p class="dw-note q-mapnote" id="mapnote">Loading the map...</p></div>
+<p class="dw-note">Circles scale with magnitude and fade with age. The yellow ring is the Gorkha earthquake of 25 April 2015 (M7.8), shown for reference. The white dot is Kathmandu.</p>
+<h2 class="dw-h2">Recent events</h2>
+<div class="dw-tablewrap" id="list-wrap" hidden><table id="list"><caption>Newest first. Times are Nepal time. Magnitudes are preliminary and may be revised.</caption>
+<thead><tr><th scope="col">Time</th><th scope="col">Mag</th><th scope="col">Place</th><th scope="col">From Kathmandu</th></tr></thead><tbody></tbody></table></div>
+<h2 class="dw-h2">Before it shakes</h2>
+<p class="dw-copy">Nepal sits on an active plate boundary, so strong earthquakes will keep happening and this page only records events that already took place. It does not forecast anything, and no tool can say when the next one comes.</p>
+<ul class="dw-copy q-list">
+<li><strong>Drop, cover, hold on.</strong> Get under a sturdy table or against an inside wall, away from windows and heavy shelves.</li>
+<li><strong>Know your exit.</strong> Agree on an open assembly point with your household. Avoid lifts and stairs during shaking.</li>
+<li><strong>Prepare a bag.</strong> Water, torch, radio, first-aid kit, copies of key documents and a charged power bank.</li>
+<li><strong>Secure what can fall.</strong> Strap tall furniture, keep heavy items low, know where your gas and mains switch are.</li>
+<li><strong>Follow official guidance.</strong> Nepal's National Disaster Risk Reduction and Management Authority and the Department of Mines and Geology publish local advice.</li>
+</ul>
+<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>Quake data is fetched from the <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener noreferrer">USGS Earthquake Hazards Program</a> (public domain). The map uses <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer">Leaflet</a> 1.9.4 from cdnjs and tiles from OpenStreetMap (&copy; OpenStreetMap contributors, ODbL). Your browser contacts those three services directly, so each sees your IP address. Nothing is sent to this site's servers or stored. Search area: 26-31&deg;N, 79-89&deg;E, which also covers parts of India and Tibet, not only Nepal.</p></section>
+</main>
+<footer class="site-footer">
+<div class="footer-cols">
+<div class="footer-say"><p class="footer-jk">J.K</p><p>Build with precision, secure by design, automate with purpose.</p></div>
+<nav aria-label="On this site"><p>On this site</p><a href="../../">Home</a><a href="../../blog/">Blog</a><a href="../../tech/">Tech Briefing</a><a href="../../pulse/">Pulse</a><a href="../../security/">Security Wire</a><a href="../../toolbox/">Resources</a></nav>
+</div>
+<div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
+</footer>
+<script src="../../widgets/nav.js?v=3"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="quakes.js?v=1"></script>
+</body>
+</html>
