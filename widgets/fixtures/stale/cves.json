@@ -1,0 +1,22 @@
+{
+ "schema": 1,
+ "generated_at": "2026-11-12T11:13:47Z",
+ "items": [
+  {
+   "id": "CVE-2026-1001",
+   "published": "2026-11-12T14:13:47Z",
+   "cvss": 9.8,
+   "severity": "CRITICAL",
+   "summary": "Sample: unauthenticated remote code execution in an example web gateway.",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-1001"
+  },
+  {
+   "id": "CVE-2026-1002",
+   "published": "2026-11-11T16:13:47Z",
+   "cvss": 9.1,
+   "severity": "CRITICAL",
+   "summary": "Sample: authentication bypass in an example VPN appliance.",
+   "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-1002"
+  }
+ ]
+}

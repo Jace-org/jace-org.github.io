@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
+<title>Nepal Internet Pulse — Jhapendra Kandel</title>
+<meta name="description" content="A small public view of Nepal's internet routing: networks, announced prefixes, a 90-day trend and a hand-kept outage timeline.">
+<meta name="author" content="Jhapendra Kandel">
+<link rel="canonical" href="https://jhapendrakandel.com.np/pulse/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jhapendra Kandel">
+<meta property="og:title" content="Nepal Internet Pulse — Jhapendra Kandel">
+<meta property="og:description" content="A small public view of Nepal's internet routing: networks, announced prefixes, a 90-day trend and a hand-kept outage timeline.">
+<meta property="og:url" content="https://jhapendrakandel.com.np/pulse/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nepal Internet Pulse — Jhapendra Kandel">
+<meta name="twitter:description" content="A small public view of Nepal's internet routing: networks, announced prefixes, a 90-day trend and a hand-kept outage timeline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css?v=20261112a">
+<link rel="stylesheet" href="../widgets/widgets.css?v=2">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+<a class="nav-mark" href="../" aria-label="Jhapendra Kandel, home">J.K</a>
+<button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" class="nav-links" aria-label="Primary">
+<a href="../">Home</a>
+<a href="../blog/">Blog</a>
+<a href="../tech/">Tech</a>
+<a href="../pulse/" class="is-here" aria-current="page">Nepal Pulse</a>
+<a href="../security/">Security Wire</a>
+<a href="../toolbox/">Resources</a>
+<a class="nav-cta" href="../#contact">Contact</a>
+</nav>
+</header>
+<main id="main" class="dw-page">
+<p class="kicker">Nepal Internet Pulse</p>
+<h1 class="sec-h dw-title">Nepal on the routing map</h1>
+<p class="dw-lede">How many Nepali networks exist, which address blocks they announce, and whether the big five are reachable.</p>
+<noscript><p class="dw-status is-warn">The numbers on this page load with JavaScript. The explanation below still applies.</p></noscript>
+<p id="status" class="dw-status" role="status" hidden></p>
+<div id="live" hidden>
+<div class="dw-stats" id="stats"></div>
+<h2 class="dw-h2">90-day trend</h2>
+<div class="dw-chart" id="chart"></div>
+<p class="dw-note" id="chartnote"></p>
+<h2 class="dw-h2">Five networks</h2>
+<div class="dw-tablewrap"><table id="nets"><caption>Visible means the network's address blocks are currently seen in the global routing table.</caption>
+<thead><tr><th scope="col">ASN</th><th scope="col">Network</th><th scope="col">Prefixes</th><th scope="col">Visibility</th></tr></thead><tbody></tbody></table></div>
+<h2 class="dw-h2">Notable outages</h2>
+<p class="dw-note" id="outnone" hidden>No outages are listed right now.</p>
+<ol class="dw-time" id="outages"></ol>
+</div>
+<h2 class="dw-h2">How to read this</h2>
+<p class="dw-copy"><strong>ASN</strong> (autonomous system number) is the ID of one network, such as an ISP. A <strong>prefix</strong> is a block of IP addresses that network announces; IPv4 is the older, scarcer address type and IPv6 the newer one. <strong>BGP visibility</strong> means other networks around the world currently hear that announcement. If a network stops being visible, its customers are usually unreachable from outside.</p>
+<p class="dw-copy"><strong>What this can show:</strong> whether Nepali networks are announced and reachable at the routing level, and slow trends in how many exist. <strong>What it cannot show:</strong> speed, congestion, partial or local faults inside a network, or why something failed. A network can be visible and still be slow. Outages in the timeline are written by hand from public reports, each with a source link.</p>
+<p class="dw-note">Routing data comes from the public RIPEstat service. It is fetched and processed on a server and refreshed hourly; your browser only downloads a small finished file, and no visitor data is sent anywhere.</p>
+</main>
+<footer class="site-footer">
+<div class="footer-cols">
+<div class="footer-say"><p class="footer-jk">J.K</p><p>Build with precision, secure by design, automate with purpose.</p></div>
+<nav aria-label="On this site"><p>On this site</p><a href="../">Home</a><a href="../blog/">Blog</a><a href="../tech/">Tech Briefing</a><a href="../toolbox/">Resources</a></nav>
+<nav aria-label="Live data"><p>Live data</p><a href="../pulse/">Nepal Pulse</a><a href="../security/">Security Wire</a></nav>
+</div>
+<div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
+</footer>
+<script src="../widgets/data-base.js?v=2"></script>
+<script src="../widgets/hub.js?v=2"></script>
+<script src="../widgets/nav.js?v=2"></script>
+<script src="pulse.js?v=2"></script>
+</body>
+</html>
