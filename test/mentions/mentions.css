@@ -1,0 +1,10 @@
+.m-steps li{padding-bottom:28px}
+.m-steps code,.dw-copy code{font-family:var(--mono);font-size:.9em;background:var(--surface-2);padding:2px 8px;border-radius:8px;overflow-wrap:anywhere}
+.m-code{margin:12px 0;padding:18px 20px;border-radius:var(--r-md);background:var(--surface);color:var(--ink-soft);font-family:var(--mono);font-size:.9375rem;line-height:1.55;overflow-x:auto;white-space:pre}
+.m-copy{min-height:44px;padding:0 20px;border-radius:999px;border:0;background:var(--yellow);color:var(--on-light);font:inherit;font-weight:800;cursor:pointer}
+.m-copy:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.m-who{display:flex;align-items:center;gap:12px}
+.m-av{width:44px;height:44px;border-radius:50%;background:var(--yellow);color:var(--on-light);display:grid;place-items:center;font-weight:900;font-size:1.25rem;flex:none}
+.m-type{display:inline-block;padding:3px 12px;border-radius:999px;font-weight:800;font-size:.875rem;background:var(--mint);color:var(--on-light)}
+.m-type.like{background:var(--orange)}.m-type.repost{background:var(--blue);color:var(--ink)}.m-type.reply{background:var(--yellow)}
+.m-post{font-size:.9375rem;color:var(--muted)}

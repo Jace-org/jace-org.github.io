@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
+<title>The site is a CTF — Jhapendra Kandel</title>
+<meta name="description" content="A static scavenger hunt: find eight hidden flags with browser tools. Nothing here attacks anything.">
+<meta name="author" content="Jhapendra Kandel">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css?v=20261112b">
+<link rel="stylesheet" href="../../widgets/widgets.css?v=4">
+<link rel="stylesheet" href="ctf.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+<a class="nav-mark" href="../../" aria-label="Jhapendra Kandel, home">J.K</a>
+<button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" class="nav-links" aria-label="Primary">
+<a href="../../">Home</a>
+<a href="../../blog/">Blog</a>
+<a href="../../tech/">Tech</a>
+<a href="../../pulse/">Nepal Pulse</a>
+<a href="../../security/">Security Wire</a>
+<a href="../../toolbox/">Resources</a>
+<a class="nav-cta" href="../../#contact">Contact</a>
+</nav>
+</header>
+<main id="main" class="dw-page">
+<p class="kicker">Test lab</p>
+<h1 class="sec-h dw-title">The site is a CTF</h1>
+<p class="dw-lede">Eight flags. Real files, real browser tools, no real target.</p>
+<noscript><p class="dw-status is-warn">The terminal needs JavaScript. The files in the hunt are still reachable by hand.</p></noscript>
+<p class="dw-copy">Open the terminal, type <strong>help</strong>, and start poking. Flags look like <strong>JK{something}</strong>. Seven are hidden in files and code on this site, one is a pure knowledge question. Nothing attacks a server: it is all static, so you cannot break anything.</p>
+<h2 class="dw-h2">Progress</h2>
+<p class="dw-note" id="meter" role="status">0 of 8 flags</p>
+<ul class="t-grid" id="flags" aria-label="Flags"></ul>
+<h2 class="dw-h2">Terminal</h2>
+<div class="t-term">
+<div class="t-bar" aria-hidden="true"><i></i><i></i><i></i><span>guest@lab</span></div>
+<div class="t-out" id="out" role="log" aria-live="polite" tabindex="0" aria-label="Terminal output"></div>
+<form class="t-form" id="form" autocomplete="off"><label for="cmd">guest@lab:~$</label><input id="cmd" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" maxlength="200" aria-label="Terminal command"></form>
+</div>
+<h2 class="dw-h2">Data sources &amp; privacy</h2>
+<p class="dw-note">Everything runs in your browser. Flags are checked by comparing SHA-256 hashes, so no answers are in the source. Your progress is kept in this browser only (localStorage) and is never sent anywhere. No third-party service is called except the page font.</p>
+
+</main>
+<footer class="site-footer">
+<div class="footer-cols">
+<div class="footer-say"><p class="footer-jk">J.K</p><p>Build with precision, secure by design, automate with purpose.</p></div>
+<nav aria-label="On this site"><p>On this site</p><a href="../../">Home</a><a href="../../blog/">Blog</a><a href="../../tech/">Tech Briefing</a><a href="../../pulse/">Pulse</a><a href="../../security/">Security Wire</a><a href="../../toolbox/">Resources</a></nav>
+<nav aria-label="Test lab"><p>Test lab</p><a href="../">All experiments</a></nav>
+</div>
+<div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
+</footer>
+<script src="ctf.js?v=1"></script>
+</body>
+</html>

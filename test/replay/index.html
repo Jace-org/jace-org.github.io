@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
+<title>Attack replay theatre — Jhapendra Kandel</title>
+<meta name="description" content="An animated map replaying a synthetic honeypot dataset, with speed control, filters and commentary.">
+<meta name="author" content="Jhapendra Kandel">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css?v=20261112b">
+<link rel="stylesheet" href="../../widgets/widgets.css?v=4">
+<link rel="stylesheet" href="replay.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-nav">
+<a class="nav-mark" href="../../" aria-label="Jhapendra Kandel, home">J.K</a>
+<button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" class="nav-links" aria-label="Primary">
+<a href="../../">Home</a>
+<a href="../../blog/">Blog</a>
+<a href="../../tech/">Tech</a>
+<a href="../../pulse/">Nepal Pulse</a>
+<a href="../../security/">Security Wire</a>
+<a href="../../toolbox/">Resources</a>
+<a class="nav-cta" href="../../#contact">Contact</a>
+</nav>
+</header>
+<main id="main" class="dw-page">
+<p class="kicker">Test lab</p>
+<h1 class="sec-h dw-title">Attack replay theatre</h1>
+<p class="dw-lede">Two minutes of pretend attacks on a pretend server, with commentary.</p>
+<p class="dw-status is-warn" role="note"><strong>Synthetic lab data, not real traffic.</strong> Every event was made by a script. Addresses are reserved documentation ranges and source countries are assigned at random, so nothing here says anything about real places or people.</p>
+<noscript><p class="dw-status is-warn">The replay needs JavaScript.</p></noscript>
+<p id="status" class="dw-status is-err" role="status" hidden></p>
+<div id="rstage" hidden>
+<div class="r-map" id="mapwrap"><svg id="map" viewBox="0 0 1000 394" role="img" aria-label="World map showing synthetic attack paths arriving at a fictional lab sensor"></svg></div>
+<div class="r-cap" id="cap" role="status" aria-live="polite"></div>
+<div class="r-ctl">
+<button class="r-btn" id="play" type="button" aria-pressed="false">Play</button>
+<button class="r-btn r-alt" id="restart" type="button">Restart</button>
+<label class="r-lab" for="seek">Time <output id="clock">0:00</output></label>
+<input id="seek" type="range" min="0" max="120" step="0.5" value="0" aria-label="Replay position in seconds">
+<div class="r-speed" role="group" aria-label="Playback speed">
+<button type="button" data-s="0.5" aria-pressed="false">0.5x</button><button type="button" data-s="1" aria-pressed="true">1x</button><button type="button" data-s="2" aria-pressed="false">2x</button><button type="button" data-s="4" aria-pressed="false">4x</button>
+</div>
+</div>
+<h2 class="dw-h2">Filter by attack type</h2>
+<ul class="r-types" id="types"></ul>
+<div class="dw-stats r-stats" id="stats"></div>
+<h2 class="dw-h2">Event log</h2>
+<ol class="r-log" id="log" aria-label="Most recent events, newest first"></ol>
+</div>
+<h2 class="dw-h2">How to read this</h2>
+<p class="dw-copy">The yellow dot on the map is a fictional sensor, a decoy server that nobody should ever visit, so every visit is suspicious. Each line is one event flying in from its source country. Use the filters to follow one attack type, and the speed buttons to slow a burst down. The vocabulary (SSH brute force, credential stuffing, Log4Shell and so on) comes from the kinds of events a honeypot classifier labels; none of the data does.</p>
+<h2 class="dw-h2">Data sources &amp; privacy</h2>
+<p class="dw-note">No third-party calls. The land shapes are Natural Earth data (public domain), the events come from <strong>replay.json</strong> in this folder, and your choices are not stored anywhere.</p>
+
+</main>
+<footer class="site-footer">
+<div class="footer-cols">
+<div class="footer-say"><p class="footer-jk">J.K</p><p>Build with precision, secure by design, automate with purpose.</p></div>
+<nav aria-label="On this site"><p>On this site</p><a href="../../">Home</a><a href="../../blog/">Blog</a><a href="../../tech/">Tech Briefing</a><a href="../../pulse/">Pulse</a><a href="../../security/">Security Wire</a><a href="../../toolbox/">Resources</a></nav>
+<nav aria-label="Test lab"><p>Test lab</p><a href="../">All experiments</a></nav>
+</div>
+<div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
+</footer>
+<script src="replay.js?v=1"></script>
+</body>
+</html>

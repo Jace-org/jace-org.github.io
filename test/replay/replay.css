@@ -1,0 +1,28 @@
+.r-map{margin-top:28px;border-radius:var(--r-lg);background:var(--surface);padding:clamp(8px,1.5vw,20px);overflow:hidden}
+.r-map svg{display:block;width:100%;height:auto}
+.r-map .land{fill:#2b2b2b;stroke:#3d3d3d;stroke-width:.5}
+.r-map .src{fill:var(--muted)}
+.r-map .sensor{fill:var(--yellow)}
+.r-map .ring{fill:none;stroke:var(--yellow);stroke-width:1.5}
+.r-map text{fill:var(--ink);font:700 11px var(--body);paint-order:stroke;stroke:#1b1b1b;stroke-width:3px}
+.r-map .arc{fill:none;stroke-width:1.6;stroke-linecap:round}
+.r-cap{margin-top:16px;padding:16px 22px;border-radius:var(--r-md);background:var(--yellow);color:var(--on-light);font-weight:700;font-size:1.0625rem;line-height:1.4;min-height:3.4em}
+.r-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-top:16px}
+.r-btn,.r-speed button{min-height:44px;min-width:44px;padding:0 20px;border-radius:999px;border:2px solid var(--yellow);background:var(--yellow);color:var(--on-light);font:inherit;font-weight:800;cursor:pointer}
+.r-btn.r-alt,.r-speed button{background:transparent;color:var(--ink);border-color:var(--line)}
+.r-speed{display:flex;gap:8px}
+.r-speed button[aria-pressed="true"]{border-color:var(--yellow);color:var(--yellow)}
+.r-lab{font-weight:700;color:var(--muted)}
+.r-lab output{color:var(--ink);font-variant-numeric:tabular-nums;margin-left:6px}
+#seek{flex:1 1 220px;min-width:160px;accent-color:var(--yellow);height:44px}
+.r-btn:focus-visible,.r-speed button:focus-visible,#seek:focus-visible,.r-types button:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.r-types{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr))}
+.r-types button{width:100%;min-height:56px;display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:var(--r-md);border:2px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:700;text-align:left;cursor:pointer}
+.r-types button[aria-pressed="false"]{opacity:.45}
+.r-types .sw{width:16px;height:16px;border-radius:50%;flex:none}
+.r-types .n{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--muted)}
+.r-stats{margin-top:24px}.r-stats .fact{min-height:150px}
+.r-log{display:flex;flex-direction:column;gap:6px;max-width:80ch}
+.r-log li{padding:10px 16px;border-radius:12px;background:var(--surface);font-size:.9375rem;overflow-wrap:anywhere;border-left:6px solid var(--line)}
+.r-log b{font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){.r-types button{transition:none}}

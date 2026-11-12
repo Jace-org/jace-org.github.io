@@ -1,0 +1,5 @@
+# Lab notes (this is a CTF file, not a real security policy)
+# Contact: nobody@example.invalid
+# Good eyes. Here is something that is not plain text:
+# Skt7dmlld19zb3VyY2VfaXNfYV9zdXBlcnBvd2VyfQ==
+# Hint: it ends with an equals sign for a reason.
