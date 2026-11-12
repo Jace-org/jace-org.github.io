@@ -28,8 +28,14 @@ def build(gen):
         "history": hist,
         "outages": [{"date": "2026-01-15", "title": "Sample outage entry", "note": "Sample note: fixture data, not a real event.", "source_url": "https://example.com/report"}]}
     nowj = {"schema": 1, "generated_at": g, "text": "Sample status: testing the data widgets.", "updated": iso(now - dt.timedelta(hours=6))}
+    topics = ["smartglasses launch", "chip export rules", "open-source database release", "undersea cable repair", "browser security update", "robotics startup funding"]
+    tech = {"schema": 1, "generated_at": g, "items": [
+        {"id": 5000 + i, "title": "Sample tech story %d: %s" % (i, topics[i % 6]),
+         "summary": "Sample summary for fixture story %d. It is deliberately long enough to need trimming so the card layout can be checked with a realistic amount of text in it." % i,
+         "link": "https://abcnews.com.np/sample-tech-story-%d/" % i,
+         "date_gmt": (now - dt.timedelta(hours=i * 3 + 1)).strftime('%Y-%m-%dT%H:%M:%S')} for i in range(30)]}
     health = {"ok": True, "generated_at": g}
-    return {"cves": cves, "hn": hn, "pulse": pulse, "now": nowj, "health": health}
+    return {"cves": cves, "hn": hn, "pulse": pulse, "now": nowj, "tech": tech, "health": health}
 
 for d, gen in ((here, now), (os.path.join(here, 'stale'), now - dt.timedelta(hours=5))):
     for k, v in build(gen).items():

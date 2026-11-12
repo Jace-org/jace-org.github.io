@@ -67,24 +67,22 @@
     var TB = window.TechBriefing;
     var wire = $("#wire"), wireList = $("#wire-list");
     if (TB && wire && wireList) {
-        TB.fetchPosts({ per_page: 8 }, "title,link,date_gmt")
+        TB.load()
             .then(function (posts) {
+                posts = posts.slice(0, 8);
                 if (!posts.length) return;
                 var frag = document.createDocumentFragment();
                 posts.forEach(function (p) {
-                    var title = p && p.title ? TB.decode(p.title.rendered || "") : "";
-                    var href = TB.safeLink(p && p.link);
-                    if (!title || !href) return;
                     var li = document.createElement("li");
-                    if (p.date_gmt) {
+                    if (p.when) {
                         var t = document.createElement("time");
-                        t.dateTime = p.date_gmt + "Z";
-                        t.textContent = TB.ago(new Date(p.date_gmt + "Z"));
+                        t.dateTime = p.when.toISOString();
+                        t.textContent = TB.ago(p.when);
                         li.appendChild(t);
                     }
                     var a = document.createElement("a");
-                    a.href = href; a.target = "_blank"; a.rel = "noopener noreferrer";
-                    a.textContent = title;
+                    a.href = p.href; a.target = "_blank"; a.rel = "noopener noreferrer";
+                    a.textContent = p.title;
                     li.appendChild(a);
                     frag.appendChild(li);
                 });
@@ -109,9 +107,9 @@
 
     var techb = $("#tech"), techbGrid = $("#techb-grid");
     if (TB && techb && techbGrid) {
-        TB.fetchTech(1, 4)
+        TB.load()
             .then(function (posts) {
-                var frag = TB.buildCards(posts);
+                var frag = TB.buildCards(posts.slice(0, 4));
                 if (!frag.childNodes.length) return;
                 techbGrid.appendChild(frag);
                 techb.classList.add("is-ready");
