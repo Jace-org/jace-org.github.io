@@ -66,23 +66,36 @@
     /* ---------- The wire + Tech Briefing block (fetch/decode/ago shared via tech/tech.js) ---------- */
     var TB = window.TechBriefing;
     var wire = $("#wire"), wireList = $("#wire-list");
-    if (TB && wire && wireList) {
-        TB.load()
+    if (TB && wire && wireList && window.fetch) {
+        var WIRE_API = "https://abcnews.com.np/wp-json/wp/v2/posts?per_page=8&_fields=title,link,date_gmt";
+        var WIRE_HOST = "abcnews.com.np";
+        var decode = function (html) {
+            var doc = new DOMParser().parseFromString(html, "text/html");
+            return (doc.body.textContent || "").trim();
+        };
+        var wireOk = function (href) {
+            try { var u = new URL(href); return u.protocol === "https:" && u.hostname === WIRE_HOST; } catch (e) { return false; }
+        };
+        var ctl = window.AbortController ? new AbortController() : null;
+        if (ctl) setTimeout(function () { ctl.abort(); }, 8000);
+        fetch(WIRE_API, ctl ? { signal: ctl.signal } : {})
+            .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
             .then(function (posts) {
-                posts = posts.slice(0, 8);
-                if (!posts.length) return;
+                if (!Array.isArray(posts) || !posts.length) return;
                 var frag = document.createDocumentFragment();
                 posts.forEach(function (p) {
+                    var title = p && p.title ? decode(p.title.rendered || "") : "";
+                    if (!title || !wireOk(p.link || "")) return;
                     var li = document.createElement("li");
-                    if (p.when) {
+                    if (p.date_gmt) {
                         var t = document.createElement("time");
-                        t.dateTime = p.when.toISOString();
-                        t.textContent = TB.ago(p.when);
+                        t.dateTime = p.date_gmt + "Z";
+                        t.textContent = TB.ago(new Date(p.date_gmt + "Z"));
                         li.appendChild(t);
                     }
                     var a = document.createElement("a");
-                    a.href = p.href; a.target = "_blank"; a.rel = "noopener noreferrer";
-                    a.textContent = p.title;
+                    a.href = p.link; a.target = "_blank"; a.rel = "noopener noreferrer";
+                    a.textContent = title;
                     li.appendChild(a);
                     frag.appendChild(li);
                 });
