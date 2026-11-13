@@ -163,22 +163,26 @@
     return out;
   }
   function getWithTimeout(url, kind) {
-    var ctl = new AbortController(), t = setTimeout(function () { ctl.abort(); }, 8000);
+    var ctl = new AbortController(), t = setTimeout(function () { ctl.abort(); }, 6000);
     return fetch(url, { signal: ctl.signal, credentials: 'omit' }).then(function (r) {
       clearTimeout(t); if (!r.ok) throw new Error('http'); return kind === 'json' ? r.json() : r.text();
     });
   }
+  function mergeEntries(base, ctx) {
+    var ids = {};
+    ctx.forEach(function (e) { ids[e.id] = 1; });
+    return ctx.concat(base.filter(function (e) { return e && !ids[e.id]; }))
+      .filter(function (e) { return e && typeof e.title === 'string' && typeof e.text === 'string' && typeof e.url === 'string'; }).slice(0, 300);
+  }
+  // index.json is enough to start; context.md is merged in when it arrives (never blocks the input)
   function loadIndex() {
-    return Promise.all([
-      getWithTimeout('index.json', 'json').catch(function () { return null; }),
-      getWithTimeout('context.md', 'text').catch(function () { return ''; })
-    ]).then(function (r) {
-      var base = (r[0] && Array.isArray(r[0].entries)) ? r[0].entries : [], ctx = parseContext(r[1]), ids = {};
-      ctx.forEach(function (e) { ids[e.id] = 1; });
-      var all = ctx.concat(base.filter(function (e) { return e && !ids[e.id]; }));
-      all = all.filter(function (e) { return e && typeof e.title === 'string' && typeof e.text === 'string' && typeof e.url === 'string'; }).slice(0, 300);
-      if (!all.length) throw new Error('empty');
-      return { entries: all };
+    var base = [];
+    var ctxP = getWithTimeout('context.md', 'text').then(parseContext).catch(function () { return []; });
+    return getWithTimeout('index.json', 'json').then(function (j) { base = (j && Array.isArray(j.entries)) ? j.entries : []; }, function () { base = []; }).then(function () {
+      var first = mergeEntries(base, []);
+      if (!first.length) return ctxP.then(function (c) { var all = mergeEntries(base, c); if (!all.length) throw new Error('empty'); return { entries: all }; });
+      ctxP.then(function (c) { if (c.length) { var all = mergeEntries(base, c); df = {}; prep(all); index = { entries: all }; } });
+      return { entries: first };
     });
   }
   function setChips() {
