@@ -37,17 +37,19 @@
         } catch (e) { return ""; }
     }
 
-    // Original-article link: https, parsed hostname equals / is a dot-boundary subdomain of a SOURCE_HOSTS entry,
-    // no userinfo, <= 500 chars, no control chars. Returns "" when it fails (caller falls back to the story link).
+    // Original-article link: https, parsed hostname EXACTLY a SOURCE_HOSTS entry or "www." + entry (no other subdomains),
+    // port absent or 443, host matches [a-z0-9.-]+ (no trailing dot / percent), no userinfo, <= 500 chars, no control
+    // chars or whitespace. Same rule as build_snapshot.safe_source. Returns "" on failure (caller uses the story link).
     function safeSource(href) {
-        if (typeof href !== "string" || href.length > 500 || href.indexOf("\\") >= 0 || /[\u0000-\u001f\u007f-\u009f]/.test(href)) return "";
+        if (typeof href !== "string" || href.length > 500 || href.indexOf("\\") >= 0 || /[\u0000-\u0020\u007f-\u009f]/.test(href)) return "";
+        if (/^[^:]*:\/\/[^\/?#]*@/.test(href)) return "";
         try {
             var u = new URL(href);
             if (u.protocol !== "https:" || u.username || u.password) return "";
-            var h = u.hostname.toLowerCase();
-            var ok = SOURCE_HOSTS.some(function (d) {
-                return h === d || (h.length > d.length + 1 && h.slice(-(d.length + 1)) === "." + d);
-            });
+            if (u.port !== "" && u.port !== "443") return "";
+            var h = u.hostname;
+            if (!/^[a-z0-9.-]+$/.test(h) || h.charAt(h.length - 1) === ".") return "";
+            var ok = SOURCE_HOSTS.some(function (d) { return h === d || h === "www." + d; });
             return ok ? u.href : "";
         } catch (e) { return ""; }
     }

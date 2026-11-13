@@ -81,19 +81,24 @@ def safe_link(href):
 
 
 def safe_source(href):
-    """Original-article link: https, parsed hostname equals or is a dot-boundary subdomain of a
-    SOURCE_HOSTS entry, no userinfo, <= 500 chars, no control chars. '' when invalid."""
-    if not isinstance(href, str) or len(href) > 500 or _CTL.search(href) or "\\" in href:
+    """Original-article link: https, host EXACTLY a SOURCE_HOSTS entry or "www." + entry (no other subdomains),
+    port absent or 443, host matches [a-z0-9.-]+ with no trailing dot, no userinfo, <= 500 chars, no control
+    chars or whitespace. Same rule as tech.js safeSource. '' when invalid."""
+    if not isinstance(href, str) or len(href) > 500 or _CTL.search(href) or "\\" in href or re.search(r"\s", href):
         return ""
     try:
         u = urlparse(href)
-        host = (u.hostname or "").lower()
-        u.port  # raises ValueError on a bad port
+        host = u.hostname or ""
+        port = u.port  # raises ValueError on a bad port
     except ValueError:
         return ""
-    if u.scheme != "https" or u.username or u.password:
+    if u.scheme != "https" or u.username is not None or u.password is not None or "@" in u.netloc:
         return ""
-    if any(host == d or host.endswith("." + d) for d in SOURCE_HOSTS):
+    if port not in (None, 443) or not re.fullmatch(r"[a-z0-9.-]+", host) or host.endswith("."):
+        return ""
+    if u.netloc.lower() not in (host, host + ":443"):
+        return ""
+    if any(host == d or host == "www." + d for d in SOURCE_HOSTS):
         return href
     return ""
 
@@ -132,7 +137,7 @@ def parse(raw):
         except (KeyError, ValueError):
             continue
         summary = trim(plain(p["summary"])) if isinstance(p.get("summary"), str) else ""
-        items.append({"title": title, "link": safe_source(p.get("source_url")) or link, "when": when, "summary": summary})
+        items.append({"title": title, "link": safe_source(p.get("source_url")) or link, "guid": link, "when": when, "summary": summary})
         if len(items) >= COUNT:
             break
     return items
@@ -167,7 +172,7 @@ def feed_xml(items):
             "    <item>\n"
             f"      <title>{e(it['title'], quote=False)}</title>\n"
             f"      <link>{e(it['link'], quote=False)}</link>\n"
-            f"      <guid isPermaLink=\"true\">{e(it['link'], quote=False)}</guid>\n"
+            f"      <guid isPermaLink=\"false\">{e(it['guid'], quote=False)}</guid>\n"
             f"      <pubDate>{format_datetime(it['when'])}</pubDate>\n"
             f"      <description>{e(it['summary'], quote=False)}</description>\n"
             "    </item>"
