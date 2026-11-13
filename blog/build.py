@@ -203,7 +203,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../../../styles.css?v=20261112d">
-    <link rel="stylesheet" href="../../blog.css?v=20261112a">
+    <link rel="stylesheet" href="../../blog.css?v=20261113a">
     <script type="application/ld+json">
     {jsonld}
     </script>
@@ -213,6 +213,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
 </head>
 
 <body class="blog-page">
+    <div class="read-progress" aria-hidden="true"></div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-nav" id="top">
@@ -236,7 +237,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
 
     <main id="main" class="post-main">
         <article class="post">
-            <a class="back-link" href="../../">&larr; All posts</a>
+            <a class="back-link" href="../../"><span aria-hidden="true">&larr;</span> All posts</a>
             <header class="post-head">
                 <h1 class="post-title">{title}</h1>
                 <p class="post-meta"><time datetime="{date}">{display_date}</time><span class="rt">{read_min} min read</span>{tag_html}</p>
@@ -254,7 +255,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
         <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; <a class="text-link" href="../../">All posts</a> &middot; <a class="text-link" href="../../../">Front page</a></p>
     </footer>
 
-    <script src="../../blog.js?v=20261112a" defer></script>
+    <script src="../../blog.js?v=20261113a" defer></script>
 </body>
 
 </html>
@@ -288,7 +289,7 @@ def build_posts(posts):
             raise SystemExit(f"unsafe slug: {slug!r}")
         url = f"{APEX}/blog/posts/{slug}/"
         tags = p.get("tags", [])
-        tag_html = "".join(f'<span class="tag">{esc(t)}</span>' for t in tags)
+        tag_html = "".join(f'<a class="tag" href="../../?tag={urllib.parse.quote(t, safe="")}">{esc(t)}</a>' for t in tags)
         tag_meta = "\n".join(f'    <meta property="article:tag" content="{esc_attr(t)}">' for t in tags)
         date_iso = p["date"]
         display_date = fmt_date(date_iso)

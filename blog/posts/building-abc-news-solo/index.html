@@ -33,7 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../../../styles.css?v=20261112d">
-    <link rel="stylesheet" href="../../blog.css?v=20261112a">
+    <link rel="stylesheet" href="../../blog.css?v=20261113a">
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
@@ -89,6 +89,7 @@
 </head>
 
 <body class="blog-page">
+    <div class="read-progress" aria-hidden="true"></div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-nav" id="top">
@@ -112,10 +113,10 @@
 
     <main id="main" class="post-main">
         <article class="post">
-            <a class="back-link" href="../../">&larr; All posts</a>
+            <a class="back-link" href="../../"><span aria-hidden="true">&larr;</span> All posts</a>
             <header class="post-head">
                 <h1 class="post-title">Building the ABC News site on my own</h1>
-                <p class="post-meta"><time datetime="2026-08-20">August 20, 2026</time><span class="rt">1 min read</span><span class="tag">Web</span><span class="tag">DevOps</span><span class="tag">WordPress</span></p>
+                <p class="post-meta"><time datetime="2026-08-20">August 20, 2026</time><span class="rt">1 min read</span><a class="tag" href="../../?tag=Web">Web</a><a class="tag" href="../../?tag=DevOps">DevOps</a><a class="tag" href="../../?tag=WordPress">WordPress</a></p>
             </header>
             <div class="prose">
 <p>I built the ABC News site by myself, start to finish. That meant the design, the WordPress theme, the publishing tools, and all of the server and deployment work. This post is a plain rundown of what that involved.</p>
@@ -141,7 +142,7 @@
         <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; <a class="text-link" href="../../">All posts</a> &middot; <a class="text-link" href="../../../">Front page</a></p>
     </footer>
 
-    <script src="../../blog.js?v=20261112a" defer></script>
+    <script src="../../blog.js?v=20261113a" defer></script>
 </body>
 
 </html>

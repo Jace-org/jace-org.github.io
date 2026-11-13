@@ -33,7 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../../../styles.css?v=20261112d">
-    <link rel="stylesheet" href="../../blog.css?v=20261112a">
+    <link rel="stylesheet" href="../../blog.css?v=20261113a">
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
@@ -89,6 +89,7 @@
 </head>
 
 <body class="blog-page">
+    <div class="read-progress" aria-hidden="true"></div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-nav" id="top">
@@ -112,10 +113,10 @@
 
     <main id="main" class="post-main">
         <article class="post">
-            <a class="back-link" href="../../">&larr; All posts</a>
+            <a class="back-link" href="../../"><span aria-hidden="true">&larr;</span> All posts</a>
             <header class="post-head">
                 <h1 class="post-title">Building an AI-Powered Threat Intelligence Pipeline</h1>
-                <p class="post-meta"><time datetime="2026-09-06">September 6, 2026</time><span class="rt">1 min read</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Agents</span></p>
+                <p class="post-meta"><time datetime="2026-09-06">September 6, 2026</time><span class="rt">1 min read</span><a class="tag" href="../../?tag=AI">AI</a><a class="tag" href="../../?tag=Security">Security</a><a class="tag" href="../../?tag=Agents">Agents</a></p>
             </header>
             <div class="prose">
 <p>Threat intel is a firehose of feeds, advisories, blog posts and reports, most of it not relevant to you. I built a pipeline to turn that stream into a short, useful summary. The AI part is one stage, not the whole thing.</p>
@@ -139,7 +140,7 @@
         <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; <a class="text-link" href="../../">All posts</a> &middot; <a class="text-link" href="../../../">Front page</a></p>
     </footer>
 
-    <script src="../../blog.js?v=20261112a" defer></script>
+    <script src="../../blog.js?v=20261113a" defer></script>
 </body>
 
 </html>

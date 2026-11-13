@@ -33,7 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../../../styles.css?v=20261112d">
-    <link rel="stylesheet" href="../../blog.css?v=20261112a">
+    <link rel="stylesheet" href="../../blog.css?v=20261113a">
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
@@ -89,6 +89,7 @@
 </head>
 
 <body class="blog-page">
+    <div class="read-progress" aria-hidden="true"></div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-nav" id="top">
@@ -112,10 +113,10 @@
 
     <main id="main" class="post-main">
         <article class="post">
-            <a class="back-link" href="../../">&larr; All posts</a>
+            <a class="back-link" href="../../"><span aria-hidden="true">&larr;</span> All posts</a>
             <header class="post-head">
                 <h1 class="post-title">Why Nepali Is Still a Hard Language for AI Models</h1>
-                <p class="post-meta"><time datetime="2026-04-02">April 2, 2026</time><span class="rt">2 min read</span><span class="tag">AI</span><span class="tag">LLM</span><span class="tag">Nepali</span></p>
+                <p class="post-meta"><time datetime="2026-04-02">April 2, 2026</time><span class="rt">2 min read</span><a class="tag" href="../../?tag=AI">AI</a><a class="tag" href="../../?tag=LLM">LLM</a><a class="tag" href="../../?tag=Nepali">Nepali</a></p>
             </header>
             <div class="prose">
 <p>English models feel close to solved. Nepali still does not. I have spent a lot of time running Nepali text through LLMs, and the gap comes down to a few concrete things, not anything mysterious about the language.</p>
@@ -147,7 +148,7 @@
         <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; <a class="text-link" href="../../">All posts</a> &middot; <a class="text-link" href="../../../">Front page</a></p>
     </footer>
 
-    <script src="../../blog.js?v=20261112a" defer></script>
+    <script src="../../blog.js?v=20261113a" defer></script>
 </body>
 
 </html>
