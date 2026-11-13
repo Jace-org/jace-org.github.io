@@ -87,6 +87,18 @@ Footer: the picture-credits paragraph and the "Static build, hosted on GitHub Pa
 style/script on CSP pages), and left taste-skill lint at its 9 pre-existing findings. Not yet verified in a real
 browser: true 390px layout and clip-path reveals.
 
+## "Ask my portfolio" (`tools/webllm/`, 2026-11-13)
+
+- Knowledge = `tools/webllm/context.md` (edit + push; `## Title` entries with optional `id:`/`url:`/`keywords:` lines) merged over
+  `tools/webllm/index.json` (same `id` -> context.md wins). Input unlocks as soon as `index.json` loads; `context.md` merges in the
+  background (never block the input on it). Bump the `?v=` on `webllm.js`/`webllm.css` in `index.html` after JS/CSS changes.
+- A keyword gate runs BEFORE the model: no matching passage -> orange refusal (topic filter, not the AI). Greetings and
+  "who is jk / jhapendra / kandel" are special-cased to the `about` entry; query typos within one edit are corrected.
+- The model (Llama-3.2-1B, WebGPU, opt-in ~0.7-0.9 GB download) only sees matched passages. Page and every AI answer carry a
+  "small model, can make mistakes, please verify" note. Do not remove it. Blog URLs in entries must be `/blog/posts/<slug>/`.
+- Offline retrieval check: load `webllm.js` in node with a stub DOM and call `window.JKRetrieval.search(q)`.
+
 ## History / handoffs
 
 - `docs/HANDOFF-2026-11-11.md` — v3 → v4 redesign session.
+- `docs/HANDOFF-2026-11-13.md` — tools verification, blog links, "Ask my portfolio" fixes.

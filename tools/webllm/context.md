@@ -139,7 +139,7 @@ keywords: shop, shopping, ecommerce, cart, checkout, techkart
 
 A full shopping website with a catalogue, cart and checkout flow on a PHP and SQL backend. PHP, SQL, JavaScript. E-commerce, private.
 
-## Skills (self-rated out of 100)
+## Skills
 id: skills
 url: /#skills
 keywords: skills, skill, languages, technologies, tech stack, stack, best, strongest, html, css, wordpress, php, javascript, mysql, react, python, linux, docker, pentest, level, rating

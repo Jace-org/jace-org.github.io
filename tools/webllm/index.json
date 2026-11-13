@@ -314,7 +314,7 @@
   {
    "id": "skills",
    "type": "skills",
-   "title": "Skills (self-rated out of 100)",
+   "title": "Skills",
    "url": "/#skills",
    "text": "Self-rated skills out of 100: HTML5 92, CSS3 90, WordPress 90, PHP 88, JavaScript 85, MySQL 85, React 82, Python 80, Linux and server admin 78, Docker 75, ethical hacking and penetration testing 70. The ratings are the owner's own, not a test result.",
    "keywords": [
