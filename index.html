@@ -39,7 +39,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="styles.css?v=20261113q">
     <link rel="stylesheet" href="widgets/widgets.css?v=4">
     <link rel="preload" as="image" href="mainimg.webp">
@@ -195,7 +196,7 @@
                 <ol class="stream" id="stream">
                     <li class="story story-yellow">
                         <a class="story-link" href="https://abcnews.com.np/" target="_blank" rel="noopener">
-                            <figure class="story-pic"><img src="assets/shots/abcnews.webp" srcset="assets/shots/abcnews-640.webp 640w, assets/shots/abcnews.webp 1280w" sizes="(min-width: 900px) 700px, 100vw" width="1280" height="800" decoding="async" alt="The abcnews.com.np home page with its Nepali navigation and trending headlines"></figure>
+                            <figure class="story-pic"><img loading="lazy" src="assets/shots/abcnews.webp" srcset="assets/shots/abcnews-640.webp 640w, assets/shots/abcnews.webp 1280w" sizes="(min-width: 900px) 700px, 100vw" width="1280" height="800" decoding="async" alt="The abcnews.com.np home page with its Nepali navigation and trending headlines"></figure>
                             <div class="story-copy">
                                 <h3>ABC News Nepal</h3>
                                 <p>Built the full ABC News site by myself from scratch. Front end, back end, and all the server work and DevOps to deploy it and keep it running.</p>
@@ -207,7 +208,7 @@
                     </li>
                     <li class="story story-orange">
                         <div class="story-link">
-                            <figure class="story-pic"><img src="assets/img/shinybox-46mxc-ribbon-microphone-lowswing-studio-berlin.webp" srcset="assets/img/shinybox-46mxc-ribbon-microphone-lowswing-studio-berlin-640.webp 640w, assets/img/shinybox-46mxc-ribbon-microphone-lowswing-studio-berlin.webp 1280w" sizes="(min-width: 900px) 700px, 100vw" width="1920" height="1285" decoding="async" alt="A studio microphone in a shock mount against a perforated wall"></figure>
+                            <figure class="story-pic"><img loading="lazy" src="assets/img/shinybox-46mxc-ribbon-microphone-lowswing-studio-berlin.webp" srcset="assets/img/shinybox-46mxc-ribbon-microphone-lowswing-studio-berlin-640.webp 640w, assets/img/shinybox-46mxc-ribbon-microphone-lowswing-studio-berlin.webp 1280w" sizes="(min-width: 900px) 700px, 100vw" width="1920" height="1285" decoding="async" alt="A studio microphone in a shock mount against a perforated wall"></figure>
                             <div class="story-copy">
                                 <h3>Nepali text to speech</h3>
                                 <p>Trained a speech model that reads Nepali out loud, so Nepali text can be turned into natural-sounding audio.</p>
@@ -547,7 +548,7 @@ active</code></pre>
     <script src="widgets/hn.js?v=3" defer></script>
     <script src="widgets/now.js?v=3" defer></script>
     <script src="tech/tech.js?v=20261113a" defer></script>
-    <script src="main.js?v=20261113q" defer></script>
+    <script src="main.js?v=20261113r" defer></script>
 </body>
 
 </html>

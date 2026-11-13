@@ -192,9 +192,17 @@
         else {
             var cnt = { v: 0 }, num = $("#loader-n");
             loadTl = gsap.timeline({ onComplete: endLoader });
-            loadTl.to(cnt, { v: 100, duration: 1.1, ease: "power2.inOut", onUpdate: function () { num.textContent = Math.round(cnt.v); } }, 0)
-                .to(".loader-bar", { scaleX: 1, duration: 1.1, ease: "power2.inOut" }, 0)
-                .to(loader, { clipPath: "inset(0 0 100% 0)", duration: .9, ease: "expo.inOut" }, 1.2);
+            loadTl.to(cnt, { v: 100, duration: .6, ease: "power2.inOut", onUpdate: function () { num.textContent = Math.round(cnt.v); } }, 0)
+                .to(".loader-bar", { scaleX: 1, duration: .6, ease: "power2.inOut" }, 0)
+                // hold here until the page + fonts are actually ready (capped), then wipe
+                .addPause(.6, function () {
+                    var go = function () { if (go.done) return; go.done = 1; loadTl.play(); };
+                    setTimeout(go, 1200);
+                    var pf = (document.fonts && document.fonts.ready) || Promise.resolve();
+                    var pl = document.readyState === "complete" ? Promise.resolve() : new Promise(function (r) { window.addEventListener("load", r, { once: true }); });
+                    Promise.all([pf, pl]).then(go, go);
+                })
+                .to(loader, { clipPath: "inset(0 0 100% 0)", duration: .6, ease: "expo.inOut" }, .6);
         }
     }
 
