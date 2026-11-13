@@ -25,6 +25,7 @@ this only needs to be run locally, once per content change.
 import html
 import json
 import re
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -34,7 +35,7 @@ SITE = "https://jhapendrakandel.com.np"
 # The blog is primary on the apex (this static site); Fableweb's copy at
 # portfolio.jhapendrakandel.com.np canonicalises here to avoid duplicate-content splits.
 APEX = "https://jhapendrakandel.com.np"
-LOGO = "https://raw.githubusercontent.com/jhapendrakandel/Jace.github.io/refs/heads/main/logo.png"
+LOGO = f"{SITE}/assets/logo.png"  # same-origin copy (was hotlinked from raw.githubusercontent.com)
 
 # ---------------------------------------------------------------- markdown
 # Mirrors blog.js's render()/inline() so static pages match the client
@@ -44,15 +45,52 @@ def esc(s):
     return html.escape(s, quote=False)
 
 
+def esc_attr(s):
+    """Escape for use inside a double-quoted HTML attribute."""
+    return html.escape(s, quote=True)
+
+
+SAFE_SCHEMES = ("", "http", "https", "mailto")
+
+
+def safe_url(u):
+    """u arrives already text-escaped (& -> &amp; etc.). Return an
+    attribute-safe URL, or None if its scheme is not allowlisted."""
+    raw = html.unescape(u)
+    # browsers strip tabs/newlines/control chars inside schemes
+    cleaned = re.sub(r"[\x00-\x20]", "", raw)
+    try:
+        scheme = urllib.parse.urlparse(cleaned).scheme.lower()
+    except ValueError:
+        return None
+    if scheme not in SAFE_SCHEMES:
+        return None
+    return esc_attr(raw)
+
+
+def json_for_script(obj):
+    """JSON safe to embed inside a <script> element."""
+    return (json.dumps(obj, ensure_ascii=False, indent=4)
+            .replace("</", "<\\/").replace("<!--", "<\\!--"))
+
+
 def inline(s):
-    s = re.sub(r"!\[([^\]]*)\]\(([^)\s]+)\)",
-                lambda m: f'<img src="{m.group(2)}" alt="{m.group(1)}" loading="lazy">', s)
+    def img(m):
+        src = safe_url(m.group(2))
+        alt = esc_attr(html.unescape(m.group(1)))
+        if src is None:
+            return alt
+        return f'<img src="{src}" alt="{alt}" loading="lazy">'
+    s = re.sub(r"!\[([^\]]*)\]\(([^)\s]+)\)", img, s)
 
     def link(m):
         href, txt = m.group(2), m.group(1)
-        ext = re.match(r"^https?:", href)
+        safe = safe_url(href)
+        if safe is None:
+            return txt
+        ext = re.match(r"^https?:", html.unescape(href), re.I)
         attrs = ' target="_blank" rel="noopener"' if ext else ""
-        return f'<a href="{href}"{attrs}>{txt}</a>'
+        return f'<a href="{safe}"{attrs}>{txt}</a>'
     s = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", link, s)
     s = re.sub(r"`([^`]+)`", lambda m: f"<code>{m.group(1)}</code>", s)
     s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
@@ -141,23 +179,23 @@ POST_TEMPLATE = """<!DOCTYPE html>
     <meta name="theme-color" content="#111111">
     <meta name="color-scheme" content="dark">
     <title>{title} — Jhapendra Kandel</title>
-    <meta name="description" content="{excerpt}">
+    <meta name="description" content="{excerpt_a}">
     <meta name="author" content="Jhapendra Kandel">
     <link rel="canonical" href="{url}">
     <link rel="icon" type="image/png" href="{logo}">
 
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Jhapendra Kandel">
-    <meta property="og:title" content="{title}">
-    <meta property="og:description" content="{excerpt}">
+    <meta property="og:title" content="{title_a}">
+    <meta property="og:description" content="{excerpt_a}">
     <meta property="og:url" content="{url}">
     <meta property="og:image" content="{logo}">
     <meta property="article:published_time" content="{date}">
     <meta property="article:author" content="Jhapendra Kandel">
 {tag_meta}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{title}">
-    <meta name="twitter:description" content="{excerpt}">
+    <meta name="twitter:title" content="{title_a}">
+    <meta name="twitter:description" content="{excerpt_a}">
     <meta name="twitter:image" content="{logo}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -245,14 +283,17 @@ def build_posts(posts):
             nav.append(f'                <a class="pn pn-older" href="../{older["slug"]}/"><span class="pn-k">Older &rarr;</span><span class="pn-t">{esc(older["title"])}</span></a>')
         nav_html = "\n".join(nav)
 
-        url = f"{APEX}/blog/{p['slug']}"
+        slug = p["slug"]
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*", slug):
+            raise SystemExit(f"unsafe slug: {slug!r}")
+        url = f"{APEX}/blog/posts/{slug}/"
         tags = p.get("tags", [])
         tag_html = "".join(f'<span class="tag">{esc(t)}</span>' for t in tags)
-        tag_meta = "\n".join(f'    <meta property="article:tag" content="{esc(t)}">' for t in tags)
+        tag_meta = "\n".join(f'    <meta property="article:tag" content="{esc_attr(t)}">' for t in tags)
         date_iso = p["date"]
         display_date = fmt_date(date_iso)
 
-        jsonld = json.dumps({
+        jsonld = json_for_script({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             "headline": p["title"],
@@ -265,21 +306,23 @@ def build_posts(posts):
             "publisher": {"@type": "Person", "name": "Jhapendra Kandel"},
             "mainEntityOfPage": {"@type": "WebPage", "@id": url},
             "keywords": ", ".join(tags),
-        }, ensure_ascii=False, indent=4)
+        })
 
-        breadcrumb_jsonld = json.dumps({
+        breadcrumb_jsonld = json_for_script({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{SITE}/"},
-                {"@type": "ListItem", "position": 2, "name": "Blog", "item": f"{APEX}/blog"},
+                {"@type": "ListItem", "position": 2, "name": "Blog", "item": f"{APEX}/blog/"},
                 {"@type": "ListItem", "position": 3, "name": p["title"], "item": url},
             ],
-        }, ensure_ascii=False, indent=4)
+        })
 
         html_out = POST_TEMPLATE.format(
             title=esc(p["title"]),
             excerpt=esc(p.get("excerpt", "")),
+            title_a=esc_attr(p["title"]),
+            excerpt_a=esc_attr(p.get("excerpt", "")),
             url=url,
             logo=LOGO,
             date=date_iso,
@@ -304,11 +347,11 @@ def update_index_list(posts):
     items = []
     for p in posts:
         tags_html = "".join(f'<span class="tag">{esc(t)}</span>' for t in p.get("tags", []))
-        tag_attr = esc("|".join(p.get("tags", [])))
+        tag_attr = esc_attr("|".join(p.get("tags", [])))
         cls = ' class="is-feature"' if not items else ""
         items.append(
             f'                    <li{cls} data-tags="{tag_attr}">\n'
-            f'                        <a class="post-card" href="posts/{p["slug"]}/">\n'
+            f'                        <a class="post-card" href="posts/{esc_attr(p["slug"])}/">\n'
             f'                            <p class="post-meta"><time datetime="{p["date"]}">{fmt_date(p["date"])}</time><span class="rt">{p.get("_rm", 1)} min read</span></p>\n'
             f'                            <h2>{esc(p["title"])}</h2>\n'
             f'                            <p class="excerpt">{esc(p.get("excerpt", ""))}</p>\n'
@@ -330,25 +373,45 @@ def update_index_list(posts):
 
 
 def update_sitemap(posts):
+    """Rewrite ONLY the blog entries (/blog/ and /blog/posts/*) in sitemap.xml.
+    Every other <url> entry is preserved verbatim, in place. Blog entries are
+    written where the first existing blog entry was (appended if none)."""
+    sm_path = ROOT / "sitemap.xml"
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    static_urls = [
-        (f"{SITE}/", "monthly", "1.0", today),
-        (f"{SITE}/toolbox/", "monthly", "0.6", today),
-        (f"{SITE}/hack-me/", "monthly", "0.6", today),
+    blog_urls = [(f"{SITE}/blog/", "weekly", "0.8", posts[0]["date"] if posts else today)]
+    blog_urls += [(f"{SITE}/blog/posts/{p['slug']}/", "monthly", "0.7", p["date"]) for p in posts]
+    blog_lines = [
+        f"  <url><loc>{loc}</loc><lastmod>{lastmod}</lastmod>"
+        f"<changefreq>{freq}</changefreq><priority>{prio}</priority></url>"
+        for loc, freq, prio, lastmod in blog_urls
     ]
-    # the blog is canonical on this host, so it is listed here
-    post_urls = [(f"{SITE}/blog", "weekly", "0.8", posts[0]["date"] if posts else today)]
-    post_urls += [(f"{SITE}/blog/{p['slug']}", "monthly", "0.7", p["date"]) for p in posts]
-    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
-             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    for loc, freq, prio, lastmod in static_urls + post_urls:
-        lines.append(
-            f"  <url><loc>{loc}</loc><lastmod>{lastmod}</lastmod>"
-            f"<changefreq>{freq}</changefreq><priority>{prio}</priority></url>"
-        )
-    lines.append("</urlset>")
-    (ROOT / "sitemap.xml").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print("updated sitemap.xml")
+
+    def is_blog(line):
+        m = re.search(r"<loc>([^<]*)</loc>", line)
+        if not m:
+            return False
+        loc = m.group(1)
+        return loc == f"{SITE}/blog" or loc.startswith(f"{SITE}/blog/")
+
+    if sm_path.exists():
+        existing = sm_path.read_text(encoding="utf-8").splitlines()
+    else:
+        existing = ['<?xml version="1.0" encoding="UTF-8"?>',
+                    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+                    "</urlset>"]
+    out, placed = [], False
+    for line in existing:
+        if "<url>" in line and is_blog(line):
+            if not placed:
+                out.extend(blog_lines)
+                placed = True
+            continue
+        if "</urlset>" in line and not placed:
+            out.extend(blog_lines)
+            placed = True
+        out.append(line)
+    sm_path.write_text("\n".join(out) + "\n", encoding="utf-8")
+    print("updated sitemap.xml (blog entries only)")
 
 
 def main():

@@ -16,7 +16,7 @@
 
     function esc(s) {
         return String(s == null ? "" : s)
-            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
     }
 
     function matches(r) {
@@ -30,6 +30,7 @@
     function cardHtml(r) {
         var isExternal = !!r.url;
         var href = isExternal ? r.url : "files/" + r.file;
+        if (!/^(https:|files\/)/.test(href)) href = "#";
         var actionLabel = isExternal ? "Open link ↗" : "Download ↓";
         var attrs = isExternal
             ? ' target="_blank" rel="noopener"'
@@ -43,7 +44,7 @@
             (r.type ? '<span class="res-type">' + esc(r.type) + "</span>" : "") +
             "</div>" +
             "<p>" + esc(r.description || "") + "</p>" +
-            '<a class="res-action" href="' + href + '"' + attrs + ">" + actionLabel + "</a>" +
+            '<a class="res-action" href="' + esc(href) + '"' + attrs + ">" + actionLabel + "</a>" +
             (meta.length ? '<p class="res-meta">' + meta.join(" · ") + "</p>" : "") +
             "</article>"
         );

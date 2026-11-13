@@ -12,6 +12,7 @@ unchanged feed leaves the files byte-identical. Stdlib only.
 """
 import html
 import json
+import xml.etree.ElementTree as ET
 import re
 import sys
 import urllib.request
@@ -26,6 +27,7 @@ API_HOST = urlparse(API_BASE).netloc
 CATEGORY = 55
 COUNT = 12
 SUMMARY_MAX = 140
+MAX_BYTES = 1_000_000
 SITE = "https://jhapendrakandel.com.np"
 HERE = Path(__file__).resolve().parent
 START, END = "<!--SNAPSHOT:START-->", "<!--SNAPSHOT:END-->"
@@ -61,7 +63,10 @@ def fetch():
     url = f"{API_BASE}?categories={CATEGORY}&per_page={COUNT}&page=1&_fields=title,link,date_gmt,excerpt"
     req = urllib.request.Request(url, headers={"User-Agent": "tech-briefing-snapshot/1.0", "Accept": "application/json"})
     with urllib.request.urlopen(req, timeout=30) as r:
-        data = json.load(r)
+        raw = r.read(MAX_BYTES + 1)
+    if len(raw) > MAX_BYTES:
+        raise SystemExit("API response too large")
+    data = json.loads(raw)
     if not isinstance(data, list):
         raise SystemExit("unexpected API response")
     items = []
@@ -101,7 +106,7 @@ _BAD_XML = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\u202a-\u202e\u2066-\u2069\uf
 
 
 def feed_xml(items):
-    e = lambda v: html.escape(_BAD_XML.sub('', str(v)))
+    e = lambda v, quote=True: html.escape(_BAD_XML.sub('', str(v)), quote=quote)
     newest = max(it["when"] for it in items)
     rows = []
     for it in items:
@@ -147,7 +152,13 @@ def main():
     head, rest = src.split(START, 1)
     _, tail = rest.split(END, 1)
     new = f"{head}{START}\n{cards_html(items)}\n                {END}{tail}"
-    changed = [write_if_changed(page, new), write_if_changed(HERE / "feed.xml", feed_xml(items))]
+    feed = feed_xml(items)
+    try:
+        ET.fromstring(feed.encode("utf-8"))
+    except ET.ParseError as exc:
+        print(f"generated feed is not well-formed XML ({exc}); keeping old files", file=sys.stderr)
+        return 1
+    changed = [write_if_changed(page, new), write_if_changed(HERE / "feed.xml", feed)]
     print(f"{len(items)} items; {'updated' if any(changed) else 'unchanged'}")
     return 0
 

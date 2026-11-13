@@ -33,7 +33,7 @@ a static `projects.json` you control (uptime, last-deployed date,
 version). Extends the Public/Private overlay-link work.
 
 ### 4. `/uses` page
-The homelab box (AMD Radeon AI PRO R9700, 32 GB), OS, editor, terminal,
+The dev hardware, OS, editor, terminal,
 CLI tools, self-hosted services. "/uses" pages are a well-known dev
 genre, rank well, and cost nothing to keep.
 
@@ -113,12 +113,12 @@ Precache the shell, cache-first for assets, network-first for HTML.
 
 ### 18. Self-owned analytics
 A privacy-friendly counter — Cloudflare Web Analytics (no cookie, one
-snippet) or a tiny beacon to the GPU box. Currently no visibility into
+snippet) or a tiny self-hosted beacon. Currently no visibility into
 traffic at all.
 
 ### 19. Decide what `dashboard.html` is
 It's a 461-byte stub right now. Either make it a real (private) homelab
-status page that pulls from `status.abcnews.com.np`, or delete it and
+status page, or delete it and
 its references.
 
 ### 20. Better 404

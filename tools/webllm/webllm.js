@@ -5,6 +5,18 @@
   var LIB_SRI = 'sha384-rfElDdXnNkSgbLTTGiKHTrsetCVAYzzLZBD96/rZdD9XYvryEyShqz3ph8j+x7HH';
   var MODEL_F16 = 'Llama-3.2-1B-Instruct-q4f16_1-MLC';
   var MODEL_F32 = 'Llama-3.2-1B-Instruct-q4f32_1-MLC';
+  /* Model weights and wasm pinned to immutable commit SHAs (not branch heads). */
+  var LIBS_SHA = '146ed9cd4b4062e967b017fd2291f7106b50599f';
+  var APP_CONFIG = { model_list: [
+    { model: 'https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f16_1-MLC/resolve/2a37b0a5ecb622d51ddc2fac74de0b95872affd7/',
+      model_id: MODEL_F16,
+      model_lib: 'https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/' + LIBS_SHA + '/web-llm-models/v0_2_84/base/Llama-3.2-1B-Instruct-q4f16_1_cs1k-webgpu.wasm',
+      vram_required_MB: 879.04, low_resource_required: true, overrides: { context_window_size: 4096 } },
+    { model: 'https://huggingface.co/mlc-ai/Llama-3.2-1B-Instruct-q4f32_1-MLC/resolve/a949835e0f9a65335bd834db02a44cf8fae34020/',
+      model_id: MODEL_F32,
+      model_lib: 'https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/' + LIBS_SHA + '/web-llm-models/v0_2_84/base/Llama-3.2-1B-Instruct-q4f32_1_cs1k-webgpu.wasm',
+      vram_required_MB: 1128.82, low_resource_required: true, overrides: { context_window_size: 4096 } }
+  ] };
   var MIN_SCORE = 3;
   var STOP = {};
   'a an the and or of to in on for with is are was were be been it its this that these those do does did how what which who whom whose when where why can could should would will about me my you your he his him she her they them their i we our us at by from as into any some tell show give please write writes wrote today current currently recent read list there have has had not no yes more most very much many'.split(' ').forEach(function (w) { STOP[w] = 1; });
@@ -156,7 +168,7 @@
       .then(function (b) { var u = URL.createObjectURL(new Blob([b], { type: 'text/javascript' })); return import(u).then(function (m) { URL.revokeObjectURL(u); return m; }); })
       .then(function (webllm) {
         progtxt.textContent = 'Library verified. Downloading the model...';
-        return webllm.CreateMLCEngine(model, { initProgressCallback: function (p) {
+        return webllm.CreateMLCEngine(model, { appConfig: APP_CONFIG, initProgressCallback: function (p) {
           var pct = Math.max(0, Math.min(1, Number(p && p.progress) || 0));
           barfill.style.width = Math.round(pct * 100) + '%';
           progtxt.textContent = String(p && p.text || '').slice(0, 160);
