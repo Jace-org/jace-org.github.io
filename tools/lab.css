@@ -2,3 +2,191 @@
 .lab-cards .dw-card{display:flex;flex-direction:column;gap:10px}
 .lab-cards .dw-meta{min-height:1.6em}
 .tl-tag{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--yellow);color:var(--on-light);font-weight:800;font-size:.8125rem}
+
+/* ==== Polish layer (shared by the index and every tool page) ==== */
+:root { --lab-ease: cubic-bezier(.2, .7, .1, 1); }
+.dw-page { max-width: 1680px; margin-inline: auto; }
+::selection { background: var(--yellow); color: var(--on-light); }
+
+/* page header: kicker rule, staggered entrance */
+.dw-page > .kicker { display: flex; align-items: center; gap: 12px; }
+.dw-page > .kicker::before { content: ""; width: 36px; height: 3px; background: var(--yellow); transform-origin: left; flex: none; }
+.dw-lede { text-wrap: balance; }
+.dw-title { text-wrap: balance; }
+.dw-h2 { position: relative; padding-top: 18px; border-top: 2px solid var(--line); text-wrap: balance; }
+.dw-h2::before { content: ""; position: absolute; top: -2px; left: 0; width: 64px; height: 2px; background: var(--yellow); }
+.dw-copy a, .dw-note a, .lab-privacy a, .lab-attr a { text-decoration-thickness: 2px; text-underline-offset: 4px; transition: text-underline-offset .25s var(--lab-ease), color .2s; }
+.dw-copy a:hover, .dw-note a:hover, .lab-privacy a:hover, .lab-attr a:hover { text-underline-offset: 7px; color: var(--yellow); }
+.dw-page a:focus-visible, .dw-page button:focus-visible, .dw-page input:focus-visible, .dw-page select:focus-visible, .dw-page [tabindex]:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 6px; }
+.dw-status { border-left: 6px solid rgba(17, 17, 17, .35); }
+.dw-status.is-err, .dw-status.is-warn { border-left-color: rgba(17, 17, 17, .35); }
+
+/* loading shimmer (class set by polish.js on a 'Loading' status) */
+.dw-status.is-loading { position: relative; overflow: hidden; background: var(--surface-2); color: var(--ink-soft); border-left-color: var(--yellow); }
+.dw-status.is-loading::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255, 214, 10, .16) 50%, transparent 70%); transform: translateX(-100%); animation: lab-shimmer 1.4s linear infinite; }
+@keyframes lab-shimmer { to { transform: translateX(100%); } }
+
+/* ---- Tools index ---- */
+.lab-cards { counter-reset: tool; }
+.lab-cards + .dw-h2, .dw-h2 + .lab-cards { margin-top: 24px; }
+.lab-cards .dw-card { position: relative; counter-increment: tool; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 24px 24px 22px; gap: 12px; isolation: isolate; transition: transform .3s var(--lab-ease), border-color .25s, background-color .25s; }
+.lab-cards .dw-card::before { content: counter(tool, decimal-leading-zero); font-family: var(--display); font-stretch: 62%; font-weight: 900; font-size: 1rem; letter-spacing: .08em; color: var(--muted); line-height: 1; transition: color .25s; }
+.lab-cards .dw-card h3 { font-family: var(--display); font-stretch: 62%; font-weight: 900; text-transform: uppercase; font-size: 1.875rem; line-height: .95; letter-spacing: .005em; }
+.lab-cards .dw-card p { color: var(--ink-soft); font-size: 1rem; }
+.lab-cards .dw-card a { position: static; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; min-height: 44px; margin-top: 2px; text-decoration: none; color: var(--yellow); font-weight: 800; }
+.lab-cards .dw-card a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: 1; }
+.lab-cards .dw-card a::before { content: "\2192"; order: 2; display: inline-block; transition: transform .3s var(--lab-ease); }
+.lab-cards .dw-card:hover a::before, .lab-cards .dw-card:focus-within a::before { transform: translateX(5px); }
+.lab-cards .dw-card:hover, .lab-cards .dw-card:focus-within { transform: translateY(-4px); border-color: var(--yellow); background: var(--surface-2); }
+.lab-cards .dw-card:hover::before, .lab-cards .dw-card:focus-within::before { color: var(--yellow); }
+.lab-cards .dw-card:has(a:focus-visible) { outline: 3px solid var(--yellow); outline-offset: 3px; }
+.lab-cards .dw-card a:focus-visible { outline: 0; }
+.lab-cards .dw-card:active { transform: translateY(0) scale(.99); transition-duration: .1s; }
+/* link underline sweep (replaces widgets underline offset jump) */
+.lab-cards .dw-card a { background: linear-gradient(currentColor, currentColor) 0 calc(100% - 8px) / 0 2px no-repeat; transition: background-size .35s var(--lab-ease); }
+.lab-cards .dw-card:hover a, .lab-cards .dw-card:focus-within a { background-size: 100% 2px; }
+.lab-cards .dw-meta { min-height: 0; }
+.lab-cards .dw-meta:empty { display: none; }
+.lab-cards .tl-tag { background: transparent; color: var(--yellow); border: 1px solid rgba(255, 214, 10, .5); padding: 2px 10px 2px 8px; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+.lab-cards .tl-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex: none; }
+
+/* ---- Generic tool surfaces ---- */
+.lab-input { transition: border-color .2s, background-color .2s, box-shadow .2s; }
+.lab-input:hover { border-color: #4a4a4a; }
+.lab-input:focus, .lab-input:focus-visible { border-color: var(--yellow); background: var(--surface-2); outline-offset: 2px; }
+.lab-sel { transition: border-color .2s; } .lab-sel:hover { border-color: var(--yellow); }
+.lab-linkbtn { min-height: 44px; transition: color .2s; } .lab-linkbtn:hover { color: var(--yellow); }
+.lab-form .btn, .tl-btn, .m-copy, .w-btn, .r-btn, .r-speed button, .w-chips button, .r-types button, .tl-ctrl button { transition: transform .2s var(--lab-ease), background-color .2s, color .2s, border-color .2s, opacity .2s; }
+.tl-btn:active, .m-copy:active, .w-btn:active, .r-btn:active, .r-speed button:active, .w-chips button:active, .r-types button:active, .tl-ctrl button:active { transform: scale(.96); }
+.tl-btn, .tl-ctrl button { min-height: 44px; }
+.tl-ctrl button:hover { border-color: var(--yellow); color: var(--yellow); }
+.tl-ctrl button[aria-pressed="true"]:hover { color: var(--on-light); }
+.r-btn:hover { background: var(--ink); border-color: var(--ink); }
+.r-btn.r-alt:hover, .r-speed button:hover, .r-types button:hover { border-color: var(--yellow); }
+.m-copy:hover, .w-btn:not(:disabled):hover { background: var(--ink); }
+.lab-chip, .lab-pill, .dw-badge, .dw-vis { letter-spacing: .02em; }
+.lab-privacy, .tl-source { border-left: 4px solid var(--yellow); }
+.lab-grade-tile, .lab-grade-sum, .lab-row, .lab-step, .lab-wx li, .tl-row, .tl-bgrow, .dw-card, .t-flag { min-width: 0; }
+.lab-row { transition: background-color .25s, transform .25s var(--lab-ease); }
+.lab-row:hover { background: var(--surface-2); }
+.lab-grade-letter { font-variant-numeric: tabular-nums; }
+.lab-kv div { transition: background-color .2s; } .lab-kv div:hover { background: var(--surface-2); } .lab-kv div:last-child { border-bottom: 0; }
+.lab-bar { transition: background-color .2s, transform .25s var(--lab-ease); transform-origin: bottom; }
+.lab-bar:hover { transform: scaleY(1.04); }
+.lab-bars { scrollbar-color: var(--yellow) var(--surface-2); }
+.lab-meter span { transform-origin: left; animation: lab-grow .9s var(--lab-ease) backwards .2s; }
+@keyframes lab-grow { from { transform: scaleX(0); } }
+.lab-wx li { transition: background-color .25s, transform .3s var(--lab-ease); } .lab-wx li:hover { background: var(--surface-2); transform: translateY(-3px); }
+.dw-card:not(.lab-cards .dw-card) { transition: transform .3s var(--lab-ease), background-color .25s; }
+.dw-card:not(.lab-cards .dw-card):hover { transform: translateY(-3px); background: var(--surface-2); }
+.dw-tablewrap { scrollbar-color: var(--yellow) var(--surface-2); }
+.dw-tablewrap tbody tr { transition: background-color .2s; } .dw-tablewrap tbody tr:hover { background: var(--surface-2); }
+.dw-tablewrap th { position: sticky; top: 0; background: var(--surface); text-transform: uppercase; letter-spacing: .06em; font-size: .75rem; }
+.dw-time li { transition: transform .3s var(--lab-ease); } .dw-time li:hover { transform: translateX(4px); }
+.dw-time li::before { transition: background-color .25s; } .dw-time li:hover::before { background: var(--yellow); }
+.tl-row > .fact, .tl-row.fact { transition: transform .3s var(--lab-ease); }
+.tl-bgrow, .tl-list > .tl-row { transition: background-color .2s; } .tl-bgrow:hover, .tl-list > .tl-row:hover { background: var(--surface-2); }
+.tl-pre, .m-code, .c-code, .lab-bars, .t-out, .w-log { scrollbar-width: thin; scrollbar-color: #555 transparent; }
+.tl-big, .lab-wx .pct, .fact-num { font-variant-numeric: tabular-nums; }
+
+/* ---- CTF terminal ---- */
+.t-term { box-shadow: 0 0 0 1px rgba(111, 242, 200, .08); }
+.t-bar { letter-spacing: .02em; }
+.t-out { font-size: 1rem; scroll-behavior: smooth; }
+.t-out:focus-visible { outline-offset: -3px; }
+.t-form label { color: var(--mint); font-weight: 700; }
+.t-form input { caret-color: var(--yellow); caret-shape: block; }
+.t-form { position: relative; }
+.t-form:focus-within { box-shadow: inset 0 0 0 2px var(--yellow); }
+.t-flag { position: relative; overflow: hidden; border: 1px solid var(--line); transition: transform .3s var(--lab-ease), background-color .3s, border-color .3s; }
+.t-flag b { letter-spacing: .01em; }
+.t-flag.is-done { border-color: var(--mint); animation: lab-pop .6s var(--lab-ease) backwards; }
+@keyframes lab-pop { 0% { transform: scale(.94); } 60% { transform: scale(1.03); } }
+.t-term .t-bar::after { content: ""; margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--mint); animation: lab-blink 2s ease-in-out infinite; }
+@keyframes lab-blink { 50% { opacity: .25; } }
+
+/* ---- ISS / quakes / replay maps ---- */
+.i-mapwrap, .r-map, .q-map { border: 1px solid var(--line); }
+.i-mapwrap .ring { transform-box: fill-box; transform-origin: center; animation: lab-ring 2.4s var(--lab-ease) infinite; }
+@keyframes lab-ring { 0% { transform: scale(.6); opacity: .8; } 100% { transform: scale(1.8); opacity: 0; } }
+.i-mapwrap .iss { transition: transform .3s; }
+.q-map .leaflet-control-zoom a { min-width: 44px; min-height: 44px; line-height: 44px; font-size: 1.25rem; }
+.q-map .leaflet-popup-content-wrapper { border-radius: var(--r-md); }
+.q-mapnote { color: var(--muted); }
+.q-list li { padding: 6px 0; }
+#seek { cursor: pointer; }
+.r-cap { transition: background-color .3s; }
+.r-types button .sw { transition: transform .25s var(--lab-ease); } .r-types button:hover .sw { transform: scale(1.3); }
+.r-log li { transition: background-color .2s; } .r-log li:hover { background: var(--surface-2); }
+
+/* ---- Clock demo / ktm / webllm / mentions ---- */
+.c-demo { transition: border-color .25s; } .c-demo:hover { border-color: var(--yellow); }
+.ktm-clock { letter-spacing: .02em; }
+.c-code { position: relative; border-left: 4px solid var(--mint); }
+.ktm-t, .tl-row .fact { overflow: hidden; }
+.w-chat { border: 1px solid var(--line); }
+.w-log { scroll-behavior: smooth; }
+.w-msg { box-shadow: none; }
+.w-msg.bot:empty::after { content: "\2026"; animation: lab-blink 1s steps(2) infinite; }
+.w-form input { transition: border-color .2s; } .w-form input:focus { border-color: var(--yellow); outline: 0; }
+.w-bar div { background-image: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, .45) 50%, transparent 70%); background-size: 200% 100%; animation: lab-bar 1.6s linear infinite; background-color: var(--mint); }
+@keyframes lab-bar { from { background-position: 150% 0; } to { background-position: -50% 0; } }
+.m-code { border-left: 4px solid var(--yellow); }
+.m-who { min-width: 0; }
+
+/* ---- Entrance motion: plays when elements are inserted, ends visible, no JS needed ---- */
+@keyframes lab-rise { from { opacity: 0; transform: translateY(14px); } }
+@keyframes lab-fade { from { opacity: 0; } }
+@keyframes lab-draw { from { transform: scaleX(0); } }
+.dw-page > .kicker { animation: lab-rise .5s var(--lab-ease) backwards; }
+.dw-page > .kicker::before { animation: lab-draw .6s var(--lab-ease) backwards .15s; }
+.dw-page > .dw-title { animation: lab-rise .6s var(--lab-ease) backwards .08s; }
+.dw-page > .dw-lede { animation: lab-rise .6s var(--lab-ease) backwards .18s; }
+#out > *, #out .lab-grade > *, .lab-rows > *, .lab-wx > li, .lab-flow > *, .lab-verdict, .lab-kv, .tl-row > *, .tl-list > *, .tl-badges > *, .tl-group, .dw-time > li, .t-flag, .w-msg, .r-log > li, .q-list > li, .dw-stats > *, .dw-cards:not(.lab-cards) > li, .dw-tablewrap, .lab-bars, .t-term {
+  animation: lab-rise .5s var(--lab-ease) backwards;
+}
+:is(.lab-rows, .lab-wx, .lab-flow, .tl-row, .tl-list, .tl-badges, .dw-time, .dw-stats, .dw-cards, .t-grid, .lab-grade) > :nth-child(2) { animation-delay: .05s; }
+:is(.lab-rows, .lab-wx, .lab-flow, .tl-row, .tl-list, .tl-badges, .dw-time, .dw-stats, .dw-cards, .t-grid, .lab-grade) > :nth-child(3) { animation-delay: .1s; }
+:is(.lab-rows, .lab-wx, .lab-flow, .tl-row, .tl-list, .tl-badges, .dw-time, .dw-stats, .dw-cards, .t-grid, .lab-grade) > :nth-child(4) { animation-delay: .15s; }
+:is(.lab-rows, .lab-wx, .lab-flow, .tl-row, .tl-list, .tl-badges, .dw-time, .dw-stats, .dw-cards, .t-grid, .lab-grade) > :nth-child(5) { animation-delay: .2s; }
+:is(.lab-rows, .lab-wx, .lab-flow, .tl-row, .tl-list, .tl-badges, .dw-time, .dw-stats, .dw-cards, .t-grid, .lab-grade) > :nth-child(6) { animation-delay: .25s; }
+:is(.lab-rows, .lab-wx, .lab-flow, .tl-row, .tl-list, .tl-badges, .dw-time, .dw-stats, .dw-cards, .t-grid, .lab-grade) > :nth-child(n+7) { animation-delay: .3s; }
+.lab-cards > li { animation: none; }
+.lab-grade-tile.is-ok, .lab-grade-tile.is-mid, .lab-grade-tile.is-warn, .lab-grade-tile.is-bad { animation: lab-pop .7s var(--lab-ease) backwards .1s; }
+
+/* scroll reveal: only armed once polish.js adds .js (so no-JS pages read fully) */
+.js .rv { opacity: 0; transform: translateY(18px); transition: opacity .55s var(--lab-ease), transform .55s var(--lab-ease); transition-delay: var(--rv-d, 0s); }
+.js .rv.in { opacity: 1; transform: none; }
+.js .lab-cards .dw-card.rv.in { transition: opacity .55s var(--lab-ease) var(--rv-d, 0s), transform .3s var(--lab-ease), border-color .25s, background-color .25s; }
+
+/* ---- Mobile ---- */
+@media (max-width: 600px) {
+  .dw-page { padding-top: 32px; }
+  .dw-h2 { margin-top: 48px; }
+  .lab-form { margin-top: 24px; gap: 10px; }
+  .lab-form .btn { flex: 1 0 100%; }
+  .lab-grade-tile { min-height: 180px; padding: 22px; }
+  .lab-grade-sum, .lab-row, .lab-step { padding: 18px; }
+  .lab-wx .pct { font-size: 3.5rem; }
+  .lab-cards .dw-card h3 { font-size: 1.625rem; }
+  .lab-bars { height: 150px; }
+  .lab-filters > * { flex: 1 1 100%; }
+  .t-flag { min-height: 78px; padding: 14px 16px; }
+  .t-form { padding: 10px 14px; }
+  .t-bar { padding: 10px 14px; }
+  .r-ctl { gap: 10px; }
+  .r-btn { flex: 1 1 auto; }
+  .r-speed button { flex: 1 1 0; }
+  .w-chips button { flex: 1 1 100%; text-align: left; }
+  .tl-btns .tl-btn, .tl-ctrl button { flex: 1 1 auto; }
+  .tl-source, .lab-privacy { padding: 18px; }
+  .m-code, .c-code, .tl-pre { font-size: .8125rem; padding: 14px; }
+  .dw-time li { padding-left: 22px; }
+  .dw-time h3 { font-size: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dw-page *, .dw-page *::before, .dw-page *::after { animation: none !important; transition-duration: .01ms !important; }
+  .js .rv { opacity: 1; transform: none; }
+  .dw-status.is-loading::after { display: none; }
+}
