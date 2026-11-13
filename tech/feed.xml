@@ -6,7 +6,14 @@
     <atom:link href="https://jhapendrakandel.com.np/tech/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Short summaries of the latest technology news, each linking to the full story.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Nov 2026 09:47:05 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Nov 2026 12:01:24 +0000</lastBuildDate>
+    <item>
+      <title>Microsoft Struggles to Restore Global Outage Affecting Outlook and Teams</title>
+      <link>https://abcnews.com.np/microsoft-struggles-to-restore-global-outage-affecting-outlook-and-teams/</link>
+      <guid isPermaLink="false">https://abcnews.com.np/microsoft-struggles-to-restore-global-outage-affecting-outlook-and-teams/</guid>
+      <pubDate>Fri, 13 Nov 2026 12:01:24 +0000</pubDate>
+      <description>Microsoft said it was dealing with a major outage affecting services including Outlook and Teams, as disruption continued to affect users…</description>
+    </item>
     <item>
       <title>Microsoft Outage Disrupts Global Services, Recovery Remains Limited</title>
       <link>https://abcnews.com.np/microsoft-outage-disrupts-global-services-recovery-remains-limited/</link>
@@ -83,13 +90,6 @@
       <guid isPermaLink="false">https://abcnews.com.np/google-launches-gemini-4-hydrogen-for-complex-questions/</guid>
       <pubDate>Fri, 13 Nov 2026 05:08:13 +0000</pubDate>
       <description>Google has launched Gemini 4 Hydrogen, a new artificial intelligence model that can give more helpful answers to complex questions…</description>
-    </item>
-    <item>
-      <title>Google Faces AI Moratorium Calls in Schools After Gemini Backlash</title>
-      <link>https://arstechnica.com/tech-policy/2026/11/families-fight-to-keep-googles-disturbing-ai-off-school-issued-chromebooks/</link>
-      <guid isPermaLink="false">https://abcnews.com.np/google-faces-ai-moratorium-calls-in-schools-after-gemini-backlash/</guid>
-      <pubDate>Fri, 13 Nov 2026 04:09:41 +0000</pubDate>
-      <description>Families joined protests in seven cities nationwide on Wednesday, a week after Google said students would have no option to use Google…</description>
     </item>
   </channel>
 </rss>
