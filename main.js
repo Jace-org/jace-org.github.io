@@ -43,6 +43,14 @@
         Object.keys(navMap).forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
     }
 
+    /* ---------- Nav border once scrolled ---------- */
+    var nav = $(".site-nav");
+    if (nav) {
+        var stuck = function () { nav.classList.toggle("is-stuck", window.scrollY > 8); };
+        window.addEventListener("scroll", stuck, { passive: true });
+        stuck();
+    }
+
     /* ---------- Kathmandu clock ---------- */
     var ktm = $("#ktm-time");
     if (ktm && window.Intl) {
@@ -191,6 +199,13 @@
         .from(".mast-jk", { opacity: 0, x: -20, duration: .8 }, "-=.7")
         .from(".mast-grid > *", { y: 40, opacity: 0, duration: .9, stagger: .09 }, "-=.8");
 
+    // Image reveal masks: the photos open like a shutter as they arrive.
+    gsap.from(".mast-photo", { clipPath: "inset(100% 0% 0% 0% round 28px)", duration: 1.1, ease: "expo.out", delay: .35, clearProps: "clipPath" });
+    $$(".entry-pic img, .hackme-pic").forEach(function (el) {
+        gsap.from(el, { clipPath: "inset(0% 0% 100% 0%)", duration: 1, ease: "expo.out", clearProps: "clipPath",
+            scrollTrigger: { trigger: el, start: "top 88%", once: true } });
+    });
+
     // The photo slowly pushes in as the masthead scrolls away.
     gsap.to(".mast-photo img", {
         scale: 1.18, yPercent: 6, ease: "none",
@@ -300,6 +315,12 @@
         yPercent: 70, ease: "none",
         scrollTrigger: { trigger: ".site-footer", start: "top bottom", end: "bottom bottom", scrub: true }
     });
+
+    // 10b. Journey chips and credential rows stagger in with their cards.
+    $$(".chips").forEach(function (c) {
+        gsap.from(c.children, { y: 12, opacity: 0, duration: .5, stagger: .05, ease: "power2.out", clearProps: "transform,opacity", scrollTrigger: { trigger: c, start: "top 92%", once: true } });
+    });
+    gsap.from(".cred-list li", { x: -24, opacity: 0, duration: .6, stagger: .07, ease: "power3.out", clearProps: "transform,opacity", scrollTrigger: { trigger: ".cred-list", start: "top 88%", once: true } });
 
     // 11. Magnetic buttons on pointer devices.
     mm.add("(hover: hover) and (pointer: fine)", function () {
