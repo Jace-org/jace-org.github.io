@@ -95,3 +95,82 @@
 .dw-now .when { font-weight: 500; font-size: .875rem; opacity: .7; }
 
 @media (prefers-reduced-motion: reduce) { .dw-card a, .dw-card { transition: none; } }
+
+/* ===== v4 polish: motion, states, hierarchy (transform/opacity only; reduced-motion safe) ===== */
+.dw-polish .dw-page { max-width: 1500px; margin: 0 auto; }
+.dw-page .kicker { display: inline-flex; align-items: center; gap: 10px; }
+.dw-page .kicker::before { /* live dot */
+    content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--mint);
+    box-shadow: 0 0 0 0 rgba(111, 242, 200, .6); animation: dw-live 2s var(--ease) infinite;
+}
+@keyframes dw-live { 70%, 100% { box-shadow: 0 0 0 10px rgba(111, 242, 200, 0); } }
+.dw-title { animation: dw-rise .7s var(--ease) backwards; }
+.dw-lede { animation: dw-rise .7s var(--ease) .08s backwards; }
+.dw-polish .dw-h2 { padding-top: 14px; border-top: 1px solid var(--line); }
+@keyframes dw-rise { from { opacity: 0; transform: translateY(18px); } }
+
+/* staggered entry: cards, tiles, outage rows, table rows */
+.dw-card, .dw-stats .fact, .dw-time li, .dw-tablewrap tbody tr { animation: dw-rise .55s var(--ease) backwards; }
+.dw-cards > :nth-child(2), .dw-stats > :nth-child(2), .dw-time > :nth-child(2), tbody tr:nth-child(2) { animation-delay: 60ms; }
+.dw-cards > :nth-child(3), .dw-stats > :nth-child(3), .dw-time > :nth-child(3), tbody tr:nth-child(3) { animation-delay: 120ms; }
+.dw-cards > :nth-child(4), .dw-time > :nth-child(4), tbody tr:nth-child(4) { animation-delay: 180ms; }
+.dw-cards > :nth-child(5), .dw-time > :nth-child(5), tbody tr:nth-child(5) { animation-delay: 240ms; }
+.dw-cards > :nth-child(n+6), .dw-time > :nth-child(n+6) { animation-delay: 300ms; }
+
+/* hover and focus states */
+.dw-polish .dw-card { border: 1px solid transparent; transition: transform .35s var(--ease), border-color .25s, background-color .25s; }
+.dw-polish .dw-card:hover { transform: translateY(-4px); border-color: var(--yellow); background: var(--surface-2); }
+.dw-card:focus-within { border-color: var(--yellow); }
+.dw-polish .dw-card a { min-height: 44px; display: inline-flex; align-items: center; align-self: flex-start; }
+.dw-cve.is-crit { border-left: 4px solid var(--red); }
+.dw-tablewrap tbody tr { transition: background-color .2s; }
+.dw-tablewrap tbody tr:hover { background: var(--surface-2); }
+.dw-tablewrap tbody tr:last-child td { border-bottom: 0; }
+.dw-tablewrap td.dw-vis, .dw-tablewrap td:last-child { white-space: nowrap; }
+.dw-time li { transition: transform .3s var(--ease); }
+.dw-time li:hover { transform: translateX(4px); }
+.dw-time li::before { transition: background-color .25s; }
+.dw-time li:hover::before { background: var(--yellow); }
+.dw-stats .fact-num { font-variant-numeric: tabular-nums; }
+
+/* chart: line draws in, area fades after */
+.dw-chart .dot-end { fill: var(--yellow); }
+.dw-chart.is-drawn .line { stroke-dasharray: 1; stroke-dashoffset: 0; animation: dw-draw 1.4s cubic-bezier(.3, .6, .2, 1) backwards; }
+.dw-chart.is-drawn .area { animation: dw-fade .9s ease-out .7s backwards; }
+@keyframes dw-draw { from { stroke-dashoffset: 1; } }
+@keyframes dw-fade { from { opacity: 0; } }
+
+/* skeletons (inserted by motion.js while data is pending) */
+.dw-skel { display: grid; gap: clamp(12px, 1.5vw, 20px); grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); margin-top: 32px; }
+.dw-skel-cards { grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+.dw-skel-block {
+    min-height: 168px; border-radius: var(--r-lg); background: var(--surface);
+    position: relative; overflow: hidden;
+}
+.dw-skel-tile { min-height: 220px; }
+.dw-skel-wide { grid-column: 1 / -1; min-height: 260px; border-radius: var(--r-md); }
+.dw-skel-block::after {
+    content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .06), transparent);
+    animation: dw-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes dw-shimmer { to { transform: translateX(100%); } }
+
+/* status banners */
+.dw-status { animation: dw-rise .4s var(--ease) backwards; }
+
+
+/* homepage widgets */
+
+@media (max-width: 600px) { .dw-stats .fact { min-height: 150px; } .dw-title { max-width: none; } }
+@media (prefers-reduced-motion: reduce) {
+    .dw-title, .dw-lede, .dw-card, .dw-stats .fact, .dw-time li, .dw-tablewrap tbody tr, .dw-status,
+    .dw-page .kicker::before, .dw-skel-block::after, .dw-chart.is-drawn .line, .dw-chart.is-drawn .area { animation: none; }
+    .dw-polish .dw-card:hover, .dw-time li:hover { transform: none; }
+}
+
+/* visibility cell: text + dot instead of a pill that broke the row rhythm */
+.dw-polish .dw-tablewrap td.dw-vis { display: table-cell; background: none; border-radius: 0; padding: 16px 20px; font-size: .9375rem; }
+.dw-polish .dw-tablewrap td.dw-vis::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 10px; background: currentColor; }
+.dw-polish .dw-tablewrap td.dw-vis.on { color: var(--mint); }
+.dw-polish .dw-tablewrap td.dw-vis.off { color: #ff7b80; }

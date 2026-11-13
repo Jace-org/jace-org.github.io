@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f172a">
-    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#111111">
+    <meta name="color-scheme" content="dark">
     <title>404 — Page not found</title>
     <meta name="robots" content="noindex">
     <link rel="icon" type="image/png"
@@ -13,77 +13,121 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&family=Playfair+Display:wght@600&family=Inter:wght@400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --bg: #0f172a;
-            --text: #e2e8f0;
-            --muted: #94a3b8;
-            --gold: #d4af37;
+            --bg: #111111;
+            --surface: #1b1b1b;
+            --line: #333333;
+            --ink: #ffffff;
+            --muted: #a6a6a6;
+            --yellow: #ffd60a;
+            --on-light: #111111;
+            --ease: cubic-bezier(.2, .7, .1, 1);
+            --pad: clamp(16px, 4vw, 56px);
         }
 
         * { box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
 
         body {
             margin: 0;
             min-height: 100svh;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            padding: 24px;
+            display: flex;
+            flex-direction: column;
             background: var(--bg);
-            color: var(--text);
-            font-family: "Inter", system-ui, sans-serif;
-            overflow: hidden;
+            color: var(--ink);
+            font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.5;
+            overflow-x: clip;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .aurora {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(90px);
-            pointer-events: none;
+        ::selection { background: var(--yellow); color: var(--on-light); }
+        :focus-visible { outline: 3px solid #6ff2c8; outline-offset: 3px; border-radius: 4px; }
+
+        /* the wire: a ticker strip like the homepage */
+        .wire { height: 40px; background: var(--yellow); color: var(--on-light); overflow: hidden; display: flex; align-items: center; font-size: .875rem; font-weight: 700; }
+        .wire-list { display: flex; flex: none; white-space: nowrap; animation: wire 40s linear infinite; }
+        .wire-list span::after { content: "/"; margin: 0 22px; opacity: .45; }
+        @keyframes wire { to { transform: translateX(-50%); } }
+
+        .mark {
+            padding: 10px var(--pad);
+            font-stretch: 62%; font-weight: 900; font-size: 1.875rem; line-height: 1; letter-spacing: .02em;
+            color: var(--ink); text-decoration: none; align-self: flex-start; transition: color .2s;
         }
+        .mark:hover { color: var(--yellow); }
 
-        .a1 { top: -8rem; left: -8rem; width: 32rem; height: 32rem; background: rgba(212, 175, 55, .12); }
-        .a2 { bottom: -10rem; right: -6rem; width: 30rem; height: 30rem; background: rgba(99, 102, 241, .14); }
+        main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: clamp(16px, 4vw, 48px) var(--pad) clamp(40px, 6vw, 80px); }
 
+        p.code {
+            margin: 0; max-width: none; color: var(--ink); animation: none;
+            font-stretch: 62%; font-weight: 900; text-transform: uppercase;
+            font-size: clamp(9rem, 4rem + 38vw, 34rem);
+            line-height: .78; letter-spacing: -.02em;
+            display: flex; gap: .02em; margin-left: -.03em;
+        }
+        .code span { display: block; overflow: hidden; padding-top: .02em; }
+        .code i { display: block; font-style: normal; animation: up .9s var(--ease) backwards; }
+        .code span:nth-child(1) i { animation-delay: .05s; }
+        .code span:nth-child(2) i { animation-delay: .15s; color: var(--yellow); }
+        .code span:nth-child(3) i { animation-delay: .25s; }
+        @keyframes up { from { transform: translateY(105%); } }
+
+        .row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(16px, 3vw, 48px); margin-top: clamp(24px, 4vw, 48px); align-items: end; }
         h1 {
-            font-family: "Cinzel Decorative", serif;
-            font-size: clamp(4rem, 18vw, 8rem);
-            margin: 0;
-            color: var(--gold);
-            line-height: 1;
+            margin: 0; font-stretch: 62%; font-weight: 900; text-transform: uppercase;
+            font-size: clamp(2.25rem, 1.4rem + 3.5vw, 4.5rem); line-height: .9; letter-spacing: -.01em;
+            animation: fade .7s var(--ease) .4s backwards;
         }
+        p { margin: 0 0 20px; color: var(--muted); max-width: 44ch; font-size: 1.0625rem; animation: fade .7s var(--ease) .5s backwards; }
+        @keyframes fade { from { opacity: 0; transform: translateY(12px); } }
 
-        h2 { font-family: "Playfair Display", serif; font-weight: 600; margin: 12px 0 0; }
-        p { color: var(--muted); margin: 8px 0 0; }
-
-        a {
-            display: inline-block;
-            margin-top: 22px;
-            padding: 12px 28px;
-            border-radius: 999px;
-            font-weight: 600;
-            text-decoration: none;
-            color: #0f172a;
-            background: var(--gold);
-            transition: box-shadow .2s;
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; animation: fade .7s var(--ease) .6s backwards; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px;
+            border-radius: 999px; font-weight: 700; font-size: 1rem; text-decoration: none; border: 2px solid transparent;
+            transition: transform .25s var(--ease), background-color .25s, color .25s, border-color .25s;
         }
+        .btn:hover { transform: translateY(-3px); }
+        .btn:active { transform: translateY(1px) scale(.97); }
+        .btn-solid { background: var(--yellow); color: var(--on-light); }
+        .btn-solid:hover { background: var(--ink); }
+        .btn-line { border-color: var(--ink); color: var(--ink); }
+        .btn-line:hover { background: var(--ink); color: var(--on-light); }
 
-        a:hover { box-shadow: 0 0 24px rgba(212, 175, 55, .35); }
+        @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
+        @media (prefers-reduced-motion: reduce) {
+            .wire-list, .code i, h1, p, .actions { animation: none; }
+            .btn, .mark { transition: none; }
+        }
     </style>
 </head>
 
 <body>
-    <div class="aurora a1"></div>
-    <div class="aurora a2"></div>
-    <div>
-        <h1>404</h1>
-        <h2>This page wandered off</h2>
-        <p>The link may be broken, or the page may have moved.</p>
-        <a href="/">Back to home</a>
+    <div class="wire" aria-hidden="true">
+        <div class="wire-list">
+            <span>Breaking: this page has left the building</span><span>Search party dispatched, no leads</span><span>Last seen: a link that used to work</span><span>Editors regret the error</span>
+            <span>Breaking: this page has left the building</span><span>Search party dispatched, no leads</span><span>Last seen: a link that used to work</span><span>Editors regret the error</span>
+        </div>
     </div>
+    <a class="mark" href="/" aria-label="Jhapendra Kandel, home">J.K</a>
+    <main>
+        <p class="code" aria-hidden="true" role="presentation"><span><i>4</i></span><span><i>0</i></span><span><i>4</i></span></p>
+        <div class="row">
+            <h1>This page wandered off</h1>
+            <div>
+                <p>The link may be broken, or the page may have moved. Nothing here is lost, just not at this address.</p>
+                <div class="actions">
+                    <a class="btn btn-solid" href="/">Back to home</a>
+                    <a class="btn btn-line" href="/blog/">Read the blog</a>
+                    <a class="btn btn-line" href="/tools/">Open the tools</a>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
