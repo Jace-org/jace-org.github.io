@@ -12,7 +12,8 @@
     font: inherit;
     flex: 1 1 220px;
     min-width: 0;
-    padding: 11px 16px;
+    padding: 0 20px;
+    min-height: 48px;
     border-radius: 999px;
     color: var(--c-text);
     background: var(--c-surface);
@@ -34,8 +35,10 @@
 
 .res-filters button {
     font: inherit;
-    font-size: .82rem;
-    padding: 6px 14px;
+    font-size: .875rem;
+    font-weight: 600;
+    min-height: 44px;
+    padding: 0 16px;
     border-radius: 999px;
     cursor: pointer;
     color: var(--c-muted);
@@ -74,17 +77,13 @@
     border-radius: var(--radius);
     padding: 22px 24px;
     background: var(--c-surface);
-    -webkit-backdrop-filter: blur(14px) saturate(1.4);
-    backdrop-filter: blur(14px) saturate(1.4);
     border: 1px solid var(--c-border);
-    box-shadow: 0 8px 32px rgba(2, 6, 23, .2);
-    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    transition: transform .3s var(--ease), border-color .25s, background-color .25s;
 }
 
 .res-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(212, 175, 55, .45);
-    box-shadow: 0 20px 44px -22px rgba(0, 0, 0, .5);
+    transform: translateY(-4px);
+    border-color: var(--gold);
 }
 
 .res-top {
@@ -106,7 +105,7 @@
     text-transform: uppercase;
     letter-spacing: .12em;
     color: var(--gold);
-    border: 1px solid rgba(212, 175, 55, .4);
+    border: 1px solid var(--gold);
     border-radius: 999px;
     padding: 3px 9px;
 }
@@ -128,7 +127,19 @@
     color: var(--gold);
 }
 
-.res-action:hover { text-decoration: underline; }
+.res-action { min-height: 44px; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; transition: text-underline-offset .25s var(--ease); }
+.res-action:hover { text-underline-offset: 9px; }
+.res-filters button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+.res-group h2 { padding-top: 14px; border-top: 1px solid var(--c-border); }
+.res-card h3 { font-weight: 800; font-stretch: 90%; }
+
+/* staggered load-in for the cards (CSS only; ends visible, so no-JS safe) */
+.res-card { animation: res-rise .5s var(--ease) backwards; }
+.res-card:nth-child(2) { animation-delay: 50ms; } .res-card:nth-child(3) { animation-delay: 100ms; }
+.res-card:nth-child(4) { animation-delay: 150ms; } .res-card:nth-child(5) { animation-delay: 200ms; }
+.res-card:nth-child(n+6) { animation-delay: 250ms; }
+@keyframes res-rise { from { opacity: 0; transform: translateY(14px); } }
+@media (prefers-reduced-motion: reduce) { .res-card { animation: none; } }
 
 .res-meta {
     margin-top: 10px;

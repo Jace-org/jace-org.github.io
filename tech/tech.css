@@ -1,0 +1,45 @@
+/* Tech Briefing polish. Loaded after ../styles.css; motion is transform/opacity only. */
+.tech-main { position: relative; }
+.tech-h { animation: tc-rise .7s var(--ease) backwards; }
+.tech-lede { animation: tc-rise .7s var(--ease) .08s backwards; }
+.tech-lede .text-link { color: var(--yellow); }
+
+.tcard {
+    position: relative; border: 1px solid transparent;
+    animation: tc-rise .55s var(--ease) backwards;
+    transition: background-color .3s, transform .4s var(--ease), border-color .25s;
+}
+.tcard:nth-child(2) { animation-delay: 50ms; } .tcard:nth-child(3) { animation-delay: 100ms; }
+.tcard:nth-child(4) { animation-delay: 150ms; } .tcard:nth-child(5) { animation-delay: 200ms; }
+.tcard:nth-child(6) { animation-delay: 250ms; } .tcard:nth-child(n+7) { animation-delay: 300ms; }
+.tcard:hover, .tcard:focus-within { border-color: var(--yellow); }
+@keyframes tc-rise { from { opacity: 0; transform: translateY(16px); } }
+
+/* thin yellow rule that sweeps in along the card top on hover */
+.tcard::before {
+    content: ""; position: absolute; left: 24px; right: 24px; top: 0; height: 3px;
+    background: var(--yellow); transform: scaleX(0); transform-origin: left;
+    transition: transform .4s var(--ease);
+}
+.tcard:hover::before, .tcard:focus-within::before { transform: scaleX(1); }
+
+.tcard-foot { border-top: 1px solid var(--line); padding-top: 14px; margin-top: auto; }
+.tcard-foot time { font-family: var(--mono); font-size: .8125rem; letter-spacing: .04em; text-transform: uppercase; }
+.tcard-foot a {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin: -10px 0;
+    text-decoration: none; position: relative;
+}
+.tcard-foot a::before { /* underline sweep */
+    content: ""; position: absolute; left: 0; right: 24px; bottom: 9px; height: 2px;
+    background: currentColor; transform-origin: left; transition: transform .35s var(--ease);
+}
+.tcard-foot a::after { content: "\2192"; transition: transform .3s var(--ease); }
+.tcard-foot a:hover::after, .tcard-foot a:focus-visible::after { transform: translateX(5px); }
+.tcard-foot a:hover::before { transform: scaleX(.55); }
+
+@media (hover: none) { .tcard:hover { transform: none; } }
+@media (max-width: 640px) { .tcard-foot a { min-height: 48px; } }
+@media (prefers-reduced-motion: reduce) {
+    .tech-h, .tech-lede, .tcard { animation: none; }
+    .tcard::before, .tcard-foot a::before, .tcard-foot a::after { transition: none; }
+}
