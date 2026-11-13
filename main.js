@@ -43,14 +43,6 @@
         Object.keys(navMap).forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
     }
 
-    /* ---------- Nav border once scrolled ---------- */
-    var nav = $(".site-nav");
-    if (nav) {
-        var stuck = function () { nav.classList.toggle("is-stuck", window.scrollY > 8); };
-        window.addEventListener("scroll", stuck, { passive: true });
-        stuck();
-    }
-
     /* ---------- Kathmandu clock ---------- */
     var ktm = $("#ktm-time");
     if (ktm && window.Intl) {
