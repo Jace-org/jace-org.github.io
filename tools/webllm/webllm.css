@@ -22,3 +22,5 @@
 .w-bar div{height:100%;width:0;background:var(--mint);transition:width .3s var(--ease)}
 @media(max-width:600px){.w-form{flex-direction:column}.w-btn{width:100%}}
 @media(prefers-reduced-motion:reduce){.w-bar div,.w-chips button{transition:none}}
+
+.w-ainote{margin:10px 0 0;font-size:.85rem;opacity:.75;font-weight:400}

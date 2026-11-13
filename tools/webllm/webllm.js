@@ -145,22 +145,42 @@
       return loop(stream[Symbol.asyncIterator]());
     }).catch(function () {
       d2.textContent = 'The AI hit a problem, showing search results instead:\n' + hits[0].e.text;
-    }).then(function () { if (!got.trim() && d2.textContent === '...') d2.textContent = hits[0].e.text; sources(d2, hits); busy = false; ask.disabled = false; });
+    }).then(function () { if (!got.trim() && d2.textContent === '...') d2.textContent = hits[0].e.text; sources(d2, hits); if (got.trim()) { var nt = document.createElement('p'); nt.className = 'w-ainote'; nt.textContent = 'AI-written by a small model. It can make mistakes, so please verify.'; d2.appendChild(nt); } busy = false; ask.disabled = false; });
   }
 
-  function loadIndex() {
+  function parseContext(md) {
+    var out = [];
+    String(md).slice(0, 200000).split(/^## /m).slice(1).forEach(function (blk, n) {
+      var lines = blk.split('\n'), title = lines.shift().trim(), e = { title: title, id: 'ctx-' + n, url: '/tools/webllm/', keywords: [] }, body = [];
+      lines.forEach(function (l) {
+        var m = /^(id|url|keywords):\s*(.*)$/.exec(l);
+        if (m && !body.length) { if (m[1] === 'keywords') e.keywords = m[2].split(',').map(function (k) { return k.trim(); }).filter(Boolean).slice(0, 30); else if (m[1] === 'id') e.id = m[2].trim().slice(0, 80); else e.url = m[2].trim(); }
+        else if (l.trim() || body.length) body.push(l);
+      });
+      e.text = body.join('\n').trim().slice(0, 1500);
+      if (title && e.text) out.push(e);
+    });
+    return out;
+  }
+  function getWithTimeout(url, kind) {
     var ctl = new AbortController(), t = setTimeout(function () { ctl.abort(); }, 8000);
-    return fetch('index.json', { signal: ctl.signal, credentials: 'omit' }).then(function (r) {
-      if (!r.ok) throw new Error('http'); return r.json();
-    }).then(function (j) {
-      clearTimeout(t);
-      if (!j || !Array.isArray(j.entries)) throw new Error('shape');
-      j.entries = j.entries.filter(function (e) { return e && typeof e.title === 'string' && typeof e.text === 'string' && typeof e.url === 'string'; }).slice(0, 300);
-      if (!j.entries.length) throw new Error('empty');
-      return j;
+    return fetch(url, { signal: ctl.signal, credentials: 'omit' }).then(function (r) {
+      clearTimeout(t); if (!r.ok) throw new Error('http'); return kind === 'json' ? r.json() : r.text();
     });
   }
-
+  function loadIndex() {
+    return Promise.all([
+      getWithTimeout('index.json', 'json').catch(function () { return null; }),
+      getWithTimeout('context.md', 'text').catch(function () { return ''; })
+    ]).then(function (r) {
+      var base = (r[0] && Array.isArray(r[0].entries)) ? r[0].entries : [], ctx = parseContext(r[1]), ids = {};
+      ctx.forEach(function (e) { ids[e.id] = 1; });
+      var all = ctx.concat(base.filter(function (e) { return e && !ids[e.id]; }));
+      all = all.filter(function (e) { return e && typeof e.title === 'string' && typeof e.text === 'string' && typeof e.url === 'string'; }).slice(0, 300);
+      if (!all.length) throw new Error('empty');
+      return { entries: all };
+    });
+  }
   function setChips() {
     ['What projects has he built?', 'Which skills are strongest?', 'Does he know Python?', 'Where is he studying?', 'How can I contact him?', 'What is the homelab?'].forEach(function (c) {
       var li = document.createElement('li'), b = document.createElement('button'); b.type = 'button'; b.textContent = c;
