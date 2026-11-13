@@ -34,7 +34,7 @@ is a deploy (Pages rebuilds in ~1 minute). Verify with `curl -s https://jhapendr
 | `404.html`, `robots.txt`, `sitemap.xml`, `seo/` | SEO |
 | `.taste-skill/` | gitignored inspector output |
 
-Subpages use their own CSS (`blog/blog.css`, `lab/lab.css`, …) and were **not** restyled in v4.
+Subpages: as of 2026-11-13 the blog, `/tools/`, tech/pulse/security, 404/thanks and (via `assets/base.css`) toolbox/lab/project all follow the v4 look; `hack-me/` keeps its terminal-green identity. Shared polish layers: `tools/lab.css` + `tools/polish.js` (tools), `widgets/widgets.css` + `widgets/motion.js` (pulse/security), `tech/tech.css`.
 
 ## Homepage (v4) design
 
@@ -78,6 +78,14 @@ open collections), size-count/card-rows WARNs, long-pin WARN for the horizontal 
 
 Tags/releases follow semver: v2.x old navy/gold design (v2.5.0 = last), v3.0.0 dark-room redesign,
 v4.0.0 front-page redesign. The previous design can be restored from any release zip.
+
+## UI polish pass (2026-11-13)
+
+Footer: the picture-credits paragraph and the "Static build, hosted on GitHub Pages" tail were removed on purpose
+(do not re-add without asking; CC attributions remain in `assets/img/credits.json`). Polish added motion only
+(transform/opacity, reduced-motion off-switch, pages read without JS), kept every meta CSP intact (no inline
+style/script on CSP pages), and left taste-skill lint at its 9 pre-existing findings. Not yet verified in a real
+browser: true 390px layout and clip-path reveals.
 
 ## History / handoffs
 
