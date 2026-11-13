@@ -40,7 +40,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20261113p">
+    <link rel="stylesheet" href="styles.css?v=20261113q">
     <link rel="stylesheet" href="widgets/widgets.css?v=4">
     <link rel="preload" as="image" href="mainimg.webp">
 
@@ -64,10 +64,13 @@
         "knowsAbout": ["PHP", "JavaScript", "React", "WordPress", "MySQL", "Linux", "Docker", "Ethical Hacking", "AI Automation"]
     }
     </script>
-    <script>document.documentElement.classList.add("js");</script>
+    <script>document.documentElement.classList.add("js");
+    (function(){try{var d=document.documentElement,n=performance.getEntriesByType("navigation")[0];
+    if(!sessionStorage.getItem("jk-loaded")&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&(!n||n.type==="navigate")){d.classList.add("preload");setTimeout(function(){d.classList.remove("preload")},3000);}}catch(e){}})();</script>
 </head>
 
 <body>
+    <div class="loader" id="loader" aria-hidden="true" inert><span class="loader-jk">J.K</span><span class="loader-n" id="loader-n">0</span><i class="loader-bar"></i></div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <!-- Wire: latest headlines ticker (hidden until headlines load) -->
@@ -544,7 +547,7 @@ active</code></pre>
     <script src="widgets/hn.js?v=3" defer></script>
     <script src="widgets/now.js?v=3" defer></script>
     <script src="tech/tech.js?v=20261113a" defer></script>
-    <script src="main.js?v=20261113p" defer></script>
+    <script src="main.js?v=20261113q" defer></script>
 </body>
 
 </html>

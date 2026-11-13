@@ -180,19 +180,38 @@
     var bt = $("#back-top");
     if (bt) bt.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); });
 
+    /* ================= Loading screen ================= */
+    var loader = $("#loader"), loading = !!loader && document.documentElement.classList.contains("preload");
+    function endLoader() {
+        document.documentElement.classList.remove("preload");
+        try { sessionStorage.setItem("jk-loaded", "1"); } catch (e) {}
+    }
+    var loadTl = null;
+    if (loading) {
+        if (reduce || !window.gsap || !window.ScrollTrigger) { endLoader(); }
+        else {
+            var cnt = { v: 0 }, num = $("#loader-n");
+            loadTl = gsap.timeline({ onComplete: endLoader });
+            loadTl.to(cnt, { v: 100, duration: 1.1, ease: "power2.inOut", onUpdate: function () { num.textContent = Math.round(cnt.v); } }, 0)
+                .to(".loader-bar", { scaleX: 1, duration: 1.1, ease: "power2.inOut" }, 0)
+                .to(loader, { clipPath: "inset(0 0 100% 0)", duration: .9, ease: "expo.inOut" }, 1.2);
+        }
+    }
+
     /* ================= Motion (GSAP) ================= */
     if (reduce || !window.gsap || !window.ScrollTrigger) return;
     gsap.registerPlugin(ScrollTrigger);
     var mm = gsap.matchMedia();
 
     // 1. Masthead: the name rises out of its own baseline, then the deck follows.
-    var intro = gsap.timeline({ defaults: { ease: "expo.out" } });
+    var intro = gsap.timeline({ defaults: { ease: "expo.out" }, paused: !!loadTl });
     intro.from(".mast-word", { yPercent: 105, duration: 1.2, stagger: .12 })
         .from(".mast-jk", { opacity: 0, x: -20, duration: .8 }, "-=.7")
         .from(".mast-grid > *", { y: 40, opacity: 0, duration: .9, stagger: .09 }, "-=.8");
 
     // Image reveal masks: the photos open like a shutter as they arrive.
-    gsap.from(".mast-photo", { clipPath: "inset(100% 0% 0% 0% round 28px)", duration: 1.1, ease: "expo.out", delay: .35, clearProps: "clipPath" });
+    var photoIn = gsap.from(".mast-photo", { clipPath: "inset(100% 0% 0% 0% round 28px)", duration: 1.1, ease: "expo.out", delay: .35, clearProps: "clipPath", paused: !!loadTl });
+    if (loadTl) loadTl.add(function () { intro.play(); photoIn.play(); }, "-=.35");
     $$(".entry-pic img, .hackme-pic").forEach(function (el) {
         gsap.from(el, { clipPath: "inset(0% 0% 100% 0%)", duration: 1, ease: "expo.out", clearProps: "clipPath",
             scrollTrigger: { trigger: el, start: "top 88%", once: true } });

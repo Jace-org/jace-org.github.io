@@ -717,3 +717,23 @@ a.story-link:hover h3 { letter-spacing: .01em; }
     .tcard:hover { transform: none; }
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* ---------- Loading screen (homepage, first visit per session) ---------- */
+.loader { display: none; }
+.preload .loader {
+    display: grid; position: fixed; inset: 0; z-index: 9999; background: var(--yellow); color: #111;
+    place-items: center; pointer-events: none;
+}
+.loader-jk {
+    font-family: "Archivo", sans-serif; font-stretch: 62%; font-weight: 900; text-transform: uppercase;
+    font-size: 28vw; line-height: .8; letter-spacing: -.02em;
+}
+.loader-n {
+    position: absolute; left: 16px; bottom: 18px; font-family: "Archivo", sans-serif; font-weight: 800;
+    font-size: clamp(14px, 2vw, 22px); font-variant-numeric: tabular-nums;
+}
+.loader-bar {
+    position: absolute; left: 0; bottom: 0; height: 4px; width: 100%; background: #111;
+    transform: scaleX(0); transform-origin: left;
+}
+@media (prefers-reduced-motion: reduce) { .preload .loader { display: none; } }
