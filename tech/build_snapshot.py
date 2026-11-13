@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Build-time snapshot for /tech/ so search engines see real HTML.
 
-Fetches the newest tech posts from the public REST API and rewrites
+Reads the newest tech stories from the data hub's tech.json (read-only) and rewrites
   - tech/index.html  (between the SNAPSHOT markers)
   - tech/feed.xml    (RSS 2.0)
-Cards stay short (headline + ~140 char summary) and link out; full articles are
+Cards stay short (headline + ~140 char summary) and link out (to the original
+article when the hub supplies an allowlisted source_url, else to the story page); full articles are
 never republished. Output is deterministic (no build timestamps), so an
 unchanged feed leaves the files byte-identical. Stdlib only.
 
@@ -22,12 +23,16 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
 
-API_BASE = "https://abcnews.com.np/wp-json/wp/v2/posts"
-API_HOST = urlparse(API_BASE).netloc
-CATEGORY = 55
+HUB_URL = "https://datastats.abcnews.com.np/v1/tech.json"
+HUB_HOST = "datastats.abcnews.com.np"
+LINK_HOST = "abcnews.com.np"
+# Publishers a story's original article may live on (keep in step with tech/tech.js SOURCE_HOSTS).
+SOURCE_HOSTS = ("theverge.com", "arstechnica.com", "techcrunch.com", "wired.com", "theregister.com",
+                "engadget.com", "restofworld.org", "technologyreview.com", "thehackernews.com", "nepalitelecom.com")
 COUNT = 12
 SUMMARY_MAX = 140
 MAX_BYTES = 1_000_000
+TIMEOUT = 15
 SITE = "https://jhapendrakandel.com.np"
 HERE = Path(__file__).resolve().parent
 START, END = "<!--SNAPSHOT:START-->", "<!--SNAPSHOT:END-->"
@@ -59,29 +64,77 @@ def trim(text, limit=SUMMARY_MAX):
     return re.sub(r"[\s,;:.–—-]+$", "", cut) + "…"
 
 
-def fetch():
-    url = f"{API_BASE}?categories={CATEGORY}&per_page={COUNT}&page=1&_fields=title,link,date_gmt,excerpt"
-    req = urllib.request.Request(url, headers={"User-Agent": "tech-briefing-snapshot/1.0", "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=30) as r:
+_CTL = re.compile(r"[\x00-\x1f\x7f-\x9f]")
+
+
+def safe_link(href):
+    """Story link: https, exact host LINK_HOST, no userinfo. '' when invalid."""
+    if not isinstance(href, str) or len(href) > 2048 or _CTL.search(href):
+        return ""
+    try:
+        u = urlparse(href)
+        if u.scheme == "https" and u.hostname == LINK_HOST and not u.username and not u.password:
+            return href
+    except ValueError:
+        pass
+    return ""
+
+
+def safe_source(href):
+    """Original-article link: https, parsed hostname equals or is a dot-boundary subdomain of a
+    SOURCE_HOSTS entry, no userinfo, <= 500 chars, no control chars. '' when invalid."""
+    if not isinstance(href, str) or len(href) > 500 or _CTL.search(href) or "\\" in href:
+        return ""
+    try:
+        u = urlparse(href)
+        host = (u.hostname or "").lower()
+        u.port  # raises ValueError on a bad port
+    except ValueError:
+        return ""
+    if u.scheme != "https" or u.username or u.password:
+        return ""
+    if any(host == d or host.endswith("." + d) for d in SOURCE_HOSTS):
+        return href
+    return ""
+
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args, **kwargs):
+        return None
+
+
+def fetch_raw():
+    u = urlparse(HUB_URL)
+    if u.scheme != "https" or u.hostname != HUB_HOST:
+        raise SystemExit("refusing non-hub URL")
+    req = urllib.request.Request(HUB_URL, headers={"User-Agent": "tech-briefing-snapshot/1.0", "Accept": "application/json"})
+    with urllib.request.build_opener(_NoRedirect).open(req, timeout=TIMEOUT) as r:
         raw = r.read(MAX_BYTES + 1)
+    return raw
+
+
+def parse(raw):
     if len(raw) > MAX_BYTES:
-        raise SystemExit("API response too large")
+        raise SystemExit("hub response too large")
     data = json.loads(raw)
-    if not isinstance(data, list):
-        raise SystemExit("unexpected API response")
+    if not isinstance(data, dict) or data.get("schema") != 1 or not isinstance(data.get("items"), list):
+        raise SystemExit("unexpected hub response")
     items = []
-    for p in data:
-        title = plain((p.get("title") or {}).get("rendered"))
-        link = p.get("link") or ""
-        u = urlparse(link)
-        if not title or u.scheme != "https" or u.netloc != API_HOST:
+    for p in data["items"][:48]:
+        if not isinstance(p, dict) or not isinstance(p.get("title"), str):
+            continue
+        title = plain(p["title"])[:300]
+        link = safe_link(p.get("link"))
+        if not title or not link:
             continue
         try:
-            when = datetime.strptime(p["date_gmt"], "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
+            when = datetime.strptime(str(p["date_gmt"]).rstrip("Z"), "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
         except (KeyError, ValueError):
             continue
-        items.append({"title": title, "link": link, "when": when,
-                      "summary": trim(plain((p.get("excerpt") or {}).get("rendered")))})
+        summary = trim(plain(p["summary"])) if isinstance(p.get("summary"), str) else ""
+        items.append({"title": title, "link": safe_source(p.get("source_url")) or link, "when": when, "summary": summary})
+        if len(items) >= COUNT:
+            break
     return items
 
 
@@ -141,7 +194,9 @@ def write_if_changed(path, text):
 
 
 def main():
-    items = fetch()
+    # `--file PATH` parses a local tech.json instead of the network (offline tests)
+    raw = Path(sys.argv[2]).read_bytes() if len(sys.argv) > 2 and sys.argv[1] == "--file" else fetch_raw()
+    items = parse(raw)
     if not items:
         print("no items returned; leaving files untouched", file=sys.stderr)
         return 1
