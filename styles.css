@@ -488,7 +488,6 @@ a.story-link:hover .story-go::after { transform: translateX(5px); }
 .footer-cols nav p { font-size: .9375rem; font-weight: 800; color: var(--yellow); margin-bottom: 6px; }
 .footer-cols nav a { text-decoration: none; font-weight: 600; padding: 4px 0; transition: color .2s, transform .25s var(--ease); align-self: flex-start; }
 .footer-cols nav a:hover { color: var(--yellow); transform: translateX(4px); }
-.footer-credits { margin-top: 48px; font-size: .8125rem; color: var(--muted); max-width: 90ch; line-height: 1.6; }
 .wordmark {
     margin: clamp(32px, 5vw, 64px) 0 16px;
     font-family: var(--display); font-stretch: 62%; font-weight: 900; text-transform: uppercase;
