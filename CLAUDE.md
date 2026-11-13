@@ -98,6 +98,23 @@ browser: true 390px layout and clip-path reveals.
   "small model, can make mistakes, please verify" note. Do not remove it. Blog URLs in entries must be `/blog/posts/<slug>/`.
 - Offline retrieval check: load `webllm.js` in node with a stub DOM and call `window.JKRetrieval.search(q)`.
 
+## Speed work + loader (2026-11-13)
+
+- Images: homepage images are WebP with `srcset` (640 / 1280 widths; manuscript strip 1600w), ~4.2 MB -> ~1.1 MB (37c840f). Convention for
+  new images: add `name-640.webp` + `name.webp`, keep the `sizes` attr. First 2 story cards are eager, the rest (and abcnews/shinybox images) lazy.
+  An unused thamel jpg is left in the repo on purpose.
+- Fonts: Google Fonts CSS loads non-blocking (`media=print` swap + `<noscript>` fallback). Idea not done: self-host a subset of the ~90 KB Archivo font.
+- Loader (66a0bd1, 969af24): yellow shutter screen, homepage only, first visit per session. A head inline script adds the `preload` class to
+  `<html>` only if `sessionStorage 'jk-loaded'` is unset, no reduced-motion, and navigation type is `navigate`; 3 s hard fallback. Markup is
+  `#loader` right after `<body>`; CSS `.loader` / `.preload .loader`; `main.js` runs a GSAP timeline + `endLoader()` (~0.6 s counter, waits for
+  `window.load` and `document.fonts.ready` capped at 1.2 s, then 0.6 s wipe; min ~1.2 s). Masthead intro / mast-photo tweens wait for the loader exit.
+  To disable: remove the head `preload` script, the `#loader` markup, the loader CSS and the loader/`endLoader` code in `main.js`.
+- Throttled test (4x CPU, ~1.6 Mbps): first paint 7.4 s -> 1.5 s. Not yet verified: real phone/Safari, font-swap flash, lazy images in the pinned
+  horizontal stream, loader look.
+- Cache-bust is now `main.js?v=20261113r`; bump it after any `main.js` change.
+- "Self-rated out of 100." note removed from the board (c7e01db); `tools/webllm/index.json` still has "Self-rated skills out of 100" wording (data, left on purpose).
+- Another session also commits `tools/webllm` work in this repo; stage only your own hunks.
+
 ## History / handoffs
 
 - `docs/HANDOFF-2026-11-11.md` — v3 → v4 redesign session.
