@@ -2,6 +2,18 @@
 (function () {
   var TIMEOUT_MS = 8000;
 
+  /* Last good copy per file in localStorage (<= 7 days). Used only when the live fetch fails, so a visitor still sees
+     the last data if the hub is down. Every storage access is wrapped: private mode / blocked storage just means no fallback. */
+  var KEEP_MS = 7 * 24 * 3600 * 1000;
+  function save(name, d) { try { localStorage.setItem('hub:' + name, JSON.stringify({ t: Date.now(), d: d })); } catch (e) { } }
+  function saved(name) {
+    try {
+      var o = JSON.parse(localStorage.getItem('hub:' + name));
+      if (o && o.d && typeof o.d === 'object' && !Array.isArray(o.d) && o.d.schema === 1 && Date.now() - o.t < KEEP_MS) return o.d;
+    } catch (e) { }
+    return null;
+  }
+
   function get(name) {
     var ctl = new AbortController();
     var timer = setTimeout(function () { ctl.abort(); }, TIMEOUT_MS);
@@ -12,7 +24,12 @@
       return r.json();
     }).then(function (d) {
       if (!d || typeof d !== 'object' || Array.isArray(d) || d.schema !== 1) throw new Error('bad schema');
+      save(name, d);
       return d;
+    }).catch(function (err) {
+      var c = saved(name);   // callers still run isStale(generated_at) and show their "may be out of date" note
+      if (c) return c;
+      throw err;
     }).finally(function () { clearTimeout(timer); });
   }
 

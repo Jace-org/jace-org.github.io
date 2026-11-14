@@ -1,0 +1,39 @@
+name: Data hub health
+
+# Free uptime + freshness check for the JSON the site reads. A failed run emails the repo owner.
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Check hub files are reachable, valid and fresh
+        run: |
+          python3 - <<'PY'
+          import json, sys, urllib.request
+          from datetime import datetime, timezone
+          BASE = "https://datastats.abcnews.com.np/v1/"
+          LIMITS = {"tech.json": 8, "cves.json": 4, "hn.json": 8}   # max age in hours
+          bad = []
+          for name, hours in LIMITS.items():
+              try:
+                  req = urllib.request.Request(BASE + name, headers={"Origin": "https://jhapendrakandel.com.np", "User-Agent": "hub-health"})
+                  with urllib.request.urlopen(req, timeout=20) as r:
+                      cors = r.headers.get("access-control-allow-origin")
+                      d = json.load(r)
+                  gen = datetime.fromisoformat(str(d["generated_at"]).replace("Z", "+00:00"))
+                  age = (datetime.now(timezone.utc) - gen).total_seconds() / 3600
+                  ok = d.get("schema") == 1 and isinstance(d.get("items"), list) and d["items"] and age <= hours \
+                       and cors == "https://jhapendrakandel.com.np"
+                  print(f"{name}: items={len(d.get('items', []))} age={age:.1f}h cors={cors} -> {'ok' if ok else 'BAD'}")
+                  if not ok: bad.append(name)
+              except Exception as e:
+                  print(f"{name}: ERROR {e}"); bad.append(name)
+          sys.exit(1 if bad else 0)
+          PY
