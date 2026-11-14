@@ -366,6 +366,8 @@ a.story-link:hover .story-go::after { transform: translateX(5px); }
 .method[data-stage="2"] { background: var(--orange); color: var(--on-light); }
 .method[data-stage="3"] { background: var(--mint); color: var(--on-light); }
 .method .kicker { color: inherit; }
+.method.is-pinned { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; box-sizing: border-box; }
+.method.is-pinned .method-inner { width: 100%; }
 .method-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .method-clause {
     font-family: var(--display); font-stretch: 62%; font-weight: 900;

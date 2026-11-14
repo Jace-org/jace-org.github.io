@@ -270,6 +270,19 @@
     });
 
     // 5. The stream: pinned and scrolled sideways on wide screens.
+    // Method: pin the section and let scroll walk through Build > Secure > Automate > Run.
+    if (stage && method) {
+        mm.add("(min-width: 600px)", function () {
+            method.classList.add("is-pinned");
+            var st = ScrollTrigger.create({
+                trigger: method, start: "top top", end: "+=" + Math.round(window.innerHeight * 2.4),
+                pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+                onUpdate: function (self) { show(Math.min(3, Math.floor(self.progress * 4))); }
+            });
+            return function () { method.classList.remove("is-pinned"); st.kill(); };
+        });
+    }
+
     mm.add("(min-width: 900px)", function () {
         var work = $("#work"), pin = $("#stream-pin"), stream = $("#stream");
         if (!work || !pin || !stream) return;
