@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://nvd.nist.gov https://api.first.org https://cve.circl.lu; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://datastats.abcnews.com.np; base-uri 'none'; form-action 'none'">
 <script src="/assets/framebust.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
@@ -55,7 +55,7 @@
 <p class="dw-copy">Brand-new CVEs often have no EPSS score yet, so they show as "not scored yet" rather than a guess.</p>
 <section class="lab-privacy" aria-labelledby="priv-h">
 <h2 id="priv-h">Data sources &amp; privacy</h2>
-<p>This page loads the latest CVE records from CIRCL (cve.circl.lu) and their scores from FIRST (api.first.org). Both services see your IP address when the page loads. No input of yours is sent anywhere.</p>
+<p>This page loads one small pre-computed file from this site's data service. The latest CVE records (from CIRCL) and their scores (from FIRST) are fetched on the server, so neither service sees your IP address. No input of yours is sent anywhere.</p>
 <p>EPSS is published by FIRST, the CVE data comes from CIRCL's public feed. All values are treated as untrusted and shown as plain text. Nothing is stored. A probability is a forecast, not a verdict.</p>
 </section>
 <noscript><p class="dw-status is-warn">This tool needs JavaScript.</p></noscript>
@@ -69,7 +69,9 @@
 </footer>
 <script src="../../widgets/nav.js?v=3"></script>
 <script src="../sec-shared/lab.js?v=1"></script>
-<script src="forecast.js?v=1"></script>
+<script src="../../widgets/data-base.js?v=1"></script>
+<script src="../../widgets/hub.js?v=1"></script>
+<script src="forecast.js?v=2"></script>
 <script src="../polish.js?v=1" defer></script>
 </body>
 </html>

@@ -75,22 +75,15 @@ var T = (function () {
     svg.insertBefore(trace, svg.querySelector('.ktm'));
   }
 
-  function loadTrace() {
-    var n = Math.floor(Date.now() / 1000), ts = [];
-    for (var i = -3; i <= 6; i++) ts.push(n + i * 600);
-    T.getJSON('https://api.wheretheiss.at/v1/satellites/25544/positions?units=kilometers&timestamps=' + ts.join(','))
-      .then(function (a) {
-        if (!Array.isArray(a)) throw new Error('bad');
-        var pts = a.map(function (p) { return p && { lat: T.num(p.latitude), lon: T.num(p.longitude) }; }).filter(function (p) { return p && p.lat !== null && p.lon !== null; });
-        if (pts.length > 1) drawTrace(pts);
-      }).catch(function () { $('i-note').textContent = 'The orbit trace could not be loaded; the live position still works.'; });
-  }
-
   function update() {
-    T.getJSON('https://api.wheretheiss.at/v1/satellites/25544?units=kilometers').then(function (d) {
-      var lat = T.num(d && d.latitude), lon = T.num(d && d.longitude), alt = T.num(d && d.altitude), vel = T.num(d && d.velocity), fp = T.num(d && d.footprint);
+    /* Position is pre-fetched server-side by the data hub (refreshed about every 10 s); the browser never contacts the ISS API. */
+    Hub.get('iss.json').then(function (d) {
+      var P = d && d.position;
+      var lat = T.num(P && P.lat), lon = T.num(P && P.lon), alt = T.num(P && P.alt_km), vel = T.num(P && P.velocity_kmh), fp = T.num(P && P.footprint_km);
       if (lat === null || lon === null || alt === null || Math.abs(lat) > 90 || Math.abs(lon) > 180) throw new Error('bad');
-      failures = 0; status.hidden = true;
+      failures = 0;
+      if (Hub.isStale(d.generated_at, 2 / 60)) T.status(status, 'Live updates are delayed; this position is from ' + (Hub.ago(d.generated_at) || 'a while ago') + ' and the station has moved since.', 'is-warn');
+      else status.hidden = true;
       var ground = T.dist(T.KTM.lat, T.KTM.lon, lat, lon);
       /* straight line: law of cosines through Earth's centre */
       var R = 6371, ang = ground / R, r2 = R + alt;
@@ -108,7 +101,11 @@ var T = (function () {
         svg.appendChild(issRing); svg.appendChild(issDot);
       }
       [issRing, issDot].forEach(function (c) { c.setAttribute('cx', X(lon)); c.setAttribute('cy', Y(lat)); });
-      if (!ready) { ready = true; loadTrace(); }
+      ready = true;
+      if (Array.isArray(d.trace)) {
+        var pts = d.trace.map(function (p) { return p && { lat: T.num(p.lat), lon: T.num(p.lon) }; }).filter(function (p) { return p && p.lat !== null && p.lon !== null; });
+        if (pts.length > 1) { drawTrace(pts); }
+      }
     }).catch(function () {
       failures++;
       if (!ready) T.status(status, 'The station position could not be loaded right now.', 'is-err');

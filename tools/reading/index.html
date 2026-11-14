@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com https://dev.to; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://datastats.abcnews.com.np; base-uri 'none'; form-action 'none'">
 <script src="/assets/framebust.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
@@ -52,7 +52,7 @@
 <div class="tl-ctrl" id="tabs" role="group" aria-label="Tag"></div>
 <div class="dw-cards" id="cards"></div>
 <h2 class="dw-h2">Data sources &amp; privacy</h2>
-<p class="dw-note">Articles come from the public DEV Community API (dev.to/api/articles). Titles, authors and links belong to their authors; only https links to dev.to are followed. Requests go straight from your browser to the named service, without cookies or an API key; that service sees your IP address as in any web request. Everything received is treated as untrusted text and shown with safe DOM methods. Nothing is sent to this site, and this preview page is not indexed by search engines.</p>
+<p class="dw-note">Articles come from the public DEV Community API (dev.to/api/articles). This site's data service fetches them once an hour, so your browser never contacts DEV and DEV never sees your IP address. Titles, authors and links belong to their authors; only https links to dev.to are followed. Everything received is treated as untrusted text and shown with safe DOM methods. Nothing is sent to this site, and this preview page is not indexed by search engines.</p>
 </main>
 <footer class="site-footer">
 <div class="footer-cols">
@@ -62,7 +62,9 @@
 <div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
 </footer>
 <script src="../../widgets/nav.js?v=3"></script>
-<script src="reading.js?v=1"></script>
+<script src="../../widgets/data-base.js?v=1"></script>
+<script src="../../widgets/hub.js?v=1"></script>
+<script src="reading.js?v=2"></script>
 <script src="../polish.js?v=1" defer></script>
 </body>
 </html>

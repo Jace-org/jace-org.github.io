@@ -17,6 +17,7 @@ var TL = {
   },
   status: function (msg, kind) {
     var s = document.getElementById('status'); if (!s) return;
+    if (!msg && TL.stale) { msg = 'Showing the last saved copy; it may be out of date.'; kind = 'warn'; }
     s.textContent = msg; s.className = 'dw-status' + (kind ? ' is-' + kind : ''); s.hidden = !msg;
   },
   ago: function (iso) {
@@ -38,14 +39,27 @@ var TL = {
         return r.json().then(function (j) { return withHeaders ? { json: j, headers: r.headers } : j; });
       }, function (e) { clearTimeout(timer); throw e; });
   },
-  /* GitHub API: path must start with / ; cached in sessionStorage for 10 minutes. */
+  /* GitHub data: read from the site's data service (github.json), never from the browser to GitHub.
+     The file mimics the GitHub REST objects these tools already use, so the paths below map straight onto it. */
+  stale: false, _gh: null,
+  ghData: function () {
+    if (!TL._gh) TL._gh = window.Hub.get('github.json').then(function (d) {
+      if (!d || !Array.isArray(d.repos) || !d.details || typeof d.details !== 'object') throw new Error('shape');
+      TL.stale = window.Hub.isStale(d.generated_at, 6); return d;
+    }).catch(function (e) { TL._gh = null; throw e; });
+    return TL._gh;
+  },
   gh: function (path) {
-    if (!/^\/[A-Za-z0-9_\/.?=&%-]+$/.test(path)) return Promise.reject(new Error('bad path'));
-    var key = 'tl:gh:' + path, now = Date.now();
-    try { var c = JSON.parse(sessionStorage.getItem(key) || 'null'); if (c && now - c.t < 600000) return Promise.resolve(c.d); } catch (x) {}
-    return TL.getJSON('https://api.github.com' + path).then(function (d) {
-      try { sessionStorage.setItem(key, JSON.stringify({ t: now, d: d })); } catch (x) {}
-      return d;
+    return TL.ghData().then(function (d) {
+      if (/^\/users\/[A-Za-z0-9_-]+\/repos(\?|$)/.test(path)) return d.repos;
+      var m = /^\/repos\/[A-Za-z0-9_-]+\/([A-Za-z0-9_.-]+)\/(commits|releases\/latest|releases|actions\/runs)(\?.*)?$/.exec(path);
+      if (!m) throw new Error('bad path');
+      var x = Object.prototype.hasOwnProperty.call(d.details, m[1]) ? d.details[m[1]] : null, n = /per_page=(\d+)/.exec(m[3] || '');
+      n = n ? parseInt(n[1], 10) : 30;
+      if (m[2] === 'commits') return x && Array.isArray(x.commits) ? x.commits.slice(0, n) : [];
+      if (m[2] === 'releases') return x && Array.isArray(x.releases) ? x.releases.slice(0, n) : [];
+      if (m[2] === 'releases/latest') { if (x && x.latest_release) return x.latest_release; throw new Error('http 404'); }
+      return { workflow_runs: x && x.ci ? [x.ci] : [] };
     });
   },
   repos: function () {
@@ -54,10 +68,7 @@ var TL = {
       return a.filter(function (r) { return r && typeof r.name === 'string' && /^[A-Za-z0-9_.-]+$/.test(r.name) && !r.fork && !r.archived && TL.ok(r.name); });
     });
   },
-  failMsg: function (e) {
-    return e && e.rate ? 'The public code service is rate-limiting this browser (60 requests per hour without a key). Try again later; nothing is broken on this page.'
-                       : 'The data could not be loaded just now (network error or timeout). Try again later.';
-  }
+  failMsg: function () { return 'The data could not be loaded just now (network error or timeout). Try again later.'; }
 };
 var GH_HOSTS = ['github.com'];
 

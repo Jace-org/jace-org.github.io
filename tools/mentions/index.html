@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://webmention.io; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://datastats.abcnews.com.np; base-uri 'none'; form-action 'none'">
 <script src="/assets/framebust.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
@@ -70,7 +70,7 @@
 </ol>
 
 <h2 class="dw-h2">Data sources &amp; privacy</h2>
-<p class="dw-note">This page calls <strong>webmention.io</strong> (a public API, CORS enabled) from your browser, so that service sees your IP address like any website. It sends only the list of this site's own post addresses. Mention text is untrusted, shown as plain text, truncated, and only https links are made clickable. Avatars are not loaded.</p>
+<p class="dw-note">This site's data service reads <strong>webmention.io</strong> (a public API) every 30 minutes, so your browser never contacts webmention.io and it never sees your IP address. Only mentions of this site's own blog posts are kept. Mention text is untrusted, shown as plain text, truncated, and only https links are made clickable. Avatars are not loaded.</p>
 
 </main>
 <footer class="site-footer">
@@ -81,7 +81,9 @@
 </div>
 <div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
 </footer>
-<script src="mentions.js?v=1"></script>
+<script src="../../widgets/data-base.js?v=1"></script>
+<script src="../../widgets/hub.js?v=1"></script>
+<script src="mentions.js?v=2"></script>
 <script src="../polish.js?v=1" defer></script>
 </body>
 </html>

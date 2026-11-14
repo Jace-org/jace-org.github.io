@@ -47,23 +47,22 @@ var T = (function () {
   var status = document.getElementById('status'), $ = function (id) { return document.getElementById(id); };
   var GORKHA = { lat: 28.147, lon: 84.708 };
   var now = Date.now();
-  var from = new Date(now - 30 * 864e5).toISOString().slice(0, 10);
-  var URL = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minlatitude=26&maxlatitude=31&minlongitude=79&maxlongitude=89&minmagnitude=2.5&orderby=time&limit=200&starttime=' + from;
   var ktm = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kathmandu', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
   function ageText(ms) { var h = (now - ms) / 36e5; return h < 1 ? 'less than an hour ago' : h < 48 ? Math.round(h) + ' hours ago' : Math.round(h / 24) + ' days ago'; }
 
-  T.getJSON(URL).then(function (d) {
-    var fs = d && Array.isArray(d.features) ? d.features : null;
+  /* Data comes from the site's own data hub (pre-fetched from USGS server-side); the browser never contacts USGS. */
+  Hub.get('quakes.json').then(function (d) {
+    var fs = d && Array.isArray(d.items) ? d.items : null;
     if (!fs) throw new Error('bad');
     var ev = [];
     fs.forEach(function (f) {
-      var p = f && f.properties, g = f && f.geometry && f.geometry.coordinates;
-      if (!p || !Array.isArray(g)) return;
-      var mag = T.num(p.mag), t = T.num(p.time), lon = T.num(g[0]), lat = T.num(g[1]), dep = T.num(g[2]);
+      if (!f || typeof f !== 'object') return;
+      var mag = T.num(f.mag), t = T.num(f.time), lon = T.num(f.lon), lat = T.num(f.lat), dep = T.num(f.depth);
       if (mag === null || t === null || lon === null || lat === null || Math.abs(lat) > 90 || Math.abs(lon) > 180) return;
-      ev.push({ mag: mag, t: t, lat: lat, lon: lon, depth: dep, place: T.str(p.place, 120) || 'Unnamed location', url: T.safeUrl(p.url, ['earthquake.usgs.gov']),
+      ev.push({ mag: mag, t: t, lat: lat, lon: lon, depth: dep, place: T.str(f.place, 120) || 'Unnamed location', url: T.safeUrl(f.url, ['earthquake.usgs.gov']),
                 km: T.dist(T.KTM.lat, T.KTM.lon, lat, lon) });
     });
+    if (Hub.isStale(d.generated_at, 3)) T.status(status, 'This list may be out of date (last updated ' + (Hub.ago(d.generated_at) || 'a while ago') + ').', 'is-warn');
     ev.sort(function (a, b) { return b.t - a.t; });
     if (!ev.length) { T.status(status, 'No magnitude 2.5+ events were reported in this area during the last 30 days.', ''); mapInit([]); return; }
     var last = ev[0];
@@ -85,7 +84,7 @@ var T = (function () {
     $('list-wrap').hidden = false;
     mapInit(ev);
   }).catch(function () {
-    T.status(status, 'The earthquake feed could not be loaded right now. Try again in a few minutes.', 'is-err');
+    T.status(status, 'The earthquake data could not be loaded right now. Try again in a few minutes.', 'is-err');
     mapInit([]);
   });
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://air-quality-api.open-meteo.com https://www.nrb.org.np; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://datastats.abcnews.com.np https://www.nrb.org.np; base-uri 'none'; form-action 'none'">
 <script src="/assets/framebust.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
@@ -62,8 +62,8 @@
 <thead><tr><th scope="col">Currency</th><th scope="col">Per</th><th scope="col">Buy (NPR)</th><th scope="col">Sell (NPR)</th></tr></thead><tbody></tbody></table></div>
 <h2 class="dw-h2">About the Bikram Sambat date</h2>
 <p class="dw-copy">The Bikram Sambat (BS) calendar is Nepal's official calendar. Its month lengths (29 to 32 days) are fixed by published tables, not by a formula, so this page carries a small table for BS years 2080 to 2085. That covers <strong>14 April 2023 to 13 April 2029</strong>; outside it the page says "out of range" instead of guessing. The table was checked against the new-year dates 14 April 2025 (1 Baisakh 2082) and 14 April 2026 (1 Baisakh 2083). Use an official panchang for anything legal or religious: some tables differ by a day in rare years.</p>
-<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>Every request goes straight from your browser to the service named below, so each one sees your IP address and browser details. Nothing is sent to this site's own servers and nothing is stored.</p>
-<p>Exchange rates: Nepal Rastra Bank public API (<a href="https://www.nrb.org.np/forex/" target="_blank" rel="noopener noreferrer">nrb.org.np</a>), the official daily rates. Weather, sunrise and sunset, and air quality: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (CC BY 4.0), for the Kathmandu grid cell. The time and BS date are computed in your browser.</p></section>
+<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>Exchange-rate requests go straight from your browser to the service named below, so it sees your IP address and browser details; weather and air quality are fetched by this site on a schedule and served from a copy, so your browser never contacts that provider. Nothing is sent to this site's own servers and nothing is stored.</p>
+<p>Exchange rates: Nepal Rastra Bank public API (<a href="https://www.nrb.org.np/forex/" target="_blank" rel="noopener noreferrer">nrb.org.np</a>), the official daily rates. Weather, sunrise and sunset, and air quality: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (CC BY 4.0), for the Kathmandu grid cell, fetched by this site and served from a copy. The time and BS date are computed in your browser.</p></section>
 </main>
 <footer class="site-footer">
 <div class="footer-cols">
@@ -73,7 +73,9 @@
 <div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
 </footer>
 <script src="../../widgets/nav.js?v=3"></script>
-<script src="ktm.js?v=1"></script>
+<script src="../../widgets/data-base.js?v=3"></script>
+<script src="../../widgets/hub.js?v=4"></script>
+<script src="ktm.js?v=2"></script>
 <script src="../polish.js?v=1" defer></script>
 </body>
 </html>

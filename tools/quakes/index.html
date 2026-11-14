@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://earthquake.usgs.gov; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org https://cdnjs.cloudflare.com; connect-src 'self' https://datastats.abcnews.com.np; base-uri 'none'; form-action 'none'">
 <script src="/assets/framebust.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
@@ -70,7 +70,7 @@
 <li><strong>Secure what can fall.</strong> Strap tall furniture, keep heavy items low, know where your gas and mains switch are.</li>
 <li><strong>Follow official guidance.</strong> Nepal's National Disaster Risk Reduction and Management Authority and the Department of Mines and Geology publish local advice.</li>
 </ul>
-<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>Quake data is fetched from the <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener noreferrer">USGS Earthquake Hazards Program</a> (public domain). The map uses <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer">Leaflet</a> 1.9.4 from cdnjs and tiles from OpenStreetMap (&copy; OpenStreetMap contributors, ODbL). Your browser contacts those three services directly, so each sees your IP address. Nothing is sent to this site's servers or stored. Search area: 26-31&deg;N, 79-89&deg;E, which also covers parts of India and Tibet, not only Nepal.</p></section>
+<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>Quake data comes from the <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener noreferrer">USGS Earthquake Hazards Program</a> (public domain). This site fetches it on a schedule and serves a copy, so your browser does not contact USGS. The map uses <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer">Leaflet</a> 1.9.4 from cdnjs and tiles from OpenStreetMap (&copy; OpenStreetMap contributors, ODbL). Your browser contacts the map library host and the tile server directly, so each sees your IP address. Nothing is sent to this site's servers or stored. Search area: 26-31&deg;N, 79-89&deg;E, which also covers parts of India and Tibet, not only Nepal.</p></section>
 </main>
 <footer class="site-footer">
 <div class="footer-cols">
@@ -81,7 +81,9 @@
 </footer>
 <script src="../../widgets/nav.js?v=3"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="quakes.js?v=1"></script>
+<script src="../../widgets/data-base.js?v=3"></script>
+<script src="../../widgets/hub.js?v=4"></script>
+<script src="quakes.js?v=2"></script>
 <script src="../polish.js?v=1" defer></script>
 </body>
 </html>

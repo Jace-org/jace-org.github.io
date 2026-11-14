@@ -38,22 +38,6 @@ var TL = {
         return r.json().then(function (j) { return withHeaders ? { json: j, headers: r.headers } : j; });
       }, function (e) { clearTimeout(timer); throw e; });
   },
-  /* GitHub API: path must start with / ; cached in sessionStorage for 10 minutes. */
-  gh: function (path) {
-    if (!/^\/[A-Za-z0-9_\/.?=&%-]+$/.test(path)) return Promise.reject(new Error('bad path'));
-    var key = 'tl:gh:' + path, now = Date.now();
-    try { var c = JSON.parse(sessionStorage.getItem(key) || 'null'); if (c && now - c.t < 600000) return Promise.resolve(c.d); } catch (x) {}
-    return TL.getJSON('https://api.github.com' + path).then(function (d) {
-      try { sessionStorage.setItem(key, JSON.stringify({ t: now, d: d })); } catch (x) {}
-      return d;
-    });
-  },
-  repos: function () {
-    return TL.gh('/users/' + GH_USER + '/repos?per_page=100&sort=pushed').then(function (a) {
-      if (!Array.isArray(a)) throw new Error('shape');
-      return a.filter(function (r) { return r && typeof r.name === 'string' && /^[A-Za-z0-9_.-]+$/.test(r.name) && !r.fork && !r.archived && TL.ok(r.name); });
-    });
-  },
   failMsg: function (e) {
     return e && e.rate ? 'The public code service is rate-limiting this browser (60 requests per hour without a key). Try again later; nothing is broken on this page.'
                        : 'The data could not be loaded just now (network error or timeout). Try again later.';

@@ -2,7 +2,6 @@
 (function () {
   'use strict';
   var SITE = 'https://jhapendrakandel.com.np';
-  var API = 'https://webmention.io/api/mentions.jf2';
   var $ = function (id) { return document.getElementById(id); };
   var status = $('status'), live = $('live');
 
@@ -38,16 +37,16 @@
     return { list: t, titles: titles };
   }
 
+  /* items come pre-cleaned from the site's data service (mentions.json); re-checked here before display. */
   function normalize(j) {
-    if (!j || !Array.isArray(j.children)) throw new Error('shape');
-    return j.children.slice(0, 200).map(function (c) {
+    if (!j || !Array.isArray(j.items)) throw new Error('shape');
+    return j.items.slice(0, 200).map(function (c) {
       if (!c || typeof c !== 'object') return null;
-      var k = KIND[c['wm-property']] || ['Mention', ''];
-      var au = c.author && typeof c.author === 'object' ? c.author : {};
+      var k = KIND[c.kind] || ['Mention', ''];
       return {
-        kind: k, name: cap(au.name, 60) || 'Someone', author: httpsUrl(au.url), url: httpsUrl(c.url),
-        text: cap(c.content && c.content.text, 280), target: typeof c['wm-target'] === 'string' ? c['wm-target'].slice(0, 300) : '',
-        when: typeof c['wm-received'] === 'string' ? cap(c['wm-received'].slice(0, 10), 10) : ''
+        kind: k, name: cap(c.name, 60) || 'Someone', author: httpsUrl(c.author_url), url: httpsUrl(c.url),
+        text: cap(c.text, 280), target: typeof c.target === 'string' ? c.target.slice(0, 300) : '',
+        when: typeof c.received === 'string' ? cap(c.received.slice(0, 10), 10) : ''
       };
     }).filter(Boolean);
   }
@@ -92,8 +91,11 @@
     var t = targetsFor(posts);
     if (!t.list.length) throw new Error('none');
     $('watching').textContent = (t.list.length / 2) + ' blog posts (each under two address forms).';
-    var url = API + '?per-page=100&sort-dir=down&' + t.list.map(function (u) { return 'target[]=' + encodeURIComponent(u); }).join('&');
-    return getJSON(url).then(function (j) { render(normalize(j), t.titles); });
+    return window.Hub.get('mentions.json').then(function (j) {
+      var items = normalize(j).filter(function (m) { return Object.prototype.hasOwnProperty.call(t.titles, m.target); });
+      render(items, t.titles);
+      if (window.Hub.isStale(j.generated_at, 6)) say('Showing the last saved copy; it may be out of date.', 'is-warn'); else status.hidden = true;
+    });
   }).catch(function () {
     live.hidden = true;
     $('watching').textContent = 'could not load the post list.';

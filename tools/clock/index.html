@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.open-meteo.com https://air-quality-api.open-meteo.com; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://datastats.abcnews.com.np; base-uri 'none'; form-action 'none'">
 <script src="/assets/framebust.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
@@ -54,14 +54,15 @@
 <span class="c-links" aria-hidden="true">Home &nbsp; Blog &nbsp; Tech</span>
 <span id="ktm-clock" class="ktm-clock" hidden></span>
 </div>
-<p class="dw-note">The line above is the real widget. If the weather service does not answer within 8 seconds, it quietly drops to just "22:58 in Kathmandu".</p>
+<p class="dw-note">The line above is the real widget. If the data service does not answer within 8 seconds, it quietly drops to just "22:58 in Kathmandu".</p>
 <h2 class="dw-h2">Use it</h2>
-<p class="dw-copy">One small file, no dependencies. Copy <a href="ktm-clock.js">ktm-clock.js</a> next to the page, add the three lines below where the clock should appear, and style <code>.ktm-clock</code> to fit the header. The element stays hidden until the script has a time to show.</p>
+<p class="dw-copy">One small file; it reads the temperature through <code>widgets/data-base.js</code>. Copy <a href="ktm-clock.js">ktm-clock.js</a> next to the page, add the lines below where the clock should appear, and style <code>.ktm-clock</code> to fit the header. The element stays hidden until the script has a time to show.</p>
 <pre class="c-code" tabindex="0"><code id="snip">&lt;span id="ktm-clock" class="ktm-clock" hidden&gt;&lt;/span&gt;
+&lt;script src="/widgets/data-base.js"&gt;&lt;/script&gt;
 &lt;script src="ktm-clock.js"&gt;&lt;/script&gt;
 &lt;script&gt;ktmClock(document.getElementById('ktm-clock'));&lt;/script&gt;</code></pre>
 <p class="dw-copy">What it does: the time is formatted in your browser for the Asia/Kathmandu zone (UTC+5:45, no daylight saving). The temperature is fetched once at load and every 15 minutes, rounded to a whole degree, and validated as a plain number in a sane range before it is shown. It only ever writes with <code>textContent</code>.</p>
-<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>The time is computed in your browser. The temperature comes from <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (CC BY 4.0), which sees your IP address when the widget loads. Nothing is sent to this site's servers or stored.</p></section>
+<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>The time is computed in your browser. The temperature comes from <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (CC BY 4.0). This site fetches it on a schedule and serves a copy, so your browser never contacts Open-Meteo. Nothing is sent to this site's servers or stored.</p></section>
 </main>
 <footer class="site-footer">
 <div class="footer-cols">
@@ -71,7 +72,8 @@
 <div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
 </footer>
 <script src="../../widgets/nav.js?v=3"></script>
-<script src="ktm-clock.js?v=1"></script>
+<script src="../../widgets/data-base.js?v=3"></script>
+<script src="ktm-clock.js?v=2"></script>
 <script src="init.js?v=1"></script>
 <script src="../polish.js?v=1" defer></script>
 </body>

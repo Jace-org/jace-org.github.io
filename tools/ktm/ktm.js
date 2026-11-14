@@ -83,33 +83,30 @@ var T = (function () {
   var failed = [];
   function note(what) { failed.push(what); T.status(status, 'Could not load: ' + failed.join(', ') + '. The rest of the page still works.', 'is-warn'); }
 
-  T.getJSON('https://api.open-meteo.com/v1/forecast?latitude=27.7172&longitude=85.324&current=temperature_2m,weather_code&daily=sunrise,sunset&timezone=Asia%2FKathmandu&forecast_days=1')
+  var AQI = [[50, 'Good', 'fact-mint'], [100, 'Moderate', 'fact-yellow'], [150, 'Unhealthy for sensitive groups', 'fact-orange'], [200, 'Unhealthy', 'fact-red'], [300, 'Very unhealthy', 'fact-red'], [9999, 'Hazardous', 'fact-red']];
+  /* Weather, sun times and air quality come from the site's data hub (pre-fetched server-side); the browser never contacts Open-Meteo. */
+  Hub.get('weather.json')
     .then(function (d) {
-      var c = d && d.current, dl = d && d.daily;
-      var t = c && T.num(c.temperature_2m);
+      var t = T.num(d && d.temperature_c);
       if (t === null) throw new Error('bad');
+      var stale = Hub.isStale(d.generated_at, 3);
       $('t-temp').textContent = Math.round(t) + '°C';
-      $('t-wx').textContent = (WMO[c.weather_code] || 'Weather') + ' in Kathmandu';
+      $('t-wx').textContent = (WMO[d.weather_code] || 'Weather') + ' in Kathmandu' + (stale ? ' (may be out of date)' : '');
       $('tile-wx').hidden = false;
-      var sr = dl && dl.sunrise && T.str(dl.sunrise[0], 25), ss = dl && dl.sunset && T.str(dl.sunset[0], 25);
-      if (/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(sr || '') && /^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(ss || '')) {
+      var sr = T.str(d.sunrise, 25), ss = T.str(d.sunset, 25);
+      if (/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(sr) && /^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(ss)) {
         $('t-sun').textContent = sr.slice(11) + ' / ' + ss.slice(11);
         $('t-sun-say').textContent = 'Sunrise / sunset today';
         $('tile-sun').hidden = false;
       }
-    }).catch(function () { note('weather'); });
-
-  var AQI = [[50, 'Good', 'fact-mint'], [100, 'Moderate', 'fact-yellow'], [150, 'Unhealthy for sensitive groups', 'fact-orange'], [200, 'Unhealthy', 'fact-red'], [300, 'Very unhealthy', 'fact-red'], [9999, 'Hazardous', 'fact-red']];
-  T.getJSON('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=27.7172&longitude=85.324&current=us_aqi,pm2_5')
-    .then(function (d) {
-      var c = d && d.current, a = c && T.num(c.us_aqi), pm = c && T.num(c.pm2_5);
-      if (a === null) throw new Error('bad');
+      var a = d.aqi && T.num(d.aqi.us_aqi), pm = d.aqi && T.num(d.aqi.pm2_5);
+      if (a === null) { note('air quality'); return; }
       var band = AQI.filter(function (b) { return a <= b[0]; })[0];
       var tile = $('tile-aqi'); tile.className = 'fact ' + band[2];
       $('t-aqi').textContent = Math.round(a);
-      $('t-aqi-say').textContent = 'US AQI: ' + band[1] + (pm !== null ? ' (PM2.5 ' + T.fmt(pm, 1) + ' µg/m³)' : '');
+      $('t-aqi-say').textContent = 'US AQI: ' + band[1] + (pm !== null ? ' (PM2.5 ' + T.fmt(pm, 1) + ' µg/m³)' : '') + (stale ? ' (may be out of date)' : '');
       tile.hidden = false;
-    }).catch(function () { note('air quality'); });
+    }).catch(function () { note('weather'); note('air quality'); });
 
   /* ---- NRB forex ---- */
   var WANT = ['USD', 'INR', 'EUR', 'GBP', 'JPY'];

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://haveibeenpwned.com; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://datastats.abcnews.com.np; base-uri 'none'; form-action 'none'">
 <script src="/assets/framebust.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
@@ -64,7 +64,7 @@
 </div>
 <section class="lab-privacy" aria-labelledby="priv-h">
 <h2 id="priv-h">Data sources &amp; privacy</h2>
-<p>The full public breach list is fetched from haveibeenpwned.com (Have I Been Pwned) when the page loads, so that service sees your IP address. No input of yours is sent anywhere, nothing is stored, and descriptions are reduced to plain text before display.</p>
+<p>The public breach list is fetched from haveibeenpwned.com (Have I Been Pwned) once a day by this site's data service, so your browser never contacts that service and it never sees your IP address. No input of yours is sent anywhere, nothing is stored, and descriptions are reduced to plain text before display.</p>
 <p>To check whether your own email appears in a breach, use haveibeenpwned.com directly. This page never asks for an email address.</p>
 </section>
 <noscript><p class="dw-status is-warn">This tool needs JavaScript.</p></noscript>
@@ -78,7 +78,9 @@
 </footer>
 <script src="../../widgets/nav.js?v=3"></script>
 <script src="../sec-shared/lab.js?v=1"></script>
-<script src="breaches.js?v=1"></script>
+<script src="../../widgets/data-base.js?v=1"></script>
+<script src="../../widgets/hub.js?v=1"></script>
+<script src="breaches.js?v=2"></script>
 <script src="../polish.js?v=1" defer></script>
 </body>
 </html>

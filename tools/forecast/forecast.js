@@ -1,38 +1,13 @@
 (function () {
   var L = window.Lab, status = document.getElementById('status'), list = document.getElementById('list');
-  var CIRCL = ['cve.circl.lu'], FIRST = ['api.first.org'], CVE = /^CVE-\d{4}-\d{4,10}$/;
+  var CVE = /^CVE-\d{4}-\d{4,10}$/;
 
-  function pickScore(rec) {
-    var best = null;
-    function scan(metrics) {
-      if (!Array.isArray(metrics)) return;
-      metrics.forEach(function (m) {
-        if (!m || typeof m !== 'object') return;
-        ['cvssV4_0', 'cvssV3_1', 'cvssV3_0'].forEach(function (k) {
-          var s = m[k] && L.num(m[k].baseScore);
-          if (s !== null && s >= 0 && s <= 10 && (best === null || s > best)) best = s;
-        });
-      });
-    }
-    var c = rec.containers || {};
-    if (c.cna) scan(c.cna.metrics);
-    if (Array.isArray(c.adp)) c.adp.forEach(function (a) { if (a) scan(a.metrics); });
-    return best;
-  }
-  function extract(rec) {
-    if (!rec || typeof rec !== 'object') return null;
-    var id = rec.cveMetadata && rec.cveMetadata.cveId, cna = rec.containers && rec.containers.cna || {};
-    if (typeof id !== 'string') {
-      var al = Array.isArray(rec.aliases) ? rec.aliases : [];
-      id = al.filter(function (a) { return typeof a === 'string' && CVE.test(a); })[0];
-    }
-    if (typeof id !== 'string' || !CVE.test(id)) return null;
-    var d = '';
-    if (Array.isArray(cna.descriptions) && cna.descriptions[0]) d = L.str(cna.descriptions[0].value, 260);
-    if (!d) d = L.str(rec.summary || rec.details || '', 260);
-    var title = L.str(cna.title || rec.summary || '', 140);
-    var pub = (rec.cveMetadata && rec.cveMetadata.datePublished) || rec.published || '';
-    return { id: id, title: title, desc: d, cvss: pickScore(rec), pub: L.str(pub, 40) };
+  function norm(r) {
+    if (!r || typeof r !== 'object' || typeof r.id !== 'string' || !CVE.test(r.id)) return null;
+    var e = L.num(r.epss), p = L.num(r.percentile), cv = L.num(r.cvss);
+    return { id: r.id, title: L.str(r.title, 140), desc: L.str(r.desc, 260),
+      cvss: cv !== null && cv >= 0 && cv <= 10 ? cv : null,
+      epss: e !== null && e >= 0 && e <= 1 ? e : null, pct: p !== null && p >= 0 && p <= 1 ? p : null };
   }
   function weather(p) {
     if (p >= 0.5) return ['is-hot', 'Storm warning', 'More likely than not to be exploited. Patch first.'];
@@ -64,26 +39,17 @@
     return li;
   }
 
-  L.fetch('https://cve.circl.lu/api/last', CIRCL).then(function (arr) {
-    if (!Array.isArray(arr)) throw new Error('bad list');
-    var seen = {}, items = [];
-    arr.slice(0, 60).forEach(function (r) { var c = extract(r); if (c && !seen[c.id]) { seen[c.id] = 1; items.push(c); } });
+  window.Hub.get('forecast.json').then(function (d) {
+    if (!Array.isArray(d.items)) throw new Error('bad items');
+    var items = [];
+    d.items.slice(0, 30).forEach(function (r) { var c = norm(r); if (c) items.push(c); });
     if (!items.length) throw new Error('no cves');
-    items = items.slice(0, 30);
-    var ids = items.map(function (c) { return c.id; }).join(',');
-    return L.fetch('https://api.first.org/data/v1/epss?cve=' + encodeURIComponent(ids) + '&limit=100', FIRST).then(function (j) {
-      return j && Array.isArray(j.data) ? j.data : [];
-    }, function () { return null; }).then(function (rows) {
-      var map = {};
-      (rows || []).forEach(function (r) { if (r && typeof r.cve === 'string' && CVE.test(r.cve)) map[r.cve] = { e: L.num(r.epss), p: L.num(r.percentile) }; });
-      items.forEach(function (c) { var m = map[c.id]; c.epss = m && m.e !== null && m.e >= 0 && m.e <= 1 ? m.e : null; c.pct = m ? m.p : null; });
-      items.sort(function (a, b) { return (b.epss === null ? -1 : b.epss) - (a.epss === null ? -1 : a.epss); });
-      items.slice(0, 20).forEach(function (c) { list.appendChild(card(c)); });
-      list.hidden = false;
-      if (rows === null) L.status(status, 'The scoring service (EPSS) did not answer, so no probabilities are shown. Try again later.', 'is-warn');
-      else L.status(status, 'Ranked by EPSS, highest chance first. Updated daily by FIRST.', '');
-    });
+    items.sort(function (a, b) { return (b.epss === null ? -1 : b.epss) - (a.epss === null ? -1 : a.epss); });
+    items.slice(0, 20).forEach(function (c) { list.appendChild(card(c)); });
+    list.hidden = false;
+    if (window.Hub.isStale(d.generated_at, 6)) L.status(status, 'This forecast may be out of date. It is refreshed every 30 minutes and the last update is older than expected.', 'is-warn');
+    else L.status(status, 'Ranked by EPSS, highest chance first. Updated daily by FIRST.', '');
   }).catch(function () {
-    list.hidden = true; L.status(status, 'The latest-CVE feed is unavailable right now. Please try again later.', 'is-err');
+    list.hidden = true; L.status(status, 'The forecast is unavailable right now. Please try again later.', 'is-err');
   });
 })();

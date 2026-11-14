@@ -69,18 +69,21 @@ var T = (function () {
     $('daylabel').textContent = d + ' ' + MONTH[m - 1];
     $('summary').textContent = 'Loading...'; T.clear($('events')); status.hidden = true; events = [];
     var mm = ('0' + m).slice(-2), dd = ('0' + d).slice(-2);
-    T.getJSON('https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/' + mm + '/' + dd).then(function (r) {
+    window.Hub.get('onthisday.json').then(function (r) {
       if (my !== seq) return;
-      var a = r && r.events; if (!Array.isArray(a)) throw new Error('bad');
+      var a = r && r.days && Object.prototype.hasOwnProperty.call(r.days, mm + '-' + dd) ? r.days[mm + '-' + dd] : null;
+      if (!a) {
+        $('summary').textContent = '';
+        T.status(status, 'Only dates within two days of today are available (the feed is saved on this site\'s data service, not fetched live). Press "Today" to go back.', 'is-warn');
+        return;
+      }
+      if (!Array.isArray(a)) throw new Error('bad');
       a.forEach(function (e) {
         var year = T.num(e && e.year), text = T.str(e && e.text, 400); if (year === null || !text) return;
-        var pg = Array.isArray(e.pages) && e.pages[0], url = '', title = '';
-        if (pg) {
-          title = T.str(pg.normalizedtitle || pg.title || '', 100).replace(/_/g, ' ');
-          url = T.safeUrl(pg.content_urls && pg.content_urls.desktop && pg.content_urls.desktop.page, ['en.wikipedia.org']);
-        }
+        var url = T.safeUrl(e.url, ['en.wikipedia.org']), title = T.str(e.title || '', 100);
         events.push({ year: year, text: text, url: url, title: title });
       });
+      if (window.Hub.isStale(r.generated_at, 24)) T.status(status, 'Showing the last saved copy; it may be out of date.', 'is-warn');
       render();
     }).catch(function () {
       if (my !== seq) return;

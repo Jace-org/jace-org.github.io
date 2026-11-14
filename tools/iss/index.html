@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.wheretheiss.at; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://datastats.abcnews.com.np; base-uri 'none'; form-action 'none'">
 <script src="/assets/framebust.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
@@ -57,7 +57,7 @@
 <h2 class="dw-h2">Where it is</h2>
 <div class="i-mapwrap"><svg id="map" viewBox="0 0 720 360" role="img" aria-label="Flat world map showing the ISS position, its orbit trace and Kathmandu"></svg></div>
 <p class="dw-note" id="i-note">Yellow dot: the station now. Faint line: its path from 30 minutes ago to 60 minutes ahead. White dot: Kathmandu. The map is a plain latitude and longitude grid, not a land map. Position updates every 10 seconds while this tab is visible and pauses when you switch away.</p>
-<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>Positions come from the <a href="https://wheretheiss.at/" target="_blank" rel="noopener noreferrer">Where the ISS at?</a> public API. Your browser contacts it directly, so it sees your IP address. Nothing is sent to this site's servers or stored. Distances are computed in your browser; "straight line" includes the station's altitude, "along the ground" does not.</p></section>
+<section class="tl-source" aria-labelledby="src-h"><h2 id="src-h">Data sources &amp; privacy</h2><p>Positions come from the <a href="https://wheretheiss.at/" target="_blank" rel="noopener noreferrer">Where the ISS at?</a> public API. This site fetches them on a schedule and serves a copy, so your browser never contacts that service and it never sees your IP address. Nothing is sent to this site's servers or stored. Distances are computed in your browser; "straight line" includes the station's altitude, "along the ground" does not.</p></section>
 </main>
 <footer class="site-footer">
 <div class="footer-cols">
@@ -67,7 +67,9 @@
 <div class="wordmark" aria-hidden="true"><span>Jhapendra Kandel</span></div>
 </footer>
 <script src="../../widgets/nav.js?v=3"></script>
-<script src="iss.js?v=1"></script>
+<script src="../../widgets/data-base.js?v=3"></script>
+<script src="../../widgets/hub.js?v=4"></script>
+<script src="iss.js?v=2"></script>
 <script src="../polish.js?v=1" defer></script>
 </body>
 </html>
