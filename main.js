@@ -367,4 +367,28 @@
             b.addEventListener("pointerleave", function () { xTo(0); yTo(0); });
         });
     });
+
+    // 12. Fact tiles: soft magnetic pull + tilt, eased both in and out.
+    mm.add("(hover: hover) and (pointer: fine)", function () {
+        $$(".fact").forEach(function (f) {
+            var q = null;
+            var mk = function () {
+                gsap.killTweensOf(f);
+                q = {
+                    x: gsap.quickTo(f, "x", { duration: .9, ease: "power3.out" }),
+                    y: gsap.quickTo(f, "y", { duration: .9, ease: "power3.out" }),
+                    r: gsap.quickTo(f, "rotation", { duration: 1.1, ease: "power3.out" }),
+                    s: gsap.quickTo(f, "scale", { duration: .9, ease: "power3.out" })
+                };
+            };
+            f.addEventListener("pointerenter", function () { if (!q) mk(); q.s(1.03); });
+            f.addEventListener("pointermove", function (e) {
+                if (!q) mk();
+                var r = f.getBoundingClientRect();
+                var dx = (e.clientX - r.left) / r.width - .5, dy = (e.clientY - r.top) / r.height - .5;
+                q.x(dx * 22); q.y(dy * 22 - 4); q.r(dx * 5);
+            });
+            f.addEventListener("pointerleave", function () { if (q) { q.x(0); q.y(0); q.r(0); q.s(1); } });
+        });
+    });
 })();

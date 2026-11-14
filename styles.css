@@ -227,9 +227,9 @@ button, input, textarea { font: inherit; color: inherit; }
 .fact {
     display: flex; flex-direction: column; justify-content: space-between; gap: 28px;
     min-height: 250px; padding: 24px; border-radius: var(--r-lg);
-    transition: transform .4s var(--ease);
+    will-change: transform;
 }
-.fact:hover { transform: translateY(-6px) rotate(-1deg); }
+@media (hover: none), (prefers-reduced-motion: reduce) { .fact { transition: transform .4s var(--ease); } .fact:hover { transform: translateY(-6px) rotate(-1deg); } }
 .fact-num {
     font-family: var(--display); font-stretch: 62%; font-weight: 900;
     font-size: clamp(4rem, 3rem + 4vw, 7.5rem); line-height: .82; text-transform: uppercase;
