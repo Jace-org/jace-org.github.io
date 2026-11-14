@@ -6,7 +6,21 @@
     <atom:link href="https://jhapendrakandel.com.np/tech/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Short summaries of the latest technology news, each linking to the full story.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Nov 2026 12:01:24 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 14 Nov 2026 00:09:28 +0000</lastBuildDate>
+    <item>
+      <title>FAA Issues Third Nationwide Ground Stop After Communication Outage</title>
+      <link>https://arstechnica.com/tech-policy/2026/11/faa-orders-third-nationwide-ground-stop-in-its-history/</link>
+      <guid isPermaLink="false">https://abcnews.com.np/faa-issues-third-nationwide-ground-stop-after-communication-outage/</guid>
+      <pubDate>Sat, 14 Nov 2026 00:09:28 +0000</pubDate>
+      <description>The Federal Aviation Administration issued a nationwide ground stop on Friday afternoon, halting departures from all U.S. airports after…</description>
+    </item>
+    <item>
+      <title>Amazon Plans Global Product Data Vault</title>
+      <link>https://www.theverge.com/tech/1033697/amazon-world-product-graph-ai-search</link>
+      <guid isPermaLink="false">https://abcnews.com.np/amazon-plans-global-product-data-vault/</guid>
+      <pubDate>Sat, 14 Nov 2026 00:08:19 +0000</pubDate>
+      <description>Amazon has plans to build a vault of data on every product sold anywhere on the internet, including products Amazon does not sell, and make…</description>
+    </item>
     <item>
       <title>Microsoft Struggles to Restore Global Outage Affecting Outlook and Teams</title>
       <link>https://abcnews.com.np/microsoft-struggles-to-restore-global-outage-affecting-outlook-and-teams/</link>
@@ -76,20 +90,6 @@
       <guid isPermaLink="false">https://abcnews.com.np/jensen-huang-resigns-as-nvidia-ceo-after-affair-reports/</guid>
       <pubDate>Fri, 13 Nov 2026 06:08:49 +0000</pubDate>
       <description>Nvidia announced that Jensen Huang resigned as chief executive officer of the American technology company following reports of two affairs…</description>
-    </item>
-    <item>
-      <title>Netflix Releases New Trailer for Brad Bird’s Ray Gunn</title>
-      <link>https://arstechnica.com/culture/2026/11/netflix-releases-new-trailer-for-ray-gunn/</link>
-      <guid isPermaLink="false">https://abcnews.com.np/netflix-releases-new-trailer-for-brad-birds-ray-gunn/</guid>
-      <pubDate>Fri, 13 Nov 2026 05:09:09 +0000</pubDate>
-      <description>Netflix has released a new trailer for the upcoming animated film Ray Gunn, a project directed by Brad Bird and co-written by Matthew…</description>
-    </item>
-    <item>
-      <title>Google Launches Gemini 4 Hydrogen For Complex Questions</title>
-      <link>https://www.theverge.com/ai-artificial-intelligence/1032505/google-search-ai-mode-gemini-4-hydrogen</link>
-      <guid isPermaLink="false">https://abcnews.com.np/google-launches-gemini-4-hydrogen-for-complex-questions/</guid>
-      <pubDate>Fri, 13 Nov 2026 05:08:13 +0000</pubDate>
-      <description>Google has launched Gemini 4 Hydrogen, a new artificial intelligence model that can give more helpful answers to complex questions…</description>
     </item>
   </channel>
 </rss>
