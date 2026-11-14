@@ -4,7 +4,7 @@
 Reads the newest tech stories from the data hub's tech.json (read-only) and rewrites
   - tech/index.html  (between the SNAPSHOT markers)
   - tech/feed.xml    (RSS 2.0)
-Cards stay short (headline + ~140 char summary) and link to the story page; full articles are
+Cards stay short (headline + ~140 char summary) and open a short on-site detail view (/tech/?story=slug); full articles are
 never republished. Output is deterministic (no build timestamps), so an
 unchanged feed leaves the files byte-identical. Stdlib only.
 
@@ -60,6 +60,16 @@ def trim(text, limit=SUMMARY_MAX):
     return re.sub(r"[\s,;:.–—-]+$", "", cut) + "…"
 
 
+SLUG_RE = re.compile(r"^[a-z0-9-]{3,200}$")
+
+
+def slug_of(link):
+    """Last non-empty path segment of a validated story link; '' if it fails SLUG_RE (mirrors tech.js)."""
+    segs = [x for x in urlparse(link).path.split("/") if x]
+    seg = segs[-1] if segs else ""
+    return seg if SLUG_RE.match(seg) else ""
+
+
 _CTL = re.compile(r"[\x00-\x1f\x7f-\x9f]")
 
 
@@ -106,14 +116,15 @@ def parse(raw):
             continue
         title = plain(p["title"])[:300]
         link = safe_link(p.get("link"))
-        if not title or not link:
+        slug = slug_of(link) if link else ""
+        if not title or not slug:
             continue
         try:
             when = datetime.strptime(str(p["date_gmt"]).rstrip("Z"), "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
         except (KeyError, ValueError):
             continue
         summary = trim(plain(p["summary"])) if isinstance(p.get("summary"), str) else ""
-        items.append({"title": title, "link": link, "guid": link, "when": when, "summary": summary})
+        items.append({"title": title, "link": f"{SITE}/tech/?story={slug}", "slug": slug, "guid": link, "when": when, "summary": summary})
         if len(items) >= COUNT:
             break
     return items
@@ -129,7 +140,7 @@ def cards_html(items):
             + (f'                    <p class="tcard-sum">{e(it["summary"])}</p>\n' if it["summary"] else "")
             + '                    <div class="tcard-foot">\n'
             f'                        <time datetime="{it["when"].strftime("%Y-%m-%dT%H:%M:%SZ")}">{it["when"].strftime("%-d %b %Y")}</time>\n'
-            f'                        <a href="{e(it["link"], quote=True)}" target="_blank" rel="noopener noreferrer" aria-label="Read full story: {e(it["title"], quote=True)}">Read full story</a>\n'
+            f'                        <a href="?story={it["slug"]}" aria-label="Read full story: {e(it["title"], quote=True)}">Read full story</a>\n'
             '                    </div>\n'
             '                </li>'
         )
@@ -160,7 +171,7 @@ def feed_xml(items):
         "    <title>Tech Briefing</title>\n"
         f"    <link>{SITE}/tech/</link>\n"
         f'    <atom:link href="{SITE}/tech/feed.xml" rel="self" type="application/rss+xml"/>\n'
-        "    <description>Short summaries of the latest technology news, each linking to the full story.</description>\n"
+        "    <description>Short summaries of the latest technology news, each with its own page here.</description>\n"
         "    <language>en</language>\n"
         f"    <lastBuildDate>{format_datetime(newest)}</lastBuildDate>\n"
         + "\n".join(rows) + "\n  </channel>\n</rss>\n"

@@ -43,3 +43,38 @@
     .tech-h, .tech-lede, .tcard { animation: none; }
     .tcard::before, .tcard-foot a::before, .tcard-foot a::after { transition: none; }
 }
+
+/* ---------- On-site story detail (/tech/?story=slug) ---------- */
+.tech-page [hidden] { display: none !important; }
+.tstory { max-width: 760px; animation: tc-rise .5s var(--ease) backwards; }
+.tstory-back {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-bottom: clamp(20px, 3vw, 32px);
+    font-weight: 700; text-decoration: none; color: var(--yellow);
+}
+.tstory-back::before { content: "\2190"; transition: transform .3s var(--ease); }
+.tstory-back:hover::before, .tstory-back:focus-visible::before { transform: translateX(-5px); }
+.tstory-h {
+    font-family: var(--display); font-stretch: 72%; font-weight: 800; text-transform: uppercase;
+    font-size: clamp(2rem, 1.2rem + 3.6vw, 4rem); line-height: .98; letter-spacing: -.01em;
+    overflow-wrap: anywhere; outline: none;
+}
+.tstory-date {
+    display: block; margin: clamp(16px, 2.4vw, 24px) 0; padding-bottom: 16px; border-bottom: 1px solid var(--line);
+    font-family: var(--mono); font-size: .8125rem; letter-spacing: .04em; text-transform: uppercase; color: var(--yellow);
+}
+.tstory-body { font-size: clamp(1.0625rem, 1rem + .3vw, 1.25rem); line-height: 1.65; color: var(--ink-soft); max-width: 62ch; margin-top: 16px; }
+.tstory-more { margin-top: clamp(36px, 6vw, 72px); padding-top: 24px; border-top: 1px solid var(--line); }
+.tstory-more-h { font-family: var(--display); font-stretch: 72%; font-weight: 800; text-transform: uppercase; font-size: 1.5rem; margin-bottom: 8px; }
+.tstory-list { list-style: none; padding: 0; margin: 0; }
+.tstory-list li { border-bottom: 1px solid var(--line); }
+.tstory-list a {
+    display: block; padding: 14px 0; min-height: 44px; font-weight: 700; line-height: 1.3; text-decoration: none;
+    transition: transform .35s var(--ease), color .25s;
+}
+.tstory-list a:hover, .tstory-list a:focus-visible { color: var(--yellow); transform: translateX(6px); }
+@media (max-width: 640px) { .tstory-list a { padding: 16px 0; } }
+@media (prefers-reduced-motion: reduce) {
+    .tstory { animation: none; }
+    .tstory-back::before, .tstory-list a { transition: none; }
+    .tstory-list a:hover, .tstory-list a:focus-visible { transform: none; }
+}

@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css?v=20261112b">
-<link rel="stylesheet" href="../widgets/widgets.css?v=6">
+<link rel="stylesheet" href="../widgets/widgets.css?v=7">
 </head>
 <body class="dw-polish">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -42,13 +42,16 @@
 </nav>
 </header>
 <main id="main" class="dw-page">
+<div id="intro">
 <p class="kicker">Security Wire</p>
 <h1 class="sec-h dw-title">Critical bugs, latest first</h1>
-<p class="dw-lede">Fresh vulnerabilities rated CVSS 9.0 or higher, each linked to its official record.</p>
-<p class="dw-note">Source: public vulnerability records. The list is built on a server every 30 minutes and cached, so nothing about your visit is sent to a third party. A CVSS score measures technical severity, not whether a flaw is being exploited. Always read the full record.</p>
+<p class="dw-lede">Fresh vulnerabilities rated CVSS 9.0 or higher. Open any entry for its full description.</p>
+<p class="dw-note">Source: public vulnerability records. The list is built on a server every 30 minutes and cached, so nothing about your visit is sent to a third party. A CVSS score measures technical severity, not whether a flaw is being exploited. Treat it as one signal, not a verdict.</p>
+</div>
 <noscript><p class="dw-status is-warn">This list loads with JavaScript. Without it, please enable it to see the latest entries.</p></noscript>
 <p id="status" class="dw-status" role="status" hidden></p>
 <ul id="list" class="dw-cards" hidden></ul>
+<article id="detail" class="dw-detail" hidden></article>
 </main>
 <footer class="site-footer">
 <div class="footer-cols">
@@ -62,6 +65,6 @@
 <script src="../widgets/hub.js?v=3"></script>
 <script src="../widgets/nav.js?v=3"></script>
 <script src="../widgets/motion.js?v=1"></script>
-<script src="security.js?v=3"></script>
+<script src="security.js?v=4"></script>
 </body>
 </html>
