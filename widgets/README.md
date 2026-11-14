@@ -3,7 +3,7 @@ Data widgets (for the integrator). Nothing here is wired into the homepage yet.
 Files
   widgets/data-base.js   the ONLY place the data endpoint (DATA_BASE) is defined
   widgets/hub.js         shared helpers (fetch with 8 s timeout, URL allowlist, text helpers)
-  widgets/hn.js          window.renderHN(container)   - Hacker News top tech cards
+  widgets/hn.js          window.renderHN(container)   - Tech news cards
   widgets/now.js         window.renderNow(container)  - one-line "Now" strip
   widgets/widgets.css    data-specific styles; loaded AFTER styles.css (reuses its tokens)
   widgets/nav.js         mobile menu toggle for /pulse/ and /security/ only

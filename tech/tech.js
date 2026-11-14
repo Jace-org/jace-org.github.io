@@ -5,9 +5,6 @@
     "use strict";
 
     var LINK_HOST = "abcnews.com.np"; // the only host item links may point to (with the hub's DATA_BASE, the only host constant here)
-    // Publishers a story's original article may live on (one list; keep in step with the hub's allowlist).
-    var SOURCE_HOSTS = ["theverge.com", "arstechnica.com", "techcrunch.com", "wired.com", "theregister.com",
-        "engadget.com", "restofworld.org", "technologyreview.com", "thehackernews.com", "nepalitelecom.com"];
     var PER_PAGE = 12;
     var SUMMARY_MAX = 140;
 
@@ -37,23 +34,6 @@
         } catch (e) { return ""; }
     }
 
-    // Original-article link: https, parsed hostname EXACTLY a SOURCE_HOSTS entry or "www." + entry (no other subdomains),
-    // port absent or 443, host matches [a-z0-9.-]+ (no trailing dot / percent), no userinfo, <= 500 chars, no control
-    // chars or whitespace. Same rule as build_snapshot.safe_source. Returns "" on failure (caller uses the story link).
-    function safeSource(href) {
-        if (typeof href !== "string" || href.length > 500 || href.indexOf("\\") >= 0 || /[\u0000-\u0020\u007f-\u009f]/.test(href)) return "";
-        if (/^[^:]*:\/\/[^\/?#]*@/.test(href)) return "";
-        try {
-            var u = new URL(href);
-            if (u.protocol !== "https:" || u.username || u.password) return "";
-            if (u.port !== "" && u.port !== "443") return "";
-            var h = u.hostname;
-            if (!/^[a-z0-9.-]+$/.test(h) || h.charAt(h.length - 1) === ".") return "";
-            var ok = SOURCE_HOSTS.some(function (d) { return h === d || h === "www." + d; });
-            return ok ? u.href : "";
-        } catch (e) { return ""; }
-    }
-
     // Validated, normalised items from tech.json (max 48). Rejects the whole file on a bad shape.
     function load() {
         if (!window.Hub || !window.DATA_BASE) return Promise.reject(new Error("no hub"));
@@ -64,7 +44,7 @@
                 if (!it || typeof it !== "object") return;
                 var title = window.Hub.str(it.title, 300);
                 var link = safeLink(it.link);
-                var href = safeSource(it.source_url) || link;
+                var href = link;
                 var when = window.Hub.date(typeof it.date_gmt === "string" && !/[zZ]|[+-]\d\d:?\d\d$/.test(it.date_gmt) ? it.date_gmt + "Z" : it.date_gmt);
                 if (!title || !href) return;
                 out.push({ title: title, href: href, when: when, summary: trim(window.Hub.str(it.summary, 600), SUMMARY_MAX) });
@@ -110,7 +90,7 @@
         return frag;
     }
 
-    window.TechBriefing = { ago: ago, load: load, buildCards: buildCards, safeSource: safeSource };
+    window.TechBriefing = { ago: ago, load: load, buildCards: buildCards };
 
     /* ---------- /tech/ page ---------- */
     var grid = document.getElementById("tech-grid");

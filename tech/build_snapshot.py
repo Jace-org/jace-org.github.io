@@ -4,8 +4,7 @@
 Reads the newest tech stories from the data hub's tech.json (read-only) and rewrites
   - tech/index.html  (between the SNAPSHOT markers)
   - tech/feed.xml    (RSS 2.0)
-Cards stay short (headline + ~140 char summary) and link out (to the original
-article when the hub supplies an allowlisted source_url, else to the story page); full articles are
+Cards stay short (headline + ~140 char summary) and link to the story page; full articles are
 never republished. Output is deterministic (no build timestamps), so an
 unchanged feed leaves the files byte-identical. Stdlib only.
 
@@ -26,9 +25,6 @@ from urllib.parse import urlparse
 HUB_URL = "https://datastats.abcnews.com.np/v1/tech.json"
 HUB_HOST = "datastats.abcnews.com.np"
 LINK_HOST = "abcnews.com.np"
-# Publishers a story's original article may live on (keep in step with tech/tech.js SOURCE_HOSTS).
-SOURCE_HOSTS = ("theverge.com", "arstechnica.com", "techcrunch.com", "wired.com", "theregister.com",
-                "engadget.com", "restofworld.org", "technologyreview.com", "thehackernews.com", "nepalitelecom.com")
 COUNT = 12
 SUMMARY_MAX = 140
 MAX_BYTES = 1_000_000
@@ -80,27 +76,7 @@ def safe_link(href):
     return ""
 
 
-def safe_source(href):
-    """Original-article link: https, host EXACTLY a SOURCE_HOSTS entry or "www." + entry (no other subdomains),
-    port absent or 443, host matches [a-z0-9.-]+ with no trailing dot, no userinfo, <= 500 chars, no control
-    chars or whitespace. Same rule as tech.js safeSource. '' when invalid."""
-    if not isinstance(href, str) or len(href) > 500 or _CTL.search(href) or "\\" in href or re.search(r"\s", href):
-        return ""
-    try:
-        u = urlparse(href)
-        host = u.hostname or ""
-        port = u.port  # raises ValueError on a bad port
-    except ValueError:
-        return ""
-    if u.scheme != "https" or u.username is not None or u.password is not None or "@" in u.netloc:
-        return ""
-    if port not in (None, 443) or not re.fullmatch(r"[a-z0-9.-]+", host) or host.endswith("."):
-        return ""
-    if u.netloc.lower() not in (host, host + ":443"):
-        return ""
-    if any(host == d or host == "www." + d for d in SOURCE_HOSTS):
-        return href
-    return ""
+
 
 
 class _NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -137,7 +113,7 @@ def parse(raw):
         except (KeyError, ValueError):
             continue
         summary = trim(plain(p["summary"])) if isinstance(p.get("summary"), str) else ""
-        items.append({"title": title, "link": safe_source(p.get("source_url")) or link, "guid": link, "when": when, "summary": summary})
+        items.append({"title": title, "link": link, "guid": link, "when": when, "summary": summary})
         if len(items) >= COUNT:
             break
     return items

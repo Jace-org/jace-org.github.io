@@ -1,6 +1,5 @@
 (function () {
   var H = window.Hub, status = document.getElementById('status'), list = document.getElementById('list');
-  var NVD = ['nvd.nist.gov'];
   function say(msg, cls) { status.hidden = false; status.className = 'dw-status ' + (cls || ''); status.textContent = msg; }
 
   H.get('cves.json').then(function (d) {
@@ -10,10 +9,9 @@
       if (!it || typeof it !== 'object') return;
       var id = H.str(it.id, 32);
       if (!/^CVE-\d{4}-\d{4,10}$/.test(id)) return;
-      var href = H.safeUrl(it.url, NVD);
       var score = H.num(it.cvss);
       var summary = H.str(it.summary, 280);
-      if (!href || score === null || !summary) return;
+      if (score === null || !summary) return;
       var li = H.el('li', 'dw-card dw-cve' + (score >= 9 ? ' is-crit' : ''));
       var head = H.el('div', 'dw-meta');
       head.appendChild(H.el('span', 'id', id));
@@ -23,7 +21,6 @@
       var meta = H.el('div', 'dw-meta');
       var ago = H.ago(it.published);
       if (ago) { var t = H.el('time', '', 'Published ' + ago); var dt = H.date(it.published); if (dt) t.setAttribute('datetime', dt.toISOString()); meta.appendChild(t); }
-      meta.appendChild(H.link(href, 'NVD record', ''));
       li.appendChild(meta);
       list.appendChild(li);
       shown++;
@@ -32,7 +29,7 @@
     list.hidden = false;
     if (H.isStale(d.generated_at, 3)) {
       var g = H.ago(d.generated_at);
-      say('This list may be out of date' + (g ? ' (last updated ' + g + ')' : '') + '. Check nvd.nist.gov for the latest.', 'is-warn');
+      say('This list may be out of date' + (g ? ' (last updated ' + g + ')' : '') + '. Please check back soon.', 'is-warn');
     }
   }).catch(function () {
     say('The security feed is unavailable right now. Please try again later.', 'is-err');

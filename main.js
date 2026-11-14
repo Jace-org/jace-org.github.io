@@ -130,7 +130,7 @@
             .catch(function () { /* block stays hidden */ });
     }
 
-    /* ---------- Data widgets: Now strip + Hacker News (hidden until data loads) ---------- */
+    /* ---------- Data widgets: Now strip + Tech news (hidden until data loads) ---------- */
     function refreshTriggers() { if (window.ScrollTrigger) { try { ScrollTrigger.refresh(); } catch (e) { } } }
     if (window.renderNow && $("#now-strip")) {
         Promise.resolve(renderNow($("#now-strip"))).then(refreshTriggers);
