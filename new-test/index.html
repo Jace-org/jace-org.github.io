@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>if (top !== self) { document.documentElement.style.display='none'; try{top.location = self.location;}catch(e){} }</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#121212">
+    <meta name="color-scheme" content="dark">
+    <meta name="robots" content="noindex, follow">
+
+    <title>Jhapendra Kandel (J.K), Full-Stack Developer, Cybersecurity &amp; Automation</title>
+    <meta name="description"
+        content="Jhapendra Kandel (J.K), full-stack developer, cybersecurity enthusiast and automation engineer from Kathmandu, Nepal. Build with precision, secure by design, automate with purpose.">
+    <meta name="author" content="Jhapendra Kandel">
+    <link rel="canonical" href="https://jhapendrakandel.com.np/">
+
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <link rel="apple-touch-icon" href="/assets/logo.png">
+
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=erode@400,500,600,401&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20261114a">
+    <link rel="preload" as="image" href="/mainimg.webp">
+    <script>document.documentElement.classList.add("js");</script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Shared paper edges, drawn once -->
+    <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+        <defs>
+            <pattern id="zig" width="18" height="10" patternUnits="userSpaceOnUse"><path class="edge-fill" d="M0 0H18L9 10Z"/></pattern>
+            <pattern id="scallop" width="28" height="14" patternUnits="userSpaceOnUse"><path class="edge-fill" d="M0 0H28A14 14 0 0 1 0 0Z"/></pattern>
+            <pattern id="scallop-up" width="28" height="14" patternUnits="userSpaceOnUse"><path class="edge-fill" d="M0 14A14 14 0 0 1 28 14Z"/></pattern>
+            <pattern id="bars" width="56" height="56" patternUnits="userSpaceOnUse"><rect class="bar-b" width="28" height="56"/><rect class="bar-a" x="28" width="28" height="56"/></pattern>
+        </defs>
+    </svg>
+
+    <header class="site-nav" id="top">
+        <a class="nav-mark" href="#main" aria-label="Jhapendra Kandel, to the top">J.K</a>
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <nav id="nav-links" class="nav-links" aria-label="Primary">
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#skills">Skills</a>
+            <a href="#journey">Journey</a>
+            <a href="#credentials">Credentials</a>
+            <a href="/blog/">Blog</a>
+            <a href="/tech/">Tech</a>
+            <a href="/pulse/">Pulse</a>
+            <a href="/security/">Security Wire</a>
+            <a href="/tools/">Tools</a>
+            <a href="/toolbox/">Resources</a>
+            <a class="nav-cta" href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Now strip (hidden until data loads) -->
+    <div id="now-strip" hidden></div>
+
+    <main id="main">
+        <!-- Front page: the printed sheet beside the room it is made in -->
+        <section class="front" id="home" aria-labelledby="front-name">
+            <article class="sheet front-sheet">
+                <div class="front-body">
+                    <svg class="stripe" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#bars)"/></svg>
+                    <h1 class="front-name" id="front-name" aria-label="Jhapendra Kandel (J.K)">
+                        <span class="front-line" aria-hidden="true"><span>Jhapendra</span></span>
+                        <span class="front-line" aria-hidden="true"><span>Kandel <small>(J.K)</small></span></span>
+                    </h1>
+                    <p class="dateline" data-in>
+                        <span>Kathmandu, Nepal</span>
+                        <span id="ktm-time">UTC+5:45</span>
+                        <span class="dateline-on"><i class="pulse" aria-hidden="true"></i>Available for work</span>
+                    </p>
+                    <p class="front-lede" data-in>Full-stack developer, cybersecurity enthusiast and automation engineer in Kathmandu. I build web platforms, secure them, and run them on servers I set up myself.</p>
+                    <p class="front-motto" data-in>Build with precision, secure by design, automate with purpose.</p>
+                    <div class="front-actions" data-in>
+                        <a class="btn btn-ink" href="#work">View projects</a>
+                        <a class="text-link" href="#contact">Get in touch</a>
+                    </div>
+                    <div class="latest" id="wire" data-in>
+                        <h2 class="latest-h"><i class="pulse pulse-red" aria-hidden="true"></i>Live from abcnews.com.np</h2>
+                        <ol class="latest-list" id="wire-list">
+                            <li><a href="https://abcnews.com.np/" target="_blank" rel="noopener">Open abcnews.com.np, the news site I built and run</a></li>
+                        </ol>
+                    </div>
+                </div>
+            </article>
+
+            <figure class="front-photo" id="front-photo">
+                <img class="is-on" src="/mainimg.webp" width="1024" height="1024" fetchpriority="high"
+                    alt="A laptop with code on screen on a dark desk at night, a desk lamp glowing behind it">
+                <img src="/assets/img/sundhara-at-night-kathmandu-4.webp" srcset="/assets/img/sundhara-at-night-kathmandu-4-640.webp 640w, /assets/img/sundhara-at-night-kathmandu-4.webp 1280w" sizes="(min-width: 900px) 50vw, 100vw" width="1920" height="1440" loading="lazy" decoding="async"
+                    alt="Sundhara junction in Kathmandu at night, the Dharahara tower lit on the left">
+                <img src="/assets/img/orange-pi-mini-2.webp" srcset="/assets/img/orange-pi-mini-2-640.webp 640w, /assets/img/orange-pi-mini-2.webp 1280w" sizes="(min-width: 900px) 50vw, 100vw" width="1920" height="1247" loading="lazy" decoding="async"
+                    alt="A blue Orange Pi single-board computer photographed from above">
+                <img src="/assets/img/amd-fiji-gpu-package-with-gpu-hbm.webp" srcset="/assets/img/amd-fiji-gpu-package-with-gpu-hbm-640.webp 640w, /assets/img/amd-fiji-gpu-package-with-gpu-hbm.webp 1280w" sizes="(min-width: 900px) 50vw, 100vw" width="1920" height="1285" loading="lazy" decoding="async"
+                    alt="Close-up of a bare GPU chip package with its memory stacks around the die">
+            </figure>
+        </section>
+
+        <!-- At a glance: one big figure and the slip behind it -->
+        <section class="glance" aria-labelledby="glance-h">
+            <div class="glance-say">
+                <h2 id="glance-h" class="sec-h" data-rise>At a glance</h2>
+                <p class="glance-total" data-rise>24/7</p>
+                <p class="glance-cap" data-rise>Self-hosted Ubuntu on an Orange Pi at home</p>
+            </div>
+            <div class="slip-wrap" data-rise>
+                <div class="sheet slip">
+                    <h3>Education</h3>
+                    <p class="slip-row"><span>Bachelor of Information Technology, in progress</span><i></i><b>BIT</b></p>
+                    <h3>Certifications</h3>
+                    <p class="slip-row"><span>Professional certifications: GitHub, Google Cloud, Cloudflare</span><i></i><b data-count="3">3</b></p>
+                    <h3>Competition</h3>
+                    <p class="slip-row"><span>Hack Astra CTF, out of 450 players</span><i></i><b><span data-count="80">80</span>th</b></p>
+                    <h3>Home server</h3>
+                    <p class="slip-row"><span>Self-hosted Ubuntu on an Orange Pi at home</span><i></i><b>24/7</b></p>
+                    <p class="slip-row slip-total"><span>Available for work</span><i></i><b>Yes</b></p>
+                </div>
+                <svg class="edge" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#zig)"/></svg>
+            </div>
+        </section>
+
+        <!-- About: a letter -->
+        <section class="about" id="about" aria-labelledby="about-h">
+            <div class="letter-wrap" data-rise>
+                <div class="sheet letter">
+                    <h2 id="about-h" class="sec-h">I build it. Then I break it.</h2>
+                    <p>I'm a full-stack developer, cybersecurity enthusiast and automation engineer based in Kathmandu, Nepal, and I'm working towards a Bachelor's in Information Technology.</p>
+                    <p>I build secure, scalable web applications, from custom WordPress platforms and news portals to REST APIs and self-hosted infrastructure.</p>
+                    <p>I try to keep <mark>security part of the work from the start</mark> rather than adding it at the end.</p>
+                    <p class="letter-sign">Jhapendra Kandel</p>
+                    <p class="letter-role">Full-Stack Developer &amp; Cybersecurity</p>
+                </div>
+                <svg class="edge" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#scallop)"/></svg>
+                <p class="sheet letter-stub"><a href="mailto:jhapendrakandel.mac@gmail.com">jhapendrakandel.mac@gmail.com</a></p>
+            </div>
+            <div class="about-lists">
+                <div class="about-list" data-rise>
+                    <h3>Focus areas</h3>
+                    <ul>
+                        <li>Ethical hacking &amp; penetration testing</li>
+                        <li>Network security &amp; secure software development</li>
+                        <li>DevOps &amp; infrastructure automation</li>
+                        <li>Applied AI, LLM systems &amp; workflow automation</li>
+                    </ul>
+                </div>
+                <div class="about-list" data-rise>
+                    <h3>Currently learning</h3>
+                    <ul>
+                        <li>Advanced LLM fine-tuning</li>
+                        <li>RAG pipelines</li>
+                        <li>Model Context Protocol (MCP)</li>
+                        <li>Container orchestration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work: laid out like a front page, one lead and five more -->
+        <section class="work" id="work" aria-labelledby="work-h">
+            <div class="work-head">
+                <h2 id="work-h" class="sec-h" data-rise>Featured work</h2>
+                <p class="work-hint" data-rise>Six featured stories, then six more.</p>
+            </div>
+            <ol class="stories">
+                <li class="story story-lead" data-rise>
+                    <a class="story-link" href="https://abcnews.com.np/" target="_blank" rel="noopener">
+                        <figure class="story-pic"><img src="/assets/shots/abcnews.webp" srcset="/assets/shots/abcnews-640.webp 640w, /assets/shots/abcnews.webp 1280w" sizes="(min-width: 900px) 62vw, 100vw" width="1280" height="800" decoding="async" alt="The abcnews.com.np home page with its Nepali navigation and trending headlines"></figure>
+                        <div class="story-copy">
+                            <h3>ABC News Nepal</h3>
+                            <p>Built the full ABC News site by myself from scratch. Front end, back end, and all the server work and DevOps to deploy it and keep it running.</p>
+                            <p class="story-stack">WordPress &middot; PHP &middot; DevOps &middot; Automation</p>
+                            <p class="story-tag">Web platform &middot; Featured &middot; Public</p>
+                            <span class="story-go">Open the site</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="story story-side" data-rise>
+                    <div class="story-link">
+                        <figure class="story-pic"><img loading="lazy" src="/assets/img/shinybox-46mxc-ribbon-microphone-lowswing-studio-berlin.webp" srcset="/assets/img/shinybox-46mxc-ribbon-microphone-lowswing-studio-berlin-640.webp 640w, /assets/img/shinybox-46mxc-ribbon-microphone-lowswing-studio-berlin.webp 1280w" sizes="(min-width: 900px) 30vw, 100vw" width="1920" height="1285" decoding="async" alt="A studio microphone in a shock mount against a perforated wall"></figure>
+                        <div class="story-copy">
+                            <h3>Nepali text to speech</h3>
+                            <p>Trained a speech model that reads Nepali out loud, so Nepali text can be turned into natural-sounding audio.</p>
+                            <p class="story-stack">Python &middot; PyTorch &middot; Speech</p>
+                            <p class="story-tag">AI / Machine learning &middot; Featured &middot; Private</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="story story-side" data-rise>
+                    <div class="story-link">
+                        <figure class="story-pic"><img src="/assets/img/amd-fiji-gpu-package-with-gpu-hbm.webp" srcset="/assets/img/amd-fiji-gpu-package-with-gpu-hbm-640.webp 640w, /assets/img/amd-fiji-gpu-package-with-gpu-hbm.webp 1280w" sizes="(min-width: 900px) 30vw, 100vw" width="1920" height="1285" loading="lazy" decoding="async" alt="Close-up of a bare GPU chip package with its memory stacks around the die"></figure>
+                        <div class="story-copy">
+                            <h3>Nepali LLM at home</h3>
+                            <p>A language model built for Nepali, trained and served entirely on my own homelab machine with a 32 GB GPU.</p>
+                            <p class="story-stack">LLM &middot; Fine-tuning &middot; Homelab</p>
+                            <p class="story-tag">AI / Machine learning &middot; Featured &middot; Private</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="story story-wide" data-rise>
+                    <a class="story-link" href="/lab/">
+                        <figure class="story-pic"><img src="/assets/shots/lab.webp" srcset="/assets/shots/lab-640.webp 640w, /assets/shots/lab.webp 1280w" sizes="(min-width: 900px) 46vw, 100vw" width="1280" height="800" loading="lazy" decoding="async" alt="The Honeypot Lab page: a dark interactive walkthrough with a guided demo button"></figure>
+                        <div class="story-copy">
+                            <h3>Honeypot Lab</h3>
+                            <p>Fire attacks at a decoy in your browser, watch them get classified, work the cases in a management portal, then see each weakness fixed and retested.</p>
+                            <p class="story-stack">Security &middot; Detection &middot; Runs in the page</p>
+                            <p class="story-tag">Cybersecurity &middot; Demo &middot; Public</p>
+                            <span class="story-go">Try the lab</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="story story-small" data-rise>
+                    <a class="story-link" href="https://github.com/jhapendra-kandel/NetGuard-DNS-Monitor" target="_blank" rel="noopener">
+                        <figure class="story-pic"><img src="/assets/shots/netguard.webp" srcset="/assets/shots/netguard-640.webp 640w, /assets/shots/netguard.webp 1280w" sizes="(min-width: 900px) 24vw, 100vw" width="1280" height="800" loading="lazy" decoding="async" alt="The NetGuard DNS Monitor repository on GitHub"></figure>
+                        <div class="story-copy">
+                            <h3>NetGuard DNS Monitor</h3>
+                            <p>Real-time DNS monitoring and threat detection that flags suspicious lookups as they happen.</p>
+                            <p class="story-stack">Python &middot; Networking &middot; Security</p>
+                            <p class="story-tag">Cybersecurity tool &middot; Public</p>
+                            <span class="story-go">View on GitHub</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="story story-small" data-rise>
+                    <a class="story-link" href="https://onss.great-site.net" target="_blank" rel="noopener">
+                        <figure class="story-pic"><img src="/assets/shots/onss.webp" srcset="/assets/shots/onss-640.webp 640w, /assets/shots/onss.webp 1280w" sizes="(min-width: 900px) 24vw, 100vw" width="1280" height="800" loading="lazy" decoding="async" alt="The notes sharing home page, a dark illustrated landing screen"></figure>
+                        <div class="story-copy">
+                            <h3>ONSS</h3>
+                            <p>Online Notes Sharing System. Upload, browse and download study notes with user accounts.</p>
+                            <p class="story-stack">PHP &middot; MySQL &middot; Bootstrap</p>
+                            <p class="story-tag">Web application &middot; Public</p>
+                            <span class="story-go">Open ONSS</span>
+                        </div>
+                    </a>
+                </li>
+            </ol>
+
+            <div class="also-wrap" data-rise>
+                <svg class="edge" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#scallop-up)"/></svg>
+                <div class="sheet also">
+                    <h3 class="also-h">Also built</h3>
+                    <ul class="also-list">
+                        <li><strong>Video Reel Generator</strong><span class="also-cat">AI / ML &middot; Private</span><span>A model that takes a topic or a short script and builds a vertical video reel from it, adding cuts and captions on its own.</span><em>Python &middot; Video &middot; Generative AI</em></li>
+                        <li><strong>Voice to Text Model</strong><span class="also-cat">AI / ML &middot; Private</span><span>A speech recognition model that listens to spoken audio and writes out what was said.</span><em>Python &middot; ASR &middot; Audio</em></li>
+                        <li><strong>Kandel Holdings</strong><span class="also-cat">Web app &middot; Private</span><span>Property and bill management platform with real-time updates for tenants and owners.</span><em>PHP &middot; MySQL &middot; Real-time</em></li>
+                        <li><strong>Restaurant Management System</strong><span class="also-cat">Web app &middot; Private</span><span>Order and invoice management that keeps table orders, billing and kitchen tickets in one dashboard.</span><em>PHP &middot; MySQL &middot; JavaScript</em></li>
+                        <li><strong>Notes Sharing Platform</strong><span class="also-cat">Web app &middot; Private</span><span>Collaborative learning platform with note uploads, browsing and real-time chat between students.</span><em>PHP &middot; MySQL &middot; WebSockets</em></li>
+                        <li><strong>Techkart</strong><span class="also-cat">E-commerce &middot; Private</span><span>A full shopping website with a catalogue, cart and checkout flow on a PHP and SQL backend.</span><em>PHP &middot; SQL &middot; JavaScript</em></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Briefing: latest 4 (hidden until data loads) -->
+        <section class="techb" id="tech" aria-labelledby="techb-h">
+            <div class="techb-head">
+                <h2 id="techb-h" class="sec-h">Tech Briefing</h2>
+                <a class="text-link" href="/tech/">All stories</a>
+            </div>
+            <ul class="tech-grid" id="techb-grid"></ul>
+        </section>
+
+        <!-- Tech news list (hidden until data loads) -->
+        <section id="hn-card" hidden></section>
+
+        <!-- Skills: one word, filled bars -->
+        <section class="skills" id="skills" aria-labelledby="skills-h">
+            <h2 id="skills-h" class="skills-h" data-rise>The board</h2>
+            <ol class="board" id="board">
+                <li data-v="92"><span class="b-fill"><span class="b-name">HTML5</span><span class="b-val">92</span></span></li>
+                <li data-v="90"><span class="b-fill"><span class="b-name">CSS3</span><span class="b-val">90</span></span></li>
+                <li data-v="90"><span class="b-fill"><span class="b-name">WordPress</span><span class="b-val">90</span></span></li>
+                <li data-v="88"><span class="b-fill"><span class="b-name">PHP</span><span class="b-val">88</span></span></li>
+                <li data-v="85"><span class="b-fill"><span class="b-name">JavaScript</span><span class="b-val">85</span></span></li>
+                <li data-v="85"><span class="b-fill"><span class="b-name">MySQL</span><span class="b-val">85</span></span></li>
+                <li data-v="82"><span class="b-fill"><span class="b-name">React</span><span class="b-val">82</span></span></li>
+                <li data-v="80"><span class="b-fill"><span class="b-name">Python</span><span class="b-val">80</span></span></li>
+                <li data-v="78"><span class="b-fill"><span class="b-name">Linux / Server admin</span><span class="b-val">78</span></span></li>
+                <li data-v="75"><span class="b-fill"><span class="b-name">Docker</span><span class="b-val">75</span></span></li>
+                <li data-v="70"><span class="b-fill"><span class="b-name">Ethical hacking / Pen-testing</span><span class="b-val">70</span></span></li>
+            </ol>
+        </section>
+
+        <!-- Method: four verbs, one terminal -->
+        <section class="method" id="method" aria-labelledby="method-h" data-stage="0">
+            <div class="method-inner">
+                <div class="method-say">
+                    <h2 id="method-h" class="sec-h method-clause" aria-live="polite"><span id="method-clause">Build it with precision.</span></h2>
+                    <p class="method-tools" id="method-tools">HTML, CSS, JavaScript, React, PHP, Python, MySQL and WordPress, across the front end and the back.</p>
+                    <ul class="method-stops" id="method-stops" aria-label="Stage of the work">
+                        <li><button type="button" data-to="0" class="is-on" aria-pressed="true">Build</button></li>
+                        <li><button type="button" data-to="1" aria-pressed="false">Secure</button></li>
+                        <li><button type="button" data-to="2" aria-pressed="false">Automate</button></li>
+                        <li><button type="button" data-to="3" aria-pressed="false">Run</button></li>
+                    </ul>
+                </div>
+                <div class="term" data-ui>
+                    <pre class="frag is-on" data-stage="0"><code><span class="c">$ git log --oneline -3</span>
+1139564 Use FormSubmit endpoint in form actions
+591d804 Cache-bust lab assets so HTML and JS match
+dace43f Polish /project and /lab for demo</code></pre>
+                    <pre class="frag" data-stage="1"><code><span class="c">// every input is untrusted</span>
+$title = sanitize_text_field( wp_unslash( $_POST['title'] ?? '' ) );
+if ( ! wp_verify_nonce( $_POST['_nonce'] ?? '', 'vote' ) ) {
+    wp_send_json_error( 'bad nonce', 403 );
+}</code></pre>
+                    <pre class="frag" data-stage="2"><code><span class="c"># crontab: the news pipeline</span>
+*/45 * * * *  run.sh english   <span class="c"># fetch, rewrite, publish</span>
+*/10 * * * *  run.sh nepali    <span class="c"># scrape, filter, draft</span>
+0 2  * * *    backup.sh        <span class="c"># dump + encrypted backup</span></code></pre>
+                    <pre class="frag" data-stage="3"><code><span class="c">$ docker compose ps --format '{{.Name}} {{.Status}}'</span>
+wordpress   Up
+mysql       Up
+redis       Up
+<span class="c">$ systemctl is-active cloudflared</span>
+active</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey: a long read -->
+        <section class="journey" id="journey" aria-labelledby="journey-h">
+            <div class="journey-head">
+                <h2 id="journey-h" class="sec-h" data-rise>How I got here</h2>
+                <span class="journey-rail" aria-hidden="true"><i id="journey-fill"></i></span>
+            </div>
+            <ol class="journey-list">
+                <li class="entry" data-rise>
+                    <h3>Started with websites, stayed for the rest.</h3>
+                    <p class="entry-time">Chapter 1 &middot; Where it started</p>
+                    <p class="entry-text">I began building small websites in school and never really stopped. Along the way I got interested in how systems break, and now I care about building and securing them at the same time. I try to keep things safe from the first line of code instead of fixing it later.</p>
+                </li>
+                <li class="entry" data-rise>
+                    <h3>One layer at a time.</h3>
+                    <p class="entry-time">Chapter 2 &middot; Learning the whole stack</p>
+                    <p class="entry-text">I picked up the stack piece by piece. C and Python first, then databases and Node on the server, then React on the front end. Now I am comfortable working across all of it on the same project.</p>
+                    <p class="chips"><span>Python</span><span>JavaScript</span><span>React</span><span>Node.js</span><span>PHP</span><span>MySQL</span></p>
+                </li>
+                <li class="entry entry-pic" data-rise>
+                    <figure><img src="/assets/img/sundhara-at-night-kathmandu-4.webp" srcset="/assets/img/sundhara-at-night-kathmandu-4-640.webp 640w, /assets/img/sundhara-at-night-kathmandu-4.webp 1280w" sizes="(min-width: 900px) 56vw, 100vw" width="1920" height="1440" loading="lazy" decoding="async"
+                        alt="Sundhara junction in Kathmandu at night, the Dharahara tower lit on the left"></figure>
+                    <p class="pic-note">Kathmandu after dark, where most of this gets built.</p>
+                </li>
+                <li class="entry" data-rise>
+                    <h3>Learning how things break.</h3>
+                    <p class="entry-time">Chapter 3 &middot; Getting into security</p>
+                    <p class="entry-text">I spend time on ethical hacking, network security and penetration testing. Understanding how something can be attacked makes me better at building it. I treat every input as untrusted.</p>
+                    <p class="chips"><span>Ethical hacking</span><span>Network security</span><span>Hack Astra CTF, 80th of 450</span></p>
+                </li>
+                <li class="entry" data-rise>
+                    <h3>Not demos, real products.</h3>
+                    <p class="entry-time">Chapter 4 &middot; Shipping real things</p>
+                    <p class="entry-text">These are running in production, not sitting in a folder. A property and billing platform, a restaurant order and invoice system, a notes app with live chat, and a DNS monitor that watches for bad lookups.</p>
+                </li>
+                <li class="entry" data-rise>
+                    <h3>I like knowing how it runs.</h3>
+                    <p class="entry-time">Chapter 5 &middot; Running my own servers</p>
+                    <p class="entry-text">I self-host an Ubuntu server on an Orange Pi Zero 2W at home, and I run a homelab machine with a 32 GB GPU for model training. I set up the Docker containers, the web server and the database myself.</p>
+                    <p class="chips"><span>Orange Pi self-hosting</span><span>GPU homelab</span><span>Docker &amp; Compose</span></p>
+                </li>
+                <li class="entry entry-pic" data-rise>
+                    <figure><img src="/assets/img/orange-pi-mini-2.webp" srcset="/assets/img/orange-pi-mini-2-640.webp 640w, /assets/img/orange-pi-mini-2.webp 1280w" sizes="(min-width: 900px) 56vw, 100vw" width="1920" height="1247" loading="lazy" decoding="async"
+                        alt="A blue Orange Pi single-board computer photographed from above"></figure>
+                    <p class="pic-note">An Orange Pi board, the same family as the Zero 2W that runs my home server.</p>
+                </li>
+                <li class="entry" data-rise>
+                    <h3>Mostly models and automation.</h3>
+                    <p class="entry-time">Chapter 6 &middot; What I am on now</p>
+                    <p class="entry-text">Right now I am spending my time on training and running language models, Nepali speech models, RAG pipelines and container orchestration. If you are building something that needs to be solid and secure, I would be glad to help.</p>
+                    <p><a class="text-link" href="#contact">Get in touch</a></p>
+                </li>
+            </ol>
+        </section>
+
+        <!-- One exhibit: the script the Nepali models learn to read -->
+        <figure class="manuscript">
+            <div class="manuscript-strip"><img src="/assets/img/text-folio-155-recto-from-a-manuscript.webp" width="1600" height="239" loading="lazy" decoding="async"
+                alt="A long palm-leaf manuscript page from Nepal, dense lines of hand-written script in three blocks"></div>
+            <figcaption>A palm-leaf manuscript from Nepal, written in 1119. My speech and language models are about teaching machines to read and speak Nepali.</figcaption>
+        </figure>
+
+        <!-- Hack Me: the locked door -->
+        <section class="hackme" id="hackme" aria-labelledby="hackme-h">
+            <div class="hackme-copy">
+                <h2 id="hackme-h" class="hackme-h" data-rise>Hack Me</h2>
+                <p class="hackme-sub" data-rise>Security lab, still locked.</p>
+                <p data-rise>Try to hack my labs. Get in and I will personally congratulate you for being an actual pro. Until then, reading writeups is not the same as owning a box, and this door stays shut. Not live yet: leave your email and I will tell you when there is something here for you to fail at.</p>
+                <p class="hackme-links" data-rise>
+                    <a class="btn btn-ink" href="/hack-me/">Enter</a>
+                    <a class="text-link" href="/project/">Read the lab concept</a>
+                </p>
+            </div>
+            <figure class="hackme-pic">
+                <img src="/assets/shots/hackme.webp" srcset="/assets/shots/hackme-640.webp 640w, /assets/shots/hackme.webp 1280w" sizes="(min-width: 900px) 46vw, 100vw" width="1280" height="800" loading="lazy" decoding="async"
+                    alt="The Hack Me page: a terminal reporting access denied and labs not yet exposed">
+            </figure>
+        </section>
+
+        <!-- Credentials: the printed programme -->
+        <section class="creds" id="credentials" aria-labelledby="creds-h">
+            <div class="sheet programme">
+                <h2 id="creds-h" class="sec-h">On the record</h2>
+                <div class="prog-block">
+                    <h3>Education</h3>
+                    <p class="prog-main">Bachelor of Information Technology (BIT)</p>
+                    <p class="prog-when">Pursuing</p>
+                    <p>Undergraduate study across software engineering, networking, cybersecurity, databases, operating systems and modern web technologies.</p>
+                </div>
+                <div class="prog-cols">
+                    <div class="prog-block">
+                        <h3>Certifications</h3>
+                        <ul class="prog-list">
+                            <li><strong>GitHub Foundations</strong><span>GitHub &middot; Professional &middot; 2025</span></li>
+                            <li><strong>Google Cloud Computing Foundations</strong><span>Google Cloud &middot; Professional &middot; 2025</span></li>
+                            <li><strong>Cloudflare Fundamentals</strong><span>Cloudflare &middot; Professional &middot; 2025</span></li>
+                        </ul>
+                    </div>
+                    <div class="prog-block">
+                        <h3>Competitions</h3>
+                        <ul class="prog-list">
+                            <li><strong>Hack Astra CTF</strong><span>Cybersecurity &middot; The Hackers Community Nepal</span><mark>Ranked 80th of 450</mark></li>
+                            <li><strong>Nutanix Capture The Flag</strong><span>Cybersecurity &middot; Participant</span></li>
+                            <li><strong>Digital Forensics Hackathon</strong><span>Cybersecurity &middot; Participant</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact: a coupon to cut out -->
+        <section class="contact" id="contact" aria-labelledby="contact-h">
+            <div class="sheet coupon" data-rise>
+                <div class="coupon-say">
+                    <h2 id="contact-h" class="coupon-h">Let's build something that stays up.</h2>
+                    <div class="coupon-foot">
+                        <p>Interested in working together, or just want to say hello? Drop me a message.</p>
+                        <a class="contact-mail" href="mailto:jhapendrakandel.mac@gmail.com">jhapendrakandel.mac@gmail.com</a>
+                        <p class="contact-place">Kathmandu, Nepal</p>
+                        <p class="contact-social">
+                            <a href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a>
+                            <a href="https://www.linkedin.com/in/jhapendrakandel" target="_blank" rel="noopener">LinkedIn</a>
+                            <a href="https://www.youtube.com/@Kandeljhapendra" target="_blank" rel="noopener">YouTube</a>
+                            <a href="https://www.instagram.com/jk.jk_100" target="_blank" rel="noopener">Instagram</a>
+                        </p>
+                    </div>
+                </div>
+                <form class="coupon-form" id="contact-form" method="POST"
+                    action="https://formsubmit.co/5cd9e20c92fe46aa65897efcf33b2446">
+                    <div class="field">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" autocomplete="name" required>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
+                    </div>
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" minlength="10" required></textarea>
+                    </div>
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://jhapendrakandel.com.np/thanks.html">
+                    <button type="submit" id="submit" class="btn btn-ink btn-full">Send message</button>
+                    <p class="form-note">Your message is sent through FormSubmit, a third-party form service.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer: the back of the card -->
+    <footer class="site-footer">
+        <svg class="edge" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#scallop-up)"/></svg>
+        <div class="sheet postcard">
+            <div class="post-say">
+                <p class="post-jk">J.K</p>
+                <p class="post-motto">Build with precision, secure by design, automate with purpose.</p>
+                <img class="post-stamp" src="/assets/logo.png" width="88" height="88" loading="lazy" alt="">
+            </div>
+            <nav aria-label="Explore">
+                <p>Explore</p>
+                <a href="#about">About</a>
+                <a href="#work">Projects</a>
+                <a href="#hackme">Hack Me</a>
+                <a href="#journey">Journey</a>
+                <a href="#credentials">Credentials</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <nav aria-label="On this site">
+                <p>On this site</p>
+                <a href="/blog/">Blog</a>
+                <a href="/tech/">Tech Briefing</a>
+                <a href="/pulse/">Pulse</a>
+                <a href="/security/">Security Wire</a>
+                <a href="/tools/">Tools</a>
+                <a href="/toolbox/">Resources</a>
+                <a href="/lab/">Honeypot Lab</a>
+                <a href="/project/">Lab concept</a>
+                <a href="/hack-me/">Hack Me</a>
+            </nav>
+            <nav aria-label="Connect">
+                <p>Connect</p>
+                <a href="https://github.com/jhapendra-kandel" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/jhapendrakandel" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.youtube.com/@Kandeljhapendra" target="_blank" rel="noopener">YouTube</a>
+                <a href="https://www.instagram.com/jk.jk_100" target="_blank" rel="noopener">Instagram</a>
+            </nav>
+            <div class="post-legal">
+                <p>&copy; <span id="year">2026</span> Jhapendra Kandel &middot; Full-Stack Developer &amp; Cybersecurity</p>
+                <button type="button" class="back-top" id="back-top">Back to top</button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" defer></script>
+    <script src="/widgets/data-base.js?v=3" defer></script>
+    <script src="/widgets/hub.js?v=4" defer></script>
+    <script src="/widgets/hn.js?v=4" defer></script>
+    <script src="/widgets/now.js?v=3" defer></script>
+    <script src="/tech/tech.js?v=20261114b" defer></script>
+    <script src="main.js?v=20261114a" defer></script>
+</body>
+
+</html>
