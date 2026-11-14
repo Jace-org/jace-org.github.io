@@ -276,7 +276,7 @@
             method.classList.add("is-pinned");
             var st = ScrollTrigger.create({
                 trigger: method, start: "top top", end: "+=" + Math.round(window.innerHeight * 2.4),
-                pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+                pin: true, anticipatePin: 1, invalidateOnRefresh: true, refreshPriority: -1,
                 onUpdate: function (self) { show(Math.min(3, Math.floor(self.progress * 4))); }
             });
             return function () { method.classList.remove("is-pinned"); st.kill(); };
